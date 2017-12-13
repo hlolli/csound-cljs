@@ -2,7 +2,7 @@
   (:require [fs]
             [lumo.io :as io]
             [clojure.string :as string]
-            [csound.metadata :as m]
+            [scripts.metadata :as m]
             [goog.string :as gstring]
             goog.string.format))
 

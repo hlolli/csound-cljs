@@ -2,9 +2,9 @@
   (:require [cljs.spec.alpha :as s]
             [cljs.spec.test.alpha :as stest]
             [cljs.analyzer :refer [parse] :as anal]
-            [clojure.zip :as zip]
-            [csound.metadata :refer [metadata-db]])
+            [clojure.zip :as zip])
   (:require-macros
+   [csound.macros :refer [definstr]]
    [cljs.analyzer.macros
     :refer [disallowing-recur allowing-redef]]))
 
@@ -30,97 +30,107 @@
 (def ^:dynamic *sr* 44100)
 (def ^:dynamic *ksmps* 16)
 (def ^:dynamic *A4* 440)
+(def ^:dynamic *global* true)
 
 
 
-(declare assemble-tree)
+(declare tree-to-assembler)
 
-
-(deftype IO [ast]
-  ILookup
-  (-lookup [coll k] (-lookup coll k nil))
-  (-lookup [coll k not-found] (get (.-ast coll) k not-found))
-  IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
 
 (deftype AudioSignal [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype ControlSignal [ast]
   ILookup
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   (-lookup [coll k] (get (.-ast coll) k))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype FrequencySignal [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype Variable [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype String [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype AudioArray [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype ControlArray [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype VariableArray [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (deftype StringArray [ast]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
-  (-invoke [coll] (assemble-tree (.-ast coll)))
-  (-invoke [coll assembler] (into (assemble-tree (.-ast coll)) assembler)))
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+
+(deftype IO [ast]
+  ILookup
+  (-lookup [coll k] (-lookup coll k nil))
+  (-lookup [coll k not-found] (get (.-ast coll) k not-found))
+  IFn
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+
+(deftype ScoreParameter [ast]
+  ILookup
+  (-lookup [coll k] (-lookup coll k nil))
+  (-lookup [coll k not-found] (get (.-ast coll) k not-found))
+  IFn
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 
 (defn isa-csound-type? [obj]
   (#{AudioSignal ControlSignal FrequencySignal
      Variable String AudioArray ControlArray
-     VariableArray StringArray} (type obj)))
+     VariableArray StringArray IO
+     ScoreParameter} (type obj)))
 
 (defn- gen-symbol [ret-type global?]
   (str
@@ -191,15 +201,61 @@
                                              out (into [out]))))])))
       (reduce [] tree)))
 
-(defn assemble-tree [csnd]
-  (-> csnd
+
+(defn tree-to-assembler [tree]
+  (-> tree
       flatten-tree
       parse-tree))
 
+(defn parse-to-string [assembler]
+  ;; Transducer here?
+  (letfn [(dedupe [v]
+            (reduce (fn [acc node]
+                      (if (some #(= (first node) (first %)) acc)
+                        acc
+                        (conj acc node))) [] v))
+          (reduce-to-string [v]
+            (reduce (fn [acc-str [_ s]]
+                      (str acc-str s "\n")) "" v))]
+    (-> assembler dedupe reduce-to-string)))
 
 
-(defn poscil [& [amp cps ifn]]
-  (let [out-types-quoted 'AudioSignal
+(defn score-parameter? [v]
+  (= ScoreParameter (type v)))
+
+
+(defn audio-signal? [v]
+  (= AudioSignal (type v)))
+
+(defn control-signal? [v]
+  (= ControlSignal (type v)))
+
+#_(s/def ::kr (s/or :kr control-signal?
+                    :int number?
+                    :p score-parameter?))
+
+;; (s/def ::ar audio-signal?)
+
+;; (s/conform (s/coll-of ::ar ::ar) [(AudioSignal. 1) (AudioSignal. 1)])
+
+#_(:cljs.spec.alpha/problems (s/explain-data
+                              (s/alt :k1 (s/coll-of ::ar ::ar)
+                                     :k2 (s/coll-of ::ar ::kr)) [(AudioSignal. 1) (ControlSignal. 1)]))
+
+
+#_(defn poscil [amp cps]
+    (let [match (s/conform (s/or ))]))
+
+;; (stest/instrument)
+
+#_(s/fdef poscil
+    :args #(s/cat :x string?)
+    :ret string?
+    :fn string?)
+
+(defn poscil [amp cps & [ifn]]
+  (let [_ (prn "GLOBAL: " *global*)
+        out-types-quoted 'AudioSignal
         out-types AudioSignal
         ast (ast-node out-types-quoted
                       "poscil"
@@ -226,161 +282,17 @@
     (new out-types ast)))
 
 
-(def asig1 (poscil 1 100 1))
-(def asig10 (poscil 1 100 1))
-(def asig2 (poscil2 asig1 100 1))
-(def asig3 (poscil (last asig2) 6 0))
+;; (def asig1 (poscil 1 100 1))
+;; (def asig10 (poscil 1 100 1))
+;; (def asig2 (poscil2 asig1 100 1))
+;; (def asig3 (poscil (last asig2) 6 0))
 
-(defn parse-to-string [csnd]
-  ;; Transducer here?
-  (letfn [(dedupe [v]
-            (reduce (fn [acc node]
-                      (if (some #(= (first node) (first %)) acc)
-                        acc
-                        (conj acc node))) [] v))
-          (reduce-to-string [v]
-            (reduce (fn [acc-str [_ s]]
-                      (str acc-str s "\n")) "" v))]
-    (-> csnd dedupe reduce-to-string)))
+;; (println (abc))
+(definstr abc []
+  (let [_ (prn *global*)
+        sig (poscil 1 100 1)]
+    sig))
 
-(println (parse-to-string ((comp asig3 (out asig3)))))
-
-(ns csound.core$macros)
+;; (println (parse-to-string ((comp asig3 (out asig3)))))
 
 
-
-(csound.core$macros/definst a [] :a)
-
-
-((comp asig1
-       asig10) [])
-
-(asig1 (asig10))
-
-
-(comment 
-
-  (time (doseq [_ (range 10000)] (parse-tree (flatten-tree asig3))
-               ))
-
-  (time (doseq [_ (range 10000)] (apply + (range 100))))
-
-
-  (def asig1 (AudioSignal. (ast-node '[AudioSignal AudioSignal]  "poscil" [1 440 1] false false)))
-  (def asig2 (AudioSignal. (ast-node 'AudioSignal  "poscil" [asig1 440 1] false false)))
-  (def asig3 (AudioSignal. (ast-node 'AudioSignal  "poscil" [asig2 440 1] false false)))
-  (def asig4 (AudioSignal. (ast-node 'AudioSignal  "poscil" [asig3 asig1 1] false false)))
-
-  (defn glob []
-    (meta #'glob))
-
-  (def ^:dynamic a (glob))
-
-  (parse-tree (flatten-tree asig4))
-
-  (-> (zip/seq-zip (seq (xxx. [(xxx. 100) (xxx. 666)])))
-      zip/next)
-
-  (-> (zip/vector-zip [1 [2 [3]]])
-      zip/next
-      zip/next
-      zip/next
-      zip/next
-      zip/next
-      zip/next)
-
-  (tree-seq sequential? seq [1 [2 [3]]])
-
-  (def asig (AudioSignal. 100 false))
-  (def ksig (AudioSignal. [:a :b :c 66]))
-
-  (def ^:private valid-x-rates #{CsoundAudioSignal CsoundControlSignal CsoundVariable Number})
-
-  (def ^:private valid-k-rates #{CsoundControlSignal CsoundVariable Number})
-
-  (def ^:private valid-i-rates #{CsoundVariable Number})
-
-  (def ^:private valid-a-rates #{CsoundAudioSignal})
-
-  (.-a-var asig)
-
-  (def b {:a 1 :b (:a b)})
-
-  (defn k [number]
-    (CsoundControlSignal. number))
-
-  (map type (list ksig asig))
-
-  (defn a-rate? [v]
-    (= CsoundAudioSignal (type v)))
-
-  (defn k-rate? [v]
-    (= CsoundControlSignal (type v)))
-
-  (defn f-rate? [v]
-    (= CsoundSpectralSignal (type v)))
-
-
-
-
-
-  (defn pattern-match-parameters [])
-
-  (defn poscil
-    ;; [& [p1 p2 p3 p4 :as env]]
-    {:arglists '([p1 p2 p3 p4] [i1 i2 i3 i4])}
-    [p1 p2 p3 p4]
-    [p1 p2 p3 p4])
-
-  (meta #'poscil)
-
-  (poscil 2 :p2 2)
-
-  (keys (methods poscil))
-
-  (defmethod poscil
-    [CsoundAudioSignal CsoundAudioSignal CsoundVariable CsoundVariable]
-    [a1 a2 j1 o1]
-    (let [out-type CsoundAudioSignal]
-      (ast-node (gensym out-type)
-                "poscil"
-                [a1 a2 j1 o1]
-                out-type
-                false)))
-
-  (defmethod poscil
-    [CsoundControlSignal CsoundControlSignal CsoundVariable CsoundVariable]
-    [a1 a2 j1 o1]
-    (let [out-type CsoundAudioSignal]
-      (ast-node (gensym out-type)
-                "poscil"
-                [a1 a2 j1 o1]
-                out-type
-                false)))
-
-  (def sig1 (poscil 0.1 440))
-
-
-  (defn a [& {:keys [a1 a2 a3 o1]
-              :or {o1 1} :as env}]
-    [env a1 o1])
-
-  (a 1 2 3 4 :a1 1)
-  (s/def :: string?)
-
-  (stest/instrument `silly)
-
-  (defn silly [x]
-    x)
-
-  (s/fdef silly
-    :args #(s/cat :x string?)
-    :ret string?
-    :fn string?)
-
-  (stest/check `silly)
-
-  (silly [""])
-
-  (lumo.repl/doc silly)
-  )

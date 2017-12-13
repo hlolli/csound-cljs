@@ -17,7 +17,7 @@ nchnls = 2
 instr 1
 
   reset:
-    print times()
+    print 3/2
 
   contin:
     print times()
