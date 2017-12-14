@@ -223,35 +223,81 @@
 (defn score-parameter? [v]
   (= ScoreParameter (type v)))
 
-
-(defn audio-signal? [v]
+(defn valid-ar? [v]
   (= AudioSignal (type v)))
 
-(defn control-signal? [v]
-  (= ControlSignal (type v)))
+(defn valid-ar?* [v]
+  (or (valid-ar? v)
+      (nil? v)))
 
-#_(s/def ::kr (s/or :kr control-signal?
-                    :int number?
-                    :p score-parameter?))
+(defn valid-kr? [v]
+  (or (= ControlSignal (type v))
+      (= ScoreParameter (type v))
+      (= Variable (type v))
+      (number? v)))
 
-;; (s/def ::ar audio-signal?)
+(defn valid-kr?* [v]
+  (or (valid-kr? v)
+      (nil? v)))
 
-;; (s/conform (s/coll-of ::ar ::ar) [(AudioSignal. 1) (AudioSignal. 1)])
+(defn valid-i? [v]
+  (or (= ScoreParameter (type v))
+      (= Variable (type v))
+      (number? v)))
 
-#_(:cljs.spec.alpha/problems (s/explain-data
-                              (s/alt :k1 (s/coll-of ::ar ::ar)
-                                     :k2 (s/coll-of ::ar ::kr)) [(AudioSignal. 1) (ControlSignal. 1)]))
+(defn valid-i?* [v]
+  (or (valid-i? v)
+      (nil? v)))
 
+(defn valid-f? [v]
+  (= FrequencySignal (type v)))
 
-#_(defn poscil [amp cps]
-    (let [match (s/conform (s/or ))]))
+(defn valid-f?* [v]
+  (or (valid-f* v)
+      (nil? v)))
 
-;; (stest/instrument)
+(defn valid-S? [v]
+  (or (= ScoreParameter (type v))
+      (= String (type v))
+      (number? v)))
 
-#_(s/fdef poscil
-    :args #(s/cat :x string?)
-    :ret string?
-    :fn string?)
+(defn valid-S?* [v]
+  (or (valid-S? v)
+      (nil? v)))
+
+(s/def ::kr valid-kr?)
+
+(s/def ::ar valid-ar?)
+
+(s/conform (s/cat ::ar ::ar) [(AudioSignal. 1) (AudioSignal. 1)])
+
+(s/conform
+ [(AudioSignal. 1) (ControlSignal. 1)])
+
+(set! cljs.spec.alpha/*compile-asserts* true)
+
+(s/valid? (s/or :dispatch1
+                (s/coll-of ::kr ::ar number?)) [(AudioSignal. 1) (AudioSignal. 1)])
+
+(:cljs.spec.alpha/problems )
+
+(stest/unstrument `poscil)
+
+(s/fdef poscil
+  :args (s/alt
+         :aa (s/cat :amp ::ar :cps ::ar)
+         :ak (s/cat :amp ::ar :cps ::kr)))
+
+(defn poscil [amp cps]
+  (let []))
+
+(stest/instrument `poscil)
+
+(s/valid? (s/cat :a ::ar :b ::ar) [(AudioSignal. 2)(FrequencySignal. 2)])
+
+(poscil (AudioSignal. 1) (FrequencySignal. 2))
+
+(poscil 1 1)
 
 (defn poscil [amp cps & [ifn]]
   (let [_ (prn "GLOBAL: " *global*)
@@ -287,12 +333,15 @@
 ;; (def asig2 (poscil2 asig1 100 1))
 ;; (def asig3 (poscil (last asig2) 6 0))
 
-;; (println (abc))
+
 (definstr abc []
   (let [_ (prn *global*)
         sig (poscil 1 100 1)]
     sig))
 
+(println (abc))
+
 ;; (println (parse-to-string ((comp asig3 (out asig3)))))
 
 
+;;;; AUTO-GENERATED ;;;;

@@ -1,4 +1,4 @@
-(ns csound.metadata
+(ns scripts.metadata
   (:require [fs]
             [path]
             [xml2json :as xml]
