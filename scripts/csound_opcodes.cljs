@@ -9,7 +9,6 @@
 
 (def sliders #(re-find #"^slider*" (first %)))
 
-
 (def csound-opcode-list
   (->> (for [line (-> (io/slurp "scripts/csound_raw_spec.txt")
                       string/split-lines)]
@@ -31,28 +30,21 @@
   (filter #(= (first %) oname)
           csound-opcode-list))
 
-(defn poscil
-  {:arglists '([p1 p2 p3 p4] [i1 i2 i3 i4])}
-  [& [p1 p2 p3 p4 & rest :as env]]
-  [rest env])
+#_(defn poscil
+    {:arglists '([p1 p2 p3 p4] [i1 i2 i3 i4])}
+    [& [p1 p2 p3 p4 & rest :as env]]
+    [rest env])
 
-(poscil 1 2 3 2 3)
+;; (poscil 1 2 3 2 3)
 
-
-(defn skeleton [oname arglists pnames opt-pnames]
-  (let [arglists (or arglists "([])")]
-    (gstring/format "(defn %s
-  {:arglists '%s}
-  %s
-  (fn [ctx] env))
-" oname arglists pnames)))
 
 
 (def fdef-spec-fn
   {"a" "valid-ar?"
    "k" "valid-kr?"
    "i" "valid-i?"
-   "S" "valid-S?"})
+   "S" "valid-S?"
+   "x" "valid-x?"})
 
 (defn fdef-skeleton [oname op-symbol fdef-data]
   (let [multi-dispatch? (< 1 (count fdef-data))
@@ -75,8 +67,8 @@
                              (get fdef-spec-fn (first %))
                              (when (nth % 2) "*") " "))
                   (apply str)))
-        _ (prn fdef-data)
-        spec (str alt-p1 p2 (if multi-dispatch? "))" ")"))]
+        ;; _ (prn fdef-data)
+        spec (str alt-p1 p2 (if multi-dispatch? "))" "))"))]
     (gstring/format "(s/fdef %s
   :args %s
 (stest/instrument `%s)\n" op-symbol spec op-symbol)))
@@ -104,14 +96,14 @@
 
 (def intype-to-rate
   {"a" "a"
-   "a[]" "a[]"
+   "a[]" "aarr"
    "m" "a"
    "S" "S"
-   "S[]" "S[]"
+   "S[]" "Sarr"
    "x" "x"
    "*" "x"
    "k" "k"
-   "k[]" "k[]"
+   "k[]" "karr"
    "O" "k"
    "P" "k"
    "V" "k"
@@ -119,12 +111,13 @@
    "f" "f"
    "i" "i"
    "v" "i"
-   "i[]" "i[]"
+   "i[]" "iarr"
    "j" "i"
    "o" "i"
    "p" "i"
    "." "any_rate_"
    "l" "l"
+   "Z" ["a" "k"]
    })
 
 (def rate-to-type
@@ -139,14 +132,7 @@
    ""    "IO"
    nil   "IO"})
 
-(defn pname-rename [pname]
-  (case pname
-    "fn" "table"
-    "phs" "phase"
-    "nsnum" "insnum"
-    pname))
-
-(defn prn-vector [v]
+(defn vector->str [v]
   (str "["
        (->> (interpose " " v)
             (apply str))
@@ -160,6 +146,43 @@
           []
           (vec (seq specs))))
 
+(defn skeleton [oname arglists pnames out-types command]
+  (let [arglists (string/trim (or arglists "([])"))
+        out-types (if (= "(null)" out-types)
+                    nil
+                    (let [rates (split-specs out-types)]
+                      (if (< 1 (count rates))
+                        (vector->str (mapv #(get rate-to-type %) rates))
+                        (get rate-to-type (first rates)))))
+        parameters (-> pnames
+                       (string/replace #"\[|\]|&" "")
+                       (string/replace #"\s+" " ")
+                       (string/trim))
+        return (when out-types
+                 (if (vector? out-types)
+                   "(mapv #(new %1 %2) out-types ast)"
+                   "(new out-types ast)"))]
+    (apply gstring/format "(defn %s
+  {:arglists '%s}
+  %s
+  (let [out-types-quoted '%s
+        out-types %s
+        ast (ast-node out-types-quoted
+                      \"%s\"
+                       [%s]
+                       *global*)]
+    %s))
+" [oname arglists pnames
+   out-types out-types command
+   parameters return])))
+
+(defn pname-rename [pname]
+  (case pname
+    "fn" "table"
+    "phs" "phase"
+    "nsnum" "insnum"
+    pname))
+
 
 (defn parse-in-args [specs in-meta]
   (let [[_ _ in-specs] specs]
@@ -172,29 +195,45 @@
              fdef-data []
              opt-arg? false
              star-arg? false
+             Z-arg? false
              arg-num 1]
         (if (empty? in-specs)
-          [(prn-vector arglists)
-           (prn-vector (if opt-arg?
-                         (conj pnames "]")
-                         pnames))
+          [(vector->str arglists)
+           (vector->str (if opt-arg?
+                          (conj pnames "]")
+                          pnames))
            fdef-data]
           (let [in-spec (first in-specs)
-                this-star-arg? (= "*" in-spec)
-                in-spec (if this-star-arg? "x" in-spec)
-                in-specs (if this-star-arg?
-                           (into (remove #(= "*" %) in-specs) (take 16 (cycle ["x"])))
-                           in-specs)
-                ;; _ (prn in-specs)
                 opt-arg (get opt-inargs in-spec)
                 ;; Opt arg can have no default value (nil)
                 this-opt-arg? (some #(= in-spec %) (keys opt-inargs))
+                this-star-arg? (= "*" in-spec)
+                this-Z-arg? (= "Z" in-spec)
+                this-z-arg? (= "z" in-spec)
+                in-spec (cond this-star-arg? "x"
+                              (or this-z-arg? this-Z-arg?) "k"
+                              :else in-spec)
+                in-specs (cond this-star-arg?
+                               (into (remove #(= "*" %) in-specs) (take 16 (cycle ["x"])))
+                               this-Z-arg?
+                               (into (remove #(= "Z" %) in-specs) (take 16 (cycle ["a" "k"])))
+                               this-z-arg?
+                               (into (remove #(= "z" %) in-specs) (take 16 (cycle ["k"])))
+                               :else
+                               in-specs)
                 meta (first metas)
                 meta (if (re-find #"/" meta) nil meta)
-                pname (pname-rename (if meta (subs meta 1) (str "arg" arg-num)))
+                pname (pname-rename (if (and meta
+                                             (not (or this-Z-arg? Z-arg?))
+                                             (not (re-find #"^[a-zA-Z][0-9]$" meta)))
+                                      (subs meta 1)
+                                      (str "arg" arg-num)))
+                ;; _ (prn meta pname arg-num)
                 argtype (get intype-to-rate in-spec)
-                _ (prn in-spec  pname)
-                argname (str (subs argtype 0 1) pname (subs argtype 1))]
+                ;; _ (prn in-spec)
+                argname (str (subs argtype 0 1) pname (subs argtype 1))
+                ;; _ (prn meta pname argname)
+                ]
             (recur (rest in-specs)
                    (if (< 1 (count metas))
                      (rest metas)
@@ -205,12 +244,16 @@
                    (if (and this-opt-arg? (not opt-arg?))
                      (conj pnames "& [" pname)
                      (conj pnames pname))
-                   (conj fdef-data [argtype pname this-opt-arg? this-star-arg?])
+                   (conj fdef-data [argtype pname
+                                    (or opt-arg? this-opt-arg?)
+                                    (or star-arg? this-star-arg?)])
                    (if (and this-opt-arg? (not opt-arg?))
                      this-opt-arg?
                      opt-arg?)
                    (if (and this-star-arg? (not star-arg?))
                      this-star-arg? star-arg?)
+                   (if (and this-Z-arg? (not Z-arg?))
+                     this-Z-arg? Z-arg?)
                    (inc arg-num))))))))
 
 (defn resolve-out-symbols [opcode spec]
@@ -229,7 +272,8 @@
                            (map #(get intype-to-rate %)))]
         (reduce (fn [m r]
                   (let [rate (if (re-find #"\[" r)
-                               (str (string/replace r "[]" "") "arr"))]
+                               (str (string/replace r "[]" "") "arr")
+                               r)]
                     (assoc m (str opcode ":" rate)
                            (filter (fn [s] (or (= r (second s))
                                                (= rate (second s)))) spec)))) default out-rates)))))
@@ -244,29 +288,35 @@
         out-str
         (let [op-symbol (first op-symbols)
               in-meta  (get-in @m/metadata-db [opcode :in])
+              in-meta (->> in-meta
+                           (remove #(= "..." %)))
+              ;; _ (prn "inmeta" in-meta)
               out-meta (get-in @m/metadata-db [opcode :out])
               args (map #(parse-in-args % in-meta) (or (get all-out op-symbol)
                                                        specs))
+              ;; _ (prn args)
               arglists (str "(" (apply str (interpose " " (map first args))) ")")
               pnames (second (first args))
               fdef-data (map #(nth % 2) args)
               fdef-str (if (empty? fdef-data)
                          ""
                          (fdef-skeleton opcode op-symbol fdef-data))
-              ;; _ (prn fdef-data)
+              ;; _ (prn out-meta)
+              out-types (first (distinct (map second (get all-out op-symbol))))
               opt-pnames ""
               out-str (str out-str "\n"
-                           (skeleton op-symbol arglists pnames opt-pnames))]
+                           (skeleton op-symbol arglists pnames out-types opcode))]
           (recur (rest op-symbols)
                  (str out-str "\n"
                       fdef-str)))))))
 
-(defn debug [opc]
-  (loop [opcodes ;;[opc]
-         (take 1 (keys @m/metadata-db))
+(defn debug []
+  (loop [opcodes ;; [ "mp3scal" "poscil"]
+         (take 21 (keys @m/metadata-db))
          out-str ""]
     (if (empty? opcodes)
-      (println out-str)
+      ;; (println out-str)
+      out-str
       (let [opcode (first opcodes)
             specs (find-specs opcode)
             ;; s is deprecated, usually represents k-rate sigs
@@ -290,21 +340,26 @@
         (recur (rest opcodes)
                out-str)))))
 
-(find-specs "poscil")
-(get @m/metadata-db "xout")
+(comment
+  
+  (io/spit "scripts/henda.cljs" (debug))
+
+  (find-specs "window")
+  (get @m/metadata-db "window")
+  (get @m/metadata-db "poscil")
 
 
-(parse-in-args ["poscil" "a" "aajo"]
-               ;; ["poscil" "a" "akjo"]
-               ;; ["poscil" "a" "kajo"]
-               ;; ["poscil" "a" "kkjo"]
-               ;; ["poscil" "k" "kkjo"]
-               ["kamp" "kcps" "ifn" "iphs"])
+  (parse-in-args ["poscil" "a" "aajo"]
+                 ;; ["poscil" "a" "akjo"]
+                 ;; ["poscil" "a" "kajo"]
+                 ;; ["poscil" "a" "kkjo"]
+                 ;; ["poscil" "k" "kkjo"]
+                 ["kamp" "kcps" "ifn" "iphs"])
 
 
-(resolve-out-symbols "poscil"
-                     (list ["poscil" "a" "aajo"]
-                           ["poscil" "a" "akjo"]
-                           ["poscil" "a" "kajo"]
-                           ["poscil" "a" "kkjo"]
-                           ["poscil" "k" "kkjo"]))
+  (resolve-out-symbols "poscil"
+                       (list ["poscil" "a" "aajo"]
+                             ["poscil" "a" "akjo"]
+                             ["poscil" "a" "kajo"]
+                             ["poscil" "a" "kkjo"]
+                             ["poscil" "k" "kkjo"])))

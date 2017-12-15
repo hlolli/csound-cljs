@@ -39,6 +39,7 @@
                  "multiplies.xml" "adds.xml"
                  "subtracts.xml" "divides.xml"
                  "assign.xml" "plusbecomes.xml"
+                 "frac.xml"
                  "equals.xml" "raises.xml"
                  "opor.xml" "opbitshl.xml"
                  "opbitshr.xml" "opbitand.xml"
@@ -58,6 +59,21 @@
 
 (def redundants #{"convle.xml" "fiopen.xml" "oscilx.xml" "sense.xml"})
 
+(def native-deps #{"LinkBeatForce.xml"
+                   "LinkBeatGet.xml"
+                   "LinkBeatRequest.xml"
+                   "LinkCreate.xml"
+                   "LinkEnable.xml"
+                   "LinkIsEnabled.xml"
+                   "LinkMetro.xml"
+                   "LinkPeers.xml"
+                   "LinkTempoGet.xml"
+                   "LinkTempoSet.xml"
+                   "faustaudio.xml"
+                   "faustcompile.xml"
+                   "faustctl.xml"
+                   "faustgen.xml"})
+
 (def manual-opcode-files
   (->> (fs/readdirSync manual-opcodes-dir)
        js->clj
@@ -73,7 +89,8 @@
        (remove deprecated)
        (remove operators)
        (remove redundants)
-       (remove fl-opcodes)))
+       (remove fl-opcodes)
+       (remove native-deps)))
 
 (def metadata-db (atom {}))
 
@@ -105,7 +122,7 @@
                      (last s)
                      s))
         trimd-syn (-> synopsis
-                      (string/replace #"\[|\]|\\|\n|,|=" "")
+                      (string/replace #"\[|\]|\\|\n|,|=" " ")
                       (string/replace #"\s+|\t+" " "))
         [out in] (string/split trimd-syn (re-pattern command))
         out (->> (-> out str string/trim
@@ -118,3 +135,10 @@
                  vec)]
     (swap! metadata-db assoc command {:out out :in in})))
 
+
+(defn patch! [opcode out in]
+  (swap! metadata-db assoc opcode {:out out :in in}))
+
+(do
+  (patch! "tab_i" ["ires"] ["iindex" "ifn" "imode"])
+  nil)

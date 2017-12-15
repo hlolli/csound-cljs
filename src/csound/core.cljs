@@ -328,7 +328,7 @@
     (new out-types ast)))
 
 
-;; (def asig1 (poscil 1 100 1))
+;; (def asig1 (poscil2 1 100 1))
 ;; (def asig10 (poscil 1 100 1))
 ;; (def asig2 (poscil2 asig1 100 1))
 ;; (def asig3 (poscil (last asig2) 6 0))
