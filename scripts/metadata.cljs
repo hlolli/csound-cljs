@@ -83,7 +83,9 @@
                  "ftsr.xml" "opa.xml" "opk.xml" "logbtwo.xml" "divz.xml" "octave.xml"
                  "qinf.xml" "ftchnls.xml" "rnd.xml" "db.xml" "powoftwo.xml"
                  "cent.xml" "semitone.xml" "octmidinn.xml" "octcps.xml" "octpch.xml"
-                 "dbfsamp.xml" "birnd.xml" "ampdb.xml" "signum.xml"})
+                 "dbfsamp.xml" "birnd.xml" "ampdb.xml" "signum.xml"
+                 "reinit.xml" "pow.xml" "loop_gt.xml" "loop_le.xml"
+                 "loop_ge.xml" "rigoto.xml" "loop_lt.xml"})
 
 (def redundants #{"convle.xml" "fiopen.xml" "oscilx.xml" "sense.xml"})
 
@@ -207,7 +209,15 @@
 
 (do
   (swap! metadata-db dissoc "printf</command> and <command>printf_i")
+  (patch! "tableshuffle" [] ["kitablenum"])
+  (patch! "tableshufflei" [] ["itablenum"])
   (patch! "tab_i" ["ires"] ["iindex" "ifn" "imode"])
+  (patch! "zdf_2pole_mode" ["alp" "abp" "ahp"] ["ain" "xcf" "xQ" "istor"])
+  (patch! "zamod" ["ares"] ["asig" "kzamod"])
+  (patch! "zkmod" ["kres"] ["ksig" "kzkmod"])
+  (patch! "xyscale" ["kout"] ["kx" "ky" "kZeroZero" "kOneZero" "kZeroOne" "kOneOne"])
+  (patch! "tempo" [] ["ktempo" "istarttempo"])
+  (patch! "product" ["ares"] ["asignalorarray" "asig"])
   (patch! "strcpy" ["Sdestination"] ["Ssource"])
   (patch! "sprintf" ["Sresult"] ["Sformatstring" "xarg"])
   (patch! "printf" ["(null)"] ["Sformatstring" "karg"])

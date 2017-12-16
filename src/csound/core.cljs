@@ -265,85 +265,96 @@
   (or (valid-S? v)
       (nil? v)))
 
-(s/def ::kr valid-kr?)
+(defn valid-SArr? [v]
+  (= StringArray (type v)))
 
-(s/def ::ar valid-ar?)
-
-(s/conform (s/cat ::ar ::ar) [(AudioSignal. 1) (AudioSignal. 1)])
-
-(s/conform
- [(AudioSignal. 1) (ControlSignal. 1)])
-
-(set! cljs.spec.alpha/*compile-asserts* true)
-
-(s/valid? (s/or :dispatch1
-                (s/coll-of ::kr ::ar number?)) [(AudioSignal. 1) (AudioSignal. 1)])
-
-(:cljs.spec.alpha/problems )
-
-(stest/unstrument `poscil)
-
-(s/fdef poscil
-  :args (s/alt
-         :aa (s/cat :amp ::ar :cps ::ar)
-         :ak (s/cat :amp ::ar :cps ::kr)))
-
-(defn poscil [amp cps]
-  (let []))
-
-(stest/instrument `poscil)
-
-(s/valid? (s/cat :a ::ar :b ::ar) [(AudioSignal. 2)(FrequencySignal. 2)])
-
-(poscil (AudioSignal. 1) (FrequencySignal. 2))
-
-(poscil 1 1)
-
-(defn poscil [amp cps & [ifn]]
-  (let [_ (prn "GLOBAL: " *global*)
-        out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "poscil"
-                      [amp cps ifn]
-                      false)]
-    (new out-types ast)))
-
-(defn poscil2 [& [amp cps ifn]]
-  (let [out-types-quoted '[AudioSignal AudioSignal]
-        out-types [AudioSignal AudioSignal]
-        ast (ast-node out-types-quoted
-                      "poscil"
-                      [amp cps ifn]
-                      false)]
-    (mapv #(new %1 %2) out-types ast)))
-
-(defn out [signal]
-  (let [out-types-quoted 'IO
-        out-types IO
-        ast (ast-node out-types-quoted
-                      "out"
-                      [signal]
-                      false)]
-    (new out-types ast)))
+(defn valid-SArr?* [v]
+  (or (valid-SArr? v)
+      (nil? v)))
 
 
-;; (def asig1 (poscil2 1 100 1))
-;; (def asig10 (poscil 1 100 1))
-;; (def asig2 (poscil2 asig1 100 1))
-;; (def asig3 (poscil (last asig2) 6 0))
+(defn valid-aArr? [v]
+  (= AudioArray (type v)))
 
+(defn valid-aArr?* [v]
+  (or valid-aArr?
+      (nil? v)))
 
-(definstr abc []
-  (let [_ (prn *global*)
-        sig (poscil 1 100 1)]
-    sig))
+(defn valid-kArr? [v]
+  (= ControlArray (type v)))
 
-(println (abc))
+(defn valid-kArr?* [v]
+  (or valid-kArr?
+      (nil? v)))
 
+(defn valid-iArr? [v]
+  (= VariableArray (type v)))
 
+(defn valid-iArr?* [v]
+  (or valid-iArr?
+      (nil? v)))
+
+(defn valid-x? [v]
+  (or (valid-ar? v)
+      (valid-i? v)
+      (valid-kr? v)
+      (score-parameter? v)
+      (valid-S? v)
+      (valid-aArr? v)
+      (valid-kArr? v)
+      (valid-iArr? v)))
+
+(defn valid-x?* [v]
+  (or valid-x?
+      (nil? v)))
 
 ;; (println (parse-to-string ((comp asig3 (out asig3)))))
 
 
-(load-file "resources/opcodes.cljs")
+(load-file "src/csound/opcodes.cljs")
+
+
+
+(comment
+  (defn poscil [amp cps & [ifn]]
+    (let [_ (prn "GLOBAL: " *global*)
+          out-types-quoted 'AudioSignal
+          out-types AudioSignal
+          ast (ast-node out-types-quoted
+                        "poscil"
+                        [amp cps ifn]
+                        false)]
+      (new out-types ast)))
+
+  (defn poscil2 [& [amp cps ifn]]
+    (let [out-types-quoted '[AudioSignal AudioSignal]
+          out-types [AudioSignal AudioSignal]
+          ast (ast-node out-types-quoted
+                        "poscil"
+                        [amp cps ifn]
+                        false)]
+      (mapv #(new %1 %2) out-types ast)))
+
+  (defn out [signal]
+    (let [out-types-quoted 'IO
+          out-types IO
+          ast (ast-node out-types-quoted
+                        "out"
+                        [signal]
+                        false)]
+      (new out-types ast)))
+
+  ;; (def asig1 (poscil2 1 100 1))
+  ;; (def asig10 (poscil 1 100 1))
+  ;; (def asig2 (poscil2 asig1 100 1))
+  ;; (def asig3 (poscil (last asig2) 6 0))
+
+
+  (definstr abc []
+    (let [_ (prn *global*)
+          sig (poscil 1 100 1)]
+      sig))
+
+  (println (abc))
+
+  )
