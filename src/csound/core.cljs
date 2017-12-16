@@ -341,7 +341,9 @@
 
 (println (abc))
 
+
+
 ;; (println (parse-to-string ((comp asig3 (out asig3)))))
 
 
-;;;; AUTO-GENERATED ;;;;
+(load-file "resources/opcodes.cljs")
