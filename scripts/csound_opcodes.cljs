@@ -39,6 +39,7 @@
         (remove #(= "init" (first %)))
         (remove #(= "slicearray" (first %)))
         (remove #(= "in" (first %)))
+        (remove #(= "taninv" (first %)))
         vec)
    (conj ["framebuffer" "k[]" "ai"]
          ["framebuffer" "a" "ki"]
@@ -72,7 +73,13 @@
          ["slicearray" "S[]" "S[]iip"]
          ["slicearray" "i[]" "i[]iip"]
          ["in" "a" "(null)"]
-         ["in" "a[]" "(null)"])))
+         ["in" "a[]" "(null)"]
+         ["taninv" "a" "a"]
+         ["taninv" "i" "i"]
+         ["taninv" "i[]" "i[]"]
+         ["taninv" "k" "k"]
+         ["taninv" "k[]" "k[]"]
+         )))
 
 (defn find-specs [oname]
   (filter #(= (first %) oname)
@@ -85,18 +92,13 @@
 
 ;; (poscil 1 2 3 2 3)
 
-(defn remove-duplicate
-  "Returns a lazy sequence of the elements of coll with duplicates removed using a predicate"
-  [pred coll]
-  (let [step (fn step [xs seen]
-               (lazy-seq
-                ((fn [[f :as xs] seen]
-                   (when-let [s (seq xs)]
-                     (if (some pred seen)
-                       (recur (rest s) seen)
-                       (cons f (step (rest s) (conj seen f))))))
-                 xs seen)))]
-    (step coll #{})))
+(defn remove-spec-duplicate
+  [spec-list]
+  (-> (fn [acc s]
+        (if (some #(= (apply str (map first %))
+                      (apply str (map first s))) acc)
+          acc (conj acc s)))
+      (reduce '() spec-list)))
 
 (def fdef-spec-fn
   {"a" "valid-ar?"
@@ -115,22 +117,24 @@
         alt-p1 (if multi-dispatch?
                  "(s/alt\n" "(s/cat ")
         indent "         "
-        fdef-data-deduped-in (remove-duplicate #(map first %) fdef-data)
+        fdef-data-deduped-in (remove-spec-duplicate fdef-data)
         p2 (if multi-dispatch?
              (apply str
                     (for [dispatch fdef-data-deduped-in]
                       (let [dispatch-name-key (keyword (apply str (map first dispatch)))
                             arg-seq (->> dispatch
                                          (map #(str (keyword (second %)) " "
+                                                    (when (nth % 2) "(s/? ")
                                                     (get fdef-spec-fn (first %))
-                                                    (when (nth % 2) "*") " "))
+                                                    (when (nth % 2) "*)") " "))
                                          (apply str))
                             arg-set (str arg-seq ")")]
                         (str indent dispatch-name-key " (s/cat " arg-seq ")\n"))))
              (->> (first fdef-data)
                   (map #(str (keyword (second %)) " "
+                             (when (nth % 2) "(s/? ")
                              (get fdef-spec-fn (first %))
-                             (when (nth % 2) "*") " "))
+                             (when (nth % 2) "*)") " "))
                   (apply str)))
         spec (str alt-p1 p2 (if multi-dispatch? (str indent "))") "))"))]
     (gstring/format "(s/fdef %s
@@ -411,26 +415,28 @@
                            (map first)
                            (map #(get outtype-to-rate %))
                            )]
-        ;; (prn default)
-        (reduce (fn [m r]
-                  ;; (prn r spec)
-                  (let [array? (re-find #"Arr" r)
-                        some-vararg? (some #(re-find #"m|z|F" (second %)) spec)]
-                    (assoc m (str opcode ":" r)
-                           (filter (fn [s]
-                                     (if array?
-                                       (= (string/replace r "Arr" "[]") (second s))
-                                       (if some-vararg?
-                                         (case r
-                                           "k" (or (= "z" (first (split-specs (second s))))
-                                                   (= "k" (first (split-specs (second s)))))
-                                           "f" (or (= "F" (first (split-specs (second s))))
-                                                   (= "f" (first (split-specs (second s)))))
-                                           "a" (or (= "m" (first (split-specs (second s))))
-                                                   (= "a" (first (split-specs (second s)))))
-                                           nil)
-                                         (= r (second s))))) spec))))
-                default out-rates)))))
+        ;; (prn out-rates)
+        (if (< 1 (count out-rates))
+          (reduce (fn [m r]
+                    ;; (prn r spec)
+                    (let [array? (re-find #"Arr" r)
+                          some-vararg? (some #(re-find #"m|z|F" (second %)) spec)]
+                      (assoc m (str opcode ":" r)
+                             (filter (fn [s]
+                                       (if array?
+                                         (= (string/replace r "Arr" "[]") (second s))
+                                         (if some-vararg?
+                                           (case r
+                                             "k" (or (= "z" (first (split-specs (second s))))
+                                                     (= "k" (first (split-specs (second s)))))
+                                             "f" (or (= "F" (first (split-specs (second s))))
+                                                     (= "f" (first (split-specs (second s)))))
+                                             "a" (or (= "m" (first (split-specs (second s))))
+                                                     (= "a" (first (split-specs (second s)))))
+                                             nil)
+                                           (= r (second s))))) spec))))
+                  default out-rates)
+          default)))))
 
 (defn parse-entry [out-str all-out specs opcode]
   (let [out-symbols (if (= :mutates all-out)
@@ -469,7 +475,7 @@
                       fdef-str)))))))
 
 (defn generate-cljs []
-  (loop [opcodes ;; ["fillarray"]
+  (loop [opcodes ;; ["taninv"]
          (keys @m/metadata-db)
          out-str ""]
     ;; (prn (first opcodes))
@@ -529,9 +535,10 @@
 
   
   (io/spit "src/csound/opcodes.cljs" (generate-cljs))
-
-  (find-specs "xyscale")
-  (get @m/metadata-db "xyscale")
+  
+  (find-specs "sum")
+  (find-specs "taninv")
+  (get @m/metadata-db "taninv")
   (get @m/metadata-db "poscil")
 
 

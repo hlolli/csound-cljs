@@ -36,23 +36,8 @@
     (new out-types ast)))
 
 (s/fdef mac
-  :args (s/cat :arg1* valid-kr?* :arg2* valid-ar?* :arg3* valid-kr?* :arg4* valid-ar?* :arg5* valid-kr?* :arg6* valid-ar?* :arg7* valid-kr?* :arg8* valid-ar?* :arg9* valid-kr?* :arg10* valid-ar?* :arg11* valid-kr?* :arg12* valid-ar?* :arg13* valid-kr?* :arg14* valid-ar?* :arg15* valid-kr?* :arg16* valid-ar?* ))
+  :args (s/cat :arg1* (s/? valid-kr?*) :arg2* (s/? valid-ar?*) :arg3* (s/? valid-kr?*) :arg4* (s/? valid-ar?*) :arg5* (s/? valid-kr?*) :arg6* (s/? valid-ar?*) :arg7* (s/? valid-kr?*) :arg8* (s/? valid-ar?*) :arg9* (s/? valid-kr?*) :arg10* (s/? valid-ar?*) :arg11* (s/? valid-kr?*) :arg12* (s/? valid-ar?*) :arg13* (s/? valid-kr?*) :arg14* (s/? valid-ar?*) :arg15* (s/? valid-kr?*) :arg16* (s/? valid-ar?*) ))
 (stest/instrument `mac)
-
-(defn mac:a
-  {:arglists '([& karg1* aarg2* karg3* aarg4* karg5* aarg6* karg7* aarg8* karg9* aarg10* karg11* aarg12* karg13* aarg14* karg15* aarg16*])}
-  [& [ arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mac"
-                      [arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mac:a
-  :args (s/cat :arg1* valid-kr?* :arg2* valid-ar?* :arg3* valid-kr?* :arg4* valid-ar?* :arg5* valid-kr?* :arg6* valid-ar?* :arg7* valid-kr?* :arg8* valid-ar?* :arg9* valid-kr?* :arg10* valid-ar?* :arg11* valid-kr?* :arg12* valid-ar?* :arg13* valid-kr?* :arg14* valid-ar?* :arg15* valid-kr?* :arg16* valid-ar?* ))
-(stest/instrument `mac:a)
 
 (defn phaser2
   {:arglists '([asig kfreq kq kord kmode ksep kfeedback])}
@@ -69,34 +54,7 @@
   :args (s/cat :sig valid-ar? :freq valid-kr? :q valid-kr? :ord valid-kr? :mode valid-kr? :sep valid-kr? :feedback valid-kr? ))
 (stest/instrument `phaser2)
 
-(defn phaser2:a
-  {:arglists '([asig kfreq kq kord kmode ksep kfeedback])}
-  [sig freq q ord mode sep feedback]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "phaser2"
-                      [sig freq q ord mode sep feedback]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef phaser2:a
-  :args (s/cat :sig valid-ar? :freq valid-kr? :q valid-kr? :ord valid-kr? :mode valid-kr? :sep valid-kr? :feedback valid-kr? ))
-(stest/instrument `phaser2:a)
-
 (defn release
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "release"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn release:k
   {:arglists '()}
   []
   (let [out-types-quoted 'ControlSignal
@@ -135,23 +93,8 @@
     (new out-types ast)))
 
 (s/fdef chebyshevpoly
-  :args (s/cat :in valid-ar? :arg1* valid-kr?* :arg2* valid-kr?* :arg3* valid-kr?* :arg4* valid-kr?* :arg5* valid-kr?* :arg6* valid-kr?* :arg7* valid-kr?* :arg8* valid-kr?* :arg9* valid-kr?* :arg10* valid-kr?* :arg11* valid-kr?* :arg12* valid-kr?* :arg13* valid-kr?* :arg14* valid-kr?* :arg15* valid-kr?* :arg16* valid-kr?* ))
+  :args (s/cat :in valid-ar? :arg1* (s/? valid-kr?*) :arg2* (s/? valid-kr?*) :arg3* (s/? valid-kr?*) :arg4* (s/? valid-kr?*) :arg5* (s/? valid-kr?*) :arg6* (s/? valid-kr?*) :arg7* (s/? valid-kr?*) :arg8* (s/? valid-kr?*) :arg9* (s/? valid-kr?*) :arg10* (s/? valid-kr?*) :arg11* (s/? valid-kr?*) :arg12* (s/? valid-kr?*) :arg13* (s/? valid-kr?*) :arg14* (s/? valid-kr?*) :arg15* (s/? valid-kr?*) :arg16* (s/? valid-kr?*) ))
 (stest/instrument `chebyshevpoly)
-
-(defn chebyshevpoly:a
-  {:arglists '([ain & karg1* karg2* karg3* karg4* karg5* karg6* karg7* karg8* karg9* karg10* karg11* karg12* karg13* karg14* karg15* karg16*])}
-  [in & [ arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "chebyshevpoly"
-                      [in arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef chebyshevpoly:a
-  :args (s/cat :in valid-ar? :arg1* valid-kr?* :arg2* valid-kr?* :arg3* valid-kr?* :arg4* valid-kr?* :arg5* valid-kr?* :arg6* valid-kr?* :arg7* valid-kr?* :arg8* valid-kr?* :arg9* valid-kr?* :arg10* valid-kr?* :arg11* valid-kr?* :arg12* valid-kr?* :arg13* valid-kr?* :arg14* valid-kr?* :arg15* valid-kr?* :arg16* valid-kr?* ))
-(stest/instrument `chebyshevpoly:a)
 
 (defn tab_i
   {:arglists '([iindex itable & imode*])}
@@ -165,23 +108,8 @@
     (new out-types ast)))
 
 (s/fdef tab_i
-  :args (s/cat :index valid-i? :table valid-i? :mode* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :mode* (s/? valid-i?*) ))
 (stest/instrument `tab_i)
-
-(defn tab_i:i
-  {:arglists '([iindex itable & imode*])}
-  [index table & [ mode* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "tab_i"
-                      [index table mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tab_i:i
-  :args (s/cat :index valid-i? :table valid-i? :mode* valid-i?* ))
-(stest/instrument `tab_i:i)
 
 (defn lpf18
   {:arglists '([asig xcutoff-frequency xresonance xdistortion & iskip*])}
@@ -195,23 +123,8 @@
     (new out-types ast)))
 
 (s/fdef lpf18
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :distortion valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :distortion valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `lpf18)
-
-(defn lpf18:a
-  {:arglists '([asig xcutoff-frequency xresonance xdistortion & iskip*])}
-  [sig cutoff-frequency resonance distortion & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lpf18"
-                      [sig cutoff-frequency resonance distortion skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lpf18:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :distortion valid-x? :skip* valid-i?* ))
-(stest/instrument `lpf18:a)
 
 (defn table
   {:arglists '([xindex itable & ixmode* ixoff* iwrap*] [iindex itable & ixmode* ixoff* iwrap*] [xindex itable & ixmode* ixoff* iwrap*])}
@@ -226,7 +139,8 @@
 
 (s/fdef table
   :args (s/alt
-         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :iiiii (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
+         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `table)
 
@@ -242,7 +156,7 @@
     (new out-types ast)))
 
 (s/fdef table:a
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `table:a)
 
 (defn table:i
@@ -257,7 +171,7 @@
     (new out-types ast)))
 
 (s/fdef table:i
-  :args (s/cat :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `table:i)
 
 (defn table:k
@@ -272,7 +186,7 @@
     (new out-types ast)))
 
 (s/fdef table:k
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `table:k)
 
 (defn ftloadk
@@ -288,7 +202,8 @@
 
 (s/fdef ftloadk
   :args (s/alt
-         :Skiiiiiiiiiiiiiiiii (s/cat :filename valid-S? :trig valid-kr? :flag valid-i? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* )
+         :ikiiiiiiiiiiiiiiiii (s/cat :filename valid-i? :trig valid-kr? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
+         :Skiiiiiiiiiiiiiiiii (s/cat :filename valid-S? :trig valid-kr? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftloadk)
 
@@ -305,7 +220,8 @@
 
 (s/fdef fink
   :args (s/alt
-         :Siikkkkkkkkkkkkkkkk (s/cat :filename valid-S? :skipframes valid-i? :format valid-i? :in1* valid-kr?* :in2* valid-kr?* :in3* valid-kr?* :in4* valid-kr?* :in5* valid-kr?* :in6* valid-kr?* :in7* valid-kr?* :in8* valid-kr?* :in9* valid-kr?* :in10* valid-kr?* :in11* valid-kr?* :in12* valid-kr?* :in13* valid-kr?* :in14* valid-kr?* :in15* valid-kr?* :in16* valid-kr?* )
+         :iiikkkkkkkkkkkkkkkk (s/cat :filename valid-i? :skipframes valid-i? :format valid-i? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :in3* (s/? valid-kr?*) :in4* (s/? valid-kr?*) :in5* (s/? valid-kr?*) :in6* (s/? valid-kr?*) :in7* (s/? valid-kr?*) :in8* (s/? valid-kr?*) :in9* (s/? valid-kr?*) :in10* (s/? valid-kr?*) :in11* (s/? valid-kr?*) :in12* (s/? valid-kr?*) :in13* (s/? valid-kr?*) :in14* (s/? valid-kr?*) :in15* (s/? valid-kr?*) :in16* (s/? valid-kr?*) )
+         :Siikkkkkkkkkkkkkkkk (s/cat :filename valid-S? :skipframes valid-i? :format valid-i? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :in3* (s/? valid-kr?*) :in4* (s/? valid-kr?*) :in5* (s/? valid-kr?*) :in6* (s/? valid-kr?*) :in7* (s/? valid-kr?*) :in8* (s/? valid-kr?*) :in9* (s/? valid-kr?*) :in10* (s/? valid-kr?*) :in11* (s/? valid-kr?*) :in12* (s/? valid-kr?*) :in13* (s/? valid-kr?*) :in14* (s/? valid-kr?*) :in15* (s/? valid-kr?*) :in16* (s/? valid-kr?*) )
          ))
 (stest/instrument `fink)
 
@@ -321,23 +237,8 @@
     (new out-types ast)))
 
 (s/fdef reson
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `reson)
-
-(defn reson:a
-  {:arglists '([asig xcenter-frequency xbandwidth & iscale* iskip*])}
-  [sig center-frequency bandwidth & [ scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "reson"
-                      [sig center-frequency bandwidth scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef reson:a
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `reson:a)
 
 (defn inq
   {:arglists '()}
@@ -376,7 +277,7 @@
 
 (s/fdef cosseg
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `cosseg)
 
@@ -392,7 +293,7 @@
     (new out-types ast)))
 
 (s/fdef cosseg:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `cosseg:a)
 
 (defn cosseg:k
@@ -407,7 +308,7 @@
     (new out-types ast)))
 
 (s/fdef cosseg:k
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `cosseg:k)
 
 (defn imagesize
@@ -437,23 +338,8 @@
     (new out-types ast)))
 
 (s/fdef ampmidi
-  :args (s/cat :scal valid-i? :table* valid-i?* ))
+  :args (s/cat :scal valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `ampmidi)
-
-(defn ampmidi:i
-  {:arglists '([iscal & itable*])}
-  [scal & [ table* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "ampmidi"
-                      [scal table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ampmidi:i
-  :args (s/cat :scal valid-i? :table* valid-i?* ))
-(stest/instrument `ampmidi:i)
 
 (defn delay1
   {:arglists '([asig & iskip*])}
@@ -467,23 +353,8 @@
     (new out-types ast)))
 
 (s/fdef delay1
-  :args (s/cat :sig valid-ar? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :skip* (s/? valid-i?*) ))
 (stest/instrument `delay1)
-
-(defn delay1:a
-  {:arglists '([asig & iskip*])}
-  [sig & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "delay1"
-                      [sig skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef delay1:a
-  :args (s/cat :sig valid-ar? :skip* valid-i?* ))
-(stest/instrument `delay1:a)
 
 (defn areson
   {:arglists '([asig acenter-frequency abandwidth & iscale* iskip*] [asig acenter-frequency kbandwidth & iscale* iskip*] [asig kcenter-frequency abandwidth & iscale* iskip*] [asig kcenter-frequency kbandwidth & iscale* iskip*])}
@@ -498,26 +369,12 @@
 
 (s/fdef areson
   :args (s/alt
-         :aaaii (s/cat :sig valid-ar? :center-frequency valid-ar? :bandwidth valid-ar? :scale* valid-i?* :skip* valid-i?* )
+         :akkii (s/cat :sig valid-ar? :center-frequency valid-kr? :bandwidth valid-kr? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) )
+         :akaii (s/cat :sig valid-ar? :center-frequency valid-kr? :bandwidth valid-ar? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) )
+         :aakii (s/cat :sig valid-ar? :center-frequency valid-ar? :bandwidth valid-kr? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) )
+         :aaaii (s/cat :sig valid-ar? :center-frequency valid-ar? :bandwidth valid-ar? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `areson)
-
-(defn areson:a
-  {:arglists '([asig acenter-frequency abandwidth & iscale* iskip*] [asig acenter-frequency kbandwidth & iscale* iskip*] [asig kcenter-frequency abandwidth & iscale* iskip*] [asig kcenter-frequency kbandwidth & iscale* iskip*])}
-  [sig center-frequency bandwidth & [ scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "areson"
-                      [sig center-frequency bandwidth scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef areson:a
-  :args (s/alt
-         :aaaii (s/cat :sig valid-ar? :center-frequency valid-ar? :bandwidth valid-ar? :scale* valid-i?* :skip* valid-i?* )
-         ))
-(stest/instrument `areson:a)
 
 (defn oscilikts
   {:arglists '([xamp xcps ktable async kphase & istor*])}
@@ -531,23 +388,8 @@
     (new out-types ast)))
 
 (s/fdef oscilikts
-  :args (s/cat :amp valid-x? :cps valid-x? :table valid-kr? :sync valid-ar? :phase valid-kr? :stor* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :table valid-kr? :sync valid-ar? :phase valid-kr? :stor* (s/? valid-i?*) ))
 (stest/instrument `oscilikts)
-
-(defn oscilikts:a
-  {:arglists '([xamp xcps ktable async kphase & istor*])}
-  [amp cps table sync phase & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "oscilikts"
-                      [amp cps table sync phase stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef oscilikts:a
-  :args (s/cat :amp valid-x? :cps valid-x? :table valid-kr? :sync valid-ar? :phase valid-kr? :stor* valid-i?* ))
-(stest/instrument `oscilikts:a)
 
 (defn outipb
   {:arglists '([ichn ivalue imin imax])}
@@ -576,23 +418,8 @@
     (new out-types ast)))
 
 (s/fdef window
-  :args (s/cat :in valid-kArr? :off* valid-kr?* :type* valid-i?* ))
+  :args (s/cat :in valid-kArr? :off* (s/? valid-kr?*) :type* (s/? valid-i?*) ))
 (stest/instrument `window)
-
-(defn window:kArr
-  {:arglists '([kinArr & koff* itype*])}
-  [in & [ off* type* ]]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "window"
-                      [in off* type*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef window:kArr
-  :args (s/cat :in valid-kArr? :off* valid-kr?* :type* valid-i?* ))
-(stest/instrument `window:kArr)
 
 (defn compress
   {:arglists '([aasig acsig kthresh kloknee khiknee kratio katt krel ilook])}
@@ -609,21 +436,6 @@
   :args (s/cat :asig valid-ar? :csig valid-ar? :thresh valid-kr? :loknee valid-kr? :hiknee valid-kr? :ratio valid-kr? :att valid-kr? :rel valid-kr? :look valid-i? ))
 (stest/instrument `compress)
 
-(defn compress:a
-  {:arglists '([aasig acsig kthresh kloknee khiknee kratio katt krel ilook])}
-  [asig csig thresh loknee hiknee ratio att rel look]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "compress"
-                      [asig csig thresh loknee hiknee ratio att rel look]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef compress:a
-  :args (s/cat :asig valid-ar? :csig valid-ar? :thresh valid-kr? :loknee valid-kr? :hiknee valid-kr? :ratio valid-kr? :att valid-kr? :rel valid-kr? :look valid-i? ))
-(stest/instrument `compress:a)
-
 (defn tablefilteri
   {:arglists '([iouttable iintatble imode iparam])}
   [outtable intatble mode param]
@@ -639,21 +451,6 @@
   :args (s/cat :outtable valid-i? :intatble valid-i? :mode valid-i? :param valid-i? ))
 (stest/instrument `tablefilteri)
 
-(defn tablefilteri:i
-  {:arglists '([iouttable iintatble imode iparam])}
-  [outtable intatble mode param]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "tablefilteri"
-                      [outtable intatble mode param]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tablefilteri:i
-  :args (s/cat :outtable valid-i? :intatble valid-i? :mode valid-i? :param valid-i? ))
-(stest/instrument `tablefilteri:i)
-
 (defn adsynt2
   {:arglists '([kamp kcps iwfn ifreqfn iampfn icnt & iphase*])}
   [amp cps wfn freqfn ampfn cnt & [ phase* ]]
@@ -666,23 +463,8 @@
     (new out-types ast)))
 
 (s/fdef adsynt2
-  :args (s/cat :amp valid-kr? :cps valid-kr? :wfn valid-i? :freqfn valid-i? :ampfn valid-i? :cnt valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :wfn valid-i? :freqfn valid-i? :ampfn valid-i? :cnt valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `adsynt2)
-
-(defn adsynt2:a
-  {:arglists '([kamp kcps iwfn ifreqfn iampfn icnt & iphase*])}
-  [amp cps wfn freqfn ampfn cnt & [ phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "adsynt2"
-                      [amp cps wfn freqfn ampfn cnt phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef adsynt2:a
-  :args (s/cat :amp valid-kr? :cps valid-kr? :wfn valid-i? :freqfn valid-i? :ampfn valid-i? :cnt valid-i? :phase* valid-i?* ))
-(stest/instrument `adsynt2:a)
 
 (defn sumarray
   {:arglists '([iarrayArr] [karrayArr])}
@@ -697,6 +479,7 @@
 
 (s/fdef sumarray
   :args (s/alt
+         :kArr (s/cat :array valid-kArr? )
          :iArr (s/cat :array valid-iArr? )
          ))
 (stest/instrument `sumarray)
@@ -746,21 +529,6 @@
   :args (s/cat :stretch valid-i? :windowsize valid-i? :ft valid-i? ))
 (stest/instrument `paulstretch)
 
-(defn paulstretch:a
-  {:arglists '([istretch iwindowsize ift])}
-  [stretch windowsize ft]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "paulstretch"
-                      [stretch windowsize ft]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef paulstretch:a
-  :args (s/cat :stretch valid-i? :windowsize valid-i? :ft valid-i? ))
-(stest/instrument `paulstretch:a)
-
 (defn dam
   {:arglists '([asig kthreshold icomp3 icomp4 irtime iftime])}
   [sig threshold comp3 comp4 rtime ftime]
@@ -776,34 +544,7 @@
   :args (s/cat :sig valid-ar? :threshold valid-kr? :comp3 valid-i? :comp4 valid-i? :rtime valid-i? :ftime valid-i? ))
 (stest/instrument `dam)
 
-(defn dam:a
-  {:arglists '([asig kthreshold icomp3 icomp4 irtime iftime])}
-  [sig threshold comp3 comp4 rtime ftime]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "dam"
-                      [sig threshold comp3 comp4 rtime ftime]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dam:a
-  :args (s/cat :sig valid-ar? :threshold valid-kr? :comp3 valid-i? :comp4 valid-i? :rtime valid-i? :ftime valid-i? ))
-(stest/instrument `dam:a)
-
 (defn midichn
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "midichn"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn midichn:i
   {:arglists '()}
   []
   (let [out-types-quoted 'Variable
@@ -827,23 +568,8 @@
     (new out-types ast)))
 
 (s/fdef pvsvoc
-  :args (s/cat :amp valid-f? :exc valid-f? :depth valid-kr? :gain valid-kr? :coefs* valid-kr?* ))
+  :args (s/cat :amp valid-f? :exc valid-f? :depth valid-kr? :gain valid-kr? :coefs* (s/? valid-kr?*) ))
 (stest/instrument `pvsvoc)
-
-(defn pvsvoc:f
-  {:arglists '([famp fexc kdepth kgain & kcoefs*])}
-  [amp exc depth gain & [ coefs* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsvoc"
-                      [amp exc depth gain coefs*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsvoc:f
-  :args (s/cat :amp valid-f? :exc valid-f? :depth valid-kr? :gain valid-kr? :coefs* valid-kr?* ))
-(stest/instrument `pvsvoc:f)
 
 (defn chanctrl
   {:arglists '([ichnl ictlno & ilow* ihigh*] [ichnl ictlno & ilow* ihigh*])}
@@ -858,7 +584,7 @@
 
 (s/fdef chanctrl
   :args (s/alt
-         :iiii (s/cat :chnl valid-i? :ctlno valid-i? :low* valid-i?* :high* valid-i?* )
+         :iiii (s/cat :chnl valid-i? :ctlno valid-i? :low* (s/? valid-i?*) :high* (s/? valid-i?*) )
          ))
 (stest/instrument `chanctrl)
 
@@ -874,7 +600,7 @@
     (new out-types ast)))
 
 (s/fdef chanctrl:i
-  :args (s/cat :chnl valid-i? :ctlno valid-i? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :chnl valid-i? :ctlno valid-i? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `chanctrl:i)
 
 (defn chanctrl:k
@@ -889,7 +615,7 @@
     (new out-types ast)))
 
 (s/fdef chanctrl:k
-  :args (s/cat :chnl valid-i? :ctlno valid-i? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :chnl valid-i? :ctlno valid-i? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `chanctrl:k)
 
 (defn scalearray
@@ -905,7 +631,8 @@
 
 (s/fdef scalearray
   :args (s/alt
-         :iArriikk (s/cat :array valid-iArr? :min valid-i? :max valid-i? :left* valid-kr?* :right* valid-kr?* )
+         :kArrkkkk (s/cat :array valid-kArr? :min valid-kr? :max valid-kr? :left* (s/? valid-kr?*) :right* (s/? valid-kr?*) )
+         :iArriikk (s/cat :array valid-iArr? :min valid-i? :max valid-i? :left* (s/? valid-kr?*) :right* (s/? valid-kr?*) )
          ))
 (stest/instrument `scalearray)
 
@@ -921,23 +648,8 @@
     (new out-types ast)))
 
 (s/fdef pvsceps
-  :args (s/cat :sig valid-f? :coefs* valid-i?* ))
+  :args (s/cat :sig valid-f? :coefs* (s/? valid-i?*) ))
 (stest/instrument `pvsceps)
-
-(defn pvsceps:kArr
-  {:arglists '([fsig & icoefs*])}
-  [sig & [ coefs* ]]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "pvsceps"
-                      [sig coefs*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsceps:kArr
-  :args (s/cat :sig valid-f? :coefs* valid-i?* ))
-(stest/instrument `pvsceps:kArr)
 
 (defn midinoteonpch
   {:arglists '([xpch xvelocity])}
@@ -968,21 +680,6 @@
 (s/fdef strcmp
   :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
 (stest/instrument `strcmp)
-
-(defn strcmp:i
-  {:arglists '([Sarg1 Sarg2])}
-  [arg1 arg2]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strcmp"
-                      [arg1 arg2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strcmp:i
-  :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
-(stest/instrument `strcmp:i)
 
 (defn MixerClear
   {:arglists '()}
@@ -1072,23 +769,8 @@
     (new out-types ast)))
 
 (s/fdef osciliktp
-  :args (s/cat :cps valid-kr? :table valid-kr? :phase valid-kr? :stor* valid-i?* ))
+  :args (s/cat :cps valid-kr? :table valid-kr? :phase valid-kr? :stor* (s/? valid-i?*) ))
 (stest/instrument `osciliktp)
-
-(defn osciliktp:a
-  {:arglists '([kcps ktable kphase & istor*])}
-  [cps table phase & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "osciliktp"
-                      [cps table phase stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef osciliktp:a
-  :args (s/cat :cps valid-kr? :table valid-kr? :phase valid-kr? :stor* valid-i?* ))
-(stest/instrument `osciliktp:a)
 
 (defn limit1
   {:arglists '([iargArr] [kargArr])}
@@ -1103,6 +785,7 @@
 
 (s/fdef limit1
   :args (s/alt
+         :kArr (s/cat :arg valid-kArr? )
          :iArr (s/cat :arg valid-iArr? )
          ))
 (stest/instrument `limit1)
@@ -1152,21 +835,6 @@
   :args (s/cat :index valid-S? ))
 (stest/instrument `strtolk)
 
-(defn strtolk:k
-  {:arglists '([Sindex])}
-  [index]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strtolk"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strtolk:k
-  :args (s/cat :index valid-S? ))
-(stest/instrument `strtolk:k)
-
 (defn mincer
   {:arglists '([atimpt kamp kpitch ktab klock & ifftsize* idecim*])}
   [timpt amp pitch tab lock & [ fftsize* decim* ]]
@@ -1179,7 +847,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef mincer
-  :args (s/cat :timpt valid-ar? :amp valid-kr? :pitch valid-kr? :tab valid-kr? :lock valid-kr? :fftsize* valid-i?* :decim* valid-i?* ))
+  :args (s/cat :timpt valid-ar? :amp valid-kr? :pitch valid-kr? :tab valid-kr? :lock valid-kr? :fftsize* (s/? valid-i?*) :decim* (s/? valid-i?*) ))
 (stest/instrument `mincer)
 
 (defn ptrack
@@ -1194,7 +862,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef ptrack
-  :args (s/cat :sig valid-ar? :hopsize valid-i? :peaks* valid-i?* ))
+  :args (s/cat :sig valid-ar? :hopsize valid-i? :peaks* (s/? valid-i?*) ))
 (stest/instrument `ptrack)
 
 (defn xscanu
@@ -1210,6 +878,7 @@
 
 (s/fdef xscanu
   :args (s/alt
+         :iiiiiiikkkkiikkaii (s/cat :nit valid-i? :rate valid-i? :fnvel valid-i? :fnmass valid-i? :fnstif valid-i? :fncentr valid-i? :fndamp valid-i? :mass valid-kr? :stif valid-kr? :centr valid-kr? :damp valid-kr? :left valid-i? :right valid-i? :pos valid-kr? :strngth valid-kr? :in valid-ar? :disp valid-i? :d valid-i? )
          :iiiiSiikkkkiikkaii (s/cat :nit valid-i? :rate valid-i? :fnvel valid-i? :fnmass valid-i? :fnstif valid-S? :fncentr valid-i? :fndamp valid-i? :mass valid-kr? :stif valid-kr? :centr valid-kr? :damp valid-kr? :left valid-i? :right valid-i? :pos valid-kr? :strngth valid-kr? :in valid-ar? :disp valid-i? :d valid-i? )
          ))
 (stest/instrument `xscanu)
@@ -1226,23 +895,8 @@
     (new out-types ast)))
 
 (s/fdef trscale
-  :args (s/cat :in valid-f? :pitch1* valid-kr?* :gain2* valid-kr?* :gain3* valid-kr?* :gain4* valid-kr?* :gain5* valid-kr?* :gain6* valid-kr?* :gain7* valid-kr?* :gain8* valid-kr?* :gain9* valid-kr?* :gain10* valid-kr?* :gain11* valid-kr?* :gain12* valid-kr?* :gain13* valid-kr?* :gain14* valid-kr?* :gain15* valid-kr?* :gain16* valid-kr?* ))
+  :args (s/cat :in valid-f? :pitch1* (s/? valid-kr?*) :gain2* (s/? valid-kr?*) :gain3* (s/? valid-kr?*) :gain4* (s/? valid-kr?*) :gain5* (s/? valid-kr?*) :gain6* (s/? valid-kr?*) :gain7* (s/? valid-kr?*) :gain8* (s/? valid-kr?*) :gain9* (s/? valid-kr?*) :gain10* (s/? valid-kr?*) :gain11* (s/? valid-kr?*) :gain12* (s/? valid-kr?*) :gain13* (s/? valid-kr?*) :gain14* (s/? valid-kr?*) :gain15* (s/? valid-kr?*) :gain16* (s/? valid-kr?*) ))
 (stest/instrument `trscale)
-
-(defn trscale:f
-  {:arglists '([fin & kpitch1* kgain2* kgain3* kgain4* kgain5* kgain6* kgain7* kgain8* kgain9* kgain10* kgain11* kgain12* kgain13* kgain14* kgain15* kgain16*])}
-  [in & [ pitch1* gain2* gain3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "trscale"
-                      [in pitch1* gain2* gain3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trscale:f
-  :args (s/cat :in valid-f? :pitch1* valid-kr?* :gain2* valid-kr?* :gain3* valid-kr?* :gain4* valid-kr?* :gain5* valid-kr?* :gain6* valid-kr?* :gain7* valid-kr?* :gain8* valid-kr?* :gain9* valid-kr?* :gain10* valid-kr?* :gain11* valid-kr?* :gain12* valid-kr?* :gain13* valid-kr?* :gain14* valid-kr?* :gain15* valid-kr?* :gain16* valid-kr?* ))
-(stest/instrument `trscale:f)
 
 (defn vecdelay
   {:arglists '([itable ifnIn ifnDel ielements imaxdel & iskip*])}
@@ -1256,7 +910,7 @@
     (new out-types ast)))
 
 (s/fdef vecdelay
-  :args (s/cat :table valid-i? :fnIn valid-i? :fnDel valid-i? :elements valid-i? :maxdel valid-i? :skip* valid-i?* ))
+  :args (s/cat :table valid-i? :fnIn valid-i? :fnDel valid-i? :elements valid-i? :maxdel valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `vecdelay)
 
 (defn pvsfwrite
@@ -1272,6 +926,7 @@
 
 (s/fdef pvsfwrite
   :args (s/alt
+         :fi (s/cat :sig valid-f? :file valid-i? )
          :fS (s/cat :sig valid-f? :file valid-S? )
          ))
 (stest/instrument `pvsfwrite)
@@ -1291,21 +946,6 @@
   :args (s/cat :sig1 valid-ar? :sig2 valid-ar? :freez3 valid-x? :freez4 valid-x? :parts valid-i? :fils valid-i? ))
 (stest/instrument `tvconv)
 
-(defn tvconv:a
-  {:arglists '([asig1 asig2 xfreez3 xfreez4 iparts ifils])}
-  [sig1 sig2 freez3 freez4 parts fils]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tvconv"
-                      [sig1 sig2 freez3 freez4 parts fils]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tvconv:a
-  :args (s/cat :sig1 valid-ar? :sig2 valid-ar? :freez3 valid-x? :freez4 valid-x? :parts valid-i? :fils valid-i? ))
-(stest/instrument `tvconv:a)
-
 (defn getrow
   {:arglists '([kinArr krow])}
   [in row]
@@ -1320,21 +960,6 @@
 (s/fdef getrow
   :args (s/cat :in valid-kArr? :row valid-kr? ))
 (stest/instrument `getrow)
-
-(defn getrow:kArr
-  {:arglists '([kinArr krow])}
-  [in row]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "getrow"
-                      [in row]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef getrow:kArr
-  :args (s/cat :in valid-kArr? :row valid-kr? ))
-(stest/instrument `getrow:kArr)
 
 (defn ino
   {:arglists '()}
@@ -1361,26 +986,10 @@
 
 (s/fdef pvoc
   :args (s/alt
-         :kkSiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-S? :specwp* valid-i?* :extractmode* valid-i?* :freqlim* valid-i?* :gatefn* valid-i?* )
+         :kkiiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-i? :specwp* (s/? valid-i?*) :extractmode* (s/? valid-i?*) :freqlim* (s/? valid-i?*) :gatefn* (s/? valid-i?*) )
+         :kkSiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-S? :specwp* (s/? valid-i?*) :extractmode* (s/? valid-i?*) :freqlim* (s/? valid-i?*) :gatefn* (s/? valid-i?*) )
          ))
 (stest/instrument `pvoc)
-
-(defn pvoc:a
-  {:arglists '([ktimpnt kfmod Sfilcod & ispecwp* iextractmode* ifreqlim* igatefn*] [ktimpnt kfmod ifilcod & ispecwp* iextractmode* ifreqlim* igatefn*])}
-  [timpnt fmod filcod & [ specwp* extractmode* freqlim* gatefn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pvoc"
-                      [timpnt fmod filcod specwp* extractmode* freqlim* gatefn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvoc:a
-  :args (s/alt
-         :kkSiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-S? :specwp* valid-i?* :extractmode* valid-i?* :freqlim* valid-i?* :gatefn* valid-i?* )
-         ))
-(stest/instrument `pvoc:a)
 
 (defn vbapgmove
   {:arglists '([idur ispread ifldnum & ifld1* ifld2* ifld3* ifld4* ifld5* ifld6* ifld7* ifld8* ifld9* ifld10* ifld11* ifld12* ifld13* ifld14* ifld15* ifld16*] [idur ispread ifldnum & ifld1* ifld2* ifld3* ifld4* ifld5* ifld6* ifld7* ifld8* ifld9* ifld10* ifld11* ifld12* ifld13* ifld14* ifld15* ifld16*])}
@@ -1395,7 +1004,7 @@
 
 (s/fdef vbapgmove
   :args (s/alt
-         :iiiiiiiiiiiiiiiiiii (s/cat :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) )
          ))
 (stest/instrument `vbapgmove)
 
@@ -1411,7 +1020,7 @@
     (new out-types ast)))
 
 (s/fdef vbapgmove:kArr
-  :args (s/cat :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* ))
+  :args (s/cat :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) ))
 (stest/instrument `vbapgmove:kArr)
 
 (defn vbapgmove:k
@@ -1426,7 +1035,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vbapgmove:k
-  :args (s/cat :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* ))
+  :args (s/cat :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) ))
 (stest/instrument `vbapgmove:k)
 
 (defn filescal
@@ -1441,7 +1050,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef filescal
-  :args (s/cat :timescal valid-kr? :amp valid-kr? :pitch valid-kr? :file valid-S? :lock valid-kr? :fftsize* valid-i?* :decim* valid-i?* :thresh* valid-kr?* :thresh* valid-kr?* :thresh* valid-kr?* ))
+  :args (s/cat :timescal valid-kr? :amp valid-kr? :pitch valid-kr? :file valid-S? :lock valid-kr? :fftsize* (s/? valid-i?*) :decim* (s/? valid-i?*) :thresh* (s/? valid-kr?*) :thresh* (s/? valid-kr?*) :thresh* (s/? valid-kr?*) ))
 (stest/instrument `filescal)
 
 (defn pvbufread
@@ -1457,6 +1066,7 @@
 
 (s/fdef pvbufread
   :args (s/alt
+         :ki (s/cat :timpnt valid-kr? :file valid-i? )
          :kS (s/cat :timpnt valid-kr? :file valid-S? )
          ))
 (stest/instrument `pvbufread)
@@ -1475,21 +1085,6 @@
 (s/fdef inletk
   :args (s/cat :name valid-S? ))
 (stest/instrument `inletk)
-
-(defn inletk:k
-  {:arglists '([Sname])}
-  [name]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "inletk"
-                      [name]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef inletk:k
-  :args (s/cat :name valid-S? ))
-(stest/instrument `inletk:k)
 
 (defn exprand
   {:arglists '([klambda] [klambda] [klambda])}
@@ -1565,23 +1160,8 @@
     (new out-types ast)))
 
 (s/fdef strchark
-  :args (s/cat :str valid-S? :pos* valid-kr?* ))
+  :args (s/cat :str valid-S? :pos* (s/? valid-kr?*) ))
 (stest/instrument `strchark)
-
-(defn strchark:k
-  {:arglists '([Sstr & kpos*])}
-  [str & [ pos* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strchark"
-                      [str pos*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strchark:k
-  :args (s/cat :str valid-S? :pos* valid-kr?* ))
-(stest/instrument `strchark:k)
 
 (defn tabrec
   {:arglists '([ktrig_start ktrig_stop knumtics ktable & kin1* kin2* kinN3* kinN4* kinN5* kinN6* kinN7* kinN8* kinN9* kinN10* kinN11* kinN12* kinN13* kinN14* kinN15* kinN16*])}
@@ -1595,7 +1175,7 @@
     (new out-types ast)))
 
 (s/fdef tabrec
-  :args (s/cat :trig_start valid-kr? :trig_stop valid-kr? :numtics valid-kr? :table valid-kr? :in1* valid-kr?* :in2* valid-kr?* :inN3* valid-kr?* :inN4* valid-kr?* :inN5* valid-kr?* :inN6* valid-kr?* :inN7* valid-kr?* :inN8* valid-kr?* :inN9* valid-kr?* :inN10* valid-kr?* :inN11* valid-kr?* :inN12* valid-kr?* :inN13* valid-kr?* :inN14* valid-kr?* :inN15* valid-kr?* :inN16* valid-kr?* ))
+  :args (s/cat :trig_start valid-kr? :trig_stop valid-kr? :numtics valid-kr? :table valid-kr? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :inN3* (s/? valid-kr?*) :inN4* (s/? valid-kr?*) :inN5* (s/? valid-kr?*) :inN6* (s/? valid-kr?*) :inN7* (s/? valid-kr?*) :inN8* (s/? valid-kr?*) :inN9* (s/? valid-kr?*) :inN10* (s/? valid-kr?*) :inN11* (s/? valid-kr?*) :inN12* (s/? valid-kr?*) :inN13* (s/? valid-kr?*) :inN14* (s/? valid-kr?*) :inN15* (s/? valid-kr?*) :inN16* (s/? valid-kr?*) ))
 (stest/instrument `tabrec)
 
 (defn gogobel
@@ -1613,21 +1193,6 @@
   :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vfn valid-i? ))
 (stest/instrument `gogobel)
 
-(defn gogobel:a
-  {:arglists '([kamp kfreq ihrd ipos imp kvibf kvamp ivfn])}
-  [amp freq hrd pos mp vibf vamp vfn]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "gogobel"
-                      [amp freq hrd pos mp vibf vamp vfn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef gogobel:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vfn valid-i? ))
-(stest/instrument `gogobel:a)
-
 (defn out32
   {:arglists '([& asig1* asig2* asig3* asig4* asig5* asig6* asig7* asig8* asig9* asig10* asig11* asig12* asig13* asig14* asig15* asig16* asig17* asig18* asig19* asig20* asig21* asig22* asig23* asig24* asig25* asig26* asig27* asig28* asig29* asig30* asig31* asig32*])}
   [& [ sig1* sig2* sig3* sig4* sig5* sig6* sig7* sig8* sig9* sig10* sig11* sig12* sig13* sig14* sig15* sig16* sig17* sig18* sig19* sig20* sig21* sig22* sig23* sig24* sig25* sig26* sig27* sig28* sig29* sig30* sig31* sig32* ]]
@@ -1640,7 +1205,7 @@
     (new out-types ast)))
 
 (s/fdef out32
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `out32)
 
 (defn cauchyi
@@ -1732,23 +1297,8 @@
     (new out-types ast)))
 
 (s/fdef distort
-  :args (s/cat :sig valid-ar? :distortion valid-kr? :table valid-i? :hp* valid-i?* :stor* valid-i?* ))
+  :args (s/cat :sig valid-ar? :distortion valid-kr? :table valid-i? :hp* (s/? valid-i?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `distort)
-
-(defn distort:a
-  {:arglists '([asig kdistortion itable & ihp* istor*])}
-  [sig distortion table & [ hp* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "distort"
-                      [sig distortion table hp* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef distort:a
-  :args (s/cat :sig valid-ar? :distortion valid-kr? :table valid-i? :hp* valid-i?* :stor* valid-i?* ))
-(stest/instrument `distort:a)
 
 (defn midinoteonoct
   {:arglists '([xoct xvelocity])}
@@ -1778,6 +1328,7 @@
 
 (s/fdef random
   :args (s/alt
+         :ii (s/cat :min valid-i? :max valid-i? )
          :kk (s/cat :min valid-kr? :max valid-kr? )
          ))
 (stest/instrument `random)
@@ -1854,23 +1405,8 @@
     (new out-types ast)))
 
 (s/fdef oscbnk
-  :args (s/cat :cps valid-kr? :amd valid-kr? :fmd valid-kr? :pmd valid-kr? :ovrlap valid-i? :seed valid-i? :l1minf valid-kr? :l1maxf valid-kr? :l2minf valid-kr? :l2maxf valid-kr? :lfomode valid-i? :eqminf valid-kr? :eqmaxf valid-kr? :eqminl valid-kr? :eqmaxl valid-kr? :eqminq valid-kr? :eqmaxq valid-kr? :eqmode valid-i? :table valid-kr? :l1fn* valid-i?* :l2fn* valid-i?* :eqffn* valid-i?* :eqlfn* valid-i?* :eqqfn* valid-i?* :tabl* valid-i?* :outfn* valid-i?* ))
+  :args (s/cat :cps valid-kr? :amd valid-kr? :fmd valid-kr? :pmd valid-kr? :ovrlap valid-i? :seed valid-i? :l1minf valid-kr? :l1maxf valid-kr? :l2minf valid-kr? :l2maxf valid-kr? :lfomode valid-i? :eqminf valid-kr? :eqmaxf valid-kr? :eqminl valid-kr? :eqmaxl valid-kr? :eqminq valid-kr? :eqmaxq valid-kr? :eqmode valid-i? :table valid-kr? :l1fn* (s/? valid-i?*) :l2fn* (s/? valid-i?*) :eqffn* (s/? valid-i?*) :eqlfn* (s/? valid-i?*) :eqqfn* (s/? valid-i?*) :tabl* (s/? valid-i?*) :outfn* (s/? valid-i?*) ))
 (stest/instrument `oscbnk)
-
-(defn oscbnk:a
-  {:arglists '([kcps kamd kfmd kpmd iovrlap iseed kl1minf kl1maxf kl2minf kl2maxf ilfomode keqminf keqmaxf keqminl keqmaxl keqminq keqmaxq ieqmode ktable & il1fn* il2fn* ieqffn* ieqlfn* ieqqfn* itabl* ioutfn*])}
-  [cps amd fmd pmd ovrlap seed l1minf l1maxf l2minf l2maxf lfomode eqminf eqmaxf eqminl eqmaxl eqminq eqmaxq eqmode table & [ l1fn* l2fn* eqffn* eqlfn* eqqfn* tabl* outfn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "oscbnk"
-                      [cps amd fmd pmd ovrlap seed l1minf l1maxf l2minf l2maxf lfomode eqminf eqmaxf eqminl eqmaxl eqminq eqmaxq eqmode table l1fn* l2fn* eqffn* eqlfn* eqqfn* tabl* outfn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef oscbnk:a
-  :args (s/cat :cps valid-kr? :amd valid-kr? :fmd valid-kr? :pmd valid-kr? :ovrlap valid-i? :seed valid-i? :l1minf valid-kr? :l1maxf valid-kr? :l2minf valid-kr? :l2maxf valid-kr? :lfomode valid-i? :eqminf valid-kr? :eqmaxf valid-kr? :eqminl valid-kr? :eqmaxl valid-kr? :eqminq valid-kr? :eqmaxq valid-kr? :eqmode valid-i? :table valid-kr? :l1fn* valid-i?* :l2fn* valid-i?* :eqffn* valid-i?* :eqlfn* valid-i?* :eqqfn* valid-i?* :tabl* valid-i?* :outfn* valid-i?* ))
-(stest/instrument `oscbnk:a)
 
 (defn loscil3
   {:arglists '([xamp kcps & itable* ibas* imod1* ibeg1* iend1* imod1* ibeg1* iend1*])}
@@ -1884,7 +1420,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef loscil3
-  :args (s/cat :amp valid-x? :cps valid-kr? :table* valid-i?* :bas* valid-i?* :mod1* valid-i?* :beg1* valid-i?* :end1* valid-i?* :mod1* valid-i?* :beg1* valid-i?* :end1* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-kr? :table* (s/? valid-i?*) :bas* (s/? valid-i?*) :mod1* (s/? valid-i?*) :beg1* (s/? valid-i?*) :end1* (s/? valid-i?*) :mod1* (s/? valid-i?*) :beg1* (s/? valid-i?*) :end1* (s/? valid-i?*) ))
 (stest/instrument `loscil3)
 
 (defn trirand
@@ -1964,21 +1500,6 @@
   :args (s/cat :sigin valid-f? :blurtime valid-kr? :maxdel valid-i? ))
 (stest/instrument `pvsblur)
 
-(defn pvsblur:f
-  {:arglists '([fsigin kblurtime imaxdel])}
-  [sigin blurtime maxdel]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsblur"
-                      [sigin blurtime maxdel]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsblur:f
-  :args (s/cat :sigin valid-f? :blurtime valid-kr? :maxdel valid-i? ))
-(stest/instrument `pvsblur:f)
-
 (defn adsyn
   {:arglists '([kamod kfmod ksmod Sfilcod & ifilcod*] [kamod kfmod ksmod ifilcod & ifilcod*])}
   [amod fmod smod filcod & [ filcod* ]]
@@ -1992,26 +1513,10 @@
 
 (s/fdef adsyn
   :args (s/alt
-         :kkkSi (s/cat :amod valid-kr? :fmod valid-kr? :smod valid-kr? :filcod valid-S? :filcod* valid-i?* )
+         :kkkii (s/cat :amod valid-kr? :fmod valid-kr? :smod valid-kr? :filcod valid-i? :filcod* (s/? valid-i?*) )
+         :kkkSi (s/cat :amod valid-kr? :fmod valid-kr? :smod valid-kr? :filcod valid-S? :filcod* (s/? valid-i?*) )
          ))
 (stest/instrument `adsyn)
-
-(defn adsyn:a
-  {:arglists '([kamod kfmod ksmod Sfilcod & ifilcod*] [kamod kfmod ksmod ifilcod & ifilcod*])}
-  [amod fmod smod filcod & [ filcod* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "adsyn"
-                      [amod fmod smod filcod filcod*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef adsyn:a
-  :args (s/alt
-         :kkkSi (s/cat :amod valid-kr? :fmod valid-kr? :smod valid-kr? :filcod valid-S? :filcod* valid-i?* )
-         ))
-(stest/instrument `adsyn:a)
 
 (defn cosh
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
@@ -2026,6 +1531,10 @@
 
 (s/fdef cosh
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `cosh)
@@ -2118,6 +1627,7 @@
 
 (s/fdef readk3
   :args (s/alt
+         :iii (s/cat :filname valid-i? :format valid-i? :prd valid-i? )
          :Sii (s/cat :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `readk3)
@@ -2136,21 +1646,6 @@
 (s/fdef fmwurlie
   :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn7 valid-i? :fn8 valid-i? :fn9 valid-i? :fn10 valid-i? :vfn valid-i? ))
 (stest/instrument `fmwurlie)
-
-(defn fmwurlie:a
-  {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate ifn7 ifn8 ifn9 ifn10 ivfn])}
-  [amp freq c3 c4 vdepth vrate fn7 fn8 fn9 fn10 vfn]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmwurlie"
-                      [amp freq c3 c4 vdepth vrate fn7 fn8 fn9 fn10 vfn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmwurlie:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn7 valid-i? :fn8 valid-i? :fn9 valid-i? :fn10 valid-i? :vfn valid-i? ))
-(stest/instrument `fmwurlie:a)
 
 (defn outkpat
   {:arglists '([kchn knotenum kvalue kmin kmax])}
@@ -2179,23 +1674,8 @@
     (new out-types ast)))
 
 (s/fdef vdelayxw
-  :args (s/cat :in valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
+  :args (s/cat :in valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* (s/? valid-i?*) ))
 (stest/instrument `vdelayxw)
-
-(defn vdelayxw:a
-  {:arglists '([ain adl imd iws & ist*])}
-  [in dl md ws & [ st* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vdelayxw"
-                      [in dl md ws st*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vdelayxw:a
-  :args (s/cat :in valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
-(stest/instrument `vdelayxw:a)
 
 (defn getftargs
   {:arglists '([iftno ktrig])}
@@ -2212,21 +1692,6 @@
   :args (s/cat :ftno valid-i? :trig valid-kr? ))
 (stest/instrument `getftargs)
 
-(defn getftargs:S
-  {:arglists '([iftno ktrig])}
-  [ftno trig]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "getftargs"
-                      [ftno trig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef getftargs:S
-  :args (s/cat :ftno valid-i? :trig valid-kr? ))
-(stest/instrument `getftargs:S)
-
 (defn vdel_k
   {:arglists '([ksig kdelay imaxdelay & imode*])}
   [sig delay maxdelay & [ mode* ]]
@@ -2239,37 +1704,10 @@
     (new out-types ast)))
 
 (s/fdef vdel_k
-  :args (s/cat :sig valid-kr? :delay valid-kr? :maxdelay valid-i? :mode* valid-i?* ))
+  :args (s/cat :sig valid-kr? :delay valid-kr? :maxdelay valid-i? :mode* (s/? valid-i?*) ))
 (stest/instrument `vdel_k)
 
-(defn vdel_k:k
-  {:arglists '([ksig kdelay imaxdelay & imode*])}
-  [sig delay maxdelay & [ mode* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "vdel_k"
-                      [sig delay maxdelay mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vdel_k:k
-  :args (s/cat :sig valid-kr? :delay valid-kr? :maxdelay valid-i? :mode* valid-i?* ))
-(stest/instrument `vdel_k:k)
-
 (defn tival
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "tival"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn tival:i
   {:arglists '()}
   []
   (let [out-types-quoted 'Variable
@@ -2294,6 +1732,7 @@
 
 (s/fdef copyf2array
   :args (s/alt
+         :kArrk (s/cat :ab valid-kArr? :ftbl valid-kr? )
          :iArri (s/cat :ab valid-iArr? :ftbl valid-i? )
          ))
 (stest/instrument `copyf2array)
@@ -2340,23 +1779,8 @@
     (new out-types ast)))
 
 (s/fdef fmpercfl
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vfn* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :vfn* (s/? valid-i?*) ))
 (stest/instrument `fmpercfl)
-
-(defn fmpercfl:a
-  {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate & ifn1* ifn1* ifn1* ifn1* ivfn*])}
-  [amp freq c3 c4 vdepth vrate & [ fn1* fn1* fn1* fn1* vfn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmpercfl"
-                      [amp freq c3 c4 vdepth vrate fn1* fn1* fn1* fn1* vfn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmpercfl:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vfn* valid-i?* ))
-(stest/instrument `fmpercfl:a)
 
 (defn pvread
   {:arglists '([ktimpnt Sfile ibin] [ktimpnt ifile ibin])}
@@ -2371,6 +1795,7 @@
 
 (s/fdef pvread
   :args (s/alt
+         :kii (s/cat :timpnt valid-kr? :file valid-i? :bin valid-i? )
          :kSi (s/cat :timpnt valid-kr? :file valid-S? :bin valid-i? )
          ))
 (stest/instrument `pvread)
@@ -2402,23 +1827,8 @@
     (new out-types ast)))
 
 (s/fdef balance
-  :args (s/cat :sig valid-ar? :comp valid-ar? :hp* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :comp valid-ar? :hp* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `balance)
-
-(defn balance:a
-  {:arglists '([asig acomp & ihp* iskip*])}
-  [sig comp & [ hp* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "balance"
-                      [sig comp hp* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef balance:a
-  :args (s/cat :sig valid-ar? :comp valid-ar? :hp* valid-i?* :skip* valid-i?* ))
-(stest/instrument `balance:a)
 
 (defn tabifd
   {:arglists '([ktimpt kamp kpitch ifftsize ihopsize iwintype itable])}
@@ -2448,26 +1858,10 @@
 
 (s/fdef filepeak
   :args (s/alt
-         :Si (s/cat :filcod valid-S? :chnl* valid-i?* )
+         :ii (s/cat :filcod valid-i? :chnl* (s/? valid-i?*) )
+         :Si (s/cat :filcod valid-S? :chnl* (s/? valid-i?*) )
          ))
 (stest/instrument `filepeak)
-
-(defn filepeak:i
-  {:arglists '([Sfilcod & ichnl*] [ifilcod & ichnl*])}
-  [filcod & [ chnl* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "filepeak"
-                      [filcod chnl*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef filepeak:i
-  :args (s/alt
-         :Si (s/cat :filcod valid-S? :chnl* valid-i?* )
-         ))
-(stest/instrument `filepeak:i)
 
 (defn lowpass2
   {:arglists '([asig acenter-frequency aq & iskip*] [asig acenter-frequency kq askip & iskip*] [asig kcenter-frequency aq & iskip*] [asig kcenter-frequency kq & iskip*])}
@@ -2482,26 +1876,12 @@
 
 (s/fdef lowpass2
   :args (s/alt
-         :aaai (s/cat :sig valid-ar? :center-frequency valid-ar? :q valid-ar? :skip* valid-i?* )
+         :akki (s/cat :sig valid-ar? :center-frequency valid-kr? :q valid-kr? :skip* (s/? valid-i?*) )
+         :akai (s/cat :sig valid-ar? :center-frequency valid-kr? :q valid-ar? :skip* (s/? valid-i?*) )
+         :aakai (s/cat :sig valid-ar? :center-frequency valid-ar? :q valid-kr? :skip valid-ar? :skip* (s/? valid-i?*) )
+         :aaai (s/cat :sig valid-ar? :center-frequency valid-ar? :q valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `lowpass2)
-
-(defn lowpass2:a
-  {:arglists '([asig acenter-frequency aq & iskip*] [asig acenter-frequency kq askip & iskip*] [asig kcenter-frequency aq & iskip*] [asig kcenter-frequency kq & iskip*])}
-  [sig center-frequency q & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lowpass2"
-                      [sig center-frequency q skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lowpass2:a
-  :args (s/alt
-         :aaai (s/cat :sig valid-ar? :center-frequency valid-ar? :q valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `lowpass2:a)
 
 (defn vaddv
   {:arglists '([ifn1 ifn2 kelements & kdstoffset* ksrcoffset* kverbose*])}
@@ -2515,7 +1895,7 @@
     (new out-types ast)))
 
 (s/fdef vaddv
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vaddv)
 
 (defn printf
@@ -2530,7 +1910,7 @@
     (new out-types ast)))
 
 (s/fdef printf
-  :args (s/cat :formatstring valid-S? :arg1* valid-kr?* :arg2* valid-kr?* :arg3* valid-kr?* :arg4* valid-kr?* :arg5* valid-kr?* :arg6* valid-kr?* :arg7* valid-kr?* :arg8* valid-kr?* :arg9* valid-kr?* :arg10* valid-kr?* :arg11* valid-kr?* :arg12* valid-kr?* :arg13* valid-kr?* :arg14* valid-kr?* :arg15* valid-kr?* :arg16* valid-kr?* ))
+  :args (s/cat :formatstring valid-S? :arg1* (s/? valid-kr?*) :arg2* (s/? valid-kr?*) :arg3* (s/? valid-kr?*) :arg4* (s/? valid-kr?*) :arg5* (s/? valid-kr?*) :arg6* (s/? valid-kr?*) :arg7* (s/? valid-kr?*) :arg8* (s/? valid-kr?*) :arg9* (s/? valid-kr?*) :arg10* (s/? valid-kr?*) :arg11* (s/? valid-kr?*) :arg12* (s/? valid-kr?*) :arg13* (s/? valid-kr?*) :arg14* (s/? valid-kr?*) :arg15* (s/? valid-kr?*) :arg16* (s/? valid-kr?*) ))
 (stest/instrument `printf)
 
 (defn tablewkt
@@ -2546,7 +1926,8 @@
 
 (s/fdef tablewkt
   :args (s/alt
-         :aakiii (s/cat :sig valid-ar? :index valid-ar? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wgmode* valid-i?* )
+         :kkkiii (s/cat :sig valid-kr? :index valid-kr? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
+         :aakiii (s/cat :sig valid-ar? :index valid-ar? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
          ))
 (stest/instrument `tablewkt)
 
@@ -2565,21 +1946,6 @@
   :args (s/cat :source valid-S? ))
 (stest/instrument `strcpy)
 
-(defn strcpy:S
-  {:arglists '([Ssource])}
-  [source]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strcpy"
-                      [source]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strcpy:S
-  :args (s/cat :source valid-S? ))
-(stest/instrument `strcpy:S)
-
 (defn inrg
   {:arglists '([kstart & ain1* ain2* ain3* ainN4* ainN5* ainN6* ainN7* ainN8* ainN9* ainN10* ainN11* ainN12* ainN13* ainN14* ainN15* ainN16* ainN17* ainN18* ainN19* ainN20* ainN21* ainN22* ainN23* ainN24* ainN25* ainN26* ainN27* ainN28* ainN29* ainN30* ainN31* ainN32*])}
   [start & [ in1* in2* in3* inN4* inN5* inN6* inN7* inN8* inN9* inN10* inN11* inN12* inN13* inN14* inN15* inN16* inN17* inN18* inN19* inN20* inN21* inN22* inN23* inN24* inN25* inN26* inN27* inN28* inN29* inN30* inN31* inN32* ]]
@@ -2592,7 +1958,7 @@
     (new out-types ast)))
 
 (s/fdef inrg
-  :args (s/cat :start valid-kr? :in1* valid-ar?* :in2* valid-ar?* :in3* valid-ar?* :inN4* valid-ar?* :inN5* valid-ar?* :inN6* valid-ar?* :inN7* valid-ar?* :inN8* valid-ar?* :inN9* valid-ar?* :inN10* valid-ar?* :inN11* valid-ar?* :inN12* valid-ar?* :inN13* valid-ar?* :inN14* valid-ar?* :inN15* valid-ar?* :inN16* valid-ar?* :inN17* valid-ar?* :inN18* valid-ar?* :inN19* valid-ar?* :inN20* valid-ar?* :inN21* valid-ar?* :inN22* valid-ar?* :inN23* valid-ar?* :inN24* valid-ar?* :inN25* valid-ar?* :inN26* valid-ar?* :inN27* valid-ar?* :inN28* valid-ar?* :inN29* valid-ar?* :inN30* valid-ar?* :inN31* valid-ar?* :inN32* valid-ar?* ))
+  :args (s/cat :start valid-kr? :in1* (s/? valid-ar?*) :in2* (s/? valid-ar?*) :in3* (s/? valid-ar?*) :inN4* (s/? valid-ar?*) :inN5* (s/? valid-ar?*) :inN6* (s/? valid-ar?*) :inN7* (s/? valid-ar?*) :inN8* (s/? valid-ar?*) :inN9* (s/? valid-ar?*) :inN10* (s/? valid-ar?*) :inN11* (s/? valid-ar?*) :inN12* (s/? valid-ar?*) :inN13* (s/? valid-ar?*) :inN14* (s/? valid-ar?*) :inN15* (s/? valid-ar?*) :inN16* (s/? valid-ar?*) :inN17* (s/? valid-ar?*) :inN18* (s/? valid-ar?*) :inN19* (s/? valid-ar?*) :inN20* (s/? valid-ar?*) :inN21* (s/? valid-ar?*) :inN22* (s/? valid-ar?*) :inN23* (s/? valid-ar?*) :inN24* (s/? valid-ar?*) :inN25* (s/? valid-ar?*) :inN26* (s/? valid-ar?*) :inN27* (s/? valid-ar?*) :inN28* (s/? valid-ar?*) :inN29* (s/? valid-ar?*) :inN30* (s/? valid-ar?*) :inN31* (s/? valid-ar?*) :inN32* (s/? valid-ar?*) ))
 (stest/instrument `inrg)
 
 (defn rbjeq
@@ -2607,23 +1973,8 @@
     (new out-types ast)))
 
 (s/fdef rbjeq
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-kr? :lvl valid-kr? :Q valid-kr? :S valid-kr? :mode* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-kr? :lvl valid-kr? :Q valid-kr? :S valid-kr? :mode* (s/? valid-i?*) ))
 (stest/instrument `rbjeq)
-
-(defn rbjeq:a
-  {:arglists '([asig kcutoff-frequency klvl kQ kS & imode*])}
-  [sig cutoff-frequency lvl Q S & [ mode* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "rbjeq"
-                      [sig cutoff-frequency lvl Q S mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef rbjeq:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-kr? :lvl valid-kr? :Q valid-kr? :S valid-kr? :mode* valid-i?* ))
-(stest/instrument `rbjeq:a)
 
 (defn maxalloc
   {:arglists '([Sinsname icount] [iinsname icount])}
@@ -2638,6 +1989,7 @@
 
 (s/fdef maxalloc
   :args (s/alt
+         :ii (s/cat :insname valid-i? :count valid-i? )
          :Si (s/cat :insname valid-S? :count valid-i? )
          ))
 (stest/instrument `maxalloc)
@@ -2685,6 +2037,7 @@
 
 (s/fdef fout
   :args (s/alt
+         :Siaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :filename valid-S? :format valid-i? :rray1* (s/? valid-ar?*) :rray2* (s/? valid-ar?*) :rray3* (s/? valid-ar?*) :rray4* (s/? valid-ar?*) :rray5* (s/? valid-ar?*) :rray6* (s/? valid-ar?*) :rray7* (s/? valid-ar?*) :rray8* (s/? valid-ar?*) :rray9* (s/? valid-ar?*) :rray10* (s/? valid-ar?*) :rray11* (s/? valid-ar?*) :rray12* (s/? valid-ar?*) :rray13* (s/? valid-ar?*) :rray14* (s/? valid-ar?*) :rray15* (s/? valid-ar?*) :rray16* (s/? valid-ar?*) :rray17* (s/? valid-ar?*) :rray18* (s/? valid-ar?*) :rray19* (s/? valid-ar?*) :rray20* (s/? valid-ar?*) :rray21* (s/? valid-ar?*) :rray22* (s/? valid-ar?*) :rray23* (s/? valid-ar?*) :rray24* (s/? valid-ar?*) :rray25* (s/? valid-ar?*) :rray26* (s/? valid-ar?*) :rray27* (s/? valid-ar?*) :rray28* (s/? valid-ar?*) :rray29* (s/? valid-ar?*) :rray30* (s/? valid-ar?*) :rray31* (s/? valid-ar?*) :rray32* (s/? valid-ar?*) )
          :SiaArr (s/cat :filename valid-S? :format valid-i? :rray valid-aArr? )
          ))
 (stest/instrument `fout)
@@ -2701,7 +2054,7 @@
     (new out-types ast)))
 
 (s/fdef vbapzmove
-  :args (s/cat :numchnls valid-i? :startndx valid-i? :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* ))
+  :args (s/cat :numchnls valid-i? :startndx valid-i? :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) ))
 (stest/instrument `vbapzmove)
 
 (defn gausstrig
@@ -2717,7 +2070,7 @@
 
 (s/fdef gausstrig
   :args (s/alt
-         :kkkii (s/cat :amp valid-kr? :cps valid-kr? :dev valid-kr? :mode* valid-i?* :frst1* valid-i?* )
+         :kkkii (s/cat :amp valid-kr? :cps valid-kr? :dev valid-kr? :mode* (s/? valid-i?*) :frst1* (s/? valid-i?*) )
          ))
 (stest/instrument `gausstrig)
 
@@ -2733,7 +2086,7 @@
     (new out-types ast)))
 
 (s/fdef gausstrig:a
-  :args (s/cat :amp valid-kr? :cps valid-kr? :dev valid-kr? :mode* valid-i?* :frst1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :dev valid-kr? :mode* (s/? valid-i?*) :frst1* (s/? valid-i?*) ))
 (stest/instrument `gausstrig:a)
 
 (defn gausstrig:k
@@ -2748,7 +2101,7 @@
     (new out-types ast)))
 
 (s/fdef gausstrig:k
-  :args (s/cat :amp valid-kr? :cps valid-kr? :dev valid-kr? :mode* valid-i?* :frst1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :dev valid-kr? :mode* (s/? valid-i?*) :frst1* (s/? valid-i?*) ))
 (stest/instrument `gausstrig:k)
 
 (defn imageload
@@ -2766,21 +2119,6 @@
   :args (s/cat :ilename valid-S? ))
 (stest/instrument `imageload)
 
-(defn imageload:i
-  {:arglists '([Silename])}
-  [ilename]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "imageload"
-                      [ilename]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef imageload:i
-  :args (s/cat :ilename valid-S? ))
-(stest/instrument `imageload:i)
-
 (defn samphold
   {:arglists '([xsig xgate & ival* ivstor*] [xsig xgate & ival* ivstor*])}
   [sig gate & [ val* vstor* ]]
@@ -2794,7 +2132,7 @@
 
 (s/fdef samphold
   :args (s/alt
-         :xxii (s/cat :sig valid-x? :gate valid-x? :val* valid-i?* :vstor* valid-i?* )
+         :xxii (s/cat :sig valid-x? :gate valid-x? :val* (s/? valid-i?*) :vstor* (s/? valid-i?*) )
          ))
 (stest/instrument `samphold)
 
@@ -2810,7 +2148,7 @@
     (new out-types ast)))
 
 (s/fdef samphold:a
-  :args (s/cat :sig valid-x? :gate valid-x? :val* valid-i?* :vstor* valid-i?* ))
+  :args (s/cat :sig valid-x? :gate valid-x? :val* (s/? valid-i?*) :vstor* (s/? valid-i?*) ))
 (stest/instrument `samphold:a)
 
 (defn samphold:k
@@ -2825,7 +2163,7 @@
     (new out-types ast)))
 
 (s/fdef samphold:k
-  :args (s/cat :sig valid-x? :gate valid-x? :val* valid-i?* :vstor* valid-i?* ))
+  :args (s/cat :sig valid-x? :gate valid-x? :val* (s/? valid-i?*) :vstor* (s/? valid-i?*) ))
 (stest/instrument `samphold:k)
 
 (defn zkwm
@@ -2840,7 +2178,7 @@
     (new out-types ast)))
 
 (s/fdef zkwm
-  :args (s/cat :sig valid-kr? :index valid-kr? :mix* valid-i?* ))
+  :args (s/cat :sig valid-kr? :index valid-kr? :mix* (s/? valid-i?*) ))
 (stest/instrument `zkwm)
 
 (defn streson
@@ -2858,21 +2196,6 @@
   :args (s/cat :sig valid-ar? :fr valid-kr? :fdbgain valid-kr? ))
 (stest/instrument `streson)
 
-(defn streson:a
-  {:arglists '([asig kfr kfdbgain])}
-  [sig fr fdbgain]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "streson"
-                      [sig fr fdbgain]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef streson:a
-  :args (s/cat :sig valid-ar? :fr valid-kr? :fdbgain valid-kr? ))
-(stest/instrument `streson:a)
-
 (defn oscil
   {:arglists '([aamp acps itableArr & iphase*] [aamp acps & itable* iphase*] [aamp kcps itableArr & iphase*] [aamp kcps & itable* iphase*] [kamp acps itableArr & iphase*] [kamp acps & itable* iphase*] [kamp kcps itableArr & iphase*] [kamp kcps & itable* iphase*] [kamp kcps & itable* iphase*])}
   [amp cps table & [ phase* ]]
@@ -2886,7 +2209,14 @@
 
 (s/fdef oscil
   :args (s/alt
-         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaiArri (s/cat :amp valid-kr? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akiArri (s/cat :amp valid-ar? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscil)
 
@@ -2903,7 +2233,14 @@
 
 (s/fdef oscil:a
   :args (s/alt
-         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaiArri (s/cat :amp valid-kr? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akiArri (s/cat :amp valid-ar? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscil:a)
 
@@ -2919,7 +2256,7 @@
     (new out-types ast)))
 
 (s/fdef oscil:k
-  :args (s/cat :amp valid-kr? :cps valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `oscil:k)
 
 (defn statevar
@@ -2934,7 +2271,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef statevar
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :q valid-x? :osamps* valid-i?* :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :q valid-x? :osamps* (s/? valid-i?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `statevar)
 
 (defn pchbend
@@ -2950,7 +2287,7 @@
 
 (s/fdef pchbend
   :args (s/alt
-         :ii (s/cat :min* valid-i?* :max* valid-i?* )
+         :ii (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) )
          ))
 (stest/instrument `pchbend)
 
@@ -2966,7 +2303,7 @@
     (new out-types ast)))
 
 (s/fdef pchbend:i
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `pchbend:i)
 
 (defn pchbend:k
@@ -2981,7 +2318,7 @@
     (new out-types ast)))
 
 (s/fdef pchbend:k
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `pchbend:k)
 
 (defn ATSaddnz
@@ -2997,26 +2334,10 @@
 
 (s/fdef ATSaddnz
   :args (s/alt
-         :kSiii (s/cat :timepnt valid-kr? :atsfile valid-S? :bands valid-i? :bandoffset* valid-i?* :bandincr* valid-i?* )
+         :kiiii (s/cat :timepnt valid-kr? :atsfile valid-i? :bands valid-i? :bandoffset* (s/? valid-i?*) :bandincr* (s/? valid-i?*) )
+         :kSiii (s/cat :timepnt valid-kr? :atsfile valid-S? :bands valid-i? :bandoffset* (s/? valid-i?*) :bandincr* (s/? valid-i?*) )
          ))
 (stest/instrument `ATSaddnz)
-
-(defn ATSaddnz:a
-  {:arglists '([ktimepnt Satsfile ibands & ibandoffset* ibandincr*] [ktimepnt iatsfile ibands & ibandoffset* ibandincr*])}
-  [timepnt atsfile bands & [ bandoffset* bandincr* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "ATSaddnz"
-                      [timepnt atsfile bands bandoffset* bandincr*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATSaddnz:a
-  :args (s/alt
-         :kSiii (s/cat :timepnt valid-kr? :atsfile valid-S? :bands valid-i? :bandoffset* valid-i?* :bandincr* valid-i?* )
-         ))
-(stest/instrument `ATSaddnz:a)
 
 (defn spat3dt
   {:arglists '([ioutft iX iY iZ idistortion ift imode irlen & iftnocl*])}
@@ -3030,7 +2351,7 @@
     (new out-types ast)))
 
 (s/fdef spat3dt
-  :args (s/cat :outft valid-i? :X valid-i? :Y valid-i? :Z valid-i? :distortion valid-i? :ft valid-i? :mode valid-i? :rlen valid-i? :ftnocl* valid-i?* ))
+  :args (s/cat :outft valid-i? :X valid-i? :Y valid-i? :Z valid-i? :distortion valid-i? :ft valid-i? :mode valid-i? :rlen valid-i? :ftnocl* (s/? valid-i?*) ))
 (stest/instrument `spat3dt)
 
 (defn ATSbufread
@@ -3046,7 +2367,8 @@
 
 (s/fdef ATSbufread
   :args (s/alt
-         :kkSiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* )
+         :kkiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-i? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) )
+         :kkSiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) )
          ))
 (stest/instrument `ATSbufread)
 
@@ -3062,7 +2384,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef pitchamdf
-  :args (s/cat :sig valid-ar? :mincps valid-i? :maxcps valid-i? :cps* valid-i?* :medi* valid-i?* :downs* valid-i?* :excps* valid-i?* :rmsmedi* valid-i?* ))
+  :args (s/cat :sig valid-ar? :mincps valid-i? :maxcps valid-i? :cps* (s/? valid-i?*) :medi* (s/? valid-i?*) :downs* (s/? valid-i?*) :excps* (s/? valid-i?*) :rmsmedi* (s/? valid-i?*) ))
 (stest/instrument `pitchamdf)
 
 (defn vibr
@@ -3080,21 +2402,6 @@
   :args (s/cat :AverageAmp valid-kr? :AverageFreq valid-kr? :table valid-i? ))
 (stest/instrument `vibr)
 
-(defn vibr:k
-  {:arglists '([kAverageAmp kAverageFreq itable])}
-  [AverageAmp AverageFreq table]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "vibr"
-                      [AverageAmp AverageFreq table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vibr:k
-  :args (s/cat :AverageAmp valid-kr? :AverageFreq valid-kr? :table valid-i? ))
-(stest/instrument `vibr:k)
-
 (defn zfilter2
   {:arglists '([asig kdamp kfreq iM iN & ib1* ib2* ibM3* ia4* ia5* iaN6* iaN7* iaN8* iaN9* iaN10* iaN11* iaN12* iaN13* iaN14* iaN15* iaN16*])}
   [sig damp freq M N & [ b1* b2* bM3* a4* a5* aN6* aN7* aN8* aN9* aN10* aN11* aN12* aN13* aN14* aN15* aN16* ]]
@@ -3107,23 +2414,8 @@
     (new out-types ast)))
 
 (s/fdef zfilter2
-  :args (s/cat :sig valid-ar? :damp valid-kr? :freq valid-kr? :M valid-i? :N valid-i? :b1* valid-i?* :b2* valid-i?* :bM3* valid-i?* :a4* valid-i?* :a5* valid-i?* :aN6* valid-i?* :aN7* valid-i?* :aN8* valid-i?* :aN9* valid-i?* :aN10* valid-i?* :aN11* valid-i?* :aN12* valid-i?* :aN13* valid-i?* :aN14* valid-i?* :aN15* valid-i?* :aN16* valid-i?* ))
+  :args (s/cat :sig valid-ar? :damp valid-kr? :freq valid-kr? :M valid-i? :N valid-i? :b1* (s/? valid-i?*) :b2* (s/? valid-i?*) :bM3* (s/? valid-i?*) :a4* (s/? valid-i?*) :a5* (s/? valid-i?*) :aN6* (s/? valid-i?*) :aN7* (s/? valid-i?*) :aN8* (s/? valid-i?*) :aN9* (s/? valid-i?*) :aN10* (s/? valid-i?*) :aN11* (s/? valid-i?*) :aN12* (s/? valid-i?*) :aN13* (s/? valid-i?*) :aN14* (s/? valid-i?*) :aN15* (s/? valid-i?*) :aN16* (s/? valid-i?*) ))
 (stest/instrument `zfilter2)
-
-(defn zfilter2:a
-  {:arglists '([asig kdamp kfreq iM iN & ib1* ib2* ibM3* ia4* ia5* iaN6* iaN7* iaN8* iaN9* iaN10* iaN11* iaN12* iaN13* iaN14* iaN15* iaN16*])}
-  [sig damp freq M N & [ b1* b2* bM3* a4* a5* aN6* aN7* aN8* aN9* aN10* aN11* aN12* aN13* aN14* aN15* aN16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zfilter2"
-                      [sig damp freq M N b1* b2* bM3* a4* a5* aN6* aN7* aN8* aN9* aN10* aN11* aN12* aN13* aN14* aN15* aN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zfilter2:a
-  :args (s/cat :sig valid-ar? :damp valid-kr? :freq valid-kr? :M valid-i? :N valid-i? :b1* valid-i?* :b2* valid-i?* :bM3* valid-i?* :a4* valid-i?* :a5* valid-i?* :aN6* valid-i?* :aN7* valid-i?* :aN8* valid-i?* :aN9* valid-i?* :aN10* valid-i?* :aN11* valid-i?* :aN12* valid-i?* :aN13* valid-i?* :aN14* valid-i?* :aN15* valid-i?* :aN16* valid-i?* ))
-(stest/instrument `zfilter2:a)
 
 (defn vtablea
   {:arglists '([aindex ktable kinterp ixmode & aout1* aout2* aout3* aoutN4* aoutN5* aoutN6* aoutN7* aoutN8* aoutN9* aoutN10* aoutN11* aoutN12* aoutN13* aoutN14* aoutN15* aoutN16* aoutN17* aoutN18* aoutN19* aoutN20* aoutN21* aoutN22* aoutN23* aoutN24* aoutN25* aoutN26* aoutN27* aoutN28* aoutN29* aoutN30* aoutN31* aoutN32*])}
@@ -3137,7 +2429,7 @@
     (new out-types ast)))
 
 (s/fdef vtablea
-  :args (s/cat :index valid-ar? :table valid-kr? :interp valid-kr? :xmode valid-i? :out1* valid-ar?* :out2* valid-ar?* :out3* valid-ar?* :outN4* valid-ar?* :outN5* valid-ar?* :outN6* valid-ar?* :outN7* valid-ar?* :outN8* valid-ar?* :outN9* valid-ar?* :outN10* valid-ar?* :outN11* valid-ar?* :outN12* valid-ar?* :outN13* valid-ar?* :outN14* valid-ar?* :outN15* valid-ar?* :outN16* valid-ar?* :outN17* valid-ar?* :outN18* valid-ar?* :outN19* valid-ar?* :outN20* valid-ar?* :outN21* valid-ar?* :outN22* valid-ar?* :outN23* valid-ar?* :outN24* valid-ar?* :outN25* valid-ar?* :outN26* valid-ar?* :outN27* valid-ar?* :outN28* valid-ar?* :outN29* valid-ar?* :outN30* valid-ar?* :outN31* valid-ar?* :outN32* valid-ar?* ))
+  :args (s/cat :index valid-ar? :table valid-kr? :interp valid-kr? :xmode valid-i? :out1* (s/? valid-ar?*) :out2* (s/? valid-ar?*) :out3* (s/? valid-ar?*) :outN4* (s/? valid-ar?*) :outN5* (s/? valid-ar?*) :outN6* (s/? valid-ar?*) :outN7* (s/? valid-ar?*) :outN8* (s/? valid-ar?*) :outN9* (s/? valid-ar?*) :outN10* (s/? valid-ar?*) :outN11* (s/? valid-ar?*) :outN12* (s/? valid-ar?*) :outN13* (s/? valid-ar?*) :outN14* (s/? valid-ar?*) :outN15* (s/? valid-ar?*) :outN16* (s/? valid-ar?*) :outN17* (s/? valid-ar?*) :outN18* (s/? valid-ar?*) :outN19* (s/? valid-ar?*) :outN20* (s/? valid-ar?*) :outN21* (s/? valid-ar?*) :outN22* (s/? valid-ar?*) :outN23* (s/? valid-ar?*) :outN24* (s/? valid-ar?*) :outN25* (s/? valid-ar?*) :outN26* (s/? valid-ar?*) :outN27* (s/? valid-ar?*) :outN28* (s/? valid-ar?*) :outN29* (s/? valid-ar?*) :outN30* (s/? valid-ar?*) :outN31* (s/? valid-ar?*) :outN32* (s/? valid-ar?*) ))
 (stest/instrument `vtablea)
 
 (defn spat3d
@@ -3152,7 +2444,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef spat3d
-  :args (s/cat :in valid-ar? :X valid-kr? :Y valid-kr? :Z valid-kr? :distortion valid-i? :ft valid-i? :mode valid-i? :mdel valid-i? :ovr valid-i? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :X valid-kr? :Y valid-kr? :Z valid-kr? :distortion valid-i? :ft valid-i? :mode valid-i? :mdel valid-i? :ovr valid-i? :stor* (s/? valid-i?*) ))
 (stest/instrument `spat3d)
 
 (defn foutk
@@ -3168,7 +2460,8 @@
 
 (s/fdef foutk
   :args (s/alt
-         :Sikkkkkkkkkkkkkkkk (s/cat :filename valid-S? :format valid-i? :out1* valid-kr?* :out2* valid-kr?* :out3* valid-kr?* :outN4* valid-kr?* :outN5* valid-kr?* :outN6* valid-kr?* :outN7* valid-kr?* :outN8* valid-kr?* :outN9* valid-kr?* :outN10* valid-kr?* :outN11* valid-kr?* :outN12* valid-kr?* :outN13* valid-kr?* :outN14* valid-kr?* :outN15* valid-kr?* :outN16* valid-kr?* )
+         :iikkkkkkkkkkkkkkkk (s/cat :filename valid-i? :format valid-i? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :out3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) )
+         :Sikkkkkkkkkkkkkkkk (s/cat :filename valid-S? :format valid-i? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :out3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) )
          ))
 (stest/instrument `foutk)
 
@@ -3187,21 +2480,6 @@
   :args (s/cat :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :fun6 valid-i? :fun7 valid-i? :olaps valid-i? ))
 (stest/instrument `syncgrain)
 
-(defn syncgrain:a
-  {:arglists '([kamp kfreq kpitch kgrsize kprate ifun6 ifun7 iolaps])}
-  [amp freq pitch grsize prate fun6 fun7 olaps]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "syncgrain"
-                      [amp freq pitch grsize prate fun6 fun7 olaps]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef syncgrain:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :fun6 valid-i? :fun7 valid-i? :olaps valid-i? ))
-(stest/instrument `syncgrain:a)
-
 (defn reverb
   {:arglists '([asig krvt & iskip*])}
   [sig rvt & [ skip* ]]
@@ -3214,23 +2492,8 @@
     (new out-types ast)))
 
 (s/fdef reverb
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rvt valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `reverb)
-
-(defn reverb:a
-  {:arglists '([asig krvt & iskip*])}
-  [sig rvt & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "reverb"
-                      [sig rvt skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef reverb:a
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :skip* valid-i?* ))
-(stest/instrument `reverb:a)
 
 (defn ATSinfo
   {:arglists '([Satsfile ilocation] [iatsfile ilocation])}
@@ -3245,26 +2508,10 @@
 
 (s/fdef ATSinfo
   :args (s/alt
+         :ii (s/cat :atsfile valid-i? :location valid-i? )
          :Si (s/cat :atsfile valid-S? :location valid-i? )
          ))
 (stest/instrument `ATSinfo)
-
-(defn ATSinfo:i
-  {:arglists '([Satsfile ilocation] [iatsfile ilocation])}
-  [atsfile location]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "ATSinfo"
-                      [atsfile location]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATSinfo:i
-  :args (s/alt
-         :Si (s/cat :atsfile valid-S? :location valid-i? )
-         ))
-(stest/instrument `ATSinfo:i)
 
 (defn compress2
   {:arglists '([aasig acsig kthresh kloknee khiknee kratio katt krel ilook])}
@@ -3281,21 +2528,6 @@
   :args (s/cat :asig valid-ar? :csig valid-ar? :thresh valid-kr? :loknee valid-kr? :hiknee valid-kr? :ratio valid-kr? :att valid-kr? :rel valid-kr? :look valid-i? ))
 (stest/instrument `compress2)
 
-(defn compress2:a
-  {:arglists '([aasig acsig kthresh kloknee khiknee kratio katt krel ilook])}
-  [asig csig thresh loknee hiknee ratio att rel look]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "compress2"
-                      [asig csig thresh loknee hiknee ratio att rel look]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef compress2:a
-  :args (s/cat :asig valid-ar? :csig valid-ar? :thresh valid-kr? :loknee valid-kr? :hiknee valid-kr? :ratio valid-kr? :att valid-kr? :rel valid-kr? :look valid-i? ))
-(stest/instrument `compress2:a)
-
 (defn table3
   {:arglists '([xindex itable & ixmode* ixoff* iwrap*] [iindex itable & ixmode* ixoff* iwrap*] [xindex itable & ixmode* ixoff* iwrap*])}
   [index table & [ xmode* xoff* wrap* ]]
@@ -3309,7 +2541,8 @@
 
 (s/fdef table3
   :args (s/alt
-         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :iiiii (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
+         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `table3)
 
@@ -3325,7 +2558,7 @@
     (new out-types ast)))
 
 (s/fdef table3:a
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `table3:a)
 
 (defn table3:i
@@ -3340,7 +2573,7 @@
     (new out-types ast)))
 
 (s/fdef table3:i
-  :args (s/cat :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `table3:i)
 
 (defn table3:k
@@ -3355,7 +2588,7 @@
     (new out-types ast)))
 
 (s/fdef table3:k
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `table3:k)
 
 (defn outkpc
@@ -3435,21 +2668,6 @@
   :args (s/cat :amp valid-kr? :pch valid-kr? :_xcenter valid-kr? :_ycenter valid-kr? :_xradius valid-kr? :_yradius valid-kr? :tabx valid-i? :taby valid-i? ))
 (stest/instrument `wterrain)
 
-(defn wterrain:a
-  {:arglists '([kamp kpch k_xcenter k_ycenter k_xradius k_yradius itabx itaby])}
-  [amp pch _xcenter _ycenter _xradius _yradius tabx taby]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wterrain"
-                      [amp pch _xcenter _ycenter _xradius _yradius tabx taby]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wterrain:a
-  :args (s/cat :amp valid-kr? :pch valid-kr? :_xcenter valid-kr? :_ycenter valid-kr? :_xradius valid-kr? :_yradius valid-kr? :tabx valid-i? :taby valid-i? ))
-(stest/instrument `wterrain:a)
-
 (defn ftsave
   {:arglists '([Sfilename iflag & ifn1* ifn2* ifn3* ifn4* ifn5* ifn6* ifn7* ifn8* ifn9* ifn10* ifn11* ifn12* ifn13* ifn14* ifn15* ifn16*] [ifilename iflag & ifn1* ifn2* ifn3* ifn4* ifn5* ifn6* ifn7* ifn8* ifn9* ifn10* ifn11* ifn12* ifn13* ifn14* ifn15* ifn16*])}
   [filename flag & [ fn1* fn2* fn3* fn4* fn5* fn6* fn7* fn8* fn9* fn10* fn11* fn12* fn13* fn14* fn15* fn16* ]]
@@ -3463,7 +2681,8 @@
 
 (s/fdef ftsave
   :args (s/alt
-         :Siiiiiiiiiiiiiiiii (s/cat :filename valid-S? :flag valid-i? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :filename valid-i? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
+         :Siiiiiiiiiiiiiiiii (s/cat :filename valid-S? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftsave)
 
@@ -3479,7 +2698,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vdelayxws
-  :args (s/cat :in1 valid-ar? :in2 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
+  :args (s/cat :in1 valid-ar? :in2 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* (s/? valid-i?*) ))
 (stest/instrument `vdelayxws)
 
 (defn midipolyaftertouch
@@ -3494,7 +2713,7 @@
     (new out-types ast)))
 
 (s/fdef midipolyaftertouch
-  :args (s/cat :polyaftertouch valid-x? :controllervalue valid-x? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :polyaftertouch valid-x? :controllervalue valid-x? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `midipolyaftertouch)
 
 (defn vpvoc
@@ -3510,26 +2729,10 @@
 
 (s/fdef vpvoc
   :args (s/alt
-         :kkSii (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :specwp* valid-i?* :table* valid-i?* )
+         :kkiii (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-i? :specwp* (s/? valid-i?*) :table* (s/? valid-i?*) )
+         :kkSii (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :specwp* (s/? valid-i?*) :table* (s/? valid-i?*) )
          ))
 (stest/instrument `vpvoc)
-
-(defn vpvoc:a
-  {:arglists '([ktimpnt kfmod Sfile & ispecwp* itable*] [ktimpnt kfmod ifile & ispecwp* itable*])}
-  [timpnt fmod file & [ specwp* table* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vpvoc"
-                      [timpnt fmod file specwp* table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vpvoc:a
-  :args (s/alt
-         :kkSii (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :specwp* valid-i?* :table* valid-i?* )
-         ))
-(stest/instrument `vpvoc:a)
 
 (defn rect2pol
   {:arglists '([kinArr])}
@@ -3545,21 +2748,6 @@
 (s/fdef rect2pol
   :args (s/cat :in valid-kArr? ))
 (stest/instrument `rect2pol)
-
-(defn rect2pol:kArr
-  {:arglists '([kinArr])}
-  [in]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "rect2pol"
-                      [in]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef rect2pol:kArr
-  :args (s/cat :in valid-kArr? ))
-(stest/instrument `rect2pol:kArr)
 
 (defn vaset
   {:arglists '([kval kindex avar])}
@@ -3588,23 +2776,8 @@
     (new out-types ast)))
 
 (s/fdef pvsynth
-  :args (s/cat :src valid-f? :init* valid-i?* ))
+  :args (s/cat :src valid-f? :init* (s/? valid-i?*) ))
 (stest/instrument `pvsynth)
-
-(defn pvsynth:a
-  {:arglists '([fsrc & iinit*])}
-  [src & [ init* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pvsynth"
-                      [src init*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsynth:a
-  :args (s/cat :src valid-f? :init* valid-i?* ))
-(stest/instrument `pvsynth:a)
 
 (defn fmanal
   {:arglists '([are aim])}
@@ -3648,23 +2821,8 @@
     (new out-types ast)))
 
 (s/fdef combinv
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-i? :skip* (s/? valid-i?*) :nsmps* (s/? valid-i?*) ))
 (stest/instrument `combinv)
-
-(defn combinv:a
-  {:arglists '([asig krvt ilpt & iskip* insmps*])}
-  [sig rvt lpt & [ skip* nsmps* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "combinv"
-                      [sig rvt lpt skip* nsmps*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef combinv:a
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
-(stest/instrument `combinv:a)
 
 (defn outiat
   {:arglists '([ichn ivalue imin imax])}
@@ -3696,21 +2854,6 @@
   :args (s/cat :sigin valid-f? :acf valid-x? :fcf valid-x? ))
 (stest/instrument `pvsmooth)
 
-(defn pvsmooth:f
-  {:arglists '([fsigin xacf xfcf])}
-  [sigin acf fcf]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsmooth"
-                      [sigin acf fcf]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsmooth:f
-  :args (s/cat :sigin valid-f? :acf valid-x? :fcf valid-x? ))
-(stest/instrument `pvsmooth:f)
-
 (defn hsboscil
   {:arglists '([kamp ktone kbrite ibasfreq iwfn ioctfn & ioctcnt* iphase*])}
   [amp tone brite basfreq wfn octfn & [ octcnt* phase* ]]
@@ -3723,23 +2866,8 @@
     (new out-types ast)))
 
 (s/fdef hsboscil
-  :args (s/cat :amp valid-kr? :tone valid-kr? :brite valid-kr? :basfreq valid-i? :wfn valid-i? :octfn valid-i? :octcnt* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :tone valid-kr? :brite valid-kr? :basfreq valid-i? :wfn valid-i? :octfn valid-i? :octcnt* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `hsboscil)
-
-(defn hsboscil:a
-  {:arglists '([kamp ktone kbrite ibasfreq iwfn ioctfn & ioctcnt* iphase*])}
-  [amp tone brite basfreq wfn octfn & [ octcnt* phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "hsboscil"
-                      [amp tone brite basfreq wfn octfn octcnt* phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef hsboscil:a
-  :args (s/cat :amp valid-kr? :tone valid-kr? :brite valid-kr? :basfreq valid-i? :wfn valid-i? :octfn valid-i? :octcnt* valid-i?* :phase* valid-i?* ))
-(stest/instrument `hsboscil:a)
 
 (defn deltap
   {:arglists '([kdlt & idlt*])}
@@ -3753,23 +2881,8 @@
     (new out-types ast)))
 
 (s/fdef deltap
-  :args (s/cat :dlt valid-kr? :dlt* valid-i?* ))
+  :args (s/cat :dlt valid-kr? :dlt* (s/? valid-i?*) ))
 (stest/instrument `deltap)
-
-(defn deltap:a
-  {:arglists '([kdlt & idlt*])}
-  [dlt & [ dlt* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "deltap"
-                      [dlt dlt*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef deltap:a
-  :args (s/cat :dlt valid-kr? :dlt* valid-i?* ))
-(stest/instrument `deltap:a)
 
 (defn turnoff
   {:arglists '( [inst] [knst])}
@@ -3784,6 +2897,7 @@
 
 (s/fdef turnoff
   :args (s/alt
+         :k (s/cat :nst valid-kr? )
          :i (s/cat :nst valid-i? )
          ))
 (stest/instrument `turnoff)
@@ -3802,21 +2916,6 @@
 (s/fdef wgpluck
   :args (s/cat :cps valid-i? :amp valid-i? :pick valid-kr? :plk valid-i? :damp valid-i? :filt valid-i? :xcite valid-ar? ))
 (stest/instrument `wgpluck)
-
-(defn wgpluck:a
-  {:arglists '([icps iamp kpick iplk idamp ifilt axcite])}
-  [cps amp pick plk damp filt xcite]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgpluck"
-                      [cps amp pick plk damp filt xcite]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgpluck:a
-  :args (s/cat :cps valid-i? :amp valid-i? :pick valid-kr? :plk valid-i? :damp valid-i? :filt valid-i? :xcite valid-ar? ))
-(stest/instrument `wgpluck:a)
 
 (defn sndwarpst
   {:arglists '([xamp xtimewarp xresample ifn4 ibeg iwsize irandw ioverlap ifn9 itimemode])}
@@ -3846,7 +2945,7 @@
 
 (s/fdef transegr
   :args (s/alt
-         :iiiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* valid-i?* :dur2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `transegr)
 
@@ -3862,7 +2961,7 @@
     (new out-types ast)))
 
 (s/fdef transegr:a
-  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* valid-i?* :dur2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `transegr:a)
 
 (defn transegr:k
@@ -3877,7 +2976,7 @@
     (new out-types ast)))
 
 (s/fdef transegr:k
-  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* valid-i?* :dur2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `transegr:k)
 
 (defn betarand
@@ -3957,21 +3056,6 @@
   :args (s/cat :freq valid-kr? ))
 (stest/instrument `ATSinterpread)
 
-(defn ATSinterpread:k
-  {:arglists '([kfreq])}
-  [freq]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "ATSinterpread"
-                      [freq]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATSinterpread:k
-  :args (s/cat :freq valid-kr? ))
-(stest/instrument `ATSinterpread:k)
-
 (defn vcella
   {:arglists '([ktrig kreinit ioutFunc initStateFunc iRuleFunc ielements irulelen & iradius*])}
   [trig reinit outFunc nitStateFunc RuleFunc elements rulelen & [ radius* ]]
@@ -3984,7 +3068,7 @@
     (new out-types ast)))
 
 (s/fdef vcella
-  :args (s/cat :trig valid-kr? :reinit valid-kr? :outFunc valid-i? :nitStateFunc valid-i? :RuleFunc valid-i? :elements valid-i? :rulelen valid-i? :radius* valid-i?* ))
+  :args (s/cat :trig valid-kr? :reinit valid-kr? :outFunc valid-i? :nitStateFunc valid-i? :RuleFunc valid-i? :elements valid-i? :rulelen valid-i? :radius* (s/? valid-i?*) ))
 (stest/instrument `vcella)
 
 (defn vpow
@@ -3999,7 +3083,7 @@
     (new out-types ast)))
 
 (s/fdef vpow
-  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vpow)
 
 (defn strindexk
@@ -4017,21 +3101,6 @@
   :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
 (stest/instrument `strindexk)
 
-(defn strindexk:k
-  {:arglists '([Sarg1 Sarg2])}
-  [arg1 arg2]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strindexk"
-                      [arg1 arg2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strindexk:k
-  :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
-(stest/instrument `strindexk:k)
-
 (defn sflooper
   {:arglists '([ivel inotenum kamp kpitch ipreindex kloopstart kloopend kcrossfade & istart* imode* ifenv* iskip*])}
   [vel notenum amp pitch preindex loopstart loopend crossfade & [ start* mode* fenv* skip* ]]
@@ -4044,7 +3113,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef sflooper
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-kr? :pitch valid-kr? :preindex valid-i? :loopstart valid-kr? :loopend valid-kr? :crossfade valid-kr? :start* valid-i?* :mode* valid-i?* :fenv* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-kr? :pitch valid-kr? :preindex valid-i? :loopstart valid-kr? :loopend valid-kr? :crossfade valid-kr? :start* (s/? valid-i?*) :mode* (s/? valid-i?*) :fenv* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `sflooper)
 
 (defn diskgrain
@@ -4059,7 +3128,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef diskgrain
-  :args (s/cat :fname valid-S? :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :fun valid-i? :olaps valid-i? :maxgrsize* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :fname valid-S? :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :fun valid-i? :olaps valid-i? :maxgrsize* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `diskgrain)
 
 (defn expon
@@ -4124,21 +3193,6 @@
   :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn7 valid-i? :fn8 valid-i? :fn9 valid-i? :fn10 valid-i? :vfn valid-i? ))
 (stest/instrument `fmrhode)
 
-(defn fmrhode:a
-  {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate ifn7 ifn8 ifn9 ifn10 ivfn])}
-  [amp freq c3 c4 vdepth vrate fn7 fn8 fn9 fn10 vfn]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmrhode"
-                      [amp freq c3 c4 vdepth vrate fn7 fn8 fn9 fn10 vfn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmrhode:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn7 valid-i? :fn8 valid-i? :fn9 valid-i? :fn10 valid-i? :vfn valid-i? ))
-(stest/instrument `fmrhode:a)
-
 (defn strlen
   {:arglists '([Sstr])}
   [str]
@@ -4154,21 +3208,6 @@
   :args (s/cat :str valid-S? ))
 (stest/instrument `strlen)
 
-(defn strlen:i
-  {:arglists '([Sstr])}
-  [str]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strlen"
-                      [str]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strlen:i
-  :args (s/cat :str valid-S? ))
-(stest/instrument `strlen:i)
-
 (defn vbaplsinit
   {:arglists '([idim ilsnum ilsarrayArr] [idim ilsnum & ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray* ilsarray*])}
   [dim lsnum lsarray]
@@ -4182,6 +3221,7 @@
 
 (s/fdef vbaplsinit
   :args (s/alt
+         :iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii (s/cat :dim valid-i? :lsnum valid-i? :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) :lsarray* (s/? valid-i?*) )
          :iiiArr (s/cat :dim valid-i? :lsnum valid-i? :lsarray valid-iArr? )
          ))
 (stest/instrument `vbaplsinit)
@@ -4198,23 +3238,8 @@
     (new out-types ast)))
 
 (s/fdef wgflute
-  :args (s/cat :amp valid-kr? :freq valid-kr? :jet valid-kr? :att valid-i? :detk valid-i? :ngain valid-kr? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* :jetrf* valid-i?* :endrf* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :jet valid-kr? :att valid-i? :detk valid-i? :ngain valid-kr? :vibf valid-kr? :vamp valid-kr? :table* (s/? valid-i?*) :minfreq* (s/? valid-i?*) :jetrf* (s/? valid-i?*) :endrf* (s/? valid-i?*) ))
 (stest/instrument `wgflute)
-
-(defn wgflute:a
-  {:arglists '([kamp kfreq kjet iatt idetk kngain kvibf kvamp & itable* iminfreq* ijetrf* iendrf*])}
-  [amp freq jet att detk ngain vibf vamp & [ table* minfreq* jetrf* endrf* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgflute"
-                      [amp freq jet att detk ngain vibf vamp table* minfreq* jetrf* endrf*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgflute:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :jet valid-kr? :att valid-i? :detk valid-i? :ngain valid-kr? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* :jetrf* valid-i?* :endrf* valid-i?* ))
-(stest/instrument `wgflute:a)
 
 (defn serialWrite
   {:arglists '([iPort SBytes] [iPort kBytes])}
@@ -4229,6 +3254,7 @@
 
 (s/fdef serialWrite
   :args (s/alt
+         :ik (s/cat :Port valid-i? :Bytes valid-kr? )
          :iS (s/cat :Port valid-i? :Bytes valid-S? )
          ))
 (stest/instrument `serialWrite)
@@ -4248,21 +3274,6 @@
   :args (s/cat :name valid-S? ))
 (stest/instrument `inletf)
 
-(defn inletf:f
-  {:arglists '([Sname])}
-  [name]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "inletf"
-                      [name]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef inletf:f
-  :args (s/cat :name valid-S? ))
-(stest/instrument `inletf:f)
-
 (defn lposcil
   {:arglists '([kamp kfreqratio kloop kend & itable* iphase*])}
   [amp freqratio loop end & [ table* phase* ]]
@@ -4275,23 +3286,8 @@
     (new out-types ast)))
 
 (s/fdef lposcil
-  :args (s/cat :amp valid-kr? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `lposcil)
-
-(defn lposcil:a
-  {:arglists '([kamp kfreqratio kloop kend & itable* iphase*])}
-  [amp freqratio loop end & [ table* phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lposcil"
-                      [amp freqratio loop end table* phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lposcil:a
-  :args (s/cat :amp valid-kr? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :table* valid-i?* :phase* valid-i?* ))
-(stest/instrument `lposcil:a)
 
 (defn strupperk
   {:arglists '([Ssrc])}
@@ -4307,21 +3303,6 @@
 (s/fdef strupperk
   :args (s/cat :src valid-S? ))
 (stest/instrument `strupperk)
-
-(defn strupperk:S
-  {:arglists '([Ssrc])}
-  [src]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strupperk"
-                      [src]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strupperk:S
-  :args (s/cat :src valid-S? ))
-(stest/instrument `strupperk:S)
 
 (defn noteondur2
   {:arglists '([ichn inum ivel idur])}
@@ -4350,7 +3331,7 @@
     (new out-types ast)))
 
 (s/fdef vdivv_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vdivv_i)
 
 (defn rewindscore
@@ -4407,23 +3388,8 @@
     (new out-types ast)))
 
 (s/fdef marimba
-  :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vibfn valid-i? :dec valid-i? :doubles* valid-i?* :triples* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vibfn valid-i? :dec valid-i? :doubles* (s/? valid-i?*) :triples* (s/? valid-i?*) ))
 (stest/instrument `marimba)
-
-(defn marimba:a
-  {:arglists '([kamp kfreq ihrd ipos imp kvibf kvamp ivibfn idec & idoubles* itriples*])}
-  [amp freq hrd pos mp vibf vamp vibfn dec & [ doubles* triples* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "marimba"
-                      [amp freq hrd pos mp vibf vamp vibfn dec doubles* triples*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef marimba:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vibfn valid-i? :dec valid-i? :doubles* valid-i?* :triples* valid-i?* ))
-(stest/instrument `marimba:a)
 
 (defn pvsmorph
   {:arglists '([fsig1 fsig2 kampint kfrqint])}
@@ -4440,21 +3406,6 @@
   :args (s/cat :sig1 valid-f? :sig2 valid-f? :ampint valid-kr? :frqint valid-kr? ))
 (stest/instrument `pvsmorph)
 
-(defn pvsmorph:f
-  {:arglists '([fsig1 fsig2 kampint kfrqint])}
-  [sig1 sig2 ampint frqint]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsmorph"
-                      [sig1 sig2 ampint frqint]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsmorph:f
-  :args (s/cat :sig1 valid-f? :sig2 valid-f? :ampint valid-kr? :frqint valid-kr? ))
-(stest/instrument `pvsmorph:f)
-
 (defn linlin
   {:arglists '([kin ksrclo ksrchi kdstlo kdsthi])}
   [in srclo srchi dstlo dsthi]
@@ -4470,21 +3421,6 @@
   :args (s/cat :in valid-kr? :srclo valid-kr? :srchi valid-kr? :dstlo valid-kr? :dsthi valid-kr? ))
 (stest/instrument `linlin)
 
-(defn linlin:k
-  {:arglists '([kin ksrclo ksrchi kdstlo kdsthi])}
-  [in srclo srchi dstlo dsthi]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "linlin"
-                      [in srclo srchi dstlo dsthi]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef linlin:k
-  :args (s/cat :in valid-kr? :srclo valid-kr? :srchi valid-kr? :dstlo valid-kr? :dsthi valid-kr? ))
-(stest/instrument `linlin:k)
-
 (defn vdelayxs
   {:arglists '([ain1 ain2 adl imd iws & ist*])}
   [in1 in2 dl md ws & [ st* ]]
@@ -4497,7 +3433,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vdelayxs
-  :args (s/cat :in1 valid-ar? :in2 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
+  :args (s/cat :in1 valid-ar? :in2 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* (s/? valid-i?*) ))
 (stest/instrument `vdelayxs)
 
 (defn wgclar
@@ -4512,23 +3448,8 @@
     (new out-types ast)))
 
 (s/fdef wgclar
-  :args (s/cat :amp valid-kr? :freq valid-kr? :stiff valid-kr? :att valid-i? :detk valid-i? :ngain valid-kr? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :stiff valid-kr? :att valid-i? :detk valid-i? :ngain valid-kr? :vibf valid-kr? :vamp valid-kr? :table* (s/? valid-i?*) :minfreq* (s/? valid-i?*) ))
 (stest/instrument `wgclar)
-
-(defn wgclar:a
-  {:arglists '([kamp kfreq kstiff iatt idetk kngain kvibf kvamp & itable* iminfreq*])}
-  [amp freq stiff att detk ngain vibf vamp & [ table* minfreq* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgclar"
-                      [amp freq stiff att detk ngain vibf vamp table* minfreq*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgclar:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :stiff valid-kr? :att valid-i? :detk valid-i? :ngain valid-kr? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* ))
-(stest/instrument `wgclar:a)
 
 (defn midion
   {:arglists '([kchn knum kvel])}
@@ -4557,23 +3478,8 @@
     (new out-types ast)))
 
 (s/fdef serialBegin
-  :args (s/cat :PortName valid-S? :baudRate* valid-i?* ))
+  :args (s/cat :PortName valid-S? :baudRate* (s/? valid-i?*) ))
 (stest/instrument `serialBegin)
-
-(defn serialBegin:i
-  {:arglists '([SPortName & ibaudRate*])}
-  [PortName & [ baudRate* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "serialBegin"
-                      [PortName baudRate*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef serialBegin:i
-  :args (s/cat :PortName valid-S? :baudRate* valid-i?* ))
-(stest/instrument `serialBegin:i)
 
 (defn vaddv_i
   {:arglists '([ifn1 ifn2 ielements & idstoffset* isrcoffset*])}
@@ -4587,7 +3493,7 @@
     (new out-types ast)))
 
 (s/fdef vaddv_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vaddv_i)
 
 (defn sfplay3m
@@ -4602,23 +3508,8 @@
     (new out-types ast)))
 
 (s/fdef sfplay3m
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* valid-i?* :offset* valid-i?* :env* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :env* (s/? valid-i?*) ))
 (stest/instrument `sfplay3m)
-
-(defn sfplay3m:a
-  {:arglists '([ivel inotenum xamp xfreq ipreindex & iflag* ioffset* ienv*])}
-  [vel notenum amp freq preindex & [ flag* offset* env* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sfplay3m"
-                      [vel notenum amp freq preindex flag* offset* env*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sfplay3m:a
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* valid-i?* :offset* valid-i?* :env* valid-i?* ))
-(stest/instrument `sfplay3m:a)
 
 (defn strupper
   {:arglists '([Ssrc])}
@@ -4635,21 +3526,6 @@
   :args (s/cat :src valid-S? ))
 (stest/instrument `strupper)
 
-(defn strupper:S
-  {:arglists '([Ssrc])}
-  [src]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strupper"
-                      [src]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strupper:S
-  :args (s/cat :src valid-S? ))
-(stest/instrument `strupper:S)
-
 (defn soundin
   {:arglists '([Sfilcod & iskptim* iformat* iskipinit* ibufsize*] [ifilcod & iskptim* iformat* iskipinit* ibufsize*])}
   [filcod & [ skptim* format* skipinit* bufsize* ]]
@@ -4663,7 +3539,8 @@
 
 (s/fdef soundin
   :args (s/alt
-         :Siiii (s/cat :filcod valid-S? :skptim* valid-i?* :format* valid-i?* :skipinit* valid-i?* :bufsize* valid-i?* )
+         :iiiii (s/cat :filcod valid-i? :skptim* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :bufsize* (s/? valid-i?*) )
+         :Siiii (s/cat :filcod valid-S? :skptim* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :bufsize* (s/? valid-i?*) )
          ))
 (stest/instrument `soundin)
 
@@ -4679,23 +3556,8 @@
     (new out-types ast)))
 
 (s/fdef vco2ift
-  :args (s/cat :cps valid-i? :wave* valid-i?* :nyx* valid-i?* ))
+  :args (s/cat :cps valid-i? :wave* (s/? valid-i?*) :nyx* (s/? valid-i?*) ))
 (stest/instrument `vco2ift)
-
-(defn vco2ift:i
-  {:arglists '([icps & iwave* inyx*])}
-  [cps & [ wave* nyx* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "vco2ift"
-                      [cps wave* nyx*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vco2ift:i
-  :args (s/cat :cps valid-i? :wave* valid-i?* :nyx* valid-i?* ))
-(stest/instrument `vco2ift:i)
 
 (defn resonr
   {:arglists '([asig xcenter-frequency xbandwidth & iscale* iskip*])}
@@ -4709,23 +3571,8 @@
     (new out-types ast)))
 
 (s/fdef resonr
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `resonr)
-
-(defn resonr:a
-  {:arglists '([asig xcenter-frequency xbandwidth & iscale* iskip*])}
-  [sig center-frequency bandwidth & [ scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "resonr"
-                      [sig center-frequency bandwidth scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resonr:a
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `resonr:a)
 
 (defn lpslot
   {:arglists '([islot])}
@@ -4754,23 +3601,8 @@
     (new out-types ast)))
 
 (s/fdef bqrez
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :mode* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :mode* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `bqrez)
-
-(defn bqrez:a
-  {:arglists '([asig xcutoff-frequency xresonance & imode* iskip*])}
-  [sig cutoff-frequency resonance & [ mode* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "bqrez"
-                      [sig cutoff-frequency resonance mode* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef bqrez:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :mode* valid-i?* :skip* valid-i?* ))
-(stest/instrument `bqrez:a)
 
 (defn resonxk
   {:arglists '([ksig kcenter-frequency kbandwidth & inumlayer* iscale* istor*])}
@@ -4784,23 +3616,8 @@
     (new out-types ast)))
 
 (s/fdef resonxk
-  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :numlayer* valid-i?* :scale* valid-i?* :stor* valid-i?* ))
+  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :numlayer* (s/? valid-i?*) :scale* (s/? valid-i?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `resonxk)
-
-(defn resonxk:k
-  {:arglists '([ksig kcenter-frequency kbandwidth & inumlayer* iscale* istor*])}
-  [sig center-frequency bandwidth & [ numlayer* scale* stor* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "resonxk"
-                      [sig center-frequency bandwidth numlayer* scale* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resonxk:k
-  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :numlayer* valid-i?* :scale* valid-i?* :stor* valid-i?* ))
-(stest/instrument `resonxk:k)
 
 (defn phaser1
   {:arglists '([asig kfreq kord kfeedback & iskip*])}
@@ -4814,23 +3631,8 @@
     (new out-types ast)))
 
 (s/fdef phaser1
-  :args (s/cat :sig valid-ar? :freq valid-kr? :ord valid-kr? :feedback valid-kr? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :freq valid-kr? :ord valid-kr? :feedback valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `phaser1)
-
-(defn phaser1:a
-  {:arglists '([asig kfreq kord kfeedback & iskip*])}
-  [sig freq ord feedback & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "phaser1"
-                      [sig freq ord feedback skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef phaser1:a
-  :args (s/cat :sig valid-ar? :freq valid-kr? :ord valid-kr? :feedback valid-kr? :skip* valid-i?* ))
-(stest/instrument `phaser1:a)
 
 (defn dconv
   {:arglists '([asig isize itable])}
@@ -4847,21 +3649,6 @@
   :args (s/cat :sig valid-ar? :size valid-i? :table valid-i? ))
 (stest/instrument `dconv)
 
-(defn dconv:a
-  {:arglists '([asig isize itable])}
-  [sig size table]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "dconv"
-                      [sig size table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dconv:a
-  :args (s/cat :sig valid-ar? :size valid-i? :table valid-i? ))
-(stest/instrument `dconv:a)
-
 (defn vbapz
   {:arglists '([inumchnls istartndx asig kazim & kelev* kspread* ispread*])}
   [numchnls startndx sig azim & [ elev* spread* spread* ]]
@@ -4874,7 +3661,7 @@
     (new out-types ast)))
 
 (s/fdef vbapz
-  :args (s/cat :numchnls valid-i? :startndx valid-i? :sig valid-ar? :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :spread* valid-i?* ))
+  :args (s/cat :numchnls valid-i? :startndx valid-i? :sig valid-ar? :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :spread* (s/? valid-i?*) ))
 (stest/instrument `vbapz)
 
 (defn lowres
@@ -4890,26 +3677,12 @@
 
 (s/fdef lowres
   :args (s/alt
-         :aaai (s/cat :sig valid-ar? :cutoff valid-ar? :resonance valid-ar? :skip* valid-i?* )
+         :akki (s/cat :sig valid-ar? :cutoff valid-kr? :resonance valid-kr? :skip* (s/? valid-i?*) )
+         :akai (s/cat :sig valid-ar? :cutoff valid-kr? :resonance valid-ar? :skip* (s/? valid-i?*) )
+         :aaki (s/cat :sig valid-ar? :cutoff valid-ar? :resonance valid-kr? :skip* (s/? valid-i?*) )
+         :aaai (s/cat :sig valid-ar? :cutoff valid-ar? :resonance valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `lowres)
-
-(defn lowres:a
-  {:arglists '([asig acutoff aresonance & iskip*] [asig acutoff kresonance & iskip*] [asig kcutoff aresonance & iskip*] [asig kcutoff kresonance & iskip*])}
-  [sig cutoff resonance & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lowres"
-                      [sig cutoff resonance skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lowres:a
-  :args (s/alt
-         :aaai (s/cat :sig valid-ar? :cutoff valid-ar? :resonance valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `lowres:a)
 
 (defn deltapn
   {:arglists '([xnumsamps & inumsamps*])}
@@ -4923,23 +3696,8 @@
     (new out-types ast)))
 
 (s/fdef deltapn
-  :args (s/cat :numsamps valid-x? :numsamps* valid-i?* ))
+  :args (s/cat :numsamps valid-x? :numsamps* (s/? valid-i?*) ))
 (stest/instrument `deltapn)
-
-(defn deltapn:a
-  {:arglists '([xnumsamps & inumsamps*])}
-  [numsamps & [ numsamps* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "deltapn"
-                      [numsamps numsamps*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef deltapn:a
-  :args (s/cat :numsamps valid-x? :numsamps* valid-i?* ))
-(stest/instrument `deltapn:a)
 
 (defn instr
   {:arglists '()}
@@ -4965,18 +3723,6 @@
     (new out-types ast)))
 
 
-(defn miditempo:k
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "miditempo"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
 (defn oscil3
   {:arglists '([aamp acps itableArr & iphase*] [aamp acps & itable* iphase*] [aamp kcps itableArr & iphase*] [aamp kcps & itable* iphase*] [kamp acps itableArr & iphase*] [kamp acps & itable* iphase*] [kamp kcps itableArr & iphase*] [kamp kcps & itable* iphase*] [kamp kcps itableArr & iphase*] [kamp kcps & itable* iphase*])}
   [amp cps table & [ phase* ]]
@@ -4990,7 +3736,14 @@
 
 (s/fdef oscil3
   :args (s/alt
-         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaiArri (s/cat :amp valid-kr? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akiArri (s/cat :amp valid-ar? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscil3)
 
@@ -5007,7 +3760,14 @@
 
 (s/fdef oscil3:a
   :args (s/alt
-         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaiArri (s/cat :amp valid-kr? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akiArri (s/cat :amp valid-ar? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscil3:a)
 
@@ -5024,7 +3784,8 @@
 
 (s/fdef oscil3:k
   :args (s/alt
-         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscil3:k)
 
@@ -5041,7 +3802,7 @@
 
 (s/fdef octmidib
   :args (s/alt
-         :i (s/cat :range* valid-i?* )
+         :i (s/cat :range* (s/? valid-i?*) )
          ))
 (stest/instrument `octmidib)
 
@@ -5057,7 +3818,7 @@
     (new out-types ast)))
 
 (s/fdef octmidib:i
-  :args (s/cat :range* valid-i?* ))
+  :args (s/cat :range* (s/? valid-i?*) ))
 (stest/instrument `octmidib:i)
 
 (defn octmidib:k
@@ -5072,7 +3833,7 @@
     (new out-types ast)))
 
 (s/fdef octmidib:k
-  :args (s/cat :range* valid-i?* ))
+  :args (s/cat :range* (s/? valid-i?*) ))
 (stest/instrument `octmidib:k)
 
 (defn vtabwa
@@ -5087,7 +3848,7 @@
     (new out-types ast)))
 
 (s/fdef vtabwa
-  :args (s/cat :index valid-ar? :table valid-i? :inarg1* valid-ar?* :inarg2* valid-ar?* :inarg3* valid-ar?* :inargN4* valid-ar?* :inargN5* valid-ar?* :inargN6* valid-ar?* :inargN7* valid-ar?* :inargN8* valid-ar?* :inargN9* valid-ar?* :inargN10* valid-ar?* :inargN11* valid-ar?* :inargN12* valid-ar?* :inargN13* valid-ar?* :inargN14* valid-ar?* :inargN15* valid-ar?* :inargN16* valid-ar?* :inargN17* valid-ar?* :inargN18* valid-ar?* :inargN19* valid-ar?* :inargN20* valid-ar?* :inargN21* valid-ar?* :inargN22* valid-ar?* :inargN23* valid-ar?* :inargN24* valid-ar?* :inargN25* valid-ar?* :inargN26* valid-ar?* :inargN27* valid-ar?* :inargN28* valid-ar?* :inargN29* valid-ar?* :inargN30* valid-ar?* :inargN31* valid-ar?* :inargN32* valid-ar?* ))
+  :args (s/cat :index valid-ar? :table valid-i? :inarg1* (s/? valid-ar?*) :inarg2* (s/? valid-ar?*) :inarg3* (s/? valid-ar?*) :inargN4* (s/? valid-ar?*) :inargN5* (s/? valid-ar?*) :inargN6* (s/? valid-ar?*) :inargN7* (s/? valid-ar?*) :inargN8* (s/? valid-ar?*) :inargN9* (s/? valid-ar?*) :inargN10* (s/? valid-ar?*) :inargN11* (s/? valid-ar?*) :inargN12* (s/? valid-ar?*) :inargN13* (s/? valid-ar?*) :inargN14* (s/? valid-ar?*) :inargN15* (s/? valid-ar?*) :inargN16* (s/? valid-ar?*) :inargN17* (s/? valid-ar?*) :inargN18* (s/? valid-ar?*) :inargN19* (s/? valid-ar?*) :inargN20* (s/? valid-ar?*) :inargN21* (s/? valid-ar?*) :inargN22* (s/? valid-ar?*) :inargN23* (s/? valid-ar?*) :inargN24* (s/? valid-ar?*) :inargN25* (s/? valid-ar?*) :inargN26* (s/? valid-ar?*) :inargN27* (s/? valid-ar?*) :inargN28* (s/? valid-ar?*) :inargN29* (s/? valid-ar?*) :inargN30* (s/? valid-ar?*) :inargN31* (s/? valid-ar?*) :inargN32* (s/? valid-ar?*) ))
 (stest/instrument `vtabwa)
 
 (defn gendyc
@@ -5103,7 +3864,7 @@
 
 (s/fdef gendyc
   :args (s/alt
-         :kkkkkkkkkik (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* valid-i?* :num* valid-kr?* )
+         :kkkkkkkkkik (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) )
          ))
 (stest/instrument `gendyc)
 
@@ -5119,7 +3880,7 @@
     (new out-types ast)))
 
 (s/fdef gendyc:a
-  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* valid-i?* :num* valid-kr?* ))
+  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) ))
 (stest/instrument `gendyc:a)
 
 (defn gendyc:k
@@ -5134,7 +3895,7 @@
     (new out-types ast)))
 
 (s/fdef gendyc:k
-  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* valid-i?* :num* valid-kr?* ))
+  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) ))
 (stest/instrument `gendyc:k)
 
 (defn inx
@@ -5162,26 +3923,10 @@
 
 (s/fdef pvsfread
   :args (s/alt
-         :kSi (s/cat :timpt valid-kr? :table valid-S? :chan* valid-i?* )
+         :kii (s/cat :timpt valid-kr? :table valid-i? :chan* (s/? valid-i?*) )
+         :kSi (s/cat :timpt valid-kr? :table valid-S? :chan* (s/? valid-i?*) )
          ))
 (stest/instrument `pvsfread)
-
-(defn pvsfread:f
-  {:arglists '([ktimpt Stable & ichan*] [ktimpt itable & ichan*])}
-  [timpt table & [ chan* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsfread"
-                      [timpt table chan*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsfread:f
-  :args (s/alt
-         :kSi (s/cat :timpt valid-kr? :table valid-S? :chan* valid-i?* )
-         ))
-(stest/instrument `pvsfread:f)
 
 (defn tlineto
   {:arglists '([ksig ktime ktrig])}
@@ -5198,21 +3943,6 @@
   :args (s/cat :sig valid-kr? :time valid-kr? :trig valid-kr? ))
 (stest/instrument `tlineto)
 
-(defn tlineto:k
-  {:arglists '([ksig ktime ktrig])}
-  [sig time trig]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tlineto"
-                      [sig time trig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tlineto:k
-  :args (s/cat :sig valid-kr? :time valid-kr? :trig valid-kr? ))
-(stest/instrument `tlineto:k)
-
 (defn filelen
   {:arglists '([Sfilcod & iallowraw*] [ifilcod & iallowraw*])}
   [filcod & [ allowraw* ]]
@@ -5226,26 +3956,10 @@
 
 (s/fdef filelen
   :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
+         :ii (s/cat :filcod valid-i? :allowraw* (s/? valid-i?*) )
+         :Si (s/cat :filcod valid-S? :allowraw* (s/? valid-i?*) )
          ))
 (stest/instrument `filelen)
-
-(defn filelen:i
-  {:arglists '([Sfilcod & iallowraw*] [ifilcod & iallowraw*])}
-  [filcod & [ allowraw* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "filelen"
-                      [filcod allowraw*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef filelen:i
-  :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
-         ))
-(stest/instrument `filelen:i)
 
 (defn tabmorph
   {:arglists '([kindex kweightpoint ktabnum3 ktabnum4 & ifn1* ifn2* ifn3* ifn4* ifnN5* ifnN6* ifnN7* ifnN8* ifnN9* ifnN10* ifnN11* ifnN12* ifnN13* ifnN14* ifnN15* ifnN16*])}
@@ -5259,23 +3973,8 @@
     (new out-types ast)))
 
 (s/fdef tabmorph
-  :args (s/cat :index valid-kr? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
+  :args (s/cat :index valid-kr? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fnN5* (s/? valid-i?*) :fnN6* (s/? valid-i?*) :fnN7* (s/? valid-i?*) :fnN8* (s/? valid-i?*) :fnN9* (s/? valid-i?*) :fnN10* (s/? valid-i?*) :fnN11* (s/? valid-i?*) :fnN12* (s/? valid-i?*) :fnN13* (s/? valid-i?*) :fnN14* (s/? valid-i?*) :fnN15* (s/? valid-i?*) :fnN16* (s/? valid-i?*) ))
 (stest/instrument `tabmorph)
-
-(defn tabmorph:k
-  {:arglists '([kindex kweightpoint ktabnum3 ktabnum4 & ifn1* ifn2* ifn3* ifn4* ifnN5* ifnN6* ifnN7* ifnN8* ifnN9* ifnN10* ifnN11* ifnN12* ifnN13* ifnN14* ifnN15* ifnN16*])}
-  [index weightpoint tabnum3 tabnum4 & [ fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tabmorph"
-                      [index weightpoint tabnum3 tabnum4 fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tabmorph:k
-  :args (s/cat :index valid-kr? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
-(stest/instrument `tabmorph:k)
 
 (defn deltap3
   {:arglists '([xdlt & idlt*])}
@@ -5289,23 +3988,8 @@
     (new out-types ast)))
 
 (s/fdef deltap3
-  :args (s/cat :dlt valid-x? :dlt* valid-i?* ))
+  :args (s/cat :dlt valid-x? :dlt* (s/? valid-i?*) ))
 (stest/instrument `deltap3)
-
-(defn deltap3:a
-  {:arglists '([xdlt & idlt*])}
-  [dlt & [ dlt* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "deltap3"
-                      [dlt dlt*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef deltap3:a
-  :args (s/cat :dlt valid-x? :dlt* valid-i?* ))
-(stest/instrument `deltap3:a)
 
 (defn tbvcf
   {:arglists '([asig xcutoff-frequency xresonance kdistortion kasym & iskip*])}
@@ -5319,23 +4003,8 @@
     (new out-types ast)))
 
 (s/fdef tbvcf
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :distortion valid-kr? :asym valid-kr? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :distortion valid-kr? :asym valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `tbvcf)
-
-(defn tbvcf:a
-  {:arglists '([asig xcutoff-frequency xresonance kdistortion kasym & iskip*])}
-  [sig cutoff-frequency resonance distortion asym & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tbvcf"
-                      [sig cutoff-frequency resonance distortion asym skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tbvcf:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :distortion valid-kr? :asym valid-kr? :skip* valid-i?* ))
-(stest/instrument `tbvcf:a)
 
 (defn sc_lag
   {:arglists '([ain klagtime & initialvalue*] [kin klagtime & initialvalue*])}
@@ -5350,7 +4019,8 @@
 
 (s/fdef sc_lag
   :args (s/alt
-         :aki (s/cat :in valid-ar? :lagtime valid-kr? :nitialvalue* valid-i?* )
+         :kki (s/cat :in valid-kr? :lagtime valid-kr? :nitialvalue* (s/? valid-i?*) )
+         :aki (s/cat :in valid-ar? :lagtime valid-kr? :nitialvalue* (s/? valid-i?*) )
          ))
 (stest/instrument `sc_lag)
 
@@ -5366,7 +4036,7 @@
     (new out-types ast)))
 
 (s/fdef sc_lag:a
-  :args (s/cat :in valid-ar? :lagtime valid-kr? :nitialvalue* valid-i?* ))
+  :args (s/cat :in valid-ar? :lagtime valid-kr? :nitialvalue* (s/? valid-i?*) ))
 (stest/instrument `sc_lag:a)
 
 (defn sc_lag:k
@@ -5381,7 +4051,7 @@
     (new out-types ast)))
 
 (s/fdef sc_lag:k
-  :args (s/cat :in valid-kr? :lagtime valid-kr? :nitialvalue* valid-i?* ))
+  :args (s/cat :in valid-kr? :lagtime valid-kr? :nitialvalue* (s/? valid-i?*) ))
 (stest/instrument `sc_lag:k)
 
 (defn cpuprc
@@ -5397,6 +4067,7 @@
 
 (s/fdef cpuprc
   :args (s/alt
+         :ii (s/cat :insname valid-i? :percent valid-i? )
          :Si (s/cat :insname valid-S? :percent valid-i? )
          ))
 (stest/instrument `cpuprc)
@@ -5414,26 +4085,10 @@
 
 (s/fdef ATSadd
   :args (s/alt
-         :kkSiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :table valid-i? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* :gatefn* valid-i?* )
+         :kkiiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-i? :table valid-i? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) :gatefn* (s/? valid-i?*) )
+         :kkSiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :table valid-i? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) :gatefn* (s/? valid-i?*) )
          ))
 (stest/instrument `ATSadd)
-
-(defn ATSadd:a
-  {:arglists '([ktimepnt kfmod Satsfile itable ipartials & ipartialoffset* ipartialincr* igatefn*] [ktimepnt kfmod iatsfile itable ipartials & ipartialoffset* ipartialincr* igatefn*])}
-  [timepnt fmod atsfile table partials & [ partialoffset* partialincr* gatefn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "ATSadd"
-                      [timepnt fmod atsfile table partials partialoffset* partialincr* gatefn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATSadd:a
-  :args (s/alt
-         :kkSiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :table valid-i? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* :gatefn* valid-i?* )
-         ))
-(stest/instrument `ATSadd:a)
 
 (defn vsubv_i
   {:arglists '([ifn1 ifn2 ielements & idstoffset* isrcoffset*])}
@@ -5447,7 +4102,7 @@
     (new out-types ast)))
 
 (s/fdef vsubv_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vsubv_i)
 
 (defn vadd_i
@@ -5462,7 +4117,7 @@
     (new out-types ast)))
 
 (s/fdef vadd_i
-  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* valid-i?* ))
+  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) ))
 (stest/instrument `vadd_i)
 
 (defn scale
@@ -5480,21 +4135,6 @@
   :args (s/cat :input valid-kr? :max valid-kr? :min valid-kr? ))
 (stest/instrument `scale)
 
-(defn scale:k
-  {:arglists '([kinput kmax kmin])}
-  [input max min]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "scale"
-                      [input max min]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef scale:k
-  :args (s/cat :input valid-kr? :max valid-kr? :min valid-kr? ))
-(stest/instrument `scale:k)
-
 (defn ceps
   {:arglists '([kmagsArr kcoefs])}
   [mags coefs]
@@ -5510,21 +4150,6 @@
   :args (s/cat :mags valid-kArr? :coefs valid-kr? ))
 (stest/instrument `ceps)
 
-(defn ceps:kArr
-  {:arglists '([kmagsArr kcoefs])}
-  [mags coefs]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "ceps"
-                      [mags coefs]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ceps:kArr
-  :args (s/cat :mags valid-kArr? :coefs valid-kr? ))
-(stest/instrument `ceps:kArr)
-
 (defn hrtfearly
   {:arglists '([asrc xsrcx xsrcy xsrcz xlstnrx xlstnry xlstnrz Sfilel Sfiler idefroom & ifade* isr* iorder* ithreed* kheadrot* iroomx* iroomy* iroomz* iwallhigh* iwalllow* iwallgain1* iwallgain1* iwallgain1* ifloorhigh* ifloorlow* ifloorgain1* ifloorgain1* ifloorgain1* iceilinghigh* iceilinglow* iceilinggain1* iceilinggain1* iceilinggain1*])}
   [src srcx srcy srcz lstnrx lstnry lstnrz filel filer defroom & [ fade* sr* order* threed* headrot* roomx* roomy* roomz* wallhigh* walllow* wallgain1* wallgain1* wallgain1* floorhigh* floorlow* floorgain1* floorgain1* floorgain1* ceilinghigh* ceilinglow* ceilinggain1* ceilinggain1* ceilinggain1* ]]
@@ -5537,7 +4162,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef hrtfearly
-  :args (s/cat :src valid-ar? :srcx valid-x? :srcy valid-x? :srcz valid-x? :lstnrx valid-x? :lstnry valid-x? :lstnrz valid-x? :filel valid-S? :filer valid-S? :defroom valid-i? :fade* valid-i?* :sr* valid-i?* :order* valid-i?* :threed* valid-i?* :headrot* valid-kr?* :roomx* valid-i?* :roomy* valid-i?* :roomz* valid-i?* :wallhigh* valid-i?* :walllow* valid-i?* :wallgain1* valid-i?* :wallgain1* valid-i?* :wallgain1* valid-i?* :floorhigh* valid-i?* :floorlow* valid-i?* :floorgain1* valid-i?* :floorgain1* valid-i?* :floorgain1* valid-i?* :ceilinghigh* valid-i?* :ceilinglow* valid-i?* :ceilinggain1* valid-i?* :ceilinggain1* valid-i?* :ceilinggain1* valid-i?* ))
+  :args (s/cat :src valid-ar? :srcx valid-x? :srcy valid-x? :srcz valid-x? :lstnrx valid-x? :lstnry valid-x? :lstnrz valid-x? :filel valid-S? :filer valid-S? :defroom valid-i? :fade* (s/? valid-i?*) :sr* (s/? valid-i?*) :order* (s/? valid-i?*) :threed* (s/? valid-i?*) :headrot* (s/? valid-kr?*) :roomx* (s/? valid-i?*) :roomy* (s/? valid-i?*) :roomz* (s/? valid-i?*) :wallhigh* (s/? valid-i?*) :walllow* (s/? valid-i?*) :wallgain1* (s/? valid-i?*) :wallgain1* (s/? valid-i?*) :wallgain1* (s/? valid-i?*) :floorhigh* (s/? valid-i?*) :floorlow* (s/? valid-i?*) :floorgain1* (s/? valid-i?*) :floorgain1* (s/? valid-i?*) :floorgain1* (s/? valid-i?*) :ceilinghigh* (s/? valid-i?*) :ceilinglow* (s/? valid-i?*) :ceilinggain1* (s/? valid-i?*) :ceilinggain1* (s/? valid-i?*) :ceilinggain1* (s/? valid-i?*) ))
 (stest/instrument `hrtfearly)
 
 (defn s32b14
@@ -5553,6 +4178,7 @@
 
 (s/fdef s32b14
   :args (s/alt
+         :iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii (s/cat :chan valid-i? :ctlno_msb2 valid-i? :ctlno_lsb3 valid-i? :min4 valid-i? :max5 valid-i? :nitvalue6 valid-i? :fn7 valid-i? :ctlno_msb8 valid-i? :ctlno_lsb9 valid-i? :min10 valid-i? :max11 valid-i? :nitvalue12 valid-i? :fn13 valid-i? :fn14 valid-i? :fn15 valid-i? :fn16 valid-i? :fn17 valid-i? :fn18 valid-i? :fn19 valid-i? :fn20 valid-i? :fn21 valid-i? :fn22 valid-i? :fn23 valid-i? :fn24 valid-i? :fn25 valid-i? :fn26 valid-i? :fn27 valid-i? :fn28 valid-i? :fn29 valid-i? :fn30 valid-i? :fn31 valid-i? :fn32 valid-i? :fn33 valid-i? :fn34 valid-i? :fn35 valid-i? :fn36 valid-i? :fn37 valid-i? :fn38 valid-i? :fn39 valid-i? :fn40 valid-i? :fn41 valid-i? :fn42 valid-i? :fn43 valid-i? :fn44 valid-i? :fn45 valid-i? :fn46 valid-i? :fn47 valid-i? :fn48 valid-i? :fn49 valid-i? :fn50 valid-i? :fn51 valid-i? :fn52 valid-i? :fn53 valid-i? :fn54 valid-i? :fn55 valid-i? :fn56 valid-i? :fn57 valid-i? :fn58 valid-i? :fn59 valid-i? :fn60 valid-i? :fn61 valid-i? :fn62 valid-i? :fn63 valid-i? :fn64 valid-i? :fn65 valid-i? :fn66 valid-i? :fn67 valid-i? :fn68 valid-i? :fn69 valid-i? :fn70 valid-i? :fn71 valid-i? :fn72 valid-i? :fn73 valid-i? :fn74 valid-i? :fn75 valid-i? :fn76 valid-i? :fn77 valid-i? :fn78 valid-i? :fn79 valid-i? :fn80 valid-i? :fn81 valid-i? :fn82 valid-i? :fn83 valid-i? :fn84 valid-i? :fn85 valid-i? :fn86 valid-i? :fn87 valid-i? :fn88 valid-i? :fn89 valid-i? :fn90 valid-i? :fn91 valid-i? :fn92 valid-i? :fn93 valid-i? :fn94 valid-i? :fn95 valid-i? :fn96 valid-i? :fn97 valid-i? :fn98 valid-i? :fn99 valid-i? :fn100 valid-i? :fn101 valid-i? :fn102 valid-i? :fn103 valid-i? :fn104 valid-i? :fn105 valid-i? :fn106 valid-i? :fn107 valid-i? :fn108 valid-i? :fn109 valid-i? :fn110 valid-i? :fn111 valid-i? :fn112 valid-i? :fn113 valid-i? :fn114 valid-i? :fn115 valid-i? :fn116 valid-i? :fn117 valid-i? :fn118 valid-i? :fn119 valid-i? :fn120 valid-i? :fn121 valid-i? :fn122 valid-i? :fn123 valid-i? :fn124 valid-i? :fn125 valid-i? :fn126 valid-i? :fn127 valid-i? :fn128 valid-i? :fn129 valid-i? :fn130 valid-i? :fn131 valid-i? :fn132 valid-i? :fn133 valid-i? :fn134 valid-i? :fn135 valid-i? :fn136 valid-i? :fn137 valid-i? :fn138 valid-i? :fn139 valid-i? :fn140 valid-i? :fn141 valid-i? :fn142 valid-i? :fn143 valid-i? :fn144 valid-i? :fn145 valid-i? :fn146 valid-i? :fn147 valid-i? :fn148 valid-i? :fn149 valid-i? :fn150 valid-i? :fn151 valid-i? :fn152 valid-i? :fn153 valid-i? :fn154 valid-i? :fn155 valid-i? :fn156 valid-i? :fn157 valid-i? :fn158 valid-i? :fn159 valid-i? :fn160 valid-i? :fn161 valid-i? :fn162 valid-i? :fn163 valid-i? :fn164 valid-i? :fn165 valid-i? :fn166 valid-i? :fn167 valid-i? :fn168 valid-i? :fn169 valid-i? :fn170 valid-i? :fn171 valid-i? :fn172 valid-i? :fn173 valid-i? :fn174 valid-i? :fn175 valid-i? :fn176 valid-i? :fn177 valid-i? :fn178 valid-i? :fn179 valid-i? :fn180 valid-i? :fn181 valid-i? :fn182 valid-i? :fn183 valid-i? :fn184 valid-i? :fn185 valid-i? :fn186 valid-i? :fn187 valid-i? :fn188 valid-i? :fn189 valid-i? :fn190 valid-i? :fn191 valid-i? :fn192 valid-i? :fn193 valid-i? )
          :iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii (s/cat :chan valid-i? :ctlno_msb2 valid-i? :ctlno_lsb3 valid-i? :min4 valid-i? :max5 valid-i? :nitvalue6 valid-i? :fn7 valid-i? :ctlno_msb8 valid-i? :ctlno_lsb9 valid-i? :min10 valid-i? :max11 valid-i? :nitvalue12 valid-i? :fn13 valid-i? :fn14 valid-i? :fn15 valid-i? :fn16 valid-i? :fn17 valid-i? :fn18 valid-i? :fn19 valid-i? :fn20 valid-i? :fn21 valid-i? :fn22 valid-i? :fn23 valid-i? :fn24 valid-i? :fn25 valid-i? :fn26 valid-i? :fn27 valid-i? :fn28 valid-i? :fn29 valid-i? :fn30 valid-i? :fn31 valid-i? :fn32 valid-i? :fn33 valid-i? :fn34 valid-i? :fn35 valid-i? :fn36 valid-i? :fn37 valid-i? :fn38 valid-i? :fn39 valid-i? :fn40 valid-i? :fn41 valid-i? :fn42 valid-i? :fn43 valid-i? :fn44 valid-i? :fn45 valid-i? :fn46 valid-i? :fn47 valid-i? :fn48 valid-i? :fn49 valid-i? :fn50 valid-i? :fn51 valid-i? :fn52 valid-i? :fn53 valid-i? :fn54 valid-i? :fn55 valid-i? :fn56 valid-i? :fn57 valid-i? :fn58 valid-i? :fn59 valid-i? :fn60 valid-i? :fn61 valid-i? :fn62 valid-i? :fn63 valid-i? :fn64 valid-i? :fn65 valid-i? :fn66 valid-i? :fn67 valid-i? :fn68 valid-i? :fn69 valid-i? :fn70 valid-i? :fn71 valid-i? :fn72 valid-i? :fn73 valid-i? :fn74 valid-i? :fn75 valid-i? :fn76 valid-i? :fn77 valid-i? :fn78 valid-i? :fn79 valid-i? :fn80 valid-i? :fn81 valid-i? :fn82 valid-i? :fn83 valid-i? :fn84 valid-i? :fn85 valid-i? :fn86 valid-i? :fn87 valid-i? :fn88 valid-i? :fn89 valid-i? :fn90 valid-i? :fn91 valid-i? :fn92 valid-i? :fn93 valid-i? :fn94 valid-i? :fn95 valid-i? :fn96 valid-i? :fn97 valid-i? :fn98 valid-i? :fn99 valid-i? :fn100 valid-i? :fn101 valid-i? :fn102 valid-i? :fn103 valid-i? :fn104 valid-i? :fn105 valid-i? :fn106 valid-i? :fn107 valid-i? :fn108 valid-i? :fn109 valid-i? :fn110 valid-i? :fn111 valid-i? :fn112 valid-i? :fn113 valid-i? :fn114 valid-i? :fn115 valid-i? :fn116 valid-i? :fn117 valid-i? :fn118 valid-i? :fn119 valid-i? :fn120 valid-i? :fn121 valid-i? :fn122 valid-i? :fn123 valid-i? :fn124 valid-i? :fn125 valid-i? :fn126 valid-i? :fn127 valid-i? :fn128 valid-i? :fn129 valid-i? :fn130 valid-i? :fn131 valid-i? :fn132 valid-i? :fn133 valid-i? :fn134 valid-i? :fn135 valid-i? :fn136 valid-i? :fn137 valid-i? :fn138 valid-i? :fn139 valid-i? :fn140 valid-i? :fn141 valid-i? :fn142 valid-i? :fn143 valid-i? :fn144 valid-i? :fn145 valid-i? :fn146 valid-i? :fn147 valid-i? :fn148 valid-i? :fn149 valid-i? :fn150 valid-i? :fn151 valid-i? :fn152 valid-i? :fn153 valid-i? :fn154 valid-i? :fn155 valid-i? :fn156 valid-i? :fn157 valid-i? :fn158 valid-i? :fn159 valid-i? :fn160 valid-i? :fn161 valid-i? )
          ))
 (stest/instrument `s32b14)
@@ -5570,7 +4196,8 @@
 
 (s/fdef maxabs
   :args (s/alt
-         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :in1 valid-ar? :in1* valid-ar?* :in2* valid-ar?* :in3* valid-ar?* :in4* valid-ar?* :in5* valid-ar?* :in6* valid-ar?* :in7* valid-ar?* :in8* valid-ar?* :in9* valid-ar?* :in10* valid-ar?* :in11* valid-ar?* :in12* valid-ar?* :in13* valid-ar?* :in14* valid-ar?* :in15* valid-ar?* :in16* valid-ar?* :in17* valid-ar?* :in18* valid-ar?* :in19* valid-ar?* :in20* valid-ar?* :in21* valid-ar?* :in22* valid-ar?* :in23* valid-ar?* :in24* valid-ar?* :in25* valid-ar?* :in26* valid-ar?* :in27* valid-ar?* :in28* valid-ar?* :in29* valid-ar?* :in30* valid-ar?* :in31* valid-ar?* :in32* valid-ar?* )
+         :kkkkkkkkkkkkkkkkk (s/cat :in1 valid-kr? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :in3* (s/? valid-kr?*) :in4* (s/? valid-kr?*) :in5* (s/? valid-kr?*) :in6* (s/? valid-kr?*) :in7* (s/? valid-kr?*) :in8* (s/? valid-kr?*) :in9* (s/? valid-kr?*) :in10* (s/? valid-kr?*) :in11* (s/? valid-kr?*) :in12* (s/? valid-kr?*) :in13* (s/? valid-kr?*) :in14* (s/? valid-kr?*) :in15* (s/? valid-kr?*) :in16* (s/? valid-kr?*) )
+         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :in1 valid-ar? :in1* (s/? valid-ar?*) :in2* (s/? valid-ar?*) :in3* (s/? valid-ar?*) :in4* (s/? valid-ar?*) :in5* (s/? valid-ar?*) :in6* (s/? valid-ar?*) :in7* (s/? valid-ar?*) :in8* (s/? valid-ar?*) :in9* (s/? valid-ar?*) :in10* (s/? valid-ar?*) :in11* (s/? valid-ar?*) :in12* (s/? valid-ar?*) :in13* (s/? valid-ar?*) :in14* (s/? valid-ar?*) :in15* (s/? valid-ar?*) :in16* (s/? valid-ar?*) :in17* (s/? valid-ar?*) :in18* (s/? valid-ar?*) :in19* (s/? valid-ar?*) :in20* (s/? valid-ar?*) :in21* (s/? valid-ar?*) :in22* (s/? valid-ar?*) :in23* (s/? valid-ar?*) :in24* (s/? valid-ar?*) :in25* (s/? valid-ar?*) :in26* (s/? valid-ar?*) :in27* (s/? valid-ar?*) :in28* (s/? valid-ar?*) :in29* (s/? valid-ar?*) :in30* (s/? valid-ar?*) :in31* (s/? valid-ar?*) :in32* (s/? valid-ar?*) )
          ))
 (stest/instrument `maxabs)
 
@@ -5586,7 +4213,7 @@
     (new out-types ast)))
 
 (s/fdef maxabs:a
-  :args (s/cat :in1 valid-ar? :in1* valid-ar?* :in2* valid-ar?* :in3* valid-ar?* :in4* valid-ar?* :in5* valid-ar?* :in6* valid-ar?* :in7* valid-ar?* :in8* valid-ar?* :in9* valid-ar?* :in10* valid-ar?* :in11* valid-ar?* :in12* valid-ar?* :in13* valid-ar?* :in14* valid-ar?* :in15* valid-ar?* :in16* valid-ar?* :in17* valid-ar?* :in18* valid-ar?* :in19* valid-ar?* :in20* valid-ar?* :in21* valid-ar?* :in22* valid-ar?* :in23* valid-ar?* :in24* valid-ar?* :in25* valid-ar?* :in26* valid-ar?* :in27* valid-ar?* :in28* valid-ar?* :in29* valid-ar?* :in30* valid-ar?* :in31* valid-ar?* :in32* valid-ar?* ))
+  :args (s/cat :in1 valid-ar? :in1* (s/? valid-ar?*) :in2* (s/? valid-ar?*) :in3* (s/? valid-ar?*) :in4* (s/? valid-ar?*) :in5* (s/? valid-ar?*) :in6* (s/? valid-ar?*) :in7* (s/? valid-ar?*) :in8* (s/? valid-ar?*) :in9* (s/? valid-ar?*) :in10* (s/? valid-ar?*) :in11* (s/? valid-ar?*) :in12* (s/? valid-ar?*) :in13* (s/? valid-ar?*) :in14* (s/? valid-ar?*) :in15* (s/? valid-ar?*) :in16* (s/? valid-ar?*) :in17* (s/? valid-ar?*) :in18* (s/? valid-ar?*) :in19* (s/? valid-ar?*) :in20* (s/? valid-ar?*) :in21* (s/? valid-ar?*) :in22* (s/? valid-ar?*) :in23* (s/? valid-ar?*) :in24* (s/? valid-ar?*) :in25* (s/? valid-ar?*) :in26* (s/? valid-ar?*) :in27* (s/? valid-ar?*) :in28* (s/? valid-ar?*) :in29* (s/? valid-ar?*) :in30* (s/? valid-ar?*) :in31* (s/? valid-ar?*) :in32* (s/? valid-ar?*) ))
 (stest/instrument `maxabs:a)
 
 (defn maxabs:k
@@ -5601,22 +4228,10 @@
     (new out-types ast)))
 
 (s/fdef maxabs:k
-  :args (s/cat :in1 valid-kr? :in1* valid-kr?* :in2* valid-kr?* :in3* valid-kr?* :in4* valid-kr?* :in5* valid-kr?* :in6* valid-kr?* :in7* valid-kr?* :in8* valid-kr?* :in9* valid-kr?* :in10* valid-kr?* :in11* valid-kr?* :in12* valid-kr?* :in13* valid-kr?* :in14* valid-kr?* :in15* valid-kr?* :in16* valid-kr?* ))
+  :args (s/cat :in1 valid-kr? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :in3* (s/? valid-kr?*) :in4* (s/? valid-kr?*) :in5* (s/? valid-kr?*) :in6* (s/? valid-kr?*) :in7* (s/? valid-kr?*) :in8* (s/? valid-kr?*) :in9* (s/? valid-kr?*) :in10* (s/? valid-kr?*) :in11* (s/? valid-kr?*) :in12* (s/? valid-kr?*) :in13* (s/? valid-kr?*) :in14* (s/? valid-kr?*) :in15* (s/? valid-kr?*) :in16* (s/? valid-kr?*) ))
 (stest/instrument `maxabs:k)
 
 (defn timeinsts
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "timeinsts"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn timeinsts:k
   {:arglists '()}
   []
   (let [out-types-quoted 'ControlSignal
@@ -5640,7 +4255,7 @@
     (new out-types ast)))
 
 (s/fdef outq
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `outq)
 
 (defn lpread
@@ -5656,7 +4271,8 @@
 
 (s/fdef lpread
   :args (s/alt
-         :kSii (s/cat :timpnt valid-kr? :filcod valid-S? :npoles* valid-i?* :frmrate* valid-i?* )
+         :kiii (s/cat :timpnt valid-kr? :filcod valid-i? :npoles* (s/? valid-i?*) :frmrate* (s/? valid-i?*) )
+         :kSii (s/cat :timpnt valid-kr? :filcod valid-S? :npoles* (s/? valid-i?*) :frmrate* (s/? valid-i?*) )
          ))
 (stest/instrument `lpread)
 
@@ -5673,26 +4289,10 @@
 
 (s/fdef strtod
   :args (s/alt
+         :i (s/cat :index valid-i? )
          :S (s/cat :index valid-S? )
          ))
 (stest/instrument `strtod)
-
-(defn strtod:i
-  {:arglists '([Sindex] [iindex])}
-  [index]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strtod"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strtod:i
-  :args (s/alt
-         :S (s/cat :index valid-S? )
-         ))
-(stest/instrument `strtod:i)
 
 (defn ziw
   {:arglists '([isig iindex])}
@@ -5721,23 +4321,8 @@
     (new out-types ast)))
 
 (s/fdef sprintf
-  :args (s/cat :formatstring valid-S? :arg1* valid-x?* :arg2* valid-x?* :arg3* valid-x?* :arg4* valid-x?* :arg5* valid-x?* :arg6* valid-x?* :arg7* valid-x?* :arg8* valid-x?* :arg9* valid-x?* :arg10* valid-x?* :arg11* valid-x?* :arg12* valid-x?* :arg13* valid-x?* :arg14* valid-x?* :arg15* valid-x?* :arg16* valid-x?* ))
+  :args (s/cat :formatstring valid-S? :arg1* (s/? valid-x?*) :arg2* (s/? valid-x?*) :arg3* (s/? valid-x?*) :arg4* (s/? valid-x?*) :arg5* (s/? valid-x?*) :arg6* (s/? valid-x?*) :arg7* (s/? valid-x?*) :arg8* (s/? valid-x?*) :arg9* (s/? valid-x?*) :arg10* (s/? valid-x?*) :arg11* (s/? valid-x?*) :arg12* (s/? valid-x?*) :arg13* (s/? valid-x?*) :arg14* (s/? valid-x?*) :arg15* (s/? valid-x?*) :arg16* (s/? valid-x?*) ))
 (stest/instrument `sprintf)
-
-(defn sprintf:S
-  {:arglists '([Sformatstring & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*])}
-  [formatstring & [ arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16* ]]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "sprintf"
-                      [formatstring arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sprintf:S
-  :args (s/cat :formatstring valid-S? :arg1* valid-x?* :arg2* valid-x?* :arg3* valid-x?* :arg4* valid-x?* :arg5* valid-x?* :arg6* valid-x?* :arg7* valid-x?* :arg8* valid-x?* :arg9* valid-x?* :arg10* valid-x?* :arg11* valid-x?* :arg12* valid-x?* :arg13* valid-x?* :arg14* valid-x?* :arg15* valid-x?* :arg16* valid-x?* ))
-(stest/instrument `sprintf:S)
 
 (defn rifft
   {:arglists '([iinArr] [kinArr])}
@@ -5752,6 +4337,7 @@
 
 (s/fdef rifft
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `rifft)
@@ -5816,21 +4402,6 @@
   :args (s/cat :tringURL valid-S? ))
 (stest/instrument `strfromurl)
 
-(defn strfromurl:S
-  {:arglists '([StringURL])}
-  [tringURL]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strfromurl"
-                      [tringURL]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strfromurl:S
-  :args (s/cat :tringURL valid-S? ))
-(stest/instrument `strfromurl:S)
-
 (defn vtablewa
   {:arglists '([aindex ktable ixmode & ainarg1* ainarg2* ainarg3* ainargN4* ainargN5* ainargN6* ainargN7* ainargN8* ainargN9* ainargN10* ainargN11* ainargN12* ainargN13* ainargN14* ainargN15* ainargN16* ainargN17* ainargN18* ainargN19* ainargN20* ainargN21* ainargN22* ainargN23* ainargN24* ainargN25* ainargN26* ainargN27* ainargN28* ainargN29* ainargN30* ainargN31* ainargN32*])}
   [index table xmode & [ inarg1* inarg2* inarg3* inargN4* inargN5* inargN6* inargN7* inargN8* inargN9* inargN10* inargN11* inargN12* inargN13* inargN14* inargN15* inargN16* inargN17* inargN18* inargN19* inargN20* inargN21* inargN22* inargN23* inargN24* inargN25* inargN26* inargN27* inargN28* inargN29* inargN30* inargN31* inargN32* ]]
@@ -5843,7 +4414,7 @@
     (new out-types ast)))
 
 (s/fdef vtablewa
-  :args (s/cat :index valid-ar? :table valid-kr? :xmode valid-i? :inarg1* valid-ar?* :inarg2* valid-ar?* :inarg3* valid-ar?* :inargN4* valid-ar?* :inargN5* valid-ar?* :inargN6* valid-ar?* :inargN7* valid-ar?* :inargN8* valid-ar?* :inargN9* valid-ar?* :inargN10* valid-ar?* :inargN11* valid-ar?* :inargN12* valid-ar?* :inargN13* valid-ar?* :inargN14* valid-ar?* :inargN15* valid-ar?* :inargN16* valid-ar?* :inargN17* valid-ar?* :inargN18* valid-ar?* :inargN19* valid-ar?* :inargN20* valid-ar?* :inargN21* valid-ar?* :inargN22* valid-ar?* :inargN23* valid-ar?* :inargN24* valid-ar?* :inargN25* valid-ar?* :inargN26* valid-ar?* :inargN27* valid-ar?* :inargN28* valid-ar?* :inargN29* valid-ar?* :inargN30* valid-ar?* :inargN31* valid-ar?* :inargN32* valid-ar?* ))
+  :args (s/cat :index valid-ar? :table valid-kr? :xmode valid-i? :inarg1* (s/? valid-ar?*) :inarg2* (s/? valid-ar?*) :inarg3* (s/? valid-ar?*) :inargN4* (s/? valid-ar?*) :inargN5* (s/? valid-ar?*) :inargN6* (s/? valid-ar?*) :inargN7* (s/? valid-ar?*) :inargN8* (s/? valid-ar?*) :inargN9* (s/? valid-ar?*) :inargN10* (s/? valid-ar?*) :inargN11* (s/? valid-ar?*) :inargN12* (s/? valid-ar?*) :inargN13* (s/? valid-ar?*) :inargN14* (s/? valid-ar?*) :inargN15* (s/? valid-ar?*) :inargN16* (s/? valid-ar?*) :inargN17* (s/? valid-ar?*) :inargN18* (s/? valid-ar?*) :inargN19* (s/? valid-ar?*) :inargN20* (s/? valid-ar?*) :inargN21* (s/? valid-ar?*) :inargN22* (s/? valid-ar?*) :inargN23* (s/? valid-ar?*) :inargN24* (s/? valid-ar?*) :inargN25* (s/? valid-ar?*) :inargN26* (s/? valid-ar?*) :inargN27* (s/? valid-ar?*) :inargN28* (s/? valid-ar?*) :inargN29* (s/? valid-ar?*) :inargN30* (s/? valid-ar?*) :inargN31* (s/? valid-ar?*) :inargN32* (s/? valid-ar?*) ))
 (stest/instrument `vtablewa)
 
 (defn sfplaym
@@ -5858,23 +4429,8 @@
     (new out-types ast)))
 
 (s/fdef sfplaym
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* valid-i?* :offset* valid-i?* :env* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :env* (s/? valid-i?*) ))
 (stest/instrument `sfplaym)
-
-(defn sfplaym:a
-  {:arglists '([ivel inotenum xamp xfreq ipreindex & iflag* ioffset* ienv*])}
-  [vel notenum amp freq preindex & [ flag* offset* env* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sfplaym"
-                      [vel notenum amp freq preindex flag* offset* env*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sfplaym:a
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* valid-i?* :offset* valid-i?* :env* valid-i?* ))
-(stest/instrument `sfplaym:a)
 
 (defn OSCinit
   {:arglists '([iport])}
@@ -5891,21 +4447,6 @@
   :args (s/cat :port valid-i? ))
 (stest/instrument `OSCinit)
 
-(defn OSCinit:i
-  {:arglists '([iport])}
-  [port]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "OSCinit"
-                      [port]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef OSCinit:i
-  :args (s/cat :port valid-i? ))
-(stest/instrument `OSCinit:i)
-
 (defn sc_trig
   {:arglists '([ain kdur] [kin kdur])}
   [in dur]
@@ -5919,6 +4460,7 @@
 
 (s/fdef sc_trig
   :args (s/alt
+         :kk (s/cat :in valid-kr? :dur valid-kr? )
          :ak (s/cat :in valid-ar? :dur valid-kr? )
          ))
 (stest/instrument `sc_trig)
@@ -5965,23 +4507,8 @@
     (new out-types ast)))
 
 (s/fdef gbuzz
-  :args (s/cat :amp valid-x? :cps valid-x? :nh valid-kr? :lh valid-kr? :mul valid-kr? :table valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :nh valid-kr? :lh valid-kr? :mul valid-kr? :table valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `gbuzz)
-
-(defn gbuzz:a
-  {:arglists '([xamp xcps knh klh kmul itable & iphase*])}
-  [amp cps nh lh mul table & [ phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "gbuzz"
-                      [amp cps nh lh mul table phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef gbuzz:a
-  :args (s/cat :amp valid-x? :cps valid-x? :nh valid-kr? :lh valid-kr? :mul valid-kr? :table valid-i? :phase* valid-i?* ))
-(stest/instrument `gbuzz:a)
 
 (defn readscratch
   {:arglists '([& index*])}
@@ -5995,23 +4522,8 @@
     (new out-types ast)))
 
 (s/fdef readscratch
-  :args (s/cat :ndex* valid-i?* ))
+  :args (s/cat :ndex* (s/? valid-i?*) ))
 (stest/instrument `readscratch)
-
-(defn readscratch:i
-  {:arglists '([& index*])}
-  [& [ ndex* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "readscratch"
-                      [ndex*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef readscratch:i
-  :args (s/cat :ndex* valid-i?* ))
-(stest/instrument `readscratch:i)
 
 (defn outipc
   {:arglists '([ichn iprog imin imax])}
@@ -6041,7 +4553,8 @@
 
 (s/fdef diskin2
   :args (s/alt
-         :Skiiiiiii (s/cat :filcod valid-S? :pitch* valid-kr?* :skiptim* valid-i?* :wrap* valid-i?* :format* valid-i?* :wsize* valid-i?* :bufsize* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* )
+         :ikiiiiiii (s/cat :filcod valid-i? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wrap* (s/? valid-i?*) :format* (s/? valid-i?*) :wsize* (s/? valid-i?*) :bufsize* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
+         :Skiiiiiii (s/cat :filcod valid-S? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wrap* (s/? valid-i?*) :format* (s/? valid-i?*) :wsize* (s/? valid-i?*) :bufsize* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
          ))
 (stest/instrument `diskin2)
 
@@ -6058,7 +4571,8 @@
 
 (s/fdef diskin2:aArr
   :args (s/alt
-         :Skiiiiiii (s/cat :filcod valid-S? :pitch* valid-kr?* :skiptim* valid-i?* :wrap* valid-i?* :format* valid-i?* :wsize* valid-i?* :bufsize* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* )
+         :ikiiiiiii (s/cat :filcod valid-i? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wrap* (s/? valid-i?*) :format* (s/? valid-i?*) :wsize* (s/? valid-i?*) :bufsize* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
+         :Skiiiiiii (s/cat :filcod valid-S? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wrap* (s/? valid-i?*) :format* (s/? valid-i?*) :wsize* (s/? valid-i?*) :bufsize* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
          ))
 (stest/instrument `diskin2:aArr)
 
@@ -6075,7 +4589,8 @@
 
 (s/fdef diskin2:a
   :args (s/alt
-         :Skiiiiiii (s/cat :filcod valid-S? :pitch* valid-kr?* :skiptim* valid-i?* :wrap* valid-i?* :format* valid-i?* :wsize* valid-i?* :bufsize* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* )
+         :ikiiiiiii (s/cat :filcod valid-i? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wrap* (s/? valid-i?*) :format* (s/? valid-i?*) :wsize* (s/? valid-i?*) :bufsize* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
+         :Skiiiiiii (s/cat :filcod valid-S? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wrap* (s/? valid-i?*) :format* (s/? valid-i?*) :wsize* (s/? valid-i?*) :bufsize* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
          ))
 (stest/instrument `diskin2:a)
 
@@ -6137,7 +4652,7 @@
 
 (s/fdef cpsmidib
   :args (s/alt
-         :i (s/cat :range* valid-i?* )
+         :i (s/cat :range* (s/? valid-i?*) )
          ))
 (stest/instrument `cpsmidib)
 
@@ -6153,7 +4668,7 @@
     (new out-types ast)))
 
 (s/fdef cpsmidib:i
-  :args (s/cat :range* valid-i?* ))
+  :args (s/cat :range* (s/? valid-i?*) ))
 (stest/instrument `cpsmidib:i)
 
 (defn cpsmidib:k
@@ -6168,7 +4683,7 @@
     (new out-types ast)))
 
 (s/fdef cpsmidib:k
-  :args (s/cat :range* valid-i?* ))
+  :args (s/cat :range* (s/? valid-i?*) ))
 (stest/instrument `cpsmidib:k)
 
 (defn spat3di
@@ -6183,7 +4698,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef spat3di
-  :args (s/cat :in valid-ar? :X valid-i? :Y valid-i? :Z valid-i? :distortion valid-i? :ft valid-i? :mode valid-i? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :X valid-i? :Y valid-i? :Z valid-i? :distortion valid-i? :ft valid-i? :mode valid-i? :stor* (s/? valid-i?*) ))
 (stest/instrument `spat3di)
 
 (defn inletv
@@ -6201,21 +4716,6 @@
   :args (s/cat :name valid-S? ))
 (stest/instrument `inletv)
 
-(defn inletv:aArr
-  {:arglists '([Sname])}
-  [name]
-  (let [out-types-quoted 'AudioArray
-        out-types AudioArray
-        ast (ast-node out-types-quoted
-                      "inletv"
-                      [name]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef inletv:aArr
-  :args (s/cat :name valid-S? ))
-(stest/instrument `inletv:aArr)
-
 (defn filter2
   {:arglists '([asig iM iN & ib1* ib2* ibM3* ia4* ia5* iaN6* iaN7* iaN8* iaN9* iaN10* iaN11* iaN12* iaN13* iaN14* iaN15* iaN16*] [ksig iM iN & ib1* ib2* ibM3* ia4* ia5* iaN6* iaN7* iaN8* iaN9* iaN10* iaN11* iaN12* iaN13* iaN14* iaN15* iaN16*])}
   [sig M N & [ b1* b2* bM3* a4* a5* aN6* aN7* aN8* aN9* aN10* aN11* aN12* aN13* aN14* aN15* aN16* ]]
@@ -6229,7 +4729,8 @@
 
 (s/fdef filter2
   :args (s/alt
-         :aiiiiiiiiiiiiiiiiii (s/cat :sig valid-ar? :M valid-i? :N valid-i? :b1* valid-i?* :b2* valid-i?* :bM3* valid-i?* :a4* valid-i?* :a5* valid-i?* :aN6* valid-i?* :aN7* valid-i?* :aN8* valid-i?* :aN9* valid-i?* :aN10* valid-i?* :aN11* valid-i?* :aN12* valid-i?* :aN13* valid-i?* :aN14* valid-i?* :aN15* valid-i?* :aN16* valid-i?* )
+         :kiiiiiiiiiiiiiiiiii (s/cat :sig valid-kr? :M valid-i? :N valid-i? :b1* (s/? valid-i?*) :b2* (s/? valid-i?*) :bM3* (s/? valid-i?*) :a4* (s/? valid-i?*) :a5* (s/? valid-i?*) :aN6* (s/? valid-i?*) :aN7* (s/? valid-i?*) :aN8* (s/? valid-i?*) :aN9* (s/? valid-i?*) :aN10* (s/? valid-i?*) :aN11* (s/? valid-i?*) :aN12* (s/? valid-i?*) :aN13* (s/? valid-i?*) :aN14* (s/? valid-i?*) :aN15* (s/? valid-i?*) :aN16* (s/? valid-i?*) )
+         :aiiiiiiiiiiiiiiiiii (s/cat :sig valid-ar? :M valid-i? :N valid-i? :b1* (s/? valid-i?*) :b2* (s/? valid-i?*) :bM3* (s/? valid-i?*) :a4* (s/? valid-i?*) :a5* (s/? valid-i?*) :aN6* (s/? valid-i?*) :aN7* (s/? valid-i?*) :aN8* (s/? valid-i?*) :aN9* (s/? valid-i?*) :aN10* (s/? valid-i?*) :aN11* (s/? valid-i?*) :aN12* (s/? valid-i?*) :aN13* (s/? valid-i?*) :aN14* (s/? valid-i?*) :aN15* (s/? valid-i?*) :aN16* (s/? valid-i?*) )
          ))
 (stest/instrument `filter2)
 
@@ -6245,7 +4746,7 @@
     (new out-types ast)))
 
 (s/fdef filter2:a
-  :args (s/cat :sig valid-ar? :M valid-i? :N valid-i? :b1* valid-i?* :b2* valid-i?* :bM3* valid-i?* :a4* valid-i?* :a5* valid-i?* :aN6* valid-i?* :aN7* valid-i?* :aN8* valid-i?* :aN9* valid-i?* :aN10* valid-i?* :aN11* valid-i?* :aN12* valid-i?* :aN13* valid-i?* :aN14* valid-i?* :aN15* valid-i?* :aN16* valid-i?* ))
+  :args (s/cat :sig valid-ar? :M valid-i? :N valid-i? :b1* (s/? valid-i?*) :b2* (s/? valid-i?*) :bM3* (s/? valid-i?*) :a4* (s/? valid-i?*) :a5* (s/? valid-i?*) :aN6* (s/? valid-i?*) :aN7* (s/? valid-i?*) :aN8* (s/? valid-i?*) :aN9* (s/? valid-i?*) :aN10* (s/? valid-i?*) :aN11* (s/? valid-i?*) :aN12* (s/? valid-i?*) :aN13* (s/? valid-i?*) :aN14* (s/? valid-i?*) :aN15* (s/? valid-i?*) :aN16* (s/? valid-i?*) ))
 (stest/instrument `filter2:a)
 
 (defn filter2:k
@@ -6260,7 +4761,7 @@
     (new out-types ast)))
 
 (s/fdef filter2:k
-  :args (s/cat :sig valid-kr? :M valid-i? :N valid-i? :b1* valid-i?* :b2* valid-i?* :bM3* valid-i?* :a4* valid-i?* :a5* valid-i?* :aN6* valid-i?* :aN7* valid-i?* :aN8* valid-i?* :aN9* valid-i?* :aN10* valid-i?* :aN11* valid-i?* :aN12* valid-i?* :aN13* valid-i?* :aN14* valid-i?* :aN15* valid-i?* :aN16* valid-i?* ))
+  :args (s/cat :sig valid-kr? :M valid-i? :N valid-i? :b1* (s/? valid-i?*) :b2* (s/? valid-i?*) :bM3* (s/? valid-i?*) :a4* (s/? valid-i?*) :a5* (s/? valid-i?*) :aN6* (s/? valid-i?*) :aN7* (s/? valid-i?*) :aN8* (s/? valid-i?*) :aN9* (s/? valid-i?*) :aN10* (s/? valid-i?*) :aN11* (s/? valid-i?*) :aN12* (s/? valid-i?*) :aN13* (s/? valid-i?*) :aN14* (s/? valid-i?*) :aN15* (s/? valid-i?*) :aN16* (s/? valid-i?*) ))
 (stest/instrument `filter2:k)
 
 (defn vcopy_i
@@ -6275,7 +4776,7 @@
     (new out-types ast)))
 
 (s/fdef vcopy_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vcopy_i)
 
 (defn wgbow
@@ -6290,23 +4791,8 @@
     (new out-types ast)))
 
 (s/fdef wgbow
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pres valid-kr? :rat valid-kr? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :pres valid-kr? :rat valid-kr? :vibf valid-kr? :vamp valid-kr? :table* (s/? valid-i?*) :minfreq* (s/? valid-i?*) ))
 (stest/instrument `wgbow)
-
-(defn wgbow:a
-  {:arglists '([kamp kfreq kpres krat kvibf kvamp & itable* iminfreq*])}
-  [amp freq pres rat vibf vamp & [ table* minfreq* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgbow"
-                      [amp freq pres rat vibf vamp table* minfreq*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgbow:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pres valid-kr? :rat valid-kr? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* ))
-(stest/instrument `wgbow:a)
 
 (defn linenr
   {:arglists '([aamp irise idec iatdec] [kamp irise idec iatdec] [kamp irise idec iatdec])}
@@ -6321,6 +4807,7 @@
 
 (s/fdef linenr
   :args (s/alt
+         :kiii (s/cat :amp valid-kr? :rise valid-i? :dec valid-i? :atdec valid-i? )
          :aiii (s/cat :amp valid-ar? :rise valid-i? :dec valid-i? :atdec valid-i? )
          ))
 (stest/instrument `linenr)
@@ -6338,6 +4825,7 @@
 
 (s/fdef linenr:a
   :args (s/alt
+         :kiii (s/cat :amp valid-kr? :rise valid-i? :dec valid-i? :atdec valid-i? )
          :aiii (s/cat :amp valid-ar? :rise valid-i? :dec valid-i? :atdec valid-i? )
          ))
 (stest/instrument `linenr:a)
@@ -6372,21 +4860,6 @@
   :args (s/cat :sig valid-ar? :meth valid-i? :limit valid-i? :arg valid-i? ))
 (stest/instrument `clip)
 
-(defn clip:a
-  {:arglists '([asig imeth ilimit iarg])}
-  [sig meth limit arg]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "clip"
-                      [sig meth limit arg]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef clip:a
-  :args (s/cat :sig valid-ar? :meth valid-i? :limit valid-i? :arg valid-i? ))
-(stest/instrument `clip:a)
-
 (defn turnoff2
   {:arglists '([Sinsno kmode krelease] [iinsno kmode krelease] [iinsno kmode krelease] [iinsno kmode krelease] [kinsno kmode krelease])}
   [insno mode release]
@@ -6400,9 +4873,75 @@
 
 (s/fdef turnoff2
   :args (s/alt
+         :kkk (s/cat :insno valid-kr? :mode valid-kr? :release valid-kr? )
+         :ikk (s/cat :insno valid-i? :mode valid-kr? :release valid-kr? )
          :Skk (s/cat :insno valid-S? :mode valid-kr? :release valid-kr? )
          ))
 (stest/instrument `turnoff2)
+
+(defn taninv2
+  {:arglists '([aradian aradian] [iradian iradian] [kradian kradian])}
+  [radian radian]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "taninv2"
+                      [radian radian]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef taninv2
+  :args (s/alt
+         :kk (s/cat :radian valid-kr? :radian valid-kr? )
+         :ii (s/cat :radian valid-i? :radian valid-i? )
+         :aa (s/cat :radian valid-ar? :radian valid-ar? )
+         ))
+(stest/instrument `taninv2)
+
+(defn taninv2:a
+  {:arglists '([aradian aradian])}
+  [radian radian]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "taninv2"
+                      [radian radian]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef taninv2:a
+  :args (s/cat :radian valid-ar? :radian valid-ar? ))
+(stest/instrument `taninv2:a)
+
+(defn taninv2:i
+  {:arglists '([iradian iradian])}
+  [radian radian]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "taninv2"
+                      [radian radian]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef taninv2:i
+  :args (s/cat :radian valid-i? :radian valid-i? ))
+(stest/instrument `taninv2:i)
+
+(defn taninv2:k
+  {:arglists '([kradian kradian])}
+  [radian radian]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "taninv2"
+                      [radian radian]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef taninv2:k
+  :args (s/cat :radian valid-kr? :radian valid-kr? ))
+(stest/instrument `taninv2:k)
 
 (defn pol2rect
   {:arglists '([kmagsArr] [kmagsArr kphaseArr])}
@@ -6417,26 +4956,10 @@
 
 (s/fdef pol2rect
   :args (s/alt
+         :kArrkArr (s/cat :mags valid-kArr? :phase valid-kArr? )
          :kArr (s/cat :mags valid-kArr? )
          ))
 (stest/instrument `pol2rect)
-
-(defn pol2rect:kArr
-  {:arglists '([kmagsArr] [kmagsArr kphaseArr])}
-  [mags]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "pol2rect"
-                      [mags]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pol2rect:kArr
-  :args (s/alt
-         :kArr (s/cat :mags valid-kArr? )
-         ))
-(stest/instrument `pol2rect:kArr)
 
 (defn vexp
   {:arglists '([itable kval kelements & kdstoffset* kverbose*])}
@@ -6450,7 +4973,7 @@
     (new out-types ast)))
 
 (s/fdef vexp
-  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vexp)
 
 (defn tonex
@@ -6466,26 +4989,10 @@
 
 (s/fdef tonex
   :args (s/alt
-         :aaii (s/cat :sig valid-ar? :hp valid-ar? :numlayer* valid-i?* :skip* valid-i?* )
+         :akii (s/cat :sig valid-ar? :hp valid-kr? :numlayer* (s/? valid-i?*) :skip* (s/? valid-i?*) )
+         :aaii (s/cat :sig valid-ar? :hp valid-ar? :numlayer* (s/? valid-i?*) :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `tonex)
-
-(defn tonex:a
-  {:arglists '([asig ahp & inumlayer* iskip*] [asig khp & inumlayer* iskip*])}
-  [sig hp & [ numlayer* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tonex"
-                      [sig hp numlayer* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tonex:a
-  :args (s/alt
-         :aaii (s/cat :sig valid-ar? :hp valid-ar? :numlayer* valid-i?* :skip* valid-i?* )
-         ))
-(stest/instrument `tonex:a)
 
 (defn trmix
   {:arglists '([fin1 fin2])}
@@ -6502,21 +5009,6 @@
   :args (s/cat :in1 valid-f? :in2 valid-f? ))
 (stest/instrument `trmix)
 
-(defn trmix:f
-  {:arglists '([fin1 fin2])}
-  [in1 in2]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "trmix"
-                      [in1 in2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trmix:f
-  :args (s/cat :in1 valid-f? :in2 valid-f? ))
-(stest/instrument `trmix:f)
-
 (defn inletkid
   {:arglists '([Sname SinstanceID])}
   [name instanceID]
@@ -6531,21 +5023,6 @@
 (s/fdef inletkid
   :args (s/cat :name valid-S? :instanceID valid-S? ))
 (stest/instrument `inletkid)
-
-(defn inletkid:k
-  {:arglists '([Sname SinstanceID])}
-  [name instanceID]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "inletkid"
-                      [name instanceID]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef inletkid:k
-  :args (s/cat :name valid-S? :instanceID valid-S? ))
-(stest/instrument `inletkid:k)
 
 (defn cps2pch
   {:arglists '([ipch iequal])}
@@ -6562,21 +5039,6 @@
   :args (s/cat :pch valid-i? :equal valid-i? ))
 (stest/instrument `cps2pch)
 
-(defn cps2pch:i
-  {:arglists '([ipch iequal])}
-  [pch equal]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "cps2pch"
-                      [pch equal]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cps2pch:i
-  :args (s/cat :pch valid-i? :equal valid-i? ))
-(stest/instrument `cps2pch:i)
-
 (defn jitter2
   {:arglists '([ktotamp kamp2 kcps3 kamp4 kcps5 kamp6 kcps7 & iopt*])}
   [totamp amp2 cps3 amp4 cps5 amp6 cps7 & [ opt* ]]
@@ -6589,23 +5051,8 @@
     (new out-types ast)))
 
 (s/fdef jitter2
-  :args (s/cat :totamp valid-kr? :amp2 valid-kr? :cps3 valid-kr? :amp4 valid-kr? :cps5 valid-kr? :amp6 valid-kr? :cps7 valid-kr? :opt* valid-i?* ))
+  :args (s/cat :totamp valid-kr? :amp2 valid-kr? :cps3 valid-kr? :amp4 valid-kr? :cps5 valid-kr? :amp6 valid-kr? :cps7 valid-kr? :opt* (s/? valid-i?*) ))
 (stest/instrument `jitter2)
-
-(defn jitter2:k
-  {:arglists '([ktotamp kamp2 kcps3 kamp4 kcps5 kamp6 kcps7 & iopt*])}
-  [totamp amp2 cps3 amp4 cps5 amp6 cps7 & [ opt* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "jitter2"
-                      [totamp amp2 cps3 amp4 cps5 amp6 cps7 opt*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef jitter2:k
-  :args (s/cat :totamp valid-kr? :amp2 valid-kr? :cps3 valid-kr? :amp4 valid-kr? :cps5 valid-kr? :amp6 valid-kr? :cps7 valid-kr? :opt* valid-i?* ))
-(stest/instrument `jitter2:k)
 
 (defn fog
   {:arglists '([xamp xdens xtrans aspd koct kband kris kdur kdec iolaps ifna ifnb itotdur & iphase* itmode* iskip*])}
@@ -6619,23 +5066,8 @@
     (new out-types ast)))
 
 (s/fdef fog
-  :args (s/cat :amp valid-x? :dens valid-x? :trans valid-x? :spd valid-ar? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase* valid-i?* :tmode* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :amp valid-x? :dens valid-x? :trans valid-x? :spd valid-ar? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase* (s/? valid-i?*) :tmode* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `fog)
-
-(defn fog:a
-  {:arglists '([xamp xdens xtrans aspd koct kband kris kdur kdec iolaps ifna ifnb itotdur & iphase* itmode* iskip*])}
-  [amp dens trans spd oct band ris dur dec olaps fna fnb totdur & [ phase* tmode* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fog"
-                      [amp dens trans spd oct band ris dur dec olaps fna fnb totdur phase* tmode* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fog:a
-  :args (s/cat :amp valid-x? :dens valid-x? :trans valid-x? :spd valid-ar? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase* valid-i?* :tmode* valid-i?* :skip* valid-i?* ))
-(stest/instrument `fog:a)
 
 (defn inleta
   {:arglists '([Sname])}
@@ -6652,21 +5084,6 @@
   :args (s/cat :name valid-S? ))
 (stest/instrument `inleta)
 
-(defn inleta:a
-  {:arglists '([Sname])}
-  [name]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "inleta"
-                      [name]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef inleta:a
-  :args (s/cat :name valid-S? ))
-(stest/instrument `inleta:a)
-
 (defn expsegr
   {:arglists '([ia idur2 & ib1* idur2* ic3* irel4* iz5* iz6* iz7* iz8* iz9* iz10* iz11* iz12* iz13* iz14* iz15* iz16*] [ia idur2 & ib1* idur2* ic3* irel4* iz5* iz6* iz7* iz8* iz9* iz10* iz11* iz12* iz13* iz14* iz15* iz16*])}
   [a dur2 & [ b1* dur2* c3* rel4* z5* z6* z7* z8* z9* z10* z11* z12* z13* z14* z15* z16* ]]
@@ -6680,7 +5097,7 @@
 
 (s/fdef expsegr
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) )
          ))
 (stest/instrument `expsegr)
 
@@ -6696,7 +5113,7 @@
     (new out-types ast)))
 
 (s/fdef expsegr:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) ))
 (stest/instrument `expsegr:a)
 
 (defn expsegr:k
@@ -6711,7 +5128,7 @@
     (new out-types ast)))
 
 (s/fdef expsegr:k
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) ))
 (stest/instrument `expsegr:k)
 
 (defn expsegba
@@ -6726,23 +5143,8 @@
     (new out-types ast)))
 
 (s/fdef expsegba
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `expsegba)
-
-(defn expsegba:a
-  {:arglists '([ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
-  [a tim2 & [ b1* tim2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "expsegba"
-                      [a tim2 b1* tim2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef expsegba:a
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
-(stest/instrument `expsegba:a)
 
 (defn ftconv
   {:arglists '([ain ift iplen & iskipsamples* iirlen* iskipinit*])}
@@ -6756,7 +5158,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef ftconv
-  :args (s/cat :in valid-ar? :ft valid-i? :plen valid-i? :skipsamples* valid-i?* :irlen* valid-i?* :skipinit* valid-i?* ))
+  :args (s/cat :in valid-ar? :ft valid-i? :plen valid-i? :skipsamples* (s/? valid-i?*) :irlen* (s/? valid-i?*) :skipinit* (s/? valid-i?*) ))
 (stest/instrument `ftconv)
 
 (defn printf_i
@@ -6771,7 +5173,7 @@
     (new out-types ast)))
 
 (s/fdef printf_i
-  :args (s/cat :formatstring valid-S? :arg1* valid-i?* :arg2* valid-i?* :arg3* valid-i?* :arg4* valid-i?* :arg5* valid-i?* :arg6* valid-i?* :arg7* valid-i?* :arg8* valid-i?* :arg9* valid-i?* :arg10* valid-i?* :arg11* valid-i?* :arg12* valid-i?* :arg13* valid-i?* :arg14* valid-i?* :arg15* valid-i?* :arg16* valid-i?* ))
+  :args (s/cat :formatstring valid-S? :arg1* (s/? valid-i?*) :arg2* (s/? valid-i?*) :arg3* (s/? valid-i?*) :arg4* (s/? valid-i?*) :arg5* (s/? valid-i?*) :arg6* (s/? valid-i?*) :arg7* (s/? valid-i?*) :arg8* (s/? valid-i?*) :arg9* (s/? valid-i?*) :arg10* (s/? valid-i?*) :arg11* (s/? valid-i?*) :arg12* (s/? valid-i?*) :arg13* (s/? valid-i?*) :arg14* (s/? valid-i?*) :arg15* (s/? valid-i?*) :arg16* (s/? valid-i?*) ))
 (stest/instrument `printf_i)
 
 (defn sum
@@ -6787,7 +5189,9 @@
 
 (s/fdef sum
   :args (s/alt
-         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :arr1* valid-ar?* :arr2* valid-ar?* :arr3* valid-ar?* :arr4* valid-ar?* :arr5* valid-ar?* :arr6* valid-ar?* :arr7* valid-ar?* :arr8* valid-ar?* :arr9* valid-ar?* :arr10* valid-ar?* :arr11* valid-ar?* :arr12* valid-ar?* :arr13* valid-ar?* :arr14* valid-ar?* :arr15* valid-ar?* :arr16* valid-ar?* :arr17* valid-ar?* :arr18* valid-ar?* :arr19* valid-ar?* :arr20* valid-ar?* :arr21* valid-ar?* :arr22* valid-ar?* :arr23* valid-ar?* :arr24* valid-ar?* :arr25* valid-ar?* :arr26* valid-ar?* :arr27* valid-ar?* :arr28* valid-ar?* :arr29* valid-ar?* :arr30* valid-ar?* :arr31* valid-ar?* :arr32* valid-ar?* )
+         :kArr (s/cat :arr valid-kArr? )
+         :iArr (s/cat :arr valid-iArr? )
+         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :arr1* (s/? valid-ar?*) :arr2* (s/? valid-ar?*) :arr3* (s/? valid-ar?*) :arr4* (s/? valid-ar?*) :arr5* (s/? valid-ar?*) :arr6* (s/? valid-ar?*) :arr7* (s/? valid-ar?*) :arr8* (s/? valid-ar?*) :arr9* (s/? valid-ar?*) :arr10* (s/? valid-ar?*) :arr11* (s/? valid-ar?*) :arr12* (s/? valid-ar?*) :arr13* (s/? valid-ar?*) :arr14* (s/? valid-ar?*) :arr15* (s/? valid-ar?*) :arr16* (s/? valid-ar?*) :arr17* (s/? valid-ar?*) :arr18* (s/? valid-ar?*) :arr19* (s/? valid-ar?*) :arr20* (s/? valid-ar?*) :arr21* (s/? valid-ar?*) :arr22* (s/? valid-ar?*) :arr23* (s/? valid-ar?*) :arr24* (s/? valid-ar?*) :arr25* (s/? valid-ar?*) :arr26* (s/? valid-ar?*) :arr27* (s/? valid-ar?*) :arr28* (s/? valid-ar?*) :arr29* (s/? valid-ar?*) :arr30* (s/? valid-ar?*) :arr31* (s/? valid-ar?*) :arr32* (s/? valid-ar?*) )
          ))
 (stest/instrument `sum)
 
@@ -6803,7 +5207,7 @@
     (new out-types ast)))
 
 (s/fdef sum:a
-  :args (s/cat :arr1* valid-ar?* :arr2* valid-ar?* :arr3* valid-ar?* :arr4* valid-ar?* :arr5* valid-ar?* :arr6* valid-ar?* :arr7* valid-ar?* :arr8* valid-ar?* :arr9* valid-ar?* :arr10* valid-ar?* :arr11* valid-ar?* :arr12* valid-ar?* :arr13* valid-ar?* :arr14* valid-ar?* :arr15* valid-ar?* :arr16* valid-ar?* :arr17* valid-ar?* :arr18* valid-ar?* :arr19* valid-ar?* :arr20* valid-ar?* :arr21* valid-ar?* :arr22* valid-ar?* :arr23* valid-ar?* :arr24* valid-ar?* :arr25* valid-ar?* :arr26* valid-ar?* :arr27* valid-ar?* :arr28* valid-ar?* :arr29* valid-ar?* :arr30* valid-ar?* :arr31* valid-ar?* :arr32* valid-ar?* ))
+  :args (s/cat :arr1* (s/? valid-ar?*) :arr2* (s/? valid-ar?*) :arr3* (s/? valid-ar?*) :arr4* (s/? valid-ar?*) :arr5* (s/? valid-ar?*) :arr6* (s/? valid-ar?*) :arr7* (s/? valid-ar?*) :arr8* (s/? valid-ar?*) :arr9* (s/? valid-ar?*) :arr10* (s/? valid-ar?*) :arr11* (s/? valid-ar?*) :arr12* (s/? valid-ar?*) :arr13* (s/? valid-ar?*) :arr14* (s/? valid-ar?*) :arr15* (s/? valid-ar?*) :arr16* (s/? valid-ar?*) :arr17* (s/? valid-ar?*) :arr18* (s/? valid-ar?*) :arr19* (s/? valid-ar?*) :arr20* (s/? valid-ar?*) :arr21* (s/? valid-ar?*) :arr22* (s/? valid-ar?*) :arr23* (s/? valid-ar?*) :arr24* (s/? valid-ar?*) :arr25* (s/? valid-ar?*) :arr26* (s/? valid-ar?*) :arr27* (s/? valid-ar?*) :arr28* (s/? valid-ar?*) :arr29* (s/? valid-ar?*) :arr30* (s/? valid-ar?*) :arr31* (s/? valid-ar?*) :arr32* (s/? valid-ar?*) ))
 (stest/instrument `sum:a)
 
 (defn sum:i
@@ -6848,7 +5252,7 @@
     (new out-types ast)))
 
 (s/fdef vtablewi
-  :args (s/cat :index valid-i? :table valid-i? :xmode valid-i? :narg1* valid-i?* :narg2* valid-i?* :narg3* valid-i?* :nargN4* valid-i?* :nargN5* valid-i?* :nargN6* valid-i?* :nargN7* valid-i?* :nargN8* valid-i?* :nargN9* valid-i?* :nargN10* valid-i?* :nargN11* valid-i?* :nargN12* valid-i?* :nargN13* valid-i?* :nargN14* valid-i?* :nargN15* valid-i?* :nargN16* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode valid-i? :narg1* (s/? valid-i?*) :narg2* (s/? valid-i?*) :narg3* (s/? valid-i?*) :nargN4* (s/? valid-i?*) :nargN5* (s/? valid-i?*) :nargN6* (s/? valid-i?*) :nargN7* (s/? valid-i?*) :nargN8* (s/? valid-i?*) :nargN9* (s/? valid-i?*) :nargN10* (s/? valid-i?*) :nargN11* (s/? valid-i?*) :nargN12* (s/? valid-i?*) :nargN13* (s/? valid-i?*) :nargN14* (s/? valid-i?*) :nargN15* (s/? valid-i?*) :nargN16* (s/? valid-i?*) ))
 (stest/instrument `vtablewi)
 
 (defn resonx
@@ -6863,23 +5267,8 @@
     (new out-types ast)))
 
 (s/fdef resonx
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :numlayer* valid-i?* :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :numlayer* (s/? valid-i?*) :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `resonx)
-
-(defn resonx:a
-  {:arglists '([asig xcenter-frequency xbandwidth & inumlayer* iscale* iskip*])}
-  [sig center-frequency bandwidth & [ numlayer* scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "resonx"
-                      [sig center-frequency bandwidth numlayer* scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resonx:a
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :numlayer* valid-i?* :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `resonx:a)
 
 (defn lposcil3
   {:arglists '([kamp kfreqratio kloop kend & itable* iphase*])}
@@ -6893,23 +5282,8 @@
     (new out-types ast)))
 
 (s/fdef lposcil3
-  :args (s/cat :amp valid-kr? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `lposcil3)
-
-(defn lposcil3:a
-  {:arglists '([kamp kfreqratio kloop kend & itable* iphase*])}
-  [amp freqratio loop end & [ table* phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lposcil3"
-                      [amp freqratio loop end table* phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lposcil3:a
-  :args (s/cat :amp valid-kr? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :table* valid-i?* :phase* valid-i?* ))
-(stest/instrument `lposcil3:a)
 
 (defn flashtxt
   {:arglists '([iwhich String] [iwhich itring])}
@@ -6924,6 +5298,7 @@
 
 (s/fdef flashtxt
   :args (s/alt
+         :ii (s/cat :which valid-i? :tring valid-i? )
          :iS (s/cat :which valid-i? :tring valid-S? )
          ))
 (stest/instrument `flashtxt)
@@ -6940,23 +5315,8 @@
     (new out-types ast)))
 
 (s/fdef shiftout
-  :args (s/cat :In valid-kArr? :off* valid-i?* ))
+  :args (s/cat :In valid-kArr? :off* (s/? valid-i?*) ))
 (stest/instrument `shiftout)
-
-(defn shiftout:a
-  {:arglists '([kInArr & ioff*])}
-  [In & [ off* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "shiftout"
-                      [In off*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef shiftout:a
-  :args (s/cat :In valid-kArr? :off* valid-i?* ))
-(stest/instrument `shiftout:a)
 
 (defn vsubv
   {:arglists '([ifn1 ifn2 kelements & kdstoffset* ksrcoffset* kverbose*])}
@@ -6970,7 +5330,7 @@
     (new out-types ast)))
 
 (s/fdef vsubv
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vsubv)
 
 (defn vmult_i
@@ -6985,7 +5345,7 @@
     (new out-types ast)))
 
 (s/fdef vmult_i
-  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* valid-i?* ))
+  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) ))
 (stest/instrument `vmult_i)
 
 (defn vactrol
@@ -7000,23 +5360,8 @@
     (new out-types ast)))
 
 (s/fdef vactrol
-  :args (s/cat :sig valid-ar? :up* valid-i?* :down* valid-i?* ))
+  :args (s/cat :sig valid-ar? :up* (s/? valid-i?*) :down* (s/? valid-i?*) ))
 (stest/instrument `vactrol)
-
-(defn vactrol:a
-  {:arglists '([asig & iup* idown*])}
-  [sig & [ up* down* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vactrol"
-                      [sig up* down*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vactrol:a
-  :args (s/cat :sig valid-ar? :up* valid-i?* :down* valid-i?* ))
-(stest/instrument `vactrol:a)
 
 (defn fillarray
   {:arglists '([& Sval1* Sval2* Svaln3* Svaln4* Svaln5* Svaln6* Svaln7* Svaln8* Svaln9* Svaln10* Svaln11* Svaln12* Svaln13* Svaln14* Svaln15* Svaln16*] [& ival1* ival2* ivaln3* ivaln4* ivaln5* ivaln6* ivaln7* ivaln8* ivaln9* ivaln10* ivaln11* ivaln12* ivaln13* ivaln14* ivaln15* ivaln16*] [& ival1* ival2* ivaln3* ivaln4* ivaln5* ivaln6* ivaln7* ivaln8* ivaln9* ivaln10* ivaln11* ivaln12* ivaln13* ivaln14* ivaln15* ivaln16*])}
@@ -7031,7 +5376,8 @@
 
 (s/fdef fillarray
   :args (s/alt
-         :SSSSSSSSSSSSSSSS (s/cat :val1* valid-S?* :val2* valid-S?* :valn3* valid-S?* :valn4* valid-S?* :valn5* valid-S?* :valn6* valid-S?* :valn7* valid-S?* :valn8* valid-S?* :valn9* valid-S?* :valn10* valid-S?* :valn11* valid-S?* :valn12* valid-S?* :valn13* valid-S?* :valn14* valid-S?* :valn15* valid-S?* :valn16* valid-S?* )
+         :iiiiiiiiiiiiiiii (s/cat :val1* (s/? valid-i?*) :val2* (s/? valid-i?*) :valn3* (s/? valid-i?*) :valn4* (s/? valid-i?*) :valn5* (s/? valid-i?*) :valn6* (s/? valid-i?*) :valn7* (s/? valid-i?*) :valn8* (s/? valid-i?*) :valn9* (s/? valid-i?*) :valn10* (s/? valid-i?*) :valn11* (s/? valid-i?*) :valn12* (s/? valid-i?*) :valn13* (s/? valid-i?*) :valn14* (s/? valid-i?*) :valn15* (s/? valid-i?*) :valn16* (s/? valid-i?*) )
+         :SSSSSSSSSSSSSSSS (s/cat :val1* (s/? valid-S?*) :val2* (s/? valid-S?*) :valn3* (s/? valid-S?*) :valn4* (s/? valid-S?*) :valn5* (s/? valid-S?*) :valn6* (s/? valid-S?*) :valn7* (s/? valid-S?*) :valn8* (s/? valid-S?*) :valn9* (s/? valid-S?*) :valn10* (s/? valid-S?*) :valn11* (s/? valid-S?*) :valn12* (s/? valid-S?*) :valn13* (s/? valid-S?*) :valn14* (s/? valid-S?*) :valn15* (s/? valid-S?*) :valn16* (s/? valid-S?*) )
          ))
 (stest/instrument `fillarray)
 
@@ -7047,7 +5393,7 @@
     (new out-types ast)))
 
 (s/fdef fillarray:SArr
-  :args (s/cat :val1* valid-S?* :val2* valid-S?* :valn3* valid-S?* :valn4* valid-S?* :valn5* valid-S?* :valn6* valid-S?* :valn7* valid-S?* :valn8* valid-S?* :valn9* valid-S?* :valn10* valid-S?* :valn11* valid-S?* :valn12* valid-S?* :valn13* valid-S?* :valn14* valid-S?* :valn15* valid-S?* :valn16* valid-S?* ))
+  :args (s/cat :val1* (s/? valid-S?*) :val2* (s/? valid-S?*) :valn3* (s/? valid-S?*) :valn4* (s/? valid-S?*) :valn5* (s/? valid-S?*) :valn6* (s/? valid-S?*) :valn7* (s/? valid-S?*) :valn8* (s/? valid-S?*) :valn9* (s/? valid-S?*) :valn10* (s/? valid-S?*) :valn11* (s/? valid-S?*) :valn12* (s/? valid-S?*) :valn13* (s/? valid-S?*) :valn14* (s/? valid-S?*) :valn15* (s/? valid-S?*) :valn16* (s/? valid-S?*) ))
 (stest/instrument `fillarray:SArr)
 
 (defn fillarray:iArr
@@ -7062,7 +5408,7 @@
     (new out-types ast)))
 
 (s/fdef fillarray:iArr
-  :args (s/cat :val1* valid-i?* :val2* valid-i?* :valn3* valid-i?* :valn4* valid-i?* :valn5* valid-i?* :valn6* valid-i?* :valn7* valid-i?* :valn8* valid-i?* :valn9* valid-i?* :valn10* valid-i?* :valn11* valid-i?* :valn12* valid-i?* :valn13* valid-i?* :valn14* valid-i?* :valn15* valid-i?* :valn16* valid-i?* ))
+  :args (s/cat :val1* (s/? valid-i?*) :val2* (s/? valid-i?*) :valn3* (s/? valid-i?*) :valn4* (s/? valid-i?*) :valn5* (s/? valid-i?*) :valn6* (s/? valid-i?*) :valn7* (s/? valid-i?*) :valn8* (s/? valid-i?*) :valn9* (s/? valid-i?*) :valn10* (s/? valid-i?*) :valn11* (s/? valid-i?*) :valn12* (s/? valid-i?*) :valn13* (s/? valid-i?*) :valn14* (s/? valid-i?*) :valn15* (s/? valid-i?*) :valn16* (s/? valid-i?*) ))
 (stest/instrument `fillarray:iArr)
 
 (defn fillarray:kArr
@@ -7077,7 +5423,7 @@
     (new out-types ast)))
 
 (s/fdef fillarray:kArr
-  :args (s/cat :val1* valid-i?* :val2* valid-i?* :valn3* valid-i?* :valn4* valid-i?* :valn5* valid-i?* :valn6* valid-i?* :valn7* valid-i?* :valn8* valid-i?* :valn9* valid-i?* :valn10* valid-i?* :valn11* valid-i?* :valn12* valid-i?* :valn13* valid-i?* :valn14* valid-i?* :valn15* valid-i?* :valn16* valid-i?* ))
+  :args (s/cat :val1* (s/? valid-i?*) :val2* (s/? valid-i?*) :valn3* (s/? valid-i?*) :valn4* (s/? valid-i?*) :valn5* (s/? valid-i?*) :valn6* (s/? valid-i?*) :valn7* (s/? valid-i?*) :valn8* (s/? valid-i?*) :valn9* (s/? valid-i?*) :valn10* (s/? valid-i?*) :valn11* (s/? valid-i?*) :valn12* (s/? valid-i?*) :valn13* (s/? valid-i?*) :valn14* (s/? valid-i?*) :valn15* (s/? valid-i?*) :valn16* (s/? valid-i?*) ))
 (stest/instrument `fillarray:kArr)
 
 (defn event_i
@@ -7093,7 +5439,8 @@
 
 (s/fdef event_i
   :args (s/alt
-         :SSiiiiiiiiiiiiiiii (s/cat :scorechar valid-S? :insname valid-S? :delay1* valid-i?* :dur2* valid-i?* :p3* valid-i?* :p4* valid-i?* :p5* valid-i?* :p6* valid-i?* :p7* valid-i?* :p8* valid-i?* :p9* valid-i?* :p10* valid-i?* :p11* valid-i?* :p12* valid-i?* :p13* valid-i?* :p14* valid-i?* :p15* valid-i?* :p16* valid-i?* )
+         :Siiiiiiiiiiiiiiiii (s/cat :scorechar valid-S? :insname valid-i? :delay1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
+         :SSiiiiiiiiiiiiiiii (s/cat :scorechar valid-S? :insname valid-S? :delay1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
          ))
 (stest/instrument `event_i)
 
@@ -7109,23 +5456,8 @@
     (new out-types ast)))
 
 (s/fdef maca
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `maca)
-
-(defn maca:a
-  {:arglists '([& asig1* asig2* asig3* asig4* asig5* asig6* asig7* asig8* asig9* asig10* asig11* asig12* asig13* asig14* asig15* asig16* asig17* asig18* asig19* asig20* asig21* asig22* asig23* asig24* asig25* asig26* asig27* asig28* asig29* asig30* asig31* asig32*])}
-  [& [ sig1* sig2* sig3* sig4* sig5* sig6* sig7* sig8* sig9* sig10* sig11* sig12* sig13* sig14* sig15* sig16* sig17* sig18* sig19* sig20* sig21* sig22* sig23* sig24* sig25* sig26* sig27* sig28* sig29* sig30* sig31* sig32* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "maca"
-                      [sig1* sig2* sig3* sig4* sig5* sig6* sig7* sig8* sig9* sig10* sig11* sig12* sig13* sig14* sig15* sig16* sig17* sig18* sig19* sig20* sig21* sig22* sig23* sig24* sig25* sig26* sig27* sig28* sig29* sig30* sig31* sig32*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef maca:a
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
-(stest/instrument `maca:a)
 
 (defn freeverb
   {:arglists '([ainL ainR kRoomSize kHFDamp & iSRate* iSkip*])}
@@ -7139,7 +5471,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef freeverb
-  :args (s/cat :inL valid-ar? :inR valid-ar? :RoomSize valid-kr? :HFDamp valid-kr? :SRate* valid-i?* :Skip* valid-i?* ))
+  :args (s/cat :inL valid-ar? :inR valid-ar? :RoomSize valid-kr? :HFDamp valid-kr? :SRate* (s/? valid-i?*) :Skip* (s/? valid-i?*) ))
 (stest/instrument `freeverb)
 
 (defn dot
@@ -7155,6 +5487,7 @@
 
 (s/fdef dot
   :args (s/alt
+         :kArrkArr (s/cat :arr1 valid-kArr? :arg2 valid-kArr? )
          :iArriArr (s/cat :arr1 valid-iArr? :arg2 valid-iArr? )
          ))
 (stest/instrument `dot)
@@ -7201,23 +5534,8 @@
     (new out-types ast)))
 
 (s/fdef sfinstrm
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* valid-i?* :offset* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `sfinstrm)
-
-(defn sfinstrm:a
-  {:arglists '([ivel inotenum xamp xfreq instrnum ifilhandle & iflag* ioffset* ioffset*])}
-  [vel notenum amp freq nstrnum filhandle & [ flag* offset* offset* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sfinstrm"
-                      [vel notenum amp freq nstrnum filhandle flag* offset* offset*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sfinstrm:a
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* valid-i?* :offset* valid-i?* :offset* valid-i?* ))
-(stest/instrument `sfinstrm:a)
 
 (defn tableikt
   {:arglists '([xindex ktable & ixmode* ixoff* iwrap*] [xindex ktable & ixmode* ixoff* iwrap*])}
@@ -7232,7 +5550,7 @@
 
 (s/fdef tableikt
   :args (s/alt
-         :xkiii (s/cat :index valid-x? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :xkiii (s/cat :index valid-x? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `tableikt)
 
@@ -7248,7 +5566,7 @@
     (new out-types ast)))
 
 (s/fdef tableikt:a
-  :args (s/cat :index valid-x? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tableikt:a)
 
 (defn tableikt:k
@@ -7263,7 +5581,7 @@
     (new out-types ast)))
 
 (s/fdef tableikt:k
-  :args (s/cat :index valid-x? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tableikt:k)
 
 (defn rand
@@ -7279,7 +5597,7 @@
 
 (s/fdef rand
   :args (s/alt
-         :xiii (s/cat :amp valid-x? :seed valid-i? :sel* valid-i?* :offset* valid-i?* )
+         :xiii (s/cat :amp valid-x? :seed valid-i? :sel* (s/? valid-i?*) :offset* (s/? valid-i?*) )
          ))
 (stest/instrument `rand)
 
@@ -7295,7 +5613,7 @@
     (new out-types ast)))
 
 (s/fdef rand:a
-  :args (s/cat :amp valid-x? :seed valid-i? :sel* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :amp valid-x? :seed valid-i? :sel* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `rand:a)
 
 (defn rand:k
@@ -7310,7 +5628,7 @@
     (new out-types ast)))
 
 (s/fdef rand:k
-  :args (s/cat :amp valid-x? :seed valid-i? :sel* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :amp valid-x? :seed valid-i? :sel* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `rand:k)
 
 (defn butterbr
@@ -7325,23 +5643,8 @@
     (new out-types ast)))
 
 (s/fdef butterbr
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `butterbr)
-
-(defn butterbr:a
-  {:arglists '([asig xfreq xband & iskip*])}
-  [sig freq band & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butterbr"
-                      [sig freq band skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butterbr:a
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
-(stest/instrument `butterbr:a)
 
 (defn mute
   {:arglists '([Sinsname & iswitch*] [iinsname & iswitch*])}
@@ -7356,7 +5659,8 @@
 
 (s/fdef mute
   :args (s/alt
-         :Si (s/cat :insname valid-S? :switch* valid-i?* )
+         :ii (s/cat :insname valid-i? :switch* (s/? valid-i?*) )
+         :Si (s/cat :insname valid-S? :switch* (s/? valid-i?*) )
          ))
 (stest/instrument `mute)
 
@@ -7373,7 +5677,8 @@
 
 (s/fdef midic7
   :args (s/alt
-         :iiii (s/cat :ctlno valid-i? :min valid-i? :max valid-i? :table* valid-i?* )
+         :ikki (s/cat :ctlno valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) )
+         :iiii (s/cat :ctlno valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) )
          ))
 (stest/instrument `midic7)
 
@@ -7389,7 +5694,7 @@
     (new out-types ast)))
 
 (s/fdef midic7:i
-  :args (s/cat :ctlno valid-i? :min valid-i? :max valid-i? :table* valid-i?* ))
+  :args (s/cat :ctlno valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `midic7:i)
 
 (defn midic7:k
@@ -7404,7 +5709,7 @@
     (new out-types ast)))
 
 (s/fdef midic7:k
-  :args (s/cat :ctlno valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* ))
+  :args (s/cat :ctlno valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) ))
 (stest/instrument `midic7:k)
 
 (defn pdhalfy
@@ -7419,23 +5724,8 @@
     (new out-types ast)))
 
 (s/fdef pdhalfy
-  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :bipolar* valid-i?* :fullscale* valid-i?* ))
+  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :bipolar* (s/? valid-i?*) :fullscale* (s/? valid-i?*) ))
 (stest/instrument `pdhalfy)
-
-(defn pdhalfy:a
-  {:arglists '([ain kShapeAmount & ibipolar* ifullscale*])}
-  [in ShapeAmount & [ bipolar* fullscale* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pdhalfy"
-                      [in ShapeAmount bipolar* fullscale*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pdhalfy:a
-  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :bipolar* valid-i?* :fullscale* valid-i?* ))
-(stest/instrument `pdhalfy:a)
 
 (defn cbrt
   {:arglists '([iargArr] [kargArr])}
@@ -7450,6 +5740,7 @@
 
 (s/fdef cbrt
   :args (s/alt
+         :kArr (s/cat :arg valid-kArr? )
          :iArr (s/cat :arg valid-iArr? )
          ))
 (stest/instrument `cbrt)
@@ -7514,21 +5805,6 @@
   :args (s/cat :trig_in valid-kr? :time_unit valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_times valid-kr? ))
 (stest/instrument `seqtime2)
 
-(defn seqtime2:k
-  {:arglists '([ktrig_in ktime_unit kstart kloop kinitndx kfn_times])}
-  [trig_in time_unit start loop initndx fn_times]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "seqtime2"
-                      [trig_in time_unit start loop initndx fn_times]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef seqtime2:k
-  :args (s/cat :trig_in valid-kr? :time_unit valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_times valid-kr? ))
-(stest/instrument `seqtime2:k)
-
 (defn dssiactivate
   {:arglists '([ihandle ktoggle])}
   [handle toggle]
@@ -7559,21 +5835,6 @@
   :args (s/cat :sig valid-ar? :cutoff-frequency valid-kr? :resonance valid-kr? :ord valid-i? :sep valid-kr? ))
 (stest/instrument `vlowres)
 
-(defn vlowres:a
-  {:arglists '([asig kcutoff-frequency kresonance iord ksep])}
-  [sig cutoff-frequency resonance ord sep]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vlowres"
-                      [sig cutoff-frequency resonance ord sep]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vlowres:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-kr? :resonance valid-kr? :ord valid-i? :sep valid-kr? ))
-(stest/instrument `vlowres:a)
-
 (defn exitnow
   {:arglists '([& ivalue*])}
   [& [ value* ]]
@@ -7586,7 +5847,7 @@
     (new out-types ast)))
 
 (s/fdef exitnow
-  :args (s/cat :value* valid-i?* ))
+  :args (s/cat :value* (s/? valid-i?*) ))
 (stest/instrument `exitnow)
 
 (defn mags
@@ -7603,21 +5864,6 @@
 (s/fdef mags
   :args (s/cat :in valid-kArr? ))
 (stest/instrument `mags)
-
-(defn mags:kArr
-  {:arglists '([kinArr])}
-  [in]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "mags"
-                      [in]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mags:kArr
-  :args (s/cat :in valid-kArr? ))
-(stest/instrument `mags:kArr)
 
 (defn return
   {:arglists '([ival])}
@@ -7664,21 +5910,6 @@
   :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vibfn valid-i? :dec valid-i? ))
 (stest/instrument `vibes)
 
-(defn vibes:a
-  {:arglists '([kamp kfreq ihrd ipos imp kvibf kvamp ivibfn idec])}
-  [amp freq hrd pos mp vibf vamp vibfn dec]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vibes"
-                      [amp freq hrd pos mp vibf vamp vibfn dec]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vibes:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :hrd valid-i? :pos valid-i? :mp valid-i? :vibf valid-kr? :vamp valid-kr? :vibfn valid-i? :dec valid-i? ))
-(stest/instrument `vibes:a)
-
 (defn planet
   {:arglists '([kmass1 kmass2 ksep ix iy iz ivx ivy ivz idelta & ifriction* iskip*])}
   [mass1 mass2 sep x y z vx vy vz delta & [ friction* skip* ]]
@@ -7691,7 +5922,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef planet
-  :args (s/cat :mass1 valid-kr? :mass2 valid-kr? :sep valid-kr? :x valid-i? :y valid-i? :z valid-i? :vx valid-i? :vy valid-i? :vz valid-i? :delta valid-i? :friction* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :mass1 valid-kr? :mass2 valid-kr? :sep valid-kr? :x valid-i? :y valid-i? :z valid-i? :vx valid-i? :vy valid-i? :vz valid-i? :delta valid-i? :friction* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `planet)
 
 (defn fareyleni
@@ -7709,21 +5940,6 @@
   :args (s/cat :table valid-i? ))
 (stest/instrument `fareyleni)
 
-(defn fareyleni:i
-  {:arglists '([itable])}
-  [table]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "fareyleni"
-                      [table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fareyleni:i
-  :args (s/cat :table valid-i? ))
-(stest/instrument `fareyleni:i)
-
 (defn vtaba
   {:arglists '([aindex itable & aout1* aout2* aout3* aoutN4* aoutN5* aoutN6* aoutN7* aoutN8* aoutN9* aoutN10* aoutN11* aoutN12* aoutN13* aoutN14* aoutN15* aoutN16* aoutN17* aoutN18* aoutN19* aoutN20* aoutN21* aoutN22* aoutN23* aoutN24* aoutN25* aoutN26* aoutN27* aoutN28* aoutN29* aoutN30* aoutN31* aoutN32*])}
   [index table & [ out1* out2* out3* outN4* outN5* outN6* outN7* outN8* outN9* outN10* outN11* outN12* outN13* outN14* outN15* outN16* outN17* outN18* outN19* outN20* outN21* outN22* outN23* outN24* outN25* outN26* outN27* outN28* outN29* outN30* outN31* outN32* ]]
@@ -7736,7 +5952,7 @@
     (new out-types ast)))
 
 (s/fdef vtaba
-  :args (s/cat :index valid-ar? :table valid-i? :out1* valid-ar?* :out2* valid-ar?* :out3* valid-ar?* :outN4* valid-ar?* :outN5* valid-ar?* :outN6* valid-ar?* :outN7* valid-ar?* :outN8* valid-ar?* :outN9* valid-ar?* :outN10* valid-ar?* :outN11* valid-ar?* :outN12* valid-ar?* :outN13* valid-ar?* :outN14* valid-ar?* :outN15* valid-ar?* :outN16* valid-ar?* :outN17* valid-ar?* :outN18* valid-ar?* :outN19* valid-ar?* :outN20* valid-ar?* :outN21* valid-ar?* :outN22* valid-ar?* :outN23* valid-ar?* :outN24* valid-ar?* :outN25* valid-ar?* :outN26* valid-ar?* :outN27* valid-ar?* :outN28* valid-ar?* :outN29* valid-ar?* :outN30* valid-ar?* :outN31* valid-ar?* :outN32* valid-ar?* ))
+  :args (s/cat :index valid-ar? :table valid-i? :out1* (s/? valid-ar?*) :out2* (s/? valid-ar?*) :out3* (s/? valid-ar?*) :outN4* (s/? valid-ar?*) :outN5* (s/? valid-ar?*) :outN6* (s/? valid-ar?*) :outN7* (s/? valid-ar?*) :outN8* (s/? valid-ar?*) :outN9* (s/? valid-ar?*) :outN10* (s/? valid-ar?*) :outN11* (s/? valid-ar?*) :outN12* (s/? valid-ar?*) :outN13* (s/? valid-ar?*) :outN14* (s/? valid-ar?*) :outN15* (s/? valid-ar?*) :outN16* (s/? valid-ar?*) :outN17* (s/? valid-ar?*) :outN18* (s/? valid-ar?*) :outN19* (s/? valid-ar?*) :outN20* (s/? valid-ar?*) :outN21* (s/? valid-ar?*) :outN22* (s/? valid-ar?*) :outN23* (s/? valid-ar?*) :outN24* (s/? valid-ar?*) :outN25* (s/? valid-ar?*) :outN26* (s/? valid-ar?*) :outN27* (s/? valid-ar?*) :outN28* (s/? valid-ar?*) :outN29* (s/? valid-ar?*) :outN30* (s/? valid-ar?*) :outN31* (s/? valid-ar?*) :outN32* (s/? valid-ar?*) ))
 (stest/instrument `vtaba)
 
 (defn sfplay
@@ -7751,7 +5967,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef sfplay
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* valid-i?* :offset* valid-i?* :env* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :env* (s/? valid-i?*) ))
 (stest/instrument `sfplay)
 
 (defn midiin
@@ -7778,7 +5994,7 @@
     (new out-types ast)))
 
 (s/fdef midglobal
-  :args (s/cat :source valid-S? :nstrnum1* valid-i?* :nstrnum2* valid-i?* :nstrnum3* valid-i?* :nstrnum4* valid-i?* :nstrnum5* valid-i?* :nstrnum6* valid-i?* :nstrnum7* valid-i?* :nstrnum8* valid-i?* :nstrnum9* valid-i?* :nstrnum10* valid-i?* :nstrnum11* valid-i?* :nstrnum12* valid-i?* :nstrnum13* valid-i?* :nstrnum14* valid-i?* :nstrnum15* valid-i?* :nstrnum16* valid-i?* ))
+  :args (s/cat :source valid-S? :nstrnum1* (s/? valid-i?*) :nstrnum2* (s/? valid-i?*) :nstrnum3* (s/? valid-i?*) :nstrnum4* (s/? valid-i?*) :nstrnum5* (s/? valid-i?*) :nstrnum6* (s/? valid-i?*) :nstrnum7* (s/? valid-i?*) :nstrnum8* (s/? valid-i?*) :nstrnum9* (s/? valid-i?*) :nstrnum10* (s/? valid-i?*) :nstrnum11* (s/? valid-i?*) :nstrnum12* (s/? valid-i?*) :nstrnum13* (s/? valid-i?*) :nstrnum14* (s/? valid-i?*) :nstrnum15* (s/? valid-i?*) :nstrnum16* (s/? valid-i?*) ))
 (stest/instrument `midglobal)
 
 (defn tabmorpha
@@ -7793,23 +6009,8 @@
     (new out-types ast)))
 
 (s/fdef tabmorpha
-  :args (s/cat :index valid-ar? :weightpoint valid-ar? :tabnum3 valid-ar? :tabnum4 valid-ar? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
+  :args (s/cat :index valid-ar? :weightpoint valid-ar? :tabnum3 valid-ar? :tabnum4 valid-ar? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fnN5* (s/? valid-i?*) :fnN6* (s/? valid-i?*) :fnN7* (s/? valid-i?*) :fnN8* (s/? valid-i?*) :fnN9* (s/? valid-i?*) :fnN10* (s/? valid-i?*) :fnN11* (s/? valid-i?*) :fnN12* (s/? valid-i?*) :fnN13* (s/? valid-i?*) :fnN14* (s/? valid-i?*) :fnN15* (s/? valid-i?*) :fnN16* (s/? valid-i?*) ))
 (stest/instrument `tabmorpha)
-
-(defn tabmorpha:a
-  {:arglists '([aindex aweightpoint atabnum3 atabnum4 & ifn1* ifn2* ifn3* ifn4* ifnN5* ifnN6* ifnN7* ifnN8* ifnN9* ifnN10* ifnN11* ifnN12* ifnN13* ifnN14* ifnN15* ifnN16*])}
-  [index weightpoint tabnum3 tabnum4 & [ fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tabmorpha"
-                      [index weightpoint tabnum3 tabnum4 fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tabmorpha:a
-  :args (s/cat :index valid-ar? :weightpoint valid-ar? :tabnum3 valid-ar? :tabnum4 valid-ar? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
-(stest/instrument `tabmorpha:a)
 
 (defn ptable3
   {:arglists '([xindex itable & ixmode* ixoff* iwrap*] [iindex itable & ixmode* ixoff* iwrap*] [xindex itable & ixmode* ixoff* iwrap*])}
@@ -7824,7 +6025,8 @@
 
 (s/fdef ptable3
   :args (s/alt
-         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :iiiii (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
+         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `ptable3)
 
@@ -7840,7 +6042,7 @@
     (new out-types ast)))
 
 (s/fdef ptable3:a
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptable3:a)
 
 (defn ptable3:i
@@ -7855,7 +6057,7 @@
     (new out-types ast)))
 
 (s/fdef ptable3:i
-  :args (s/cat :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptable3:i)
 
 (defn ptable3:k
@@ -7870,7 +6072,7 @@
     (new out-types ast)))
 
 (s/fdef ptable3:k
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptable3:k)
 
 (defn sc_lagud
@@ -7886,7 +6088,8 @@
 
 (s/fdef sc_lagud
   :args (s/alt
-         :akki (s/cat :in valid-ar? :lagup valid-kr? :lagdown valid-kr? :lagdown* valid-i?* )
+         :kkki (s/cat :in valid-kr? :lagup valid-kr? :lagdown valid-kr? :lagdown* (s/? valid-i?*) )
+         :akki (s/cat :in valid-ar? :lagup valid-kr? :lagdown valid-kr? :lagdown* (s/? valid-i?*) )
          ))
 (stest/instrument `sc_lagud)
 
@@ -7902,7 +6105,7 @@
     (new out-types ast)))
 
 (s/fdef sc_lagud:a
-  :args (s/cat :in valid-ar? :lagup valid-kr? :lagdown valid-kr? :lagdown* valid-i?* ))
+  :args (s/cat :in valid-ar? :lagup valid-kr? :lagdown valid-kr? :lagdown* (s/? valid-i?*) ))
 (stest/instrument `sc_lagud:a)
 
 (defn sc_lagud:k
@@ -7917,7 +6120,7 @@
     (new out-types ast)))
 
 (s/fdef sc_lagud:k
-  :args (s/cat :in valid-kr? :lagup valid-kr? :lagdown valid-kr? :lagdown* valid-i?* ))
+  :args (s/cat :in valid-kr? :lagup valid-kr? :lagdown valid-kr? :lagdown* (s/? valid-i?*) ))
 (stest/instrument `sc_lagud:k)
 
 (defn repluck
@@ -7934,21 +6137,6 @@
 (s/fdef repluck
   :args (s/cat :plk valid-i? :amp valid-kr? :cps valid-i? :pick valid-kr? :refl valid-kr? :xcite valid-ar? ))
 (stest/instrument `repluck)
-
-(defn repluck:a
-  {:arglists '([iplk kamp icps kpick krefl axcite])}
-  [plk amp cps pick refl xcite]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "repluck"
-                      [plk amp cps pick refl xcite]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef repluck:a
-  :args (s/cat :plk valid-i? :amp valid-kr? :cps valid-i? :pick valid-kr? :refl valid-kr? :xcite valid-ar? ))
-(stest/instrument `repluck:a)
 
 (defn ftfree
   {:arglists '([ifno iwhen])}
@@ -7989,23 +6177,8 @@
     (new out-types ast)))
 
 (s/fdef sekere
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
+  :args (s/cat :amp valid-i? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) ))
 (stest/instrument `sekere)
-
-(defn sekere:a
-  {:arglists '([iamp idettack & inum* idamp* imaxshake*])}
-  [amp dettack & [ num* damp* maxshake* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sekere"
-                      [amp dettack num* damp* maxshake*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sekere:a
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
-(stest/instrument `sekere:a)
 
 (defn pvsbandr
   {:arglists '([fsigin xlowcut xlowfull xhighfull xhighcut & ktype*])}
@@ -8019,23 +6192,8 @@
     (new out-types ast)))
 
 (s/fdef pvsbandr
-  :args (s/cat :sigin valid-f? :lowcut valid-x? :lowfull valid-x? :highfull valid-x? :highcut valid-x? :type* valid-kr?* ))
+  :args (s/cat :sigin valid-f? :lowcut valid-x? :lowfull valid-x? :highfull valid-x? :highcut valid-x? :type* (s/? valid-kr?*) ))
 (stest/instrument `pvsbandr)
-
-(defn pvsbandr:f
-  {:arglists '([fsigin xlowcut xlowfull xhighfull xhighcut & ktype*])}
-  [sigin lowcut lowfull highfull highcut & [ type* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsbandr"
-                      [sigin lowcut lowfull highfull highcut type*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsbandr:f
-  :args (s/cat :sigin valid-f? :lowcut valid-x? :lowfull valid-x? :highfull valid-x? :highcut valid-x? :type* valid-kr?* ))
-(stest/instrument `pvsbandr:f)
 
 (defn vco
   {:arglists '([xamp xcps iwave & kpw* itable* imaxd* ileak* inyx* iphase* iskip*])}
@@ -8049,23 +6207,8 @@
     (new out-types ast)))
 
 (s/fdef vco
-  :args (s/cat :amp valid-x? :cps valid-x? :wave valid-i? :pw* valid-kr?* :table* valid-i?* :maxd* valid-i?* :leak* valid-i?* :nyx* valid-i?* :phase* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :wave valid-i? :pw* (s/? valid-kr?*) :table* (s/? valid-i?*) :maxd* (s/? valid-i?*) :leak* (s/? valid-i?*) :nyx* (s/? valid-i?*) :phase* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `vco)
-
-(defn vco:a
-  {:arglists '([xamp xcps iwave & kpw* itable* imaxd* ileak* inyx* iphase* iskip*])}
-  [amp cps wave & [ pw* table* maxd* leak* nyx* phase* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vco"
-                      [amp cps wave pw* table* maxd* leak* nyx* phase* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vco:a
-  :args (s/cat :amp valid-x? :cps valid-x? :wave valid-i? :pw* valid-kr?* :table* valid-i?* :maxd* valid-i?* :leak* valid-i?* :nyx* valid-i?* :phase* valid-i?* :skip* valid-i?* ))
-(stest/instrument `vco:a)
 
 (defn tablefilter
   {:arglists '([kouttable kintatble kmode kparam])}
@@ -8082,21 +6225,6 @@
   :args (s/cat :outtable valid-kr? :intatble valid-kr? :mode valid-kr? :param valid-kr? ))
 (stest/instrument `tablefilter)
 
-(defn tablefilter:k
-  {:arglists '([kouttable kintatble kmode kparam])}
-  [outtable intatble mode param]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tablefilter"
-                      [outtable intatble mode param]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tablefilter:k
-  :args (s/cat :outtable valid-kr? :intatble valid-kr? :mode valid-kr? :param valid-kr? ))
-(stest/instrument `tablefilter:k)
-
 (defn grain
   {:arglists '([xamp xpitch xdens kampoff kpitchoff kgdur igfn iwfn imgdur & igrnd*])}
   [amp pitch dens ampoff pitchoff gdur gfn wfn mgdur & [ grnd* ]]
@@ -8109,23 +6237,8 @@
     (new out-types ast)))
 
 (s/fdef grain
-  :args (s/cat :amp valid-x? :pitch valid-x? :dens valid-x? :ampoff valid-kr? :pitchoff valid-kr? :gdur valid-kr? :gfn valid-i? :wfn valid-i? :mgdur valid-i? :grnd* valid-i?* ))
+  :args (s/cat :amp valid-x? :pitch valid-x? :dens valid-x? :ampoff valid-kr? :pitchoff valid-kr? :gdur valid-kr? :gfn valid-i? :wfn valid-i? :mgdur valid-i? :grnd* (s/? valid-i?*) ))
 (stest/instrument `grain)
-
-(defn grain:a
-  {:arglists '([xamp xpitch xdens kampoff kpitchoff kgdur igfn iwfn imgdur & igrnd*])}
-  [amp pitch dens ampoff pitchoff gdur gfn wfn mgdur & [ grnd* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "grain"
-                      [amp pitch dens ampoff pitchoff gdur gfn wfn mgdur grnd*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef grain:a
-  :args (s/cat :amp valid-x? :pitch valid-x? :dens valid-x? :ampoff valid-kr? :pitchoff valid-kr? :gdur valid-kr? :gfn valid-i? :wfn valid-i? :mgdur valid-i? :grnd* valid-i?* ))
-(stest/instrument `grain:a)
 
 (defn ctrl21
   {:arglists '([ichan ictlno2 ictlno3 ictlno4 imin imax & itable*] [ichan ictlno2 ictlno3 ictlno4 kmin kmax & itable*])}
@@ -8140,7 +6253,8 @@
 
 (s/fdef ctrl21
   :args (s/alt
-         :iiiiiii (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-i? :max valid-i? :table* valid-i?* )
+         :iiiikki (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) )
+         :iiiiiii (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) )
          ))
 (stest/instrument `ctrl21)
 
@@ -8156,7 +6270,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl21:i
-  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-i? :max valid-i? :table* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `ctrl21:i)
 
 (defn ctrl21:k
@@ -8171,7 +6285,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl21:k
-  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :ctlno4 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) ))
 (stest/instrument `ctrl21:k)
 
 (defn schedkwhennamed
@@ -8187,7 +6301,8 @@
 
 (s/fdef schedkwhennamed
   :args (s/alt
-         :kkkSkkkkkkkkkkkkkkkkk (s/cat :trigger valid-kr? :mintim valid-kr? :maxnum valid-kr? :name valid-S? :when valid-kr? :dur1* valid-kr?* :p2* valid-kr?* :p3* valid-kr?* :p4* valid-kr?* :p5* valid-kr?* :p6* valid-kr?* :p7* valid-kr?* :p8* valid-kr?* :p9* valid-kr?* :p10* valid-kr?* :p11* valid-kr?* :p12* valid-kr?* :p13* valid-kr?* :p14* valid-kr?* :p15* valid-kr?* :p16* valid-kr?* )
+         :kkkkkkkkkkkkkkkkkkkkk (s/cat :trigger valid-kr? :mintim valid-kr? :maxnum valid-kr? :name valid-kr? :when valid-kr? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
+         :kkkSkkkkkkkkkkkkkkkkk (s/cat :trigger valid-kr? :mintim valid-kr? :maxnum valid-kr? :name valid-S? :when valid-kr? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
          ))
 (stest/instrument `schedkwhennamed)
 
@@ -8204,26 +6319,10 @@
 
 (s/fdef pvinterp
   :args (s/alt
+         :kkikkkkkk (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-i? :freqscale4 valid-kr? :freqscale5 valid-kr? :ampscale6 valid-kr? :ampscale7 valid-kr? :freqinterp valid-kr? :ampinterp valid-kr? )
          :kkSkkkkkk (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :freqscale4 valid-kr? :freqscale5 valid-kr? :ampscale6 valid-kr? :ampscale7 valid-kr? :freqinterp valid-kr? :ampinterp valid-kr? )
          ))
 (stest/instrument `pvinterp)
-
-(defn pvinterp:a
-  {:arglists '([ktimpnt kfmod Sfile kfreqscale4 kfreqscale5 kampscale6 kampscale7 kfreqinterp kampinterp] [ktimpnt kfmod ifile kfreqscale4 kfreqscale5 kampscale6 kampscale7 kfreqinterp kampinterp])}
-  [timpnt fmod file freqscale4 freqscale5 ampscale6 ampscale7 freqinterp ampinterp]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pvinterp"
-                      [timpnt fmod file freqscale4 freqscale5 ampscale6 ampscale7 freqinterp ampinterp]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvinterp:a
-  :args (s/alt
-         :kkSkkkkkk (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :freqscale4 valid-kr? :freqscale5 valid-kr? :ampscale6 valid-kr? :ampscale7 valid-kr? :freqinterp valid-kr? :ampinterp valid-kr? )
-         ))
-(stest/instrument `pvinterp:a)
 
 (defn pvsftw
   {:arglists '([fsrc ifna & ifnf*])}
@@ -8237,23 +6336,8 @@
     (new out-types ast)))
 
 (s/fdef pvsftw
-  :args (s/cat :src valid-f? :fna valid-i? :fnf* valid-i?* ))
+  :args (s/cat :src valid-f? :fna valid-i? :fnf* (s/? valid-i?*) ))
 (stest/instrument `pvsftw)
-
-(defn pvsftw:k
-  {:arglists '([fsrc ifna & ifnf*])}
-  [src fna & [ fnf* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "pvsftw"
-                      [src fna fnf*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsftw:k
-  :args (s/cat :src valid-f? :fna valid-i? :fnf* valid-i?* ))
-(stest/instrument `pvsftw:k)
 
 (defn pan2
   {:arglists '([asig xp & imode*])}
@@ -8267,7 +6351,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef pan2
-  :args (s/cat :sig valid-ar? :p valid-x? :mode* valid-i?* ))
+  :args (s/cat :sig valid-ar? :p valid-x? :mode* (s/? valid-i?*) ))
 (stest/instrument `pan2)
 
 (defn olabuffer
@@ -8285,21 +6369,6 @@
   :args (s/cat :in valid-kArr? :overlap valid-i? ))
 (stest/instrument `olabuffer)
 
-(defn olabuffer:a
-  {:arglists '([kinArr ioverlap])}
-  [in overlap]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "olabuffer"
-                      [in overlap]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef olabuffer:a
-  :args (s/cat :in valid-kArr? :overlap valid-i? ))
-(stest/instrument `olabuffer:a)
-
 (defn lposcilsa
   {:arglists '([aamp kfreqratio kloop kend ift & iphase*])}
   [amp freqratio loop end ft & [ phase* ]]
@@ -8312,7 +6381,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef lposcilsa
-  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `lposcilsa)
 
 (defn ptablei
@@ -8328,7 +6397,8 @@
 
 (s/fdef ptablei
   :args (s/alt
-         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :iiiii (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
+         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `ptablei)
 
@@ -8344,7 +6414,7 @@
     (new out-types ast)))
 
 (s/fdef ptablei:a
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptablei:a)
 
 (defn ptablei:i
@@ -8359,7 +6429,7 @@
     (new out-types ast)))
 
 (s/fdef ptablei:i
-  :args (s/cat :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptablei:i)
 
 (defn ptablei:k
@@ -8374,7 +6444,7 @@
     (new out-types ast)))
 
 (s/fdef ptablei:k
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptablei:k)
 
 (defn imagesetpixel
@@ -8405,7 +6475,8 @@
 
 (s/fdef pconvolve
   :args (s/alt
-         :aSii (s/cat :in valid-ar? :filcod valid-S? :partitionsize* valid-i?* :channel* valid-i?* )
+         :aiii (s/cat :in valid-ar? :filcod valid-i? :partitionsize* (s/? valid-i?*) :channel* (s/? valid-i?*) )
+         :aSii (s/cat :in valid-ar? :filcod valid-S? :partitionsize* (s/? valid-i?*) :channel* (s/? valid-i?*) )
          ))
 (stest/instrument `pconvolve)
 
@@ -8437,26 +6508,10 @@
 
 (s/fdef pvsfilter
   :args (s/alt
-         :fffi (s/cat :sigin valid-f? :sigfil valid-f? :depth valid-f? :gain* valid-i?* )
+         :ffxi (s/cat :sigin valid-f? :sigfil valid-f? :depth valid-x? :gain* (s/? valid-i?*) )
+         :fffi (s/cat :sigin valid-f? :sigfil valid-f? :depth valid-f? :gain* (s/? valid-i?*) )
          ))
 (stest/instrument `pvsfilter)
-
-(defn pvsfilter:f
-  {:arglists '([fsigin fsigfil fdepth & igain*] [fsigin fsigfil xdepth & igain*] [fsigin fsigfil xdepth & igain*])}
-  [sigin sigfil depth & [ gain* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsfilter"
-                      [sigin sigfil depth gain*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsfilter:f
-  :args (s/alt
-         :fffi (s/cat :sigin valid-f? :sigfil valid-f? :depth valid-f? :gain* valid-i?* )
-         ))
-(stest/instrument `pvsfilter:f)
 
 (defn chnparams
   {:arglists '([Sname])}
@@ -8503,21 +6558,6 @@
   :args (s/cat :trig valid-kr? :index valid-kr? :table valid-kr? ))
 (stest/instrument `cpstun)
 
-(defn cpstun:k
-  {:arglists '([ktrig kindex ktable])}
-  [trig index table]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "cpstun"
-                      [trig index table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cpstun:k
-  :args (s/cat :trig valid-kr? :index valid-kr? :table valid-kr? ))
-(stest/instrument `cpstun:k)
-
 (defn cossegb
   {:arglists '([ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
   [a tim2 & [ b1* tim2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16* ]]
@@ -8531,7 +6571,7 @@
 
 (s/fdef cossegb
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `cossegb)
 
@@ -8547,7 +6587,7 @@
     (new out-types ast)))
 
 (s/fdef cossegb:a
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `cossegb:a)
 
 (defn cossegb:k
@@ -8562,7 +6602,7 @@
     (new out-types ast)))
 
 (s/fdef cossegb:k
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `cossegb:k)
 
 (defn genarray
@@ -8578,7 +6618,8 @@
 
 (s/fdef genarray
   :args (s/alt
-         :iii (s/cat :start valid-i? :ens valid-i? :nc* valid-i?* )
+         :kki (s/cat :start valid-kr? :ens valid-kr? :nc* (s/? valid-i?*) )
+         :iii (s/cat :start valid-i? :ens valid-i? :nc* (s/? valid-i?*) )
          ))
 (stest/instrument `genarray)
 
@@ -8594,7 +6635,7 @@
     (new out-types ast)))
 
 (s/fdef genarray:iArr
-  :args (s/cat :start valid-i? :ens valid-i? :nc* valid-i?* ))
+  :args (s/cat :start valid-i? :ens valid-i? :nc* (s/? valid-i?*) ))
 (stest/instrument `genarray:iArr)
 
 (defn genarray:kArr
@@ -8609,7 +6650,7 @@
     (new out-types ast)))
 
 (s/fdef genarray:kArr
-  :args (s/cat :start valid-kr? :ens valid-kr? :nc* valid-i?* ))
+  :args (s/cat :start valid-kr? :ens valid-kr? :nc* (s/? valid-i?*) ))
 (stest/instrument `genarray:kArr)
 
 (defn MixerSetLevel
@@ -8654,23 +6695,8 @@
     (new out-types ast)))
 
 (s/fdef trshift
-  :args (s/cat :in valid-f? :pshift1* valid-kr?* :gain2* valid-kr?* :gain3* valid-kr?* :gain4* valid-kr?* :gain5* valid-kr?* :gain6* valid-kr?* :gain7* valid-kr?* :gain8* valid-kr?* :gain9* valid-kr?* :gain10* valid-kr?* :gain11* valid-kr?* :gain12* valid-kr?* :gain13* valid-kr?* :gain14* valid-kr?* :gain15* valid-kr?* :gain16* valid-kr?* ))
+  :args (s/cat :in valid-f? :pshift1* (s/? valid-kr?*) :gain2* (s/? valid-kr?*) :gain3* (s/? valid-kr?*) :gain4* (s/? valid-kr?*) :gain5* (s/? valid-kr?*) :gain6* (s/? valid-kr?*) :gain7* (s/? valid-kr?*) :gain8* (s/? valid-kr?*) :gain9* (s/? valid-kr?*) :gain10* (s/? valid-kr?*) :gain11* (s/? valid-kr?*) :gain12* (s/? valid-kr?*) :gain13* (s/? valid-kr?*) :gain14* (s/? valid-kr?*) :gain15* (s/? valid-kr?*) :gain16* (s/? valid-kr?*) ))
 (stest/instrument `trshift)
-
-(defn trshift:f
-  {:arglists '([fin & kpshift1* kgain2* kgain3* kgain4* kgain5* kgain6* kgain7* kgain8* kgain9* kgain10* kgain11* kgain12* kgain13* kgain14* kgain15* kgain16*])}
-  [in & [ pshift1* gain2* gain3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "trshift"
-                      [in pshift1* gain2* gain3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trshift:f
-  :args (s/cat :in valid-f? :pshift1* valid-kr?* :gain2* valid-kr?* :gain3* valid-kr?* :gain4* valid-kr?* :gain5* valid-kr?* :gain6* valid-kr?* :gain7* valid-kr?* :gain8* valid-kr?* :gain9* valid-kr?* :gain10* valid-kr?* :gain11* valid-kr?* :gain12* valid-kr?* :gain13* valid-kr?* :gain14* valid-kr?* :gain15* valid-kr?* :gain16* valid-kr?* ))
-(stest/instrument `trshift:f)
 
 (defn chuap
   {:arglists '([kL kR2 kC3 kG kGa kGb kE kC8 iI9 iV10 iV11 ktime_step])}
@@ -8699,7 +6725,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef platerev
-  :args (s/cat :tabexcite valid-i? :tabouts valid-i? :bndry valid-kr? :aspect valid-i? :stiff valid-i? :decay valid-i? :loss valid-i? :excite1* valid-ar?* :excite2* valid-ar?* :excite3* valid-ar?* :excite4* valid-ar?* :excite5* valid-ar?* :excite6* valid-ar?* :excite7* valid-ar?* :excite8* valid-ar?* :excite9* valid-ar?* :excite10* valid-ar?* :excite11* valid-ar?* :excite12* valid-ar?* :excite13* valid-ar?* :excite14* valid-ar?* :excite15* valid-ar?* :excite16* valid-ar?* :excite17* valid-ar?* :excite18* valid-ar?* :excite19* valid-ar?* :excite20* valid-ar?* :excite21* valid-ar?* :excite22* valid-ar?* :excite23* valid-ar?* :excite24* valid-ar?* :excite25* valid-ar?* :excite26* valid-ar?* :excite27* valid-ar?* :excite28* valid-ar?* :excite29* valid-ar?* :excite30* valid-ar?* :excite31* valid-ar?* :excite32* valid-ar?* ))
+  :args (s/cat :tabexcite valid-i? :tabouts valid-i? :bndry valid-kr? :aspect valid-i? :stiff valid-i? :decay valid-i? :loss valid-i? :excite1* (s/? valid-ar?*) :excite2* (s/? valid-ar?*) :excite3* (s/? valid-ar?*) :excite4* (s/? valid-ar?*) :excite5* (s/? valid-ar?*) :excite6* (s/? valid-ar?*) :excite7* (s/? valid-ar?*) :excite8* (s/? valid-ar?*) :excite9* (s/? valid-ar?*) :excite10* (s/? valid-ar?*) :excite11* (s/? valid-ar?*) :excite12* (s/? valid-ar?*) :excite13* (s/? valid-ar?*) :excite14* (s/? valid-ar?*) :excite15* (s/? valid-ar?*) :excite16* (s/? valid-ar?*) :excite17* (s/? valid-ar?*) :excite18* (s/? valid-ar?*) :excite19* (s/? valid-ar?*) :excite20* (s/? valid-ar?*) :excite21* (s/? valid-ar?*) :excite22* (s/? valid-ar?*) :excite23* (s/? valid-ar?*) :excite24* (s/? valid-ar?*) :excite25* (s/? valid-ar?*) :excite26* (s/? valid-ar?*) :excite27* (s/? valid-ar?*) :excite28* (s/? valid-ar?*) :excite29* (s/? valid-ar?*) :excite30* (s/? valid-ar?*) :excite31* (s/? valid-ar?*) :excite32* (s/? valid-ar?*) ))
 (stest/instrument `platerev)
 
 (defn noteon
@@ -8730,7 +6756,8 @@
 
 (s/fdef fprintks
   :args (s/alt
-         :SSxxxxxxxxxxxxxxxx (s/cat :filename valid-S? :string valid-S? :val1* valid-x?* :val2* valid-x?* :val3* valid-x?* :val4* valid-x?* :val5* valid-x?* :val6* valid-x?* :val7* valid-x?* :val8* valid-x?* :val9* valid-x?* :val10* valid-x?* :val11* valid-x?* :val12* valid-x?* :val13* valid-x?* :val14* valid-x?* :val15* valid-x?* :val16* valid-x?* )
+         :iSxxxxxxxxxxxxxxxx (s/cat :filename valid-i? :string valid-S? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
+         :SSxxxxxxxxxxxxxxxx (s/cat :filename valid-S? :string valid-S? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
          ))
 (stest/instrument `fprintks)
 
@@ -8747,7 +6774,8 @@
 
 (s/fdef envlpx
   :args (s/alt
-         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* valid-i?* )
+         :kiiiiiii (s/cat :amp valid-kr? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) )
+         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) )
          ))
 (stest/instrument `envlpx)
 
@@ -8764,7 +6792,8 @@
 
 (s/fdef envlpx:a
   :args (s/alt
-         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* valid-i?* )
+         :kiiiiiii (s/cat :amp valid-kr? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) )
+         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) )
          ))
 (stest/instrument `envlpx:a)
 
@@ -8780,7 +6809,7 @@
     (new out-types ast)))
 
 (s/fdef envlpx:k
-  :args (s/cat :amp valid-kr? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* valid-i?* ))
+  :args (s/cat :amp valid-kr? :rise valid-i? :dur valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) ))
 (stest/instrument `envlpx:k)
 
 (defn follow2
@@ -8798,21 +6827,6 @@
   :args (s/cat :sig valid-ar? :att valid-kr? :rel valid-kr? ))
 (stest/instrument `follow2)
 
-(defn follow2:a
-  {:arglists '([asig katt krel])}
-  [sig att rel]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "follow2"
-                      [sig att rel]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef follow2:a
-  :args (s/cat :sig valid-ar? :att valid-kr? :rel valid-kr? ))
-(stest/instrument `follow2:a)
-
 (defn vdelayxwq
   {:arglists '([ain1 ain2 ain3 ain4 adl imd iws & ist*])}
   [in1 in2 in3 in4 dl md ws & [ st* ]]
@@ -8825,7 +6839,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vdelayxwq
-  :args (s/cat :in1 valid-ar? :in2 valid-ar? :in3 valid-ar? :in4 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
+  :args (s/cat :in1 valid-ar? :in2 valid-ar? :in3 valid-ar? :in4 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* (s/? valid-i?*) ))
 (stest/instrument `vdelayxwq)
 
 (defn pcauchy
@@ -8932,23 +6946,8 @@
     (new out-types ast)))
 
 (s/fdef mediank
-  :args (s/cat :in valid-kr? :size valid-kr? :maxsize valid-i? :skip* valid-i?* ))
+  :args (s/cat :in valid-kr? :size valid-kr? :maxsize valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `mediank)
-
-(defn mediank:k
-  {:arglists '([kin ksize imaxsize & iskip*])}
-  [in size maxsize & [ skip* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "mediank"
-                      [in size maxsize skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mediank:k
-  :args (s/cat :in valid-kr? :size valid-kr? :maxsize valid-i? :skip* valid-i?* ))
-(stest/instrument `mediank:k)
 
 (defn pvshift
   {:arglists '([fsigin kshift klowest & kkeepform* kgain* kcoefs*] [fsigin xshift klowest & kkeepform* kgain* kcoefs*])}
@@ -8963,26 +6962,10 @@
 
 (s/fdef pvshift
   :args (s/alt
-         :fkkkkk (s/cat :sigin valid-f? :shift valid-kr? :lowest valid-kr? :keepform* valid-kr?* :gain* valid-kr?* :coefs* valid-kr?* )
+         :fxkkkk (s/cat :sigin valid-f? :shift valid-x? :lowest valid-kr? :keepform* (s/? valid-kr?*) :gain* (s/? valid-kr?*) :coefs* (s/? valid-kr?*) )
+         :fkkkkk (s/cat :sigin valid-f? :shift valid-kr? :lowest valid-kr? :keepform* (s/? valid-kr?*) :gain* (s/? valid-kr?*) :coefs* (s/? valid-kr?*) )
          ))
 (stest/instrument `pvshift)
-
-(defn pvshift:f
-  {:arglists '([fsigin kshift klowest & kkeepform* kgain* kcoefs*] [fsigin xshift klowest & kkeepform* kgain* kcoefs*])}
-  [sigin shift lowest & [ keepform* gain* coefs* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvshift"
-                      [sigin shift lowest keepform* gain* coefs*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvshift:f
-  :args (s/alt
-         :fkkkkk (s/cat :sigin valid-f? :shift valid-kr? :lowest valid-kr? :keepform* valid-kr?* :gain* valid-kr?* :coefs* valid-kr?* )
-         ))
-(stest/instrument `pvshift:f)
 
 (defn ATSread
   {:arglists '([ktimepnt Satsfile ipartial] [ktimepnt iatsfile ipartial])}
@@ -8997,6 +6980,7 @@
 
 (s/fdef ATSread
   :args (s/alt
+         :kii (s/cat :timepnt valid-kr? :atsfile valid-i? :partial valid-i? )
          :kSi (s/cat :timepnt valid-kr? :atsfile valid-S? :partial valid-i? )
          ))
 (stest/instrument `ATSread)
@@ -9013,23 +6997,8 @@
     (new out-types ast)))
 
 (s/fdef waveset
-  :args (s/cat :in valid-ar? :rep valid-kr? :len* valid-i?* ))
+  :args (s/cat :in valid-ar? :rep valid-kr? :len* (s/? valid-i?*) ))
 (stest/instrument `waveset)
-
-(defn waveset:a
-  {:arglists '([ain krep & ilen*])}
-  [in rep & [ len* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "waveset"
-                      [in rep len*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef waveset:a
-  :args (s/cat :in valid-ar? :rep valid-kr? :len* valid-i?* ))
-(stest/instrument `waveset:a)
 
 (defn mvclpf1
   {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
@@ -9044,26 +7013,12 @@
 
 (s/fdef mvclpf1
   :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
+         :akki (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :akai (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-ar? :stor* (s/? valid-i?*) )
+         :aaki (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `mvclpf1)
-
-(defn mvclpf1:a
-  {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
-  [in center-frequency resonance & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mvclpf1"
-                      [in center-frequency resonance stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mvclpf1:a
-  :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
-         ))
-(stest/instrument `mvclpf1:a)
 
 (defn tab2pvs
   {:arglists '([kmagsArr kfreqsArr & ihopsize* iwinsize* iwintype*] [kmagsArr & ifreqs* ihopsize* iwinsize*])}
@@ -9078,26 +7033,10 @@
 
 (s/fdef tab2pvs
   :args (s/alt
-         :kArrkArriii (s/cat :mags valid-kArr? :freqs valid-kArr? :hopsize* valid-i?* :winsize* valid-i?* :wintype* valid-i?* )
+         :kArriii (s/cat :mags valid-kArr? :freqs* (s/? valid-i?*) :hopsize* (s/? valid-i?*) :winsize* (s/? valid-i?*) )
+         :kArrkArriii (s/cat :mags valid-kArr? :freqs valid-kArr? :hopsize* (s/? valid-i?*) :winsize* (s/? valid-i?*) :wintype* (s/? valid-i?*) )
          ))
 (stest/instrument `tab2pvs)
-
-(defn tab2pvs:f
-  {:arglists '([kmagsArr kfreqsArr & ihopsize* iwinsize* iwintype*] [kmagsArr & ifreqs* ihopsize* iwinsize*])}
-  [mags freqs & [ hopsize* winsize* wintype* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "tab2pvs"
-                      [mags freqs hopsize* winsize* wintype*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tab2pvs:f
-  :args (s/alt
-         :kArrkArriii (s/cat :mags valid-kArr? :freqs valid-kArr? :hopsize* valid-i?* :winsize* valid-i?* :wintype* valid-i?* )
-         ))
-(stest/instrument `tab2pvs:f)
 
 (defn vadd
   {:arglists '([itable kval kelements & kdstoffset* kverbose*])}
@@ -9111,7 +7050,7 @@
     (new out-types ast)))
 
 (s/fdef vadd
-  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vadd)
 
 (defn pvsbufread
@@ -9126,23 +7065,8 @@
     (new out-types ast)))
 
 (s/fdef pvsbufread
-  :args (s/cat :time valid-kr? :handle valid-kr? :lo* valid-kr?* :hi* valid-kr?* :clear* valid-i?* ))
+  :args (s/cat :time valid-kr? :handle valid-kr? :lo* (s/? valid-kr?*) :hi* (s/? valid-kr?*) :clear* (s/? valid-i?*) ))
 (stest/instrument `pvsbufread)
-
-(defn pvsbufread:f
-  {:arglists '([ktime khandle & klo* khi* iclear*])}
-  [time handle & [ lo* hi* clear* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsbufread"
-                      [time handle lo* hi* clear*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsbufread:f
-  :args (s/cat :time valid-kr? :handle valid-kr? :lo* valid-kr?* :hi* valid-kr?* :clear* valid-i?* ))
-(stest/instrument `pvsbufread:f)
 
 (defn imagesave
   {:arglists '([iimagenum Silename])}
@@ -9174,21 +7098,6 @@
   :args (s/cat :table valid-kr? :start valid-kr? :off valid-kr? ))
 (stest/instrument `tablera)
 
-(defn tablera:a
-  {:arglists '([ktable kstart koff])}
-  [table start off]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tablera"
-                      [table start off]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tablera:a
-  :args (s/cat :table valid-kr? :start valid-kr? :off valid-kr? ))
-(stest/instrument `tablera:a)
-
 (defn midictrl
   {:arglists '([inum & imin* imax*] [inum & imin* imax*])}
   [num & [ min* max* ]]
@@ -9202,7 +7111,7 @@
 
 (s/fdef midictrl
   :args (s/alt
-         :iii (s/cat :num valid-i? :min* valid-i?* :max* valid-i?* )
+         :iii (s/cat :num valid-i? :min* (s/? valid-i?*) :max* (s/? valid-i?*) )
          ))
 (stest/instrument `midictrl)
 
@@ -9218,7 +7127,7 @@
     (new out-types ast)))
 
 (s/fdef midictrl:i
-  :args (s/cat :num valid-i? :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :num valid-i? :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `midictrl:i)
 
 (defn midictrl:k
@@ -9233,7 +7142,7 @@
     (new out-types ast)))
 
 (s/fdef midictrl:k
-  :args (s/cat :num valid-i? :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :num valid-i? :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `midictrl:k)
 
 (defn bbcuts
@@ -9248,7 +7157,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef bbcuts
-  :args (s/cat :source1 valid-ar? :source2 valid-ar? :bps valid-i? :subdiv valid-i? :barlength valid-i? :phrasebars valid-i? :numrepeats valid-i? :stutterspeed* valid-i?* :stutterchance* valid-i?* :envchoice* valid-i?* ))
+  :args (s/cat :source1 valid-ar? :source2 valid-ar? :bps valid-i? :subdiv valid-i? :barlength valid-i? :phrasebars valid-i? :numrepeats valid-i? :stutterspeed* (s/? valid-i?*) :stutterchance* (s/? valid-i?*) :envchoice* (s/? valid-i?*) ))
 (stest/instrument `bbcuts)
 
 (defn loopsegp
@@ -9263,23 +7172,8 @@
     (new out-types ast)))
 
 (s/fdef loopsegp
-  :args (s/cat :phase valid-kr? :value1* valid-kr?* :dur2* valid-kr?* :value3* valid-kr?* :dur4* valid-kr?* :durN-5* valid-kr?* :valueN6* valid-kr?* :valueN7* valid-kr?* :valueN8* valid-kr?* :valueN9* valid-kr?* :valueN10* valid-kr?* :valueN11* valid-kr?* :valueN12* valid-kr?* :valueN13* valid-kr?* :valueN14* valid-kr?* :valueN15* valid-kr?* :valueN16* valid-kr?* ))
+  :args (s/cat :phase valid-kr? :value1* (s/? valid-kr?*) :dur2* (s/? valid-kr?*) :value3* (s/? valid-kr?*) :dur4* (s/? valid-kr?*) :durN-5* (s/? valid-kr?*) :valueN6* (s/? valid-kr?*) :valueN7* (s/? valid-kr?*) :valueN8* (s/? valid-kr?*) :valueN9* (s/? valid-kr?*) :valueN10* (s/? valid-kr?*) :valueN11* (s/? valid-kr?*) :valueN12* (s/? valid-kr?*) :valueN13* (s/? valid-kr?*) :valueN14* (s/? valid-kr?*) :valueN15* (s/? valid-kr?*) :valueN16* (s/? valid-kr?*) ))
 (stest/instrument `loopsegp)
-
-(defn loopsegp:k
-  {:arglists '([kphase & kvalue1* kdur2* kvalue3* kdur4* kdurN-5* kvalueN6* kvalueN7* kvalueN8* kvalueN9* kvalueN10* kvalueN11* kvalueN12* kvalueN13* kvalueN14* kvalueN15* kvalueN16*])}
-  [phase & [ value1* dur2* value3* dur4* durN-5* valueN6* valueN7* valueN8* valueN9* valueN10* valueN11* valueN12* valueN13* valueN14* valueN15* valueN16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "loopsegp"
-                      [phase value1* dur2* value3* dur4* durN-5* valueN6* valueN7* valueN8* valueN9* valueN10* valueN11* valueN12* valueN13* valueN14* valueN15* valueN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef loopsegp:k
-  :args (s/cat :phase valid-kr? :value1* valid-kr?* :dur2* valid-kr?* :value3* valid-kr?* :dur4* valid-kr?* :durN-5* valid-kr?* :valueN6* valid-kr?* :valueN7* valid-kr?* :valueN8* valid-kr?* :valueN9* valid-kr?* :valueN10* valid-kr?* :valueN11* valid-kr?* :valueN12* valid-kr?* :valueN13* valid-kr?* :valueN14* valid-kr?* :valueN15* valid-kr?* :valueN16* valid-kr?* ))
-(stest/instrument `loopsegp:k)
 
 (defn printks
   {:arglists '([Sstring itime & xval1* xval2* xval3* xval4* xval5* xval6* xval7* xval8* xval9* xval10* xval11* xval12* xval13* xval14* xval15* xval16*] [istring itime & xval1* xval2* xval3* xval4* xval5* xval6* xval7* xval8* xval9* xval10* xval11* xval12* xval13* xval14* xval15* xval16*])}
@@ -9294,7 +7188,8 @@
 
 (s/fdef printks
   :args (s/alt
-         :Sixxxxxxxxxxxxxxxx (s/cat :string valid-S? :time valid-i? :val1* valid-x?* :val2* valid-x?* :val3* valid-x?* :val4* valid-x?* :val5* valid-x?* :val6* valid-x?* :val7* valid-x?* :val8* valid-x?* :val9* valid-x?* :val10* valid-x?* :val11* valid-x?* :val12* valid-x?* :val13* valid-x?* :val14* valid-x?* :val15* valid-x?* :val16* valid-x?* )
+         :iixxxxxxxxxxxxxxxx (s/cat :string valid-i? :time valid-i? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
+         :Sixxxxxxxxxxxxxxxx (s/cat :string valid-S? :time valid-i? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
          ))
 (stest/instrument `printks)
 
@@ -9313,21 +7208,6 @@
   :args (s/cat :sig valid-ar? :zamod valid-kr? ))
 (stest/instrument `zamod)
 
-(defn zamod:a
-  {:arglists '([asig kzamod])}
-  [sig zamod]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zamod"
-                      [sig zamod]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zamod:a
-  :args (s/cat :sig valid-ar? :zamod valid-kr? ))
-(stest/instrument `zamod:a)
-
 (defn lorenz
   {:arglists '([ksv krv kbv kh ix iy iz iskip & iskipinit*])}
   [sv rv bv h x y z skip & [ skipinit* ]]
@@ -9340,7 +7220,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef lorenz
-  :args (s/cat :sv valid-kr? :rv valid-kr? :bv valid-kr? :h valid-kr? :x valid-i? :y valid-i? :z valid-i? :skip valid-i? :skipinit* valid-i?* ))
+  :args (s/cat :sv valid-kr? :rv valid-kr? :bv valid-kr? :h valid-kr? :x valid-i? :y valid-i? :z valid-i? :skip valid-i? :skipinit* (s/? valid-i?*) ))
 (stest/instrument `lorenz)
 
 (defn pchmidib
@@ -9356,7 +7236,7 @@
 
 (s/fdef pchmidib
   :args (s/alt
-         :i (s/cat :range* valid-i?* )
+         :i (s/cat :range* (s/? valid-i?*) )
          ))
 (stest/instrument `pchmidib)
 
@@ -9372,7 +7252,7 @@
     (new out-types ast)))
 
 (s/fdef pchmidib:i
-  :args (s/cat :range* valid-i?* ))
+  :args (s/cat :range* (s/? valid-i?*) ))
 (stest/instrument `pchmidib:i)
 
 (defn pchmidib:k
@@ -9387,7 +7267,7 @@
     (new out-types ast)))
 
 (s/fdef pchmidib:k
-  :args (s/cat :range* valid-i?* ))
+  :args (s/cat :range* (s/? valid-i?*) ))
 (stest/instrument `pchmidib:k)
 
 (defn strchar
@@ -9402,23 +7282,8 @@
     (new out-types ast)))
 
 (s/fdef strchar
-  :args (s/cat :str valid-S? :pos* valid-i?* ))
+  :args (s/cat :str valid-S? :pos* (s/? valid-i?*) ))
 (stest/instrument `strchar)
-
-(defn strchar:i
-  {:arglists '([Sstr & ipos*])}
-  [str & [ pos* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strchar"
-                      [str pos*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strchar:i
-  :args (s/cat :str valid-S? :pos* valid-i?* ))
-(stest/instrument `strchar:i)
 
 (defn interp
   {:arglists '([ksig & iskip* imode* ivalue*])}
@@ -9432,23 +7297,8 @@
     (new out-types ast)))
 
 (s/fdef interp
-  :args (s/cat :sig valid-kr? :skip* valid-i?* :mode* valid-i?* :value* valid-i?* ))
+  :args (s/cat :sig valid-kr? :skip* (s/? valid-i?*) :mode* (s/? valid-i?*) :value* (s/? valid-i?*) ))
 (stest/instrument `interp)
-
-(defn interp:a
-  {:arglists '([ksig & iskip* imode* ivalue*])}
-  [sig & [ skip* mode* value* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "interp"
-                      [sig skip* mode* value*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef interp:a
-  :args (s/cat :sig valid-kr? :skip* valid-i?* :mode* valid-i?* :value* valid-i?* ))
-(stest/instrument `interp:a)
 
 (defn temposcal
   {:arglists '([ktimescal kamp kpitch ktab klock & ifftsize* idecim* kthresh* kthresh* kthresh*])}
@@ -9462,7 +7312,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef temposcal
-  :args (s/cat :timescal valid-kr? :amp valid-kr? :pitch valid-kr? :tab valid-kr? :lock valid-kr? :fftsize* valid-i?* :decim* valid-i?* :thresh* valid-kr?* :thresh* valid-kr?* :thresh* valid-kr?* ))
+  :args (s/cat :timescal valid-kr? :amp valid-kr? :pitch valid-kr? :tab valid-kr? :lock valid-kr? :fftsize* (s/? valid-i?*) :decim* (s/? valid-i?*) :thresh* (s/? valid-kr?*) :thresh* (s/? valid-kr?*) :thresh* (s/? valid-kr?*) ))
 (stest/instrument `temposcal)
 
 (defn pvsosc
@@ -9477,23 +7327,8 @@
     (new out-types ast)))
 
 (s/fdef pvsosc
-  :args (s/cat :amp valid-kr? :freq valid-kr? :type valid-kr? :size valid-i? :overlap* valid-i?* :winsize* valid-i?* :wintype* valid-i?* :format* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :type valid-kr? :size valid-i? :overlap* (s/? valid-i?*) :winsize* (s/? valid-i?*) :wintype* (s/? valid-i?*) :format* (s/? valid-i?*) ))
 (stest/instrument `pvsosc)
-
-(defn pvsosc:f
-  {:arglists '([kamp kfreq ktype isize & ioverlap* iwinsize* iwintype* iformat*])}
-  [amp freq type size & [ overlap* winsize* wintype* format* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsosc"
-                      [amp freq type size overlap* winsize* wintype* format*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsosc:f
-  :args (s/cat :amp valid-kr? :freq valid-kr? :type valid-kr? :size valid-i? :overlap* valid-i?* :winsize* valid-i?* :wintype* valid-i?* :format* valid-i?* ))
-(stest/instrument `pvsosc:f)
 
 (defn noise
   {:arglists '([xamp kbeta])}
@@ -9510,21 +7345,6 @@
   :args (s/cat :amp valid-x? :beta valid-kr? ))
 (stest/instrument `noise)
 
-(defn noise:a
-  {:arglists '([xamp kbeta])}
-  [amp beta]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "noise"
-                      [amp beta]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef noise:a
-  :args (s/cat :amp valid-x? :beta valid-kr? ))
-(stest/instrument `noise:a)
-
 (defn fftinv
   {:arglists '([iinArr] [kinArr])}
   [in]
@@ -9538,6 +7358,7 @@
 
 (s/fdef fftinv
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `fftinv)
@@ -9585,7 +7406,7 @@
 
 (s/fdef diff
   :args (s/alt
-         :xi (s/cat :sig valid-x? :skip* valid-i?* )
+         :xi (s/cat :sig valid-x? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `diff)
 
@@ -9601,7 +7422,7 @@
     (new out-types ast)))
 
 (s/fdef diff:a
-  :args (s/cat :sig valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `diff:a)
 
 (defn diff:k
@@ -9616,7 +7437,7 @@
     (new out-types ast)))
 
 (s/fdef diff:k
-  :args (s/cat :sig valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `diff:k)
 
 (defn chnexport
@@ -9632,6 +7453,7 @@
 
 (s/fdef chnexport
   :args (s/alt
+         :Siiiii (s/cat :name valid-S? :mode valid-i? :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) )
          :Si (s/cat :name valid-S? :mode valid-i? )
          ))
 (stest/instrument `chnexport)
@@ -9678,7 +7500,7 @@
     (new out-types ast)))
 
 (s/fdef chnexport:i
-  :args (s/cat :name valid-S? :mode valid-i? :mode* valid-i?* :mode* valid-i?* :mode* valid-i?* :mode* valid-i?* ))
+  :args (s/cat :name valid-S? :mode valid-i? :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) ))
 (stest/instrument `chnexport:i)
 
 (defn chnexport:k
@@ -9693,7 +7515,7 @@
     (new out-types ast)))
 
 (s/fdef chnexport:k
-  :args (s/cat :name valid-S? :mode valid-i? :mode* valid-i?* :mode* valid-i?* :mode* valid-i?* :mode* valid-i?* ))
+  :args (s/cat :name valid-S? :mode valid-i? :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) :mode* (s/? valid-i?*) ))
 (stest/instrument `chnexport:k)
 
 (defn OSClisten
@@ -9709,26 +7531,10 @@
 
 (s/fdef OSClisten
   :args (s/alt
+         :iSSxxxxxxxxxxxxxxxx (s/cat :handle valid-i? :dest valid-S? :type valid-S? :data1* (s/? valid-x?*) :data2* (s/? valid-x?*) :data3* (s/? valid-x?*) :data4* (s/? valid-x?*) :data5* (s/? valid-x?*) :data6* (s/? valid-x?*) :data7* (s/? valid-x?*) :data8* (s/? valid-x?*) :data9* (s/? valid-x?*) :data10* (s/? valid-x?*) :data11* (s/? valid-x?*) :data12* (s/? valid-x?*) :data13* (s/? valid-x?*) :data14* (s/? valid-x?*) :data15* (s/? valid-x?*) :data16* (s/? valid-x?*) )
          :iSS (s/cat :handle valid-i? :dest valid-S? :type valid-S? )
          ))
 (stest/instrument `OSClisten)
-
-(defn OSClisten:k
-  {:arglists '([ihandle Sdest Stype] [ihandle Sdest Stype & xdata1* xdata2* xdata3* xdata4* xdata5* xdata6* xdata7* xdata8* xdata9* xdata10* xdata11* xdata12* xdata13* xdata14* xdata15* xdata16*])}
-  [handle dest type]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "OSClisten"
-                      [handle dest type]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef OSClisten:k
-  :args (s/alt
-         :iSS (s/cat :handle valid-i? :dest valid-S? :type valid-S? )
-         ))
-(stest/instrument `OSClisten:k)
 
 (defn pvsadsyn
   {:arglists '([fsrc inoscs kfmod & ibinoffset* ibinincr* iinit*])}
@@ -9742,23 +7548,8 @@
     (new out-types ast)))
 
 (s/fdef pvsadsyn
-  :args (s/cat :src valid-f? :noscs valid-i? :fmod valid-kr? :binoffset* valid-i?* :binincr* valid-i?* :init* valid-i?* ))
+  :args (s/cat :src valid-f? :noscs valid-i? :fmod valid-kr? :binoffset* (s/? valid-i?*) :binincr* (s/? valid-i?*) :init* (s/? valid-i?*) ))
 (stest/instrument `pvsadsyn)
-
-(defn pvsadsyn:a
-  {:arglists '([fsrc inoscs kfmod & ibinoffset* ibinincr* iinit*])}
-  [src noscs fmod & [ binoffset* binincr* init* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pvsadsyn"
-                      [src noscs fmod binoffset* binincr* init*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsadsyn:a
-  :args (s/cat :src valid-f? :noscs valid-i? :fmod valid-kr? :binoffset* valid-i?* :binincr* valid-i?* :init* valid-i?* ))
-(stest/instrument `pvsadsyn:a)
 
 (defn checkbox
   {:arglists '([knum])}
@@ -9775,21 +7566,6 @@
   :args (s/cat :num valid-kr? ))
 (stest/instrument `checkbox)
 
-(defn checkbox:k
-  {:arglists '([knum])}
-  [num]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "checkbox"
-                      [num]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef checkbox:k
-  :args (s/cat :num valid-kr? ))
-(stest/instrument `checkbox:k)
-
 (defn puts
   {:arglists '([Sstr ktrig & inonl*])}
   [str trig & [ nonl* ]]
@@ -9802,22 +7578,10 @@
     (new out-types ast)))
 
 (s/fdef puts
-  :args (s/cat :str valid-S? :trig valid-kr? :nonl* valid-i?* ))
+  :args (s/cat :str valid-S? :trig valid-kr? :nonl* (s/? valid-i?*) ))
 (stest/instrument `puts)
 
 (defn pcount
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "pcount"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn pcount:i
   {:arglists '()}
   []
   (let [out-types-quoted 'Variable
@@ -9841,7 +7605,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef lposcilsa2
-  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `lposcilsa2)
 
 (defn diskin
@@ -9857,7 +7621,8 @@
 
 (s/fdef diskin
   :args (s/alt
-         :Skiiiiiii (s/cat :filcod valid-S? :pitch* valid-kr?* :skiptim* valid-i?* :wraparound* valid-i?* :format* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* )
+         :ikiiiiiii (s/cat :filcod valid-i? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wraparound* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
+         :Skiiiiiii (s/cat :filcod valid-S? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wraparound* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
          ))
 (stest/instrument `diskin)
 
@@ -9874,7 +7639,8 @@
 
 (s/fdef diskin:aArr
   :args (s/alt
-         :Skiiiiiii (s/cat :filcod valid-S? :pitch* valid-kr?* :skiptim* valid-i?* :wraparound* valid-i?* :format* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* )
+         :ikiiiiiii (s/cat :filcod valid-i? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wraparound* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
+         :Skiiiiiii (s/cat :filcod valid-S? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wraparound* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
          ))
 (stest/instrument `diskin:aArr)
 
@@ -9891,7 +7657,8 @@
 
 (s/fdef diskin:a
   :args (s/alt
-         :Skiiiiiii (s/cat :filcod valid-S? :pitch* valid-kr?* :skiptim* valid-i?* :wraparound* valid-i?* :format* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* :skipinit* valid-i?* )
+         :ikiiiiiii (s/cat :filcod valid-i? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wraparound* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
+         :Skiiiiiii (s/cat :filcod valid-S? :pitch* (s/? valid-kr?*) :skiptim* (s/? valid-i?*) :wraparound* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :skipinit* (s/? valid-i?*) )
          ))
 (stest/instrument `diskin:a)
 
@@ -9922,7 +7689,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef midiarp
-  :args (s/cat :Rate valid-kr? :Mode* valid-kr?* ))
+  :args (s/cat :Rate valid-kr? :Mode* (s/? valid-kr?*) ))
 (stest/instrument `midiarp)
 
 (defn OSCsend
@@ -9937,7 +7704,7 @@
     (new out-types ast)))
 
 (s/fdef OSCsend
-  :args (s/cat :when valid-kr? :host valid-S? :port valid-kr? :destination valid-S? :type valid-S? :data1* valid-x?* :data2* valid-x?* :data3* valid-x?* :data4* valid-x?* :data5* valid-x?* :data6* valid-x?* :data7* valid-x?* :data8* valid-x?* :data9* valid-x?* :data10* valid-x?* :data11* valid-x?* :data12* valid-x?* :data13* valid-x?* :data14* valid-x?* :data15* valid-x?* :data16* valid-x?* ))
+  :args (s/cat :when valid-kr? :host valid-S? :port valid-kr? :destination valid-S? :type valid-S? :data1* (s/? valid-x?*) :data2* (s/? valid-x?*) :data3* (s/? valid-x?*) :data4* (s/? valid-x?*) :data5* (s/? valid-x?*) :data6* (s/? valid-x?*) :data7* (s/? valid-x?*) :data8* (s/? valid-x?*) :data9* (s/? valid-x?*) :data10* (s/? valid-x?*) :data11* (s/? valid-x?*) :data12* (s/? valid-x?*) :data13* (s/? valid-x?*) :data14* (s/? valid-x?*) :data15* (s/? valid-x?*) :data16* (s/? valid-x?*) ))
 (stest/instrument `OSCsend)
 
 (defn cuserrnd
@@ -9953,6 +7720,7 @@
 
 (s/fdef cuserrnd
   :args (s/alt
+         :iii (s/cat :min valid-i? :max valid-i? :tableNum valid-i? )
          :kkk (s/cat :min valid-kr? :max valid-kr? :tableNum valid-kr? )
          ))
 (stest/instrument `cuserrnd)
@@ -10015,7 +7783,8 @@
 
 (s/fdef event
   :args (s/alt
-         :SSkkkkkkkkkkkkkkkk (s/cat :scorechar valid-S? :insname valid-S? :delay1* valid-kr?* :dur2* valid-kr?* :p3* valid-kr?* :p4* valid-kr?* :p5* valid-kr?* :p6* valid-kr?* :p7* valid-kr?* :p8* valid-kr?* :p9* valid-kr?* :p10* valid-kr?* :p11* valid-kr?* :p12* valid-kr?* :p13* valid-kr?* :p14* valid-kr?* :p15* valid-kr?* :p16* valid-kr?* )
+         :Skkkkkkkkkkkkkkkkk (s/cat :scorechar valid-S? :insname valid-kr? :delay1* (s/? valid-kr?*) :dur2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
+         :SSkkkkkkkkkkkkkkkk (s/cat :scorechar valid-S? :insname valid-S? :delay1* (s/? valid-kr?*) :dur2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
          ))
 (stest/instrument `event)
 
@@ -10049,21 +7818,6 @@
   :args (s/cat :sig valid-ar? :freq valid-kr? :ceil valid-kr? :harmonics valid-kr? :blend valid-kr? ))
 (stest/instrument `exciter)
 
-(defn exciter:a
-  {:arglists '([asig kfreq kceil kharmonics kblend])}
-  [sig freq ceil harmonics blend]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "exciter"
-                      [sig freq ceil harmonics blend]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef exciter:a
-  :args (s/cat :sig valid-ar? :freq valid-kr? :ceil valid-kr? :harmonics valid-kr? :blend valid-kr? ))
-(stest/instrument `exciter:a)
-
 (defn ftgenonce
   {:arglists '([ip1 ip2dummy isize Sgen Sarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize Sgen iarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize igen Sarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize igen iarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*])}
   [p1 p2dummy size gen arga & [ argb1* argb2* argb3* argb4* argb5* argb6* argb7* argb8* argb9* argb10* argb11* argb12* argb13* argb14* argb15* argb16* ]]
@@ -10077,26 +7831,12 @@
 
 (s/fdef ftgenonce
   :args (s/alt
-         :iiiSSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-S? :argb1* valid-i?* :argb2* valid-i?* :argb3* valid-i?* :argb4* valid-i?* :argb5* valid-i?* :argb6* valid-i?* :argb7* valid-i?* :argb8* valid-i?* :argb9* valid-i?* :argb10* valid-i?* :argb11* valid-i?* :argb12* valid-i?* :argb13* valid-i?* :argb14* valid-i?* :argb15* valid-i?* :argb16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-i? :arga valid-i? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
+         :iiiiSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-i? :arga valid-S? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
+         :iiiSiiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-i? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
+         :iiiSSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-S? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftgenonce)
-
-(defn ftgenonce:i
-  {:arglists '([ip1 ip2dummy isize Sgen Sarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize Sgen iarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize igen Sarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize igen iarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*])}
-  [p1 p2dummy size gen arga & [ argb1* argb2* argb3* argb4* argb5* argb6* argb7* argb8* argb9* argb10* argb11* argb12* argb13* argb14* argb15* argb16* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "ftgenonce"
-                      [p1 p2dummy size gen arga argb1* argb2* argb3* argb4* argb5* argb6* argb7* argb8* argb9* argb10* argb11* argb12* argb13* argb14* argb15* argb16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ftgenonce:i
-  :args (s/alt
-         :iiiSSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-S? :argb1* valid-i?* :argb2* valid-i?* :argb3* valid-i?* :argb4* valid-i?* :argb5* valid-i?* :argb6* valid-i?* :argb7* valid-i?* :argb8* valid-i?* :argb9* valid-i?* :argb10* valid-i?* :argb11* valid-i?* :argb12* valid-i?* :argb13* valid-i?* :argb14* valid-i?* :argb15* valid-i?* :argb16* valid-i?* )
-         ))
-(stest/instrument `ftgenonce:i)
 
 (defn butterbp
   {:arglists '([asig xfreq xband & iskip*])}
@@ -10110,23 +7850,8 @@
     (new out-types ast)))
 
 (s/fdef butterbp
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `butterbp)
-
-(defn butterbp:a
-  {:arglists '([asig xfreq xband & iskip*])}
-  [sig freq band & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butterbp"
-                      [sig freq band skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butterbp:a
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
-(stest/instrument `butterbp:a)
 
 (defn maxaccum
   {:arglists '([aAccumulator aInput])}
@@ -10155,7 +7880,7 @@
     (new out-types ast)))
 
 (s/fdef pvsftr
-  :args (s/cat :src valid-f? :fna valid-i? :fnf* valid-i?* ))
+  :args (s/cat :src valid-f? :fna valid-i? :fnf* (s/? valid-i?*) ))
 (stest/instrument `pvsftr)
 
 (defn butbr
@@ -10170,23 +7895,8 @@
     (new out-types ast)))
 
 (s/fdef butbr
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `butbr)
-
-(defn butbr:a
-  {:arglists '([asig xfreq xband & iskip*])}
-  [sig freq band & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butbr"
-                      [sig freq band skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butbr:a
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
-(stest/instrument `butbr:a)
 
 (defn readk4
   {:arglists '([Sfilname iformat iprd] [ifilname iformat iprd])}
@@ -10201,6 +7911,7 @@
 
 (s/fdef readk4
   :args (s/alt
+         :iii (s/cat :filname valid-i? :format valid-i? :prd valid-i? )
          :Sii (s/cat :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `readk4)
@@ -10217,7 +7928,7 @@
     (new out-types ast)))
 
 (s/fdef outx
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `outx)
 
 (defn sfload
@@ -10233,26 +7944,10 @@
 
 (s/fdef sfload
   :args (s/alt
+         :i (s/cat :filename valid-i? )
          :S (s/cat :filename valid-S? )
          ))
 (stest/instrument `sfload)
-
-(defn sfload:i
-  {:arglists '([Sfilename] [ifilename])}
-  [filename]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "sfload"
-                      [filename]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sfload:i
-  :args (s/alt
-         :S (s/cat :filename valid-S? )
-         ))
-(stest/instrument `sfload:i)
 
 (defn transegb
   {:arglists '([ia itim itype & ib1* itim2* itype3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia itim itype & ib1* itim2* itype3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
@@ -10267,7 +7962,7 @@
 
 (s/fdef transegb
   :args (s/alt
-         :iiiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim valid-i? :type valid-i? :b1* valid-i?* :tim2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim valid-i? :type valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `transegb)
 
@@ -10283,7 +7978,7 @@
     (new out-types ast)))
 
 (s/fdef transegb:a
-  :args (s/cat :a valid-i? :tim valid-i? :type valid-i? :b1* valid-i?* :tim2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim valid-i? :type valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `transegb:a)
 
 (defn transegb:k
@@ -10298,7 +7993,7 @@
     (new out-types ast)))
 
 (s/fdef transegb:k
-  :args (s/cat :a valid-i? :tim valid-i? :type valid-i? :b1* valid-i?* :tim2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim valid-i? :type valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `transegb:k)
 
 (defn vcomb
@@ -10313,23 +8008,8 @@
     (new out-types ast)))
 
 (s/fdef vcomb
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-x? :maxlpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-x? :maxlpt valid-i? :skip* (s/? valid-i?*) :nsmps* (s/? valid-i?*) ))
 (stest/instrument `vcomb)
-
-(defn vcomb:a
-  {:arglists '([asig krvt xlpt imaxlpt & iskip* insmps*])}
-  [sig rvt lpt maxlpt & [ skip* nsmps* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vcomb"
-                      [sig rvt lpt maxlpt skip* nsmps*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vcomb:a
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-x? :maxlpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
-(stest/instrument `vcomb:a)
 
 (defn tablexseg
   {:arglists '([ifn1 idur2 & ifn1* idur2* ifn3* ifn4* ifn5* ifn6* ifn7* ifn8* ifn9* ifn10* ifn11* ifn12* ifn13* ifn14* ifn15* ifn16*])}
@@ -10343,7 +8023,7 @@
     (new out-types ast)))
 
 (s/fdef tablexseg
-  :args (s/cat :fn1 valid-i? :dur2 valid-i? :fn1* valid-i?* :dur2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :dur2 valid-i? :fn1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) ))
 (stest/instrument `tablexseg)
 
 (defn mp3in
@@ -10359,7 +8039,8 @@
 
 (s/fdef mp3in
   :args (s/alt
-         :Siiii (s/cat :filcod valid-S? :skptim* valid-i?* :format* valid-i?* :skipinit* valid-i?* :bufsize* valid-i?* )
+         :iiiii (s/cat :filcod valid-i? :skptim* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :bufsize* (s/? valid-i?*) )
+         :Siiii (s/cat :filcod valid-S? :skptim* (s/? valid-i?*) :format* (s/? valid-i?*) :skipinit* (s/? valid-i?*) :bufsize* (s/? valid-i?*) )
          ))
 (stest/instrument `mp3in)
 
@@ -10375,7 +8056,7 @@
     (new out-types ast)))
 
 (s/fdef ctrlinit
-  :args (s/cat :chnl valid-i? :ctlno1* valid-i?* :val2* valid-i?* :ctlno3* valid-i?* :val4* valid-i?* :ctlno5* valid-i?* :val6* valid-i?* :val7* valid-i?* :val8* valid-i?* :val9* valid-i?* :val10* valid-i?* :val11* valid-i?* :val12* valid-i?* :val13* valid-i?* :val14* valid-i?* :val15* valid-i?* :val16* valid-i?* ))
+  :args (s/cat :chnl valid-i? :ctlno1* (s/? valid-i?*) :val2* (s/? valid-i?*) :ctlno3* (s/? valid-i?*) :val4* (s/? valid-i?*) :ctlno5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) ))
 (stest/instrument `ctrlinit)
 
 (defn outletv
@@ -10406,6 +8087,9 @@
 
 (s/fdef fmod
   :args (s/alt
+         :kArrkArr (s/cat :arg valid-kArr? :arg2 valid-kArr? )
+         :kArrk (s/cat :arg valid-kArr? :arg2 valid-kr? )
+         :iArriArr (s/cat :arg valid-iArr? :arg2 valid-iArr? )
          :iArri (s/cat :arg valid-iArr? :arg2 valid-i? )
          ))
 (stest/instrument `fmod)
@@ -10423,6 +8107,7 @@
 
 (s/fdef fmod:iArr
   :args (s/alt
+         :iArriArr (s/cat :arg valid-iArr? :arg2 valid-iArr? )
          :iArri (s/cat :arg valid-iArr? :arg2 valid-i? )
          ))
 (stest/instrument `fmod:iArr)
@@ -10440,6 +8125,7 @@
 
 (s/fdef fmod:kArr
   :args (s/alt
+         :kArrkArr (s/cat :arg valid-kArr? :arg2 valid-kArr? )
          :kArrk (s/cat :arg valid-kArr? :arg2 valid-kr? )
          ))
 (stest/instrument `fmod:kArr)
@@ -10472,26 +8158,12 @@
 
 (s/fdef ftgentmp
   :args (s/alt
-         :iiiSSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-S? :argb1* valid-i?* :argb2* valid-i?* :argb3* valid-i?* :argb4* valid-i?* :argb5* valid-i?* :argb6* valid-i?* :argb7* valid-i?* :argb8* valid-i?* :argb9* valid-i?* :argb10* valid-i?* :argb11* valid-i?* :argb12* valid-i?* :argb13* valid-i?* :argb14* valid-i?* :argb15* valid-i?* :argb16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-i? :arga valid-i? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
+         :iiiiSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-i? :arga valid-S? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
+         :iiiSiiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-i? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
+         :iiiSSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-S? :argb1* (s/? valid-i?*) :argb2* (s/? valid-i?*) :argb3* (s/? valid-i?*) :argb4* (s/? valid-i?*) :argb5* (s/? valid-i?*) :argb6* (s/? valid-i?*) :argb7* (s/? valid-i?*) :argb8* (s/? valid-i?*) :argb9* (s/? valid-i?*) :argb10* (s/? valid-i?*) :argb11* (s/? valid-i?*) :argb12* (s/? valid-i?*) :argb13* (s/? valid-i?*) :argb14* (s/? valid-i?*) :argb15* (s/? valid-i?*) :argb16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftgentmp)
-
-(defn ftgentmp:i
-  {:arglists '([ip1 ip2dummy isize Sgen Sarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize Sgen iarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize igen Sarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*] [ip1 ip2dummy isize igen iarga & iargb1* iargb2* iargb3* iargb4* iargb5* iargb6* iargb7* iargb8* iargb9* iargb10* iargb11* iargb12* iargb13* iargb14* iargb15* iargb16*])}
-  [p1 p2dummy size gen arga & [ argb1* argb2* argb3* argb4* argb5* argb6* argb7* argb8* argb9* argb10* argb11* argb12* argb13* argb14* argb15* argb16* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "ftgentmp"
-                      [p1 p2dummy size gen arga argb1* argb2* argb3* argb4* argb5* argb6* argb7* argb8* argb9* argb10* argb11* argb12* argb13* argb14* argb15* argb16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ftgentmp:i
-  :args (s/alt
-         :iiiSSiiiiiiiiiiiiiiii (s/cat :p1 valid-i? :p2dummy valid-i? :size valid-i? :gen valid-S? :arga valid-S? :argb1* valid-i?* :argb2* valid-i?* :argb3* valid-i?* :argb4* valid-i?* :argb5* valid-i?* :argb6* valid-i?* :argb7* valid-i?* :argb8* valid-i?* :argb9* valid-i?* :argb10* valid-i?* :argb11* valid-i?* :argb12* valid-i?* :argb13* valid-i?* :argb14* valid-i?* :argb15* valid-i?* :argb16* valid-i?* )
-         ))
-(stest/instrument `ftgentmp:i)
 
 (defn unwrap
   {:arglists '([kinArr])}
@@ -10508,21 +8180,6 @@
   :args (s/cat :in valid-kArr? ))
 (stest/instrument `unwrap)
 
-(defn unwrap:kArr
-  {:arglists '([kinArr])}
-  [in]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "unwrap"
-                      [in]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef unwrap:kArr
-  :args (s/cat :in valid-kArr? ))
-(stest/instrument `unwrap:kArr)
-
 (defn pan
   {:arglists '([asig kx ky itable & imode* ioffset*])}
   [sig x y table & [ mode* offset* ]]
@@ -10535,7 +8192,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef pan
-  :args (s/cat :sig valid-ar? :x valid-kr? :y valid-kr? :table valid-i? :mode* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :sig valid-ar? :x valid-kr? :y valid-kr? :table valid-i? :mode* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `pan)
 
 (defn bformdec1
@@ -10551,6 +8208,7 @@
 
 (s/fdef bformdec1
   :args (s/alt
+         :iaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :setup valid-i? :bform1* (s/? valid-ar?*) :bform2* (s/? valid-ar?*) :bform3* (s/? valid-ar?*) :bform4* (s/? valid-ar?*) :bform5* (s/? valid-ar?*) :bform6* (s/? valid-ar?*) :bform7* (s/? valid-ar?*) :bform8* (s/? valid-ar?*) :bform9* (s/? valid-ar?*) :bform10* (s/? valid-ar?*) :bform11* (s/? valid-ar?*) :bform12* (s/? valid-ar?*) :bform13* (s/? valid-ar?*) :bform14* (s/? valid-ar?*) :bform15* (s/? valid-ar?*) :bform16* (s/? valid-ar?*) :bform17* (s/? valid-ar?*) :bform18* (s/? valid-ar?*) :bform19* (s/? valid-ar?*) :bform20* (s/? valid-ar?*) :bform21* (s/? valid-ar?*) :bform22* (s/? valid-ar?*) :bform23* (s/? valid-ar?*) :bform24* (s/? valid-ar?*) :bform25* (s/? valid-ar?*) :bform26* (s/? valid-ar?*) :bform27* (s/? valid-ar?*) :bform28* (s/? valid-ar?*) :bform29* (s/? valid-ar?*) :bform30* (s/? valid-ar?*) :bform31* (s/? valid-ar?*) :bform32* (s/? valid-ar?*) )
          :iaArr (s/cat :setup valid-i? :bform valid-aArr? )
          ))
 (stest/instrument `bformdec1)
@@ -10582,7 +8240,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef bformdec1:a
-  :args (s/cat :setup valid-i? :bform1* valid-ar?* :bform2* valid-ar?* :bform3* valid-ar?* :bform4* valid-ar?* :bform5* valid-ar?* :bform6* valid-ar?* :bform7* valid-ar?* :bform8* valid-ar?* :bform9* valid-ar?* :bform10* valid-ar?* :bform11* valid-ar?* :bform12* valid-ar?* :bform13* valid-ar?* :bform14* valid-ar?* :bform15* valid-ar?* :bform16* valid-ar?* :bform17* valid-ar?* :bform18* valid-ar?* :bform19* valid-ar?* :bform20* valid-ar?* :bform21* valid-ar?* :bform22* valid-ar?* :bform23* valid-ar?* :bform24* valid-ar?* :bform25* valid-ar?* :bform26* valid-ar?* :bform27* valid-ar?* :bform28* valid-ar?* :bform29* valid-ar?* :bform30* valid-ar?* :bform31* valid-ar?* :bform32* valid-ar?* ))
+  :args (s/cat :setup valid-i? :bform1* (s/? valid-ar?*) :bform2* (s/? valid-ar?*) :bform3* (s/? valid-ar?*) :bform4* (s/? valid-ar?*) :bform5* (s/? valid-ar?*) :bform6* (s/? valid-ar?*) :bform7* (s/? valid-ar?*) :bform8* (s/? valid-ar?*) :bform9* (s/? valid-ar?*) :bform10* (s/? valid-ar?*) :bform11* (s/? valid-ar?*) :bform12* (s/? valid-ar?*) :bform13* (s/? valid-ar?*) :bform14* (s/? valid-ar?*) :bform15* (s/? valid-ar?*) :bform16* (s/? valid-ar?*) :bform17* (s/? valid-ar?*) :bform18* (s/? valid-ar?*) :bform19* (s/? valid-ar?*) :bform20* (s/? valid-ar?*) :bform21* (s/? valid-ar?*) :bform22* (s/? valid-ar?*) :bform23* (s/? valid-ar?*) :bform24* (s/? valid-ar?*) :bform25* (s/? valid-ar?*) :bform26* (s/? valid-ar?*) :bform27* (s/? valid-ar?*) :bform28* (s/? valid-ar?*) :bform29* (s/? valid-ar?*) :bform30* (s/? valid-ar?*) :bform31* (s/? valid-ar?*) :bform32* (s/? valid-ar?*) ))
 (stest/instrument `bformdec1:a)
 
 (defn readfi
@@ -10598,6 +8256,7 @@
 
 (s/fdef readfi
   :args (s/alt
+         :i (s/cat :filname valid-i? )
          :S (s/cat :filname valid-S? )
          ))
 (stest/instrument `readfi)
@@ -10615,6 +8274,10 @@
 
 (s/fdef sininv
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `sininv)
@@ -10739,21 +8402,6 @@
   :args (s/cat :index valid-i? ))
 (stest/instrument `zir)
 
-(defn zir:i
-  {:arglists '([iindex])}
-  [index]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "zir"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zir:i
-  :args (s/cat :index valid-i? ))
-(stest/instrument `zir:i)
-
 (defn poisson
   {:arglists '([klambda] [klambda] [klambda])}
   [lambda]
@@ -10828,23 +8476,8 @@
     (new out-types ast)))
 
 (s/fdef pvsinit
-  :args (s/cat :size valid-i? :olap* valid-i?* :winsize* valid-i?* :wintype* valid-i?* :format* valid-i?* ))
+  :args (s/cat :size valid-i? :olap* (s/? valid-i?*) :winsize* (s/? valid-i?*) :wintype* (s/? valid-i?*) :format* (s/? valid-i?*) ))
 (stest/instrument `pvsinit)
-
-(defn pvsinit:f
-  {:arglists '([isize & iolap* iwinsize* iwintype* iformat*])}
-  [size & [ olap* winsize* wintype* format* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsinit"
-                      [size olap* winsize* wintype* format*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsinit:f
-  :args (s/cat :size valid-i? :olap* valid-i?* :winsize* valid-i?* :wintype* valid-i?* :format* valid-i?* ))
-(stest/instrument `pvsinit:f)
 
 (defn outipat
   {:arglists '([ichn inotenum ivalue imin imax])}
@@ -10876,21 +8509,6 @@
   :args (s/cat :sig valid-ar? ))
 (stest/instrument `shiftin)
 
-(defn shiftin:kArr
-  {:arglists '([asig])}
-  [sig]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "shiftin"
-                      [sig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef shiftin:kArr
-  :args (s/cat :sig valid-ar? ))
-(stest/instrument `shiftin:kArr)
-
 (defn tablemix
   {:arglists '([kdft kdoff klen ks1ft ks1off ks1g ks2ft ks2off ks2g])}
   [dft doff len s1ft s1off s1g s2ft s2off s2g]
@@ -10918,7 +8536,7 @@
     (new out-types ast)))
 
 (s/fdef insglobal
-  :args (s/cat :source valid-S? :nstrnum1* valid-i?* :nstrnum2* valid-i?* :nstrnum3* valid-i?* :nstrnum4* valid-i?* :nstrnum5* valid-i?* :nstrnum6* valid-i?* :nstrnum7* valid-i?* :nstrnum8* valid-i?* :nstrnum9* valid-i?* :nstrnum10* valid-i?* :nstrnum11* valid-i?* :nstrnum12* valid-i?* :nstrnum13* valid-i?* :nstrnum14* valid-i?* :nstrnum15* valid-i?* :nstrnum16* valid-i?* ))
+  :args (s/cat :source valid-S? :nstrnum1* (s/? valid-i?*) :nstrnum2* (s/? valid-i?*) :nstrnum3* (s/? valid-i?*) :nstrnum4* (s/? valid-i?*) :nstrnum5* (s/? valid-i?*) :nstrnum6* (s/? valid-i?*) :nstrnum7* (s/? valid-i?*) :nstrnum8* (s/? valid-i?*) :nstrnum9* (s/? valid-i?*) :nstrnum10* (s/? valid-i?*) :nstrnum11* (s/? valid-i?*) :nstrnum12* (s/? valid-i?*) :nstrnum13* (s/? valid-i?*) :nstrnum14* (s/? valid-i?*) :nstrnum15* (s/? valid-i?*) :nstrnum16* (s/? valid-i?*) ))
 (stest/instrument `insglobal)
 
 (defn setcol
@@ -10936,21 +8554,6 @@
   :args (s/cat :in valid-kArr? :col valid-kr? ))
 (stest/instrument `setcol)
 
-(defn setcol:kArr
-  {:arglists '([kinArr kcol])}
-  [in col]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "setcol"
-                      [in col]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef setcol:kArr
-  :args (s/cat :in valid-kArr? :col valid-kr? ))
-(stest/instrument `setcol:kArr)
-
 (defn trsplit
   {:arglists '([fin & ksplit1* kgainlow2* kgainhigh3* kgainhigh4* kgainhigh5* kgainhigh6* kgainhigh7* kgainhigh8* kgainhigh9* kgainhigh10* kgainhigh11* kgainhigh12* kgainhigh13* kgainhigh14* kgainhigh15* kgainhigh16*])}
   [in & [ split1* gainlow2* gainhigh3* gainhigh4* gainhigh5* gainhigh6* gainhigh7* gainhigh8* gainhigh9* gainhigh10* gainhigh11* gainhigh12* gainhigh13* gainhigh14* gainhigh15* gainhigh16* ]]
@@ -10963,7 +8566,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef trsplit
-  :args (s/cat :in valid-f? :split1* valid-kr?* :gainlow2* valid-kr?* :gainhigh3* valid-kr?* :gainhigh4* valid-kr?* :gainhigh5* valid-kr?* :gainhigh6* valid-kr?* :gainhigh7* valid-kr?* :gainhigh8* valid-kr?* :gainhigh9* valid-kr?* :gainhigh10* valid-kr?* :gainhigh11* valid-kr?* :gainhigh12* valid-kr?* :gainhigh13* valid-kr?* :gainhigh14* valid-kr?* :gainhigh15* valid-kr?* :gainhigh16* valid-kr?* ))
+  :args (s/cat :in valid-f? :split1* (s/? valid-kr?*) :gainlow2* (s/? valid-kr?*) :gainhigh3* (s/? valid-kr?*) :gainhigh4* (s/? valid-kr?*) :gainhigh5* (s/? valid-kr?*) :gainhigh6* (s/? valid-kr?*) :gainhigh7* (s/? valid-kr?*) :gainhigh8* (s/? valid-kr?*) :gainhigh9* (s/? valid-kr?*) :gainhigh10* (s/? valid-kr?*) :gainhigh11* (s/? valid-kr?*) :gainhigh12* (s/? valid-kr?*) :gainhigh13* (s/? valid-kr?*) :gainhigh14* (s/? valid-kr?*) :gainhigh15* (s/? valid-kr?*) :gainhigh16* (s/? valid-kr?*) ))
 (stest/instrument `trsplit)
 
 (defn deltapi
@@ -10978,23 +8581,8 @@
     (new out-types ast)))
 
 (s/fdef deltapi
-  :args (s/cat :dlt valid-x? :dlt* valid-i?* ))
+  :args (s/cat :dlt valid-x? :dlt* (s/? valid-i?*) ))
 (stest/instrument `deltapi)
-
-(defn deltapi:a
-  {:arglists '([xdlt & idlt*])}
-  [dlt & [ dlt* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "deltapi"
-                      [dlt dlt*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef deltapi:a
-  :args (s/cat :dlt valid-x? :dlt* valid-i?* ))
-(stest/instrument `deltapi:a)
 
 (defn alpass
   {:arglists '([asig xrvt ilpt & iskip* insmps*])}
@@ -11008,23 +8596,8 @@
     (new out-types ast)))
 
 (s/fdef alpass
-  :args (s/cat :sig valid-ar? :rvt valid-x? :lpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rvt valid-x? :lpt valid-i? :skip* (s/? valid-i?*) :nsmps* (s/? valid-i?*) ))
 (stest/instrument `alpass)
-
-(defn alpass:a
-  {:arglists '([asig xrvt ilpt & iskip* insmps*])}
-  [sig rvt lpt & [ skip* nsmps* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "alpass"
-                      [sig rvt lpt skip* nsmps*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef alpass:a
-  :args (s/cat :sig valid-ar? :rvt valid-x? :lpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
-(stest/instrument `alpass:a)
 
 (defn vbapmove
   {:arglists '([asig idur ispread ifldnum & ifld1* ifld2* ifld3* ifld4* ifld5* ifld6* ifld7* ifld8* ifld9* ifld10* ifld11* ifld12* ifld13* ifld14* ifld15* ifld16*] [asig idur ispread ifldnum & ifld1* ifld2* ifld3* ifld4* ifld5* ifld6* ifld7* ifld8* ifld9* ifld10* ifld11* ifld12* ifld13* ifld14* ifld15* ifld16*])}
@@ -11039,7 +8612,7 @@
 
 (s/fdef vbapmove
   :args (s/alt
-         :aiiiiiiiiiiiiiiiiiii (s/cat :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* )
+         :aiiiiiiiiiiiiiiiiiii (s/cat :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) )
          ))
 (stest/instrument `vbapmove)
 
@@ -11055,7 +8628,7 @@
     (new out-types ast)))
 
 (s/fdef vbapmove:aArr
-  :args (s/cat :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* ))
+  :args (s/cat :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) ))
 (stest/instrument `vbapmove:aArr)
 
 (defn vbapmove:a
@@ -11070,7 +8643,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vbapmove:a
-  :args (s/cat :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* valid-i?* :fld2* valid-i?* :fld3* valid-i?* :fld4* valid-i?* :fld5* valid-i?* :fld6* valid-i?* :fld7* valid-i?* :fld8* valid-i?* :fld9* valid-i?* :fld10* valid-i?* :fld11* valid-i?* :fld12* valid-i?* :fld13* valid-i?* :fld14* valid-i?* :fld15* valid-i?* :fld16* valid-i?* ))
+  :args (s/cat :sig valid-ar? :dur valid-i? :spread valid-i? :fldnum valid-i? :fld1* (s/? valid-i?*) :fld2* (s/? valid-i?*) :fld3* (s/? valid-i?*) :fld4* (s/? valid-i?*) :fld5* (s/? valid-i?*) :fld6* (s/? valid-i?*) :fld7* (s/? valid-i?*) :fld8* (s/? valid-i?*) :fld9* (s/? valid-i?*) :fld10* (s/? valid-i?*) :fld11* (s/? valid-i?*) :fld12* (s/? valid-i?*) :fld13* (s/? valid-i?*) :fld14* (s/? valid-i?*) :fld15* (s/? valid-i?*) :fld16* (s/? valid-i?*) ))
 (stest/instrument `vbapmove:a)
 
 (defn log
@@ -11086,6 +8659,11 @@
 
 (s/fdef log
   :args (s/alt
+         :kArri (s/cat :in valid-kArr? :bas valid-i? )
+         :kArr (s/cat :in valid-kArr? )
+         :k (s/cat :in valid-kr? )
+         :iArr (s/cat :in valid-iArr? )
+         :i (s/cat :in valid-i? )
          :a (s/cat :in valid-ar? )
          ))
 (stest/instrument `log)
@@ -11163,6 +8741,7 @@
 
 (s/fdef log:kArr
   :args (s/alt
+         :kArri (s/cat :in valid-kArr? :bas valid-i? )
          :kArr (s/cat :in valid-kArr? )
          ))
 (stest/instrument `log:kArr)
@@ -11180,7 +8759,8 @@
 
 (s/fdef alwayson
   :args (s/alt
-         :Siiiiiiiiiiiiiiii (s/cat :instrument valid-S? :arg1* valid-i?* :n2* valid-i?* :n3* valid-i?* :n4* valid-i?* :n5* valid-i?* :n6* valid-i?* :n7* valid-i?* :n8* valid-i?* :n9* valid-i?* :n10* valid-i?* :n11* valid-i?* :n12* valid-i?* :n13* valid-i?* :n14* valid-i?* :n15* valid-i?* :n16* valid-i?* )
+         :iiiiiiiiiiiiiiiii (s/cat :instrument valid-i? :arg1* (s/? valid-i?*) :n2* (s/? valid-i?*) :n3* (s/? valid-i?*) :n4* (s/? valid-i?*) :n5* (s/? valid-i?*) :n6* (s/? valid-i?*) :n7* (s/? valid-i?*) :n8* (s/? valid-i?*) :n9* (s/? valid-i?*) :n10* (s/? valid-i?*) :n11* (s/? valid-i?*) :n12* (s/? valid-i?*) :n13* (s/? valid-i?*) :n14* (s/? valid-i?*) :n15* (s/? valid-i?*) :n16* (s/? valid-i?*) )
+         :Siiiiiiiiiiiiiiii (s/cat :instrument valid-S? :arg1* (s/? valid-i?*) :n2* (s/? valid-i?*) :n3* (s/? valid-i?*) :n4* (s/? valid-i?*) :n5* (s/? valid-i?*) :n6* (s/? valid-i?*) :n7* (s/? valid-i?*) :n8* (s/? valid-i?*) :n9* (s/? valid-i?*) :n10* (s/? valid-i?*) :n11* (s/? valid-i?*) :n12* (s/? valid-i?*) :n13* (s/? valid-i?*) :n14* (s/? valid-i?*) :n15* (s/? valid-i?*) :n16* (s/? valid-i?*) )
          ))
 (stest/instrument `alwayson)
 
@@ -11196,7 +8776,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef sfinstr
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* valid-i?* :offset* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `sfinstr)
 
 (defn cross2
@@ -11214,34 +8794,7 @@
   :args (s/cat :in1 valid-ar? :in2 valid-ar? :size valid-i? :overlap valid-i? :win valid-i? :bias valid-kr? ))
 (stest/instrument `cross2)
 
-(defn cross2:a
-  {:arglists '([ain1 ain2 isize ioverlap iwin kbias])}
-  [in1 in2 size overlap win bias]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "cross2"
-                      [in1 in2 size overlap win bias]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cross2:a
-  :args (s/cat :in1 valid-ar? :in2 valid-ar? :size valid-i? :overlap valid-i? :win valid-i? :bias valid-kr? ))
-(stest/instrument `cross2:a)
-
 (defn pchmidi
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "pchmidi"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn pchmidi:i
   {:arglists '()}
   []
   (let [out-types-quoted 'Variable
@@ -11266,6 +8819,7 @@
 
 (s/fdef tableng
   :args (s/alt
+         :k (s/cat :table valid-kr? )
          :i (s/cat :table valid-i? )
          ))
 (stest/instrument `tableng)
@@ -11313,6 +8867,8 @@
 
 (s/fdef wrap
   :args (s/alt
+         :kkk (s/cat :sig valid-kr? :low valid-kr? :high valid-kr? )
+         :iii (s/cat :sig valid-i? :low valid-i? :high valid-i? )
          :akk (s/cat :sig valid-ar? :low valid-kr? :high valid-kr? )
          ))
 (stest/instrument `wrap)
@@ -11375,6 +8931,7 @@
 
 (s/fdef s16b14
   :args (s/alt
+         :iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii (s/cat :chan valid-i? :ctlno_msb2 valid-i? :ctlno_lsb3 valid-i? :min4 valid-i? :max5 valid-i? :nitvalue6 valid-i? :fn7 valid-i? :ctlno_msb8 valid-i? :ctlno_lsb9 valid-i? :min10 valid-i? :max11 valid-i? :nitvalue12 valid-i? :fn13 valid-i? :fn14 valid-i? :fn15 valid-i? :fn16 valid-i? :fn17 valid-i? :fn18 valid-i? :fn19 valid-i? :fn20 valid-i? :fn21 valid-i? :fn22 valid-i? :fn23 valid-i? :fn24 valid-i? :fn25 valid-i? :fn26 valid-i? :fn27 valid-i? :fn28 valid-i? :fn29 valid-i? :fn30 valid-i? :fn31 valid-i? :fn32 valid-i? :fn33 valid-i? :fn34 valid-i? :fn35 valid-i? :fn36 valid-i? :fn37 valid-i? :fn38 valid-i? :fn39 valid-i? :fn40 valid-i? :fn41 valid-i? :fn42 valid-i? :fn43 valid-i? :fn44 valid-i? :fn45 valid-i? :fn46 valid-i? :fn47 valid-i? :fn48 valid-i? :fn49 valid-i? :fn50 valid-i? :fn51 valid-i? :fn52 valid-i? :fn53 valid-i? :fn54 valid-i? :fn55 valid-i? :fn56 valid-i? :fn57 valid-i? :fn58 valid-i? :fn59 valid-i? :fn60 valid-i? :fn61 valid-i? :fn62 valid-i? :fn63 valid-i? :fn64 valid-i? :fn65 valid-i? :fn66 valid-i? :fn67 valid-i? :fn68 valid-i? :fn69 valid-i? :fn70 valid-i? :fn71 valid-i? :fn72 valid-i? :fn73 valid-i? :fn74 valid-i? :fn75 valid-i? :fn76 valid-i? :fn77 valid-i? :fn78 valid-i? :fn79 valid-i? :fn80 valid-i? :fn81 valid-i? :fn82 valid-i? :fn83 valid-i? :fn84 valid-i? :fn85 valid-i? :fn86 valid-i? :fn87 valid-i? :fn88 valid-i? :fn89 valid-i? :fn90 valid-i? :fn91 valid-i? :fn92 valid-i? :fn93 valid-i? :fn94 valid-i? :fn95 valid-i? :fn96 valid-i? :fn97 valid-i? )
          :iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii (s/cat :chan valid-i? :ctlno_msb2 valid-i? :ctlno_lsb3 valid-i? :min4 valid-i? :max5 valid-i? :nitvalue6 valid-i? :fn7 valid-i? :ctlno_msb8 valid-i? :ctlno_lsb9 valid-i? :min10 valid-i? :max11 valid-i? :nitvalue12 valid-i? :fn13 valid-i? :fn14 valid-i? :fn15 valid-i? :fn16 valid-i? :fn17 valid-i? :fn18 valid-i? :fn19 valid-i? :fn20 valid-i? :fn21 valid-i? :fn22 valid-i? :fn23 valid-i? :fn24 valid-i? :fn25 valid-i? :fn26 valid-i? :fn27 valid-i? :fn28 valid-i? :fn29 valid-i? :fn30 valid-i? :fn31 valid-i? :fn32 valid-i? :fn33 valid-i? :fn34 valid-i? :fn35 valid-i? :fn36 valid-i? :fn37 valid-i? :fn38 valid-i? :fn39 valid-i? :fn40 valid-i? :fn41 valid-i? :fn42 valid-i? :fn43 valid-i? :fn44 valid-i? :fn45 valid-i? :fn46 valid-i? :fn47 valid-i? :fn48 valid-i? :fn49 valid-i? :fn50 valid-i? :fn51 valid-i? :fn52 valid-i? :fn53 valid-i? :fn54 valid-i? :fn55 valid-i? :fn56 valid-i? :fn57 valid-i? :fn58 valid-i? :fn59 valid-i? :fn60 valid-i? :fn61 valid-i? :fn62 valid-i? :fn63 valid-i? :fn64 valid-i? :fn65 valid-i? :fn66 valid-i? :fn67 valid-i? :fn68 valid-i? :fn69 valid-i? :fn70 valid-i? :fn71 valid-i? :fn72 valid-i? :fn73 valid-i? :fn74 valid-i? :fn75 valid-i? :fn76 valid-i? :fn77 valid-i? :fn78 valid-i? :fn79 valid-i? :fn80 valid-i? :fn81 valid-i? )
          ))
 (stest/instrument `s16b14)
@@ -11392,26 +8949,10 @@
 
 (s/fdef tone
   :args (s/alt
-         :aai (s/cat :sig valid-ar? :hp valid-ar? :skip* valid-i?* )
+         :aki (s/cat :sig valid-ar? :hp valid-kr? :skip* (s/? valid-i?*) )
+         :aai (s/cat :sig valid-ar? :hp valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `tone)
-
-(defn tone:a
-  {:arglists '([asig ahp & iskip*] [asig khp & iskip*])}
-  [sig hp & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tone"
-                      [sig hp skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tone:a
-  :args (s/alt
-         :aai (s/cat :sig valid-ar? :hp valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `tone:a)
 
 (defn tableshufflei
   {:arglists '([itablenum])}
@@ -11440,7 +8981,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef prepiano
-  :args (s/cat :freq valid-i? :NS valid-i? :D valid-i? :K valid-i? :T5 valid-i? :B valid-i? :bcl valid-kr? :bcr valid-kr? :mass valid-i? :hvfreq valid-i? :init valid-i? :pos valid-i? :vel valid-i? :sfreq valid-i? :sspread valid-i? :rattles* valid-i?* :rubbers* valid-i?* ))
+  :args (s/cat :freq valid-i? :NS valid-i? :D valid-i? :K valid-i? :T5 valid-i? :B valid-i? :bcl valid-kr? :bcr valid-kr? :mass valid-i? :hvfreq valid-i? :init valid-i? :pos valid-i? :vel valid-i? :sfreq valid-i? :sspread valid-i? :rattles* (s/? valid-i?*) :rubbers* (s/? valid-i?*) ))
 (stest/instrument `prepiano)
 
 (defn ptable
@@ -11456,7 +8997,8 @@
 
 (s/fdef ptable
   :args (s/alt
-         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :iiiii (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
+         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `ptable)
 
@@ -11472,7 +9014,7 @@
     (new out-types ast)))
 
 (s/fdef ptable:a
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptable:a)
 
 (defn ptable:i
@@ -11487,7 +9029,7 @@
     (new out-types ast)))
 
 (s/fdef ptable:i
-  :args (s/cat :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptable:i)
 
 (defn ptable:k
@@ -11502,7 +9044,7 @@
     (new out-types ast)))
 
 (s/fdef ptable:k
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `ptable:k)
 
 (defn zdf_1pole_mode
@@ -11517,7 +9059,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef zdf_1pole_mode
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :stor* (s/? valid-i?*) ))
 (stest/instrument `zdf_1pole_mode)
 
 (defn tabmorphi
@@ -11532,23 +9074,8 @@
     (new out-types ast)))
 
 (s/fdef tabmorphi
-  :args (s/cat :index valid-kr? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
+  :args (s/cat :index valid-kr? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fnN5* (s/? valid-i?*) :fnN6* (s/? valid-i?*) :fnN7* (s/? valid-i?*) :fnN8* (s/? valid-i?*) :fnN9* (s/? valid-i?*) :fnN10* (s/? valid-i?*) :fnN11* (s/? valid-i?*) :fnN12* (s/? valid-i?*) :fnN13* (s/? valid-i?*) :fnN14* (s/? valid-i?*) :fnN15* (s/? valid-i?*) :fnN16* (s/? valid-i?*) ))
 (stest/instrument `tabmorphi)
-
-(defn tabmorphi:k
-  {:arglists '([kindex kweightpoint ktabnum3 ktabnum4 & ifn1* ifn2* ifn3* ifn4* ifnN5* ifnN6* ifnN7* ifnN8* ifnN9* ifnN10* ifnN11* ifnN12* ifnN13* ifnN14* ifnN15* ifnN16*])}
-  [index weightpoint tabnum3 tabnum4 & [ fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tabmorphi"
-                      [index weightpoint tabnum3 tabnum4 fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tabmorphi:k
-  :args (s/cat :index valid-kr? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
-(stest/instrument `tabmorphi:k)
 
 (defn loscilx
   {:arglists '([xamp kcps itable & iwsize* ibas* istrt* imod* ibeg* iend*])}
@@ -11562,7 +9089,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef loscilx
-  :args (s/cat :amp valid-x? :cps valid-kr? :table valid-i? :wsize* valid-i?* :bas* valid-i?* :strt* valid-i?* :mod* valid-i?* :beg* valid-i?* :end* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-kr? :table valid-i? :wsize* (s/? valid-i?*) :bas* (s/? valid-i?*) :strt* (s/? valid-i?*) :mod* (s/? valid-i?*) :beg* (s/? valid-i?*) :end* (s/? valid-i?*) ))
 (stest/instrument `loscilx)
 
 (defn rnd31
@@ -11578,7 +9105,8 @@
 
 (s/fdef rnd31
   :args (s/alt
-         :kki (s/cat :scale valid-kr? :rpow valid-kr? :seed* valid-i?* )
+         :iii (s/cat :scale valid-i? :rpow valid-i? :seed* (s/? valid-i?*) )
+         :kki (s/cat :scale valid-kr? :rpow valid-kr? :seed* (s/? valid-i?*) )
          ))
 (stest/instrument `rnd31)
 
@@ -11594,7 +9122,7 @@
     (new out-types ast)))
 
 (s/fdef rnd31:a
-  :args (s/cat :scale valid-kr? :rpow valid-kr? :seed* valid-i?* ))
+  :args (s/cat :scale valid-kr? :rpow valid-kr? :seed* (s/? valid-i?*) ))
 (stest/instrument `rnd31:a)
 
 (defn rnd31:i
@@ -11609,7 +9137,7 @@
     (new out-types ast)))
 
 (s/fdef rnd31:i
-  :args (s/cat :scale valid-i? :rpow valid-i? :seed* valid-i?* ))
+  :args (s/cat :scale valid-i? :rpow valid-i? :seed* (s/? valid-i?*) ))
 (stest/instrument `rnd31:i)
 
 (defn rnd31:k
@@ -11624,7 +9152,7 @@
     (new out-types ast)))
 
 (s/fdef rnd31:k
-  :args (s/cat :scale valid-kr? :rpow valid-kr? :seed* valid-i?* ))
+  :args (s/cat :scale valid-kr? :rpow valid-kr? :seed* (s/? valid-i?*) ))
 (stest/instrument `rnd31:k)
 
 (defn duserrnd
@@ -11640,6 +9168,7 @@
 
 (s/fdef duserrnd
   :args (s/alt
+         :i (s/cat :tableNum valid-i? )
          :k (s/cat :tableNum valid-kr? )
          ))
 (stest/instrument `duserrnd)
@@ -11716,7 +9245,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef pvsifd
-  :args (s/cat :in valid-ar? :fftsize valid-i? :hopsize valid-i? :wintype valid-i? :scal* valid-i?* ))
+  :args (s/cat :in valid-ar? :fftsize valid-i? :hopsize valid-i? :wintype valid-i? :scal* (s/? valid-i?*) ))
 (stest/instrument `pvsifd)
 
 (defn setksmps
@@ -11746,23 +9275,8 @@
     (new out-types ast)))
 
 (s/fdef mode
-  :args (s/cat :in valid-ar? :freq valid-x? :Q valid-x? :skip* valid-i?* ))
+  :args (s/cat :in valid-ar? :freq valid-x? :Q valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `mode)
-
-(defn mode:a
-  {:arglists '([ain xfreq xQ & iskip*])}
-  [in freq Q & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mode"
-                      [in freq Q skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mode:a
-  :args (s/cat :in valid-ar? :freq valid-x? :Q valid-x? :skip* valid-i?* ))
-(stest/instrument `mode:a)
 
 (defn ftsavek
   {:arglists '([Sfilename ktrig iflag & ifn1* ifn2* ifn3* ifn4* ifn5* ifn6* ifn7* ifn8* ifn9* ifn10* ifn11* ifn12* ifn13* ifn14* ifn15* ifn16*] [ifilename ktrig iflag & ifn1* ifn2* ifn3* ifn4* ifn5* ifn6* ifn7* ifn8* ifn9* ifn10* ifn11* ifn12* ifn13* ifn14* ifn15* ifn16*])}
@@ -11777,7 +9291,8 @@
 
 (s/fdef ftsavek
   :args (s/alt
-         :Skiiiiiiiiiiiiiiiii (s/cat :filename valid-S? :trig valid-kr? :flag valid-i? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* )
+         :ikiiiiiiiiiiiiiiiii (s/cat :filename valid-i? :trig valid-kr? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
+         :Skiiiiiiiiiiiiiiiii (s/cat :filename valid-S? :trig valid-kr? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftsavek)
 
@@ -11794,6 +9309,7 @@
 
 (s/fdef linen
   :args (s/alt
+         :kiii (s/cat :amp valid-kr? :rise valid-i? :dur valid-i? :dec valid-i? )
          :aiii (s/cat :amp valid-ar? :rise valid-i? :dur valid-i? :dec valid-i? )
          ))
 (stest/instrument `linen)
@@ -11811,6 +9327,7 @@
 
 (s/fdef linen:a
   :args (s/alt
+         :kiii (s/cat :amp valid-kr? :rise valid-i? :dur valid-i? :dec valid-i? )
          :aiii (s/cat :amp valid-ar? :rise valid-i? :dur valid-i? :dec valid-i? )
          ))
 (stest/instrument `linen:a)
@@ -11843,7 +9360,7 @@
 
 (s/fdef phasorbnk
   :args (s/alt
-         :xkii (s/cat :cps valid-x? :index valid-kr? :cnt valid-i? :phase* valid-i?* )
+         :xkii (s/cat :cps valid-x? :index valid-kr? :cnt valid-i? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `phasorbnk)
 
@@ -11859,7 +9376,7 @@
     (new out-types ast)))
 
 (s/fdef phasorbnk:a
-  :args (s/cat :cps valid-x? :index valid-kr? :cnt valid-i? :phase* valid-i?* ))
+  :args (s/cat :cps valid-x? :index valid-kr? :cnt valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `phasorbnk:a)
 
 (defn phasorbnk:k
@@ -11874,7 +9391,7 @@
     (new out-types ast)))
 
 (s/fdef phasorbnk:k
-  :args (s/cat :cps valid-x? :index valid-kr? :cnt valid-i? :phase* valid-i?* ))
+  :args (s/cat :cps valid-x? :index valid-kr? :cnt valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `phasorbnk:k)
 
 (defn pvscale
@@ -11890,26 +9407,10 @@
 
 (s/fdef pvscale
   :args (s/alt
-         :fkkkk (s/cat :sigin valid-f? :scal valid-kr? :keepform* valid-kr?* :gain* valid-kr?* :coefs* valid-kr?* )
+         :fxkkk (s/cat :sigin valid-f? :scal valid-x? :keepform* (s/? valid-kr?*) :gain* (s/? valid-kr?*) :coefs* (s/? valid-kr?*) )
+         :fkkkk (s/cat :sigin valid-f? :scal valid-kr? :keepform* (s/? valid-kr?*) :gain* (s/? valid-kr?*) :coefs* (s/? valid-kr?*) )
          ))
 (stest/instrument `pvscale)
-
-(defn pvscale:f
-  {:arglists '([fsigin kscal & kkeepform* kgain* kcoefs*] [fsigin xscal & kkeepform* kgain* kcoefs*])}
-  [sigin scal & [ keepform* gain* coefs* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvscale"
-                      [sigin scal keepform* gain* coefs*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvscale:f
-  :args (s/alt
-         :fkkkk (s/cat :sigin valid-f? :scal valid-kr? :keepform* valid-kr?* :gain* valid-kr?* :coefs* valid-kr?* )
-         ))
-(stest/instrument `pvscale:f)
 
 (defn product
   {:arglists '([& asignalorarray1* asig2* asig3* asig4* asig5* asig6* asig7* asig8* asig9* asig10* asig11* asig12* asig13* asig14* asig15* asig16* asig17* asig18* asig19* asig20* asig21* asig22* asig23* asig24* asig25* asig26* asig27* asig28* asig29* asig30* asig31* asig32*] [isignalorarrayArr] [ksignalorarrayArr])}
@@ -11924,7 +9425,9 @@
 
 (s/fdef product
   :args (s/alt
-         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :signalorarray1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* )
+         :kArr (s/cat :signalorarray valid-kArr? )
+         :iArr (s/cat :signalorarray valid-iArr? )
+         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :signalorarray1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) )
          ))
 (stest/instrument `product)
 
@@ -11940,7 +9443,7 @@
     (new out-types ast)))
 
 (s/fdef product:a
-  :args (s/cat :signalorarray1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :signalorarray1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `product:a)
 
 (defn product:i
@@ -11986,7 +9489,8 @@
 
 (s/fdef turnon
   :args (s/alt
-         :Si (s/cat :insnum valid-S? :time* valid-i?* )
+         :ii (s/cat :insnum valid-i? :time* (s/? valid-i?*) )
+         :Si (s/cat :insnum valid-S? :time* (s/? valid-i?*) )
          ))
 (stest/instrument `turnon)
 
@@ -12005,21 +9509,6 @@
   :args (s/cat :src1 valid-S? :src2 valid-S? ))
 (stest/instrument `strcatk)
 
-(defn strcatk:S
-  {:arglists '([Ssrc1 Ssrc2])}
-  [src1 src2]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strcatk"
-                      [src1 src2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strcatk:S
-  :args (s/cat :src1 valid-S? :src2 valid-S? ))
-(stest/instrument `strcatk:S)
-
 (defn scantable
   {:arglists '([kamp kpch ipos imass istiff idamp ivel])}
   [amp pch pos mass stiff damp vel]
@@ -12034,21 +9523,6 @@
 (s/fdef scantable
   :args (s/cat :amp valid-kr? :pch valid-kr? :pos valid-i? :mass valid-i? :stiff valid-i? :damp valid-i? :vel valid-i? ))
 (stest/instrument `scantable)
-
-(defn scantable:a
-  {:arglists '([kamp kpch ipos imass istiff idamp ivel])}
-  [amp pch pos mass stiff damp vel]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "scantable"
-                      [amp pch pos mass stiff damp vel]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef scantable:a
-  :args (s/cat :amp valid-kr? :pch valid-kr? :pos valid-i? :mass valid-i? :stiff valid-i? :damp valid-i? :vel valid-i? ))
-(stest/instrument `scantable:a)
 
 (defn vaget
   {:arglists '([kindex avar])}
@@ -12065,21 +9539,6 @@
   :args (s/cat :index valid-kr? :var valid-ar? ))
 (stest/instrument `vaget)
 
-(defn vaget:k
-  {:arglists '([kindex avar])}
-  [index var]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "vaget"
-                      [index var]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vaget:k
-  :args (s/cat :index valid-kr? :var valid-ar? ))
-(stest/instrument `vaget:k)
-
 (defn schedwhen
   {:arglists '([ktrigger Sinsname kwhen kdur & ip1* ip2* ip3* ip4* ip5* ip6* ip7* ip8* ip9* ip10* ip11* ip12* ip13* ip14* ip15* ip16*] [ktrigger kinsname kwhen kdur & ip1* ip2* ip3* ip4* ip5* ip6* ip7* ip8* ip9* ip10* ip11* ip12* ip13* ip14* ip15* ip16*])}
   [trigger insname when dur & [ p1* p2* p3* p4* p5* p6* p7* p8* p9* p10* p11* p12* p13* p14* p15* p16* ]]
@@ -12093,7 +9552,8 @@
 
 (s/fdef schedwhen
   :args (s/alt
-         :kSkkiiiiiiiiiiiiiiii (s/cat :trigger valid-kr? :insname valid-S? :when valid-kr? :dur valid-kr? :p1* valid-i?* :p2* valid-i?* :p3* valid-i?* :p4* valid-i?* :p5* valid-i?* :p6* valid-i?* :p7* valid-i?* :p8* valid-i?* :p9* valid-i?* :p10* valid-i?* :p11* valid-i?* :p12* valid-i?* :p13* valid-i?* :p14* valid-i?* :p15* valid-i?* :p16* valid-i?* )
+         :kkkkiiiiiiiiiiiiiiii (s/cat :trigger valid-kr? :insname valid-kr? :when valid-kr? :dur valid-kr? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
+         :kSkkiiiiiiiiiiiiiiii (s/cat :trigger valid-kr? :insname valid-S? :when valid-kr? :dur valid-kr? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
          ))
 (stest/instrument `schedwhen)
 
@@ -12109,23 +9569,8 @@
     (new out-types ast)))
 
 (s/fdef resony
-  :args (s/cat :sig valid-ar? :bf valid-kr? :bandwidth valid-kr? :num valid-i? :sep valid-kr? :sepmode* valid-i?* :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :bf valid-kr? :bandwidth valid-kr? :num valid-i? :sep valid-kr? :sepmode* (s/? valid-i?*) :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `resony)
-
-(defn resony:a
-  {:arglists '([asig kbf kbandwidth inum ksep & isepmode* iscale* iskip*])}
-  [sig bf bandwidth num sep & [ sepmode* scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "resony"
-                      [sig bf bandwidth num sep sepmode* scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resony:a
-  :args (s/cat :sig valid-ar? :bf valid-kr? :bandwidth valid-kr? :num valid-i? :sep valid-kr? :sepmode* valid-i?* :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `resony:a)
 
 (defn outkpb
   {:arglists '([kchn kvalue kmin kmax])}
@@ -12156,21 +9601,6 @@
 (s/fdef joystick
   :args (s/cat :device valid-kr? :tab valid-kr? ))
 (stest/instrument `joystick)
-
-(defn joystick:k
-  {:arglists '([kdevice ktab])}
-  [device tab]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "joystick"
-                      [device tab]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef joystick:k
-  :args (s/cat :device valid-kr? :tab valid-kr? ))
-(stest/instrument `joystick:k)
 
 (defn times
   {:arglists '( )}
@@ -12220,23 +9650,8 @@
     (new out-types ast)))
 
 (s/fdef nreverb
-  :args (s/cat :sig valid-ar? :time valid-kr? :hdif valid-kr? :skip* valid-i?* :numCombs* valid-i?* :fnCombs* valid-i?* :numAlpas* valid-i?* :fnAlpas* valid-i?* ))
+  :args (s/cat :sig valid-ar? :time valid-kr? :hdif valid-kr? :skip* (s/? valid-i?*) :numCombs* (s/? valid-i?*) :fnCombs* (s/? valid-i?*) :numAlpas* (s/? valid-i?*) :fnAlpas* (s/? valid-i?*) ))
 (stest/instrument `nreverb)
-
-(defn nreverb:a
-  {:arglists '([asig ktime khdif & iskip* inumCombs* ifnCombs* inumAlpas* ifnAlpas*])}
-  [sig time hdif & [ skip* numCombs* fnCombs* numAlpas* fnAlpas* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "nreverb"
-                      [sig time hdif skip* numCombs* fnCombs* numAlpas* fnAlpas*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef nreverb:a
-  :args (s/cat :sig valid-ar? :time valid-kr? :hdif valid-kr? :skip* valid-i?* :numCombs* valid-i?* :fnCombs* valid-i?* :numAlpas* valid-i?* :fnAlpas* valid-i?* ))
-(stest/instrument `nreverb:a)
 
 (defn max_k
   {:arglists '([asig ktrig itype])}
@@ -12253,21 +9668,6 @@
   :args (s/cat :sig valid-ar? :trig valid-kr? :type valid-i? ))
 (stest/instrument `max_k)
 
-(defn max_k:k
-  {:arglists '([asig ktrig itype])}
-  [sig trig type]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "max_k"
-                      [sig trig type]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef max_k:k
-  :args (s/cat :sig valid-ar? :trig valid-kr? :type valid-i? ))
-(stest/instrument `max_k:k)
-
 (defn distort1
   {:arglists '([asig kpregain kpostgain kshape4 kshape5 & imode*])}
   [sig pregain postgain shape4 shape5 & [ mode* ]]
@@ -12280,23 +9680,8 @@
     (new out-types ast)))
 
 (s/fdef distort1
-  :args (s/cat :sig valid-ar? :pregain valid-kr? :postgain valid-kr? :shape4 valid-kr? :shape5 valid-kr? :mode* valid-i?* ))
+  :args (s/cat :sig valid-ar? :pregain valid-kr? :postgain valid-kr? :shape4 valid-kr? :shape5 valid-kr? :mode* (s/? valid-i?*) ))
 (stest/instrument `distort1)
-
-(defn distort1:a
-  {:arglists '([asig kpregain kpostgain kshape4 kshape5 & imode*])}
-  [sig pregain postgain shape4 shape5 & [ mode* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "distort1"
-                      [sig pregain postgain shape4 shape5 mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef distort1:a
-  :args (s/cat :sig valid-ar? :pregain valid-kr? :postgain valid-kr? :shape4 valid-kr? :shape5 valid-kr? :mode* valid-i?* ))
-(stest/instrument `distort1:a)
 
 (defn K35_hpf
   {:arglists '([ain xcenter-frequency xQ & knlp* ksaturation* istor*])}
@@ -12310,23 +9695,8 @@
     (new out-types ast)))
 
 (s/fdef K35_hpf
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :nlp* valid-kr?* :saturation* valid-kr?* :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :nlp* (s/? valid-kr?*) :saturation* (s/? valid-kr?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `K35_hpf)
-
-(defn K35_hpf:a
-  {:arglists '([ain xcenter-frequency xQ & knlp* ksaturation* istor*])}
-  [in center-frequency Q & [ nlp* saturation* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "K35_hpf"
-                      [in center-frequency Q nlp* saturation* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef K35_hpf:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :nlp* valid-kr?* :saturation* valid-kr?* :stor* valid-i?* ))
-(stest/instrument `K35_hpf:a)
 
 (defn prints
   {:arglists '([Sstring & xval1* xval2* xval3* xval4* xval5* xval6* xval7* xval8* xval9* xval10* xval11* xval12* xval13* xval14* xval15* xval16*] [istring & xval1* xval2* xval3* xval4* xval5* xval6* xval7* xval8* xval9* xval10* xval11* xval12* xval13* xval14* xval15* xval16*])}
@@ -12341,7 +9711,8 @@
 
 (s/fdef prints
   :args (s/alt
-         :Sxxxxxxxxxxxxxxxx (s/cat :string valid-S? :val1* valid-x?* :val2* valid-x?* :val3* valid-x?* :val4* valid-x?* :val5* valid-x?* :val6* valid-x?* :val7* valid-x?* :val8* valid-x?* :val9* valid-x?* :val10* valid-x?* :val11* valid-x?* :val12* valid-x?* :val13* valid-x?* :val14* valid-x?* :val15* valid-x?* :val16* valid-x?* )
+         :ixxxxxxxxxxxxxxxx (s/cat :string valid-i? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
+         :Sxxxxxxxxxxxxxxxx (s/cat :string valid-S? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
          ))
 (stest/instrument `prints)
 
@@ -12357,23 +9728,8 @@
     (new out-types ast)))
 
 (s/fdef oscil1
-  :args (s/cat :del valid-i? :amp valid-kr? :dur valid-i? :table* valid-i?* ))
+  :args (s/cat :del valid-i? :amp valid-kr? :dur valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `oscil1)
-
-(defn oscil1:k
-  {:arglists '([idel kamp idur & itable*])}
-  [del amp dur & [ table* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "oscil1"
-                      [del amp dur table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef oscil1:k
-  :args (s/cat :del valid-i? :amp valid-kr? :dur valid-i? :table* valid-i?* ))
-(stest/instrument `oscil1:k)
 
 (defn upsamp
   {:arglists '([ksig])}
@@ -12390,21 +9746,6 @@
   :args (s/cat :sig valid-kr? ))
 (stest/instrument `upsamp)
 
-(defn upsamp:a
-  {:arglists '([ksig])}
-  [sig]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "upsamp"
-                      [sig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef upsamp:a
-  :args (s/cat :sig valid-kr? ))
-(stest/instrument `upsamp:a)
-
 (defn portk
   {:arglists '([ksig khtim & isig*])}
   [sig htim & [ sig* ]]
@@ -12417,23 +9758,8 @@
     (new out-types ast)))
 
 (s/fdef portk
-  :args (s/cat :sig valid-kr? :htim valid-kr? :sig* valid-i?* ))
+  :args (s/cat :sig valid-kr? :htim valid-kr? :sig* (s/? valid-i?*) ))
 (stest/instrument `portk)
-
-(defn portk:k
-  {:arglists '([ksig khtim & isig*])}
-  [sig htim & [ sig* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "portk"
-                      [sig htim sig*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef portk:k
-  :args (s/cat :sig valid-kr? :htim valid-kr? :sig* valid-i?* ))
-(stest/instrument `portk:k)
 
 (defn reverb2
   {:arglists '([asig ktime khdif & iskip* inumCombs* ifnCombs* inumAlpas* ifnAlpas*])}
@@ -12447,23 +9773,8 @@
     (new out-types ast)))
 
 (s/fdef reverb2
-  :args (s/cat :sig valid-ar? :time valid-kr? :hdif valid-kr? :skip* valid-i?* :numCombs* valid-i?* :fnCombs* valid-i?* :numAlpas* valid-i?* :fnAlpas* valid-i?* ))
+  :args (s/cat :sig valid-ar? :time valid-kr? :hdif valid-kr? :skip* (s/? valid-i?*) :numCombs* (s/? valid-i?*) :fnCombs* (s/? valid-i?*) :numAlpas* (s/? valid-i?*) :fnAlpas* (s/? valid-i?*) ))
 (stest/instrument `reverb2)
-
-(defn reverb2:a
-  {:arglists '([asig ktime khdif & iskip* inumCombs* ifnCombs* inumAlpas* ifnAlpas*])}
-  [sig time hdif & [ skip* numCombs* fnCombs* numAlpas* fnAlpas* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "reverb2"
-                      [sig time hdif skip* numCombs* fnCombs* numAlpas* fnAlpas*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef reverb2:a
-  :args (s/cat :sig valid-ar? :time valid-kr? :hdif valid-kr? :skip* valid-i?* :numCombs* valid-i?* :fnCombs* valid-i?* :numAlpas* valid-i?* :fnAlpas* valid-i?* ))
-(stest/instrument `reverb2:a)
 
 (defn schedule
   {:arglists '([Sinsname iwhen idur & xp1* xp2* xp3* xp4* xp5* xp6* xp7* xp8* xp9* xp10* xp11* xp12* xp13* xp14* xp15* xp16*] [Sinsname iwhen idur & ip1* ip2* ip3* ip4* ip5* ip6* ip7* ip8* ip9* ip10* ip11* ip12* ip13* ip14* ip15* ip16*] [iinsname iwhen idur & xp1* xp2* xp3* xp4* xp5* xp6* xp7* xp8* xp9* xp10* xp11* xp12* xp13* xp14* xp15* xp16*] [iinsname iwhen idur & ip1* ip2* ip3* ip4* ip5* ip6* ip7* ip8* ip9* ip10* ip11* ip12* ip13* ip14* ip15* ip16*])}
@@ -12478,7 +9789,10 @@
 
 (s/fdef schedule
   :args (s/alt
-         :Siixxxxxxxxxxxxxxxx (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* valid-x?* :p2* valid-x?* :p3* valid-x?* :p4* valid-x?* :p5* valid-x?* :p6* valid-x?* :p7* valid-x?* :p8* valid-x?* :p9* valid-x?* :p10* valid-x?* :p11* valid-x?* :p12* valid-x?* :p13* valid-x?* :p14* valid-x?* :p15* valid-x?* :p16* valid-x?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :insname valid-i? :when valid-i? :dur valid-i? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
+         :iiixxxxxxxxxxxxxxxx (s/cat :insname valid-i? :when valid-i? :dur valid-i? :p1* (s/? valid-x?*) :p2* (s/? valid-x?*) :p3* (s/? valid-x?*) :p4* (s/? valid-x?*) :p5* (s/? valid-x?*) :p6* (s/? valid-x?*) :p7* (s/? valid-x?*) :p8* (s/? valid-x?*) :p9* (s/? valid-x?*) :p10* (s/? valid-x?*) :p11* (s/? valid-x?*) :p12* (s/? valid-x?*) :p13* (s/? valid-x?*) :p14* (s/? valid-x?*) :p15* (s/? valid-x?*) :p16* (s/? valid-x?*) )
+         :Siiiiiiiiiiiiiiiiii (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
+         :Siixxxxxxxxxxxxxxxx (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* (s/? valid-x?*) :p2* (s/? valid-x?*) :p3* (s/? valid-x?*) :p4* (s/? valid-x?*) :p5* (s/? valid-x?*) :p6* (s/? valid-x?*) :p7* (s/? valid-x?*) :p8* (s/? valid-x?*) :p9* (s/? valid-x?*) :p10* (s/? valid-x?*) :p11* (s/? valid-x?*) :p12* (s/? valid-x?*) :p13* (s/? valid-x?*) :p14* (s/? valid-x?*) :p15* (s/? valid-x?*) :p16* (s/? valid-x?*) )
          ))
 (stest/instrument `schedule)
 
@@ -12506,23 +9820,8 @@
     (new out-types ast)))
 
 (s/fdef wgbrass
-  :args (s/cat :amp valid-kr? :freq valid-kr? :tens valid-kr? :att valid-i? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :tens valid-kr? :att valid-i? :vibf valid-kr? :vamp valid-kr? :table* (s/? valid-i?*) :minfreq* (s/? valid-i?*) ))
 (stest/instrument `wgbrass)
-
-(defn wgbrass:a
-  {:arglists '([kamp kfreq ktens iatt kvibf kvamp & itable* iminfreq*])}
-  [amp freq tens att vibf vamp & [ table* minfreq* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgbrass"
-                      [amp freq tens att vibf vamp table* minfreq*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgbrass:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :tens valid-kr? :att valid-i? :vibf valid-kr? :vamp valid-kr? :table* valid-i?* :minfreq* valid-i?* ))
-(stest/instrument `wgbrass:a)
 
 (defn sc_phasor
   {:arglists '([atrig arate kstart kend & kresetPos*] [atrig krate kstart kend & kresetPos*] [ktrig krate kstart kend & kresetPos*])}
@@ -12537,7 +9836,9 @@
 
 (s/fdef sc_phasor
   :args (s/alt
-         :aakkk (s/cat :trig valid-ar? :rate valid-ar? :start valid-kr? :end valid-kr? :resetPos* valid-kr?* )
+         :kkkkk (s/cat :trig valid-kr? :rate valid-kr? :start valid-kr? :end valid-kr? :resetPos* (s/? valid-kr?*) )
+         :akkkk (s/cat :trig valid-ar? :rate valid-kr? :start valid-kr? :end valid-kr? :resetPos* (s/? valid-kr?*) )
+         :aakkk (s/cat :trig valid-ar? :rate valid-ar? :start valid-kr? :end valid-kr? :resetPos* (s/? valid-kr?*) )
          ))
 (stest/instrument `sc_phasor)
 
@@ -12554,7 +9855,8 @@
 
 (s/fdef sc_phasor:a
   :args (s/alt
-         :aakkk (s/cat :trig valid-ar? :rate valid-ar? :start valid-kr? :end valid-kr? :resetPos* valid-kr?* )
+         :akkkk (s/cat :trig valid-ar? :rate valid-kr? :start valid-kr? :end valid-kr? :resetPos* (s/? valid-kr?*) )
+         :aakkk (s/cat :trig valid-ar? :rate valid-ar? :start valid-kr? :end valid-kr? :resetPos* (s/? valid-kr?*) )
          ))
 (stest/instrument `sc_phasor:a)
 
@@ -12570,7 +9872,7 @@
     (new out-types ast)))
 
 (s/fdef sc_phasor:k
-  :args (s/cat :trig valid-kr? :rate valid-kr? :start valid-kr? :end valid-kr? :resetPos* valid-kr?* ))
+  :args (s/cat :trig valid-kr? :rate valid-kr? :start valid-kr? :end valid-kr? :resetPos* (s/? valid-kr?*) ))
 (stest/instrument `sc_phasor:k)
 
 (defn readscore
@@ -12588,21 +9890,6 @@
   :args (s/cat :in valid-S? ))
 (stest/instrument `readscore)
 
-(defn readscore:i
-  {:arglists '([Sin])}
-  [in]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "readscore"
-                      [in]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef readscore:i
-  :args (s/cat :in valid-S? ))
-(stest/instrument `readscore:i)
-
 (defn sin
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
   [arg1]
@@ -12616,6 +9903,10 @@
 
 (s/fdef sin
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `sin)
@@ -12707,7 +9998,7 @@
     (new out-types ast)))
 
 (s/fdef vexpseg
-  :args (s/cat :fnout valid-i? :elements valid-i? :fn1* valid-i?* :dur2* valid-i?* :fn3* valid-i?* :dur4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* ))
+  :args (s/cat :fnout valid-i? :elements valid-i? :fn1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :dur4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) ))
 (stest/instrument `vexpseg)
 
 (defn pvsdiskin
@@ -12723,26 +10014,10 @@
 
 (s/fdef pvsdiskin
   :args (s/alt
-         :Skkiik (s/cat :Fname valid-S? :tscal valid-kr? :gain valid-kr? :offset* valid-i?* :chan* valid-i?* :chan* valid-kr?* )
+         :ikkiik (s/cat :Fname valid-i? :tscal valid-kr? :gain valid-kr? :offset* (s/? valid-i?*) :chan* (s/? valid-i?*) :chan* (s/? valid-kr?*) )
+         :Skkiik (s/cat :Fname valid-S? :tscal valid-kr? :gain valid-kr? :offset* (s/? valid-i?*) :chan* (s/? valid-i?*) :chan* (s/? valid-kr?*) )
          ))
 (stest/instrument `pvsdiskin)
-
-(defn pvsdiskin:f
-  {:arglists '([SFname ktscal kgain & ioffset* ichan* kchan*] [iFname ktscal kgain & ioffset* ichan* kchan*])}
-  [Fname tscal gain & [ offset* chan* chan* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsdiskin"
-                      [Fname tscal gain offset* chan* chan*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsdiskin:f
-  :args (s/alt
-         :Skkiik (s/cat :Fname valid-S? :tscal valid-kr? :gain valid-kr? :offset* valid-i?* :chan* valid-i?* :chan* valid-kr?* )
-         ))
-(stest/instrument `pvsdiskin:f)
 
 (defn outq2
   {:arglists '([asig])}
@@ -12774,21 +10049,6 @@
   :args (s/cat :send valid-i? :buss valid-i? ))
 (stest/instrument `MixerGetLevel)
 
-(defn MixerGetLevel:k
-  {:arglists '([isend ibuss])}
-  [send buss]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "MixerGetLevel"
-                      [send buss]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef MixerGetLevel:k
-  :args (s/cat :send valid-i? :buss valid-i? ))
-(stest/instrument `MixerGetLevel:k)
-
 (defn limit
   {:arglists '([asig klow khigh] [isig ilow ihigh] [isigArr ilow ihigh] [ksig klow khigh] [ksigArr klow khigh])}
   [sig low high]
@@ -12802,6 +10062,10 @@
 
 (s/fdef limit
   :args (s/alt
+         :kArrkk (s/cat :sig valid-kArr? :low valid-kr? :high valid-kr? )
+         :kkk (s/cat :sig valid-kr? :low valid-kr? :high valid-kr? )
+         :iArrii (s/cat :sig valid-iArr? :low valid-i? :high valid-i? )
+         :iii (s/cat :sig valid-i? :low valid-i? :high valid-i? )
          :akk (s/cat :sig valid-ar? :low valid-kr? :high valid-kr? )
          ))
 (stest/instrument `limit)
@@ -12894,26 +10158,10 @@
 
 (s/fdef nstrnum
   :args (s/alt
+         :i (s/cat :name valid-i? )
          :S (s/cat :name valid-S? )
          ))
 (stest/instrument `nstrnum)
-
-(defn nstrnum:i
-  {:arglists '([Sname] [iname])}
-  [name]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "nstrnum"
-                      [name]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef nstrnum:i
-  :args (s/alt
-         :S (s/cat :name valid-S? )
-         ))
-(stest/instrument `nstrnum:i)
 
 (defn outh
   {:arglists '([& asig1* asig2* asig3* asig4* asig5* asig6* asig7* asig8* asig9* asig10* asig11* asig12* asig13* asig14* asig15* asig16* asig17* asig18* asig19* asig20* asig21* asig22* asig23* asig24* asig25* asig26* asig27* asig28* asig29* asig30* asig31* asig32*])}
@@ -12927,7 +10175,7 @@
     (new out-types ast)))
 
 (s/fdef outh
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `outh)
 
 (defn vpowv
@@ -12942,7 +10190,7 @@
     (new out-types ast)))
 
 (s/fdef vpowv
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vpowv)
 
 (defn lineto
@@ -12960,21 +10208,6 @@
   :args (s/cat :sig valid-kr? :time valid-kr? ))
 (stest/instrument `lineto)
 
-(defn lineto:k
-  {:arglists '([ksig ktime])}
-  [sig time]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "lineto"
-                      [sig time]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lineto:k
-  :args (s/cat :sig valid-kr? :time valid-kr? ))
-(stest/instrument `lineto:k)
-
 (defn readclock
   {:arglists '([inum])}
   [num]
@@ -12990,21 +10223,6 @@
   :args (s/cat :num valid-i? ))
 (stest/instrument `readclock)
 
-(defn readclock:i
-  {:arglists '([inum])}
-  [num]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "readclock"
-                      [num]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef readclock:i
-  :args (s/cat :num valid-i? ))
-(stest/instrument `readclock:i)
-
 (defn ATScross
   {:arglists '([ktimepnt kfmod Satsfile itable kmylev kbuflev ipartials & ipartialoffset* ipartialincr* ipartialincr* ipartialincr*] [ktimepnt kfmod iatsfile itable kmylev kbuflev ipartials & ipartialoffset* ipartialincr* ipartialincr* ipartialincr*])}
   [timepnt fmod atsfile table mylev buflev partials & [ partialoffset* partialincr* partialincr* partialincr* ]]
@@ -13018,26 +10236,10 @@
 
 (s/fdef ATScross
   :args (s/alt
-         :kkSikkiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :table valid-i? :mylev valid-kr? :buflev valid-kr? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* :partialincr* valid-i?* :partialincr* valid-i?* )
+         :kkiikkiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-i? :table valid-i? :mylev valid-kr? :buflev valid-kr? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) :partialincr* (s/? valid-i?*) :partialincr* (s/? valid-i?*) )
+         :kkSikkiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :table valid-i? :mylev valid-kr? :buflev valid-kr? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) :partialincr* (s/? valid-i?*) :partialincr* (s/? valid-i?*) )
          ))
 (stest/instrument `ATScross)
-
-(defn ATScross:a
-  {:arglists '([ktimepnt kfmod Satsfile itable kmylev kbuflev ipartials & ipartialoffset* ipartialincr* ipartialincr* ipartialincr*] [ktimepnt kfmod iatsfile itable kmylev kbuflev ipartials & ipartialoffset* ipartialincr* ipartialincr* ipartialincr*])}
-  [timepnt fmod atsfile table mylev buflev partials & [ partialoffset* partialincr* partialincr* partialincr* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "ATScross"
-                      [timepnt fmod atsfile table mylev buflev partials partialoffset* partialincr* partialincr* partialincr*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATScross:a
-  :args (s/alt
-         :kkSikkiiiii (s/cat :timepnt valid-kr? :fmod valid-kr? :atsfile valid-S? :table valid-i? :mylev valid-kr? :buflev valid-kr? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* :partialincr* valid-i?* :partialincr* valid-i?* )
-         ))
-(stest/instrument `ATScross:a)
 
 (defn pvstrace
   {:arglists '([fsigin kn])}
@@ -13053,21 +10255,6 @@
 (s/fdef pvstrace
   :args (s/cat :sigin valid-f? :n valid-kr? ))
 (stest/instrument `pvstrace)
-
-(defn pvstrace:f
-  {:arglists '([fsigin kn])}
-  [sigin n]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvstrace"
-                      [sigin n]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvstrace:f
-  :args (s/cat :sigin valid-f? :n valid-kr? ))
-(stest/instrument `pvstrace:f)
 
 (defn outic
   {:arglists '([ichn inum ivalue imin imax])}
@@ -13096,23 +10283,8 @@
     (new out-types ast)))
 
 (s/fdef valpass
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-x? :maxlpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-x? :maxlpt valid-i? :skip* (s/? valid-i?*) :nsmps* (s/? valid-i?*) ))
 (stest/instrument `valpass)
-
-(defn valpass:a
-  {:arglists '([asig krvt xlpt imaxlpt & iskip* insmps*])}
-  [sig rvt lpt maxlpt & [ skip* nsmps* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "valpass"
-                      [sig rvt lpt maxlpt skip* nsmps*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef valpass:a
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-x? :maxlpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
-(stest/instrument `valpass:a)
 
 (defn hypot
   {:arglists '([iarg1Arr iarg2Arr] [karg1Arr karg2Arr])}
@@ -13127,6 +10299,7 @@
 
 (s/fdef hypot
   :args (s/alt
+         :kArrkArr (s/cat :arg1 valid-kArr? :arg2 valid-kArr? )
          :iArriArr (s/cat :arg1 valid-iArr? :arg2 valid-iArr? )
          ))
 (stest/instrument `hypot)
@@ -13189,7 +10362,7 @@
 
 (s/fdef cossegr
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) )
          ))
 (stest/instrument `cossegr)
 
@@ -13205,7 +10378,7 @@
     (new out-types ast)))
 
 (s/fdef cossegr:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) ))
 (stest/instrument `cossegr:a)
 
 (defn cossegr:k
@@ -13220,7 +10393,7 @@
     (new out-types ast)))
 
 (s/fdef cossegr:k
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) ))
 (stest/instrument `cossegr:k)
 
 (defn pvsdisp
@@ -13235,7 +10408,7 @@
     (new out-types ast)))
 
 (s/fdef pvsdisp
-  :args (s/cat :sig valid-f? :bins* valid-i?* :wtflg* valid-i?* ))
+  :args (s/cat :sig valid-f? :bins* (s/? valid-i?*) :wtflg* (s/? valid-i?*) ))
 (stest/instrument `pvsdisp)
 
 (defn ficlose
@@ -13251,6 +10424,7 @@
 
 (s/fdef ficlose
   :args (s/alt
+         :i (s/cat :filename valid-i? )
          :S (s/cat :filename valid-S? )
          ))
 (stest/instrument `ficlose)
@@ -13268,6 +10442,9 @@
 
 (s/fdef fmin
   :args (s/alt
+         :kArrkArr (s/cat :arg valid-kArr? :arg2 valid-kArr? )
+         :kArrk (s/cat :arg valid-kArr? :arg2 valid-kr? )
+         :iArriArr (s/cat :arg valid-iArr? :arg2 valid-iArr? )
          :iArri (s/cat :arg valid-iArr? :arg2 valid-i? )
          ))
 (stest/instrument `fmin)
@@ -13285,6 +10462,7 @@
 
 (s/fdef fmin:iArr
   :args (s/alt
+         :iArriArr (s/cat :arg valid-iArr? :arg2 valid-iArr? )
          :iArri (s/cat :arg valid-iArr? :arg2 valid-i? )
          ))
 (stest/instrument `fmin:iArr)
@@ -13302,6 +10480,7 @@
 
 (s/fdef fmin:kArr
   :args (s/alt
+         :kArrkArr (s/cat :arg valid-kArr? :arg2 valid-kArr? )
          :kArrk (s/cat :arg valid-kArr? :arg2 valid-kr? )
          ))
 (stest/instrument `fmin:kArr)
@@ -13319,26 +10498,9 @@
 
 (s/fdef atone
   :args (s/alt
-         :aki (s/cat :sig valid-ar? :hp valid-kr? :skip* valid-i?* )
+         :aki (s/cat :sig valid-ar? :hp valid-kr? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `atone)
-
-(defn atone:a
-  {:arglists '([asig khp & iskip*] [asig khp & iskip*])}
-  [sig hp & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "atone"
-                      [sig hp skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef atone:a
-  :args (s/alt
-         :aki (s/cat :sig valid-ar? :hp valid-kr? :skip* valid-i?* )
-         ))
-(stest/instrument `atone:a)
 
 (defn chnget
   {:arglists '([Ss] [Ss] [Ss] [Ss])}
@@ -13430,7 +10592,7 @@
 
 (s/fdef adsr
   :args (s/alt
-         :iiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* )
+         :iiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) )
          ))
 (stest/instrument `adsr)
 
@@ -13446,7 +10608,7 @@
     (new out-types ast)))
 
 (s/fdef adsr:a
-  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* ))
+  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) ))
 (stest/instrument `adsr:a)
 
 (defn adsr:k
@@ -13461,7 +10623,7 @@
     (new out-types ast)))
 
 (s/fdef adsr:k
-  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* ))
+  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) ))
 (stest/instrument `adsr:k)
 
 (defn vcopy
@@ -13476,7 +10638,7 @@
     (new out-types ast)))
 
 (s/fdef vcopy
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vcopy)
 
 (defn fini
@@ -13492,7 +10654,8 @@
 
 (s/fdef fini
   :args (s/alt
-         :Siiiiiiiiiiiiiiiiii (s/cat :filename valid-S? :skipframes valid-i? :format valid-i? :n1* valid-i?* :n2* valid-i?* :n3* valid-i?* :n4* valid-i?* :n5* valid-i?* :n6* valid-i?* :n7* valid-i?* :n8* valid-i?* :n9* valid-i?* :n10* valid-i?* :n11* valid-i?* :n12* valid-i?* :n13* valid-i?* :n14* valid-i?* :n15* valid-i?* :n16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :filename valid-i? :skipframes valid-i? :format valid-i? :n1* (s/? valid-i?*) :n2* (s/? valid-i?*) :n3* (s/? valid-i?*) :n4* (s/? valid-i?*) :n5* (s/? valid-i?*) :n6* (s/? valid-i?*) :n7* (s/? valid-i?*) :n8* (s/? valid-i?*) :n9* (s/? valid-i?*) :n10* (s/? valid-i?*) :n11* (s/? valid-i?*) :n12* (s/? valid-i?*) :n13* (s/? valid-i?*) :n14* (s/? valid-i?*) :n15* (s/? valid-i?*) :n16* (s/? valid-i?*) )
+         :Siiiiiiiiiiiiiiiiii (s/cat :filename valid-S? :skipframes valid-i? :format valid-i? :n1* (s/? valid-i?*) :n2* (s/? valid-i?*) :n3* (s/? valid-i?*) :n4* (s/? valid-i?*) :n5* (s/? valid-i?*) :n6* (s/? valid-i?*) :n7* (s/? valid-i?*) :n8* (s/? valid-i?*) :n9* (s/? valid-i?*) :n10* (s/? valid-i?*) :n11* (s/? valid-i?*) :n12* (s/? valid-i?*) :n13* (s/? valid-i?*) :n14* (s/? valid-i?*) :n15* (s/? valid-i?*) :n16* (s/? valid-i?*) )
          ))
 (stest/instrument `fini)
 
@@ -13508,7 +10671,7 @@
     (new out-types ast)))
 
 (s/fdef hvs3
-  :args (s/cat :x valid-kr? :y valid-kr? :z valid-kr? :numParms valid-i? :numPointsX valid-i? :numPointsY valid-i? :numPointsZ valid-i? :OutTab valid-i? :PositionsTab valid-i? :SnapTab valid-i? :ConfigTab* valid-i?* ))
+  :args (s/cat :x valid-kr? :y valid-kr? :z valid-kr? :numParms valid-i? :numPointsX valid-i? :numPointsY valid-i? :numPointsZ valid-i? :OutTab valid-i? :PositionsTab valid-i? :SnapTab valid-i? :ConfigTab* (s/? valid-i?*) ))
 (stest/instrument `hvs3)
 
 (defn xscansmap
@@ -13523,7 +10686,7 @@
     (new out-types ast)))
 
 (s/fdef xscansmap
-  :args (s/cat :pos valid-kr? :vel valid-kr? :scan valid-i? :amp valid-kr? :vamp valid-kr? :which* valid-i?* ))
+  :args (s/cat :pos valid-kr? :vel valid-kr? :scan valid-i? :amp valid-kr? :vamp valid-kr? :which* (s/? valid-i?*) ))
 (stest/instrument `xscansmap)
 
 (defn stix
@@ -13538,23 +10701,8 @@
     (new out-types ast)))
 
 (s/fdef stix
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
+  :args (s/cat :amp valid-i? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) ))
 (stest/instrument `stix)
-
-(defn stix:a
-  {:arglists '([iamp idettack & inum* idamp* imaxshake*])}
-  [amp dettack & [ num* damp* maxshake* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "stix"
-                      [amp dettack num* damp* maxshake*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef stix:a
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
-(stest/instrument `stix:a)
 
 (defn dumpk3
   {:arglists '([ksig1 ksig2 ksig3 Sfilname iformat iprd] [ksig1 ksig2 ksig3 ifilname iformat iprd])}
@@ -13569,6 +10717,7 @@
 
 (s/fdef dumpk3
   :args (s/alt
+         :kkkiii (s/cat :sig1 valid-kr? :sig2 valid-kr? :sig3 valid-kr? :filname valid-i? :format valid-i? :prd valid-i? )
          :kkkSii (s/cat :sig1 valid-kr? :sig2 valid-kr? :sig3 valid-kr? :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `dumpk3)
@@ -13585,23 +10734,8 @@
     (new out-types ast)))
 
 (s/fdef vibrato
-  :args (s/cat :AverageAmp valid-kr? :AverageFreq valid-kr? :RandAmountAmp valid-kr? :RandAmountFreq valid-kr? :AmpMinRate valid-kr? :AmpMaxRate valid-kr? :cpsMinRate valid-kr? :cpsMaxRate valid-kr? :table valid-i? :phase* valid-i?* ))
+  :args (s/cat :AverageAmp valid-kr? :AverageFreq valid-kr? :RandAmountAmp valid-kr? :RandAmountFreq valid-kr? :AmpMinRate valid-kr? :AmpMaxRate valid-kr? :cpsMinRate valid-kr? :cpsMaxRate valid-kr? :table valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `vibrato)
-
-(defn vibrato:k
-  {:arglists '([kAverageAmp kAverageFreq kRandAmountAmp kRandAmountFreq kAmpMinRate kAmpMaxRate kcpsMinRate kcpsMaxRate itable & iphase*])}
-  [AverageAmp AverageFreq RandAmountAmp RandAmountFreq AmpMinRate AmpMaxRate cpsMinRate cpsMaxRate table & [ phase* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "vibrato"
-                      [AverageAmp AverageFreq RandAmountAmp RandAmountFreq AmpMinRate AmpMaxRate cpsMinRate cpsMaxRate table phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vibrato:k
-  :args (s/cat :AverageAmp valid-kr? :AverageFreq valid-kr? :RandAmountAmp valid-kr? :RandAmountFreq valid-kr? :AmpMinRate valid-kr? :AmpMaxRate valid-kr? :cpsMinRate valid-kr? :cpsMaxRate valid-kr? :table valid-i? :phase* valid-i?* ))
-(stest/instrument `vibrato:k)
 
 (defn partials
   {:arglists '([ffr fphase kthresh kminpts kmaxgap imaxtracks])}
@@ -13618,21 +10752,6 @@
   :args (s/cat :fr valid-f? :phase valid-f? :thresh valid-kr? :minpts valid-kr? :maxgap valid-kr? :maxtracks valid-i? ))
 (stest/instrument `partials)
 
-(defn partials:f
-  {:arglists '([ffr fphase kthresh kminpts kmaxgap imaxtracks])}
-  [fr phase thresh minpts maxgap maxtracks]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "partials"
-                      [fr phase thresh minpts maxgap maxtracks]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef partials:f
-  :args (s/cat :fr valid-f? :phase valid-f? :thresh valid-kr? :minpts valid-kr? :maxgap valid-kr? :maxtracks valid-i? ))
-(stest/instrument `partials:f)
-
 (defn expseg
   {:arglists '([ia idur2 & ib1* idur2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia idur2 & ib1* idur2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
   [a dur2 & [ b1* dur2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16* ]]
@@ -13646,7 +10765,7 @@
 
 (s/fdef expseg
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `expseg)
 
@@ -13662,7 +10781,7 @@
     (new out-types ast)))
 
 (s/fdef expseg:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `expseg:a)
 
 (defn expseg:k
@@ -13677,7 +10796,7 @@
     (new out-types ast)))
 
 (s/fdef expseg:k
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `expseg:k)
 
 (defn veloc
@@ -13692,23 +10811,8 @@
     (new out-types ast)))
 
 (s/fdef veloc
-  :args (s/cat :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `veloc)
-
-(defn veloc:i
-  {:arglists '([& ilow* ihigh*])}
-  [& [ low* high* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "veloc"
-                      [low* high*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef veloc:i
-  :args (s/cat :low* valid-i?* :high* valid-i?* ))
-(stest/instrument `veloc:i)
 
 (defn tambourine
   {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
@@ -13722,23 +10826,8 @@
     (new out-types ast)))
 
 (s/fdef tambourine
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) :freq* (s/? valid-i?*) :freq1* (s/? valid-i?*) :freq1* (s/? valid-i?*) ))
 (stest/instrument `tambourine)
-
-(defn tambourine:a
-  {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
-  [amp dettack & [ num* damp* maxshake* freq* freq1* freq1* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tambourine"
-                      [amp dettack num* damp* maxshake* freq* freq1* freq1*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tambourine:a
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
-(stest/instrument `tambourine:a)
 
 (defn gauss
   {:arglists '([krange] [krange] [krange])}
@@ -13814,7 +10903,7 @@
     (new out-types ast)))
 
 (s/fdef midicontrolchange
-  :args (s/cat :controller valid-x? :controllervalue valid-x? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :controller valid-x? :controllervalue valid-x? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `midicontrolchange)
 
 (defn midiout
@@ -13845,6 +10934,7 @@
 
 (s/fdef c2r
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `c2r)
@@ -13892,7 +10982,7 @@
 
 (s/fdef xadsr
   :args (s/alt
-         :iiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* )
+         :iiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) )
          ))
 (stest/instrument `xadsr)
 
@@ -13908,7 +10998,7 @@
     (new out-types ast)))
 
 (s/fdef xadsr:a
-  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* ))
+  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) ))
 (stest/instrument `xadsr:a)
 
 (defn xadsr:k
@@ -13923,7 +11013,7 @@
     (new out-types ast)))
 
 (s/fdef xadsr:k
-  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* ))
+  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) ))
 (stest/instrument `xadsr:k)
 
 (defn connect
@@ -13939,7 +11029,10 @@
 
 (s/fdef connect
   :args (s/alt
-         :SSSSi (s/cat :source1 valid-S? :outlet2 valid-S? :sink3 valid-S? :inlet4 valid-S? :inlet1* valid-i?* )
+         :iSiSi (s/cat :source1 valid-i? :outlet2 valid-S? :sink3 valid-i? :inlet4 valid-S? :inlet1* (s/? valid-i?*) )
+         :iSSSi (s/cat :source1 valid-i? :outlet2 valid-S? :sink3 valid-S? :inlet4 valid-S? :inlet1* (s/? valid-i?*) )
+         :SSiSi (s/cat :source1 valid-S? :outlet2 valid-S? :sink3 valid-i? :inlet4 valid-S? :inlet1* (s/? valid-i?*) )
+         :SSSSi (s/cat :source1 valid-S? :outlet2 valid-S? :sink3 valid-S? :inlet4 valid-S? :inlet1* (s/? valid-i?*) )
          ))
 (stest/instrument `connect)
 
@@ -13956,26 +11049,10 @@
 
 (s/fdef pvs2tab
   :args (s/alt
+         :kArrkArrf (s/cat :mags valid-kArr? :freqs valid-kArr? :sig valid-f? )
          :kArrf (s/cat :mags valid-kArr? :freqs valid-f? )
          ))
 (stest/instrument `pvs2tab)
-
-(defn pvs2tab:k
-  {:arglists '([kmagsArr ffreqs] [kmagsArr kfreqsArr fsig])}
-  [mags freqs]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "pvs2tab"
-                      [mags freqs]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvs2tab:k
-  :args (s/alt
-         :kArrf (s/cat :mags valid-kArr? :freqs valid-f? )
-         ))
-(stest/instrument `pvs2tab:k)
 
 (defn outleta
   {:arglists '([Sname asignal])}
@@ -14067,7 +11144,7 @@
 
 (s/fdef integ
   :args (s/alt
-         :xi (s/cat :sig valid-x? :skip* valid-i?* )
+         :xi (s/cat :sig valid-x? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `integ)
 
@@ -14083,7 +11160,7 @@
     (new out-types ast)))
 
 (s/fdef integ:a
-  :args (s/cat :sig valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `integ:a)
 
 (defn integ:k
@@ -14098,7 +11175,7 @@
     (new out-types ast)))
 
 (s/fdef integ:k
-  :args (s/cat :sig valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `integ:k)
 
 (defn gaussi
@@ -14178,21 +11255,6 @@
   :args (s/cat :in1 valid-kArr? :in2 valid-kArr? ))
 (stest/instrument `cmplxprod)
 
-(defn cmplxprod:kArr
-  {:arglists '([kin1Arr kin2Arr])}
-  [in1 in2]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "cmplxprod"
-                      [in1 in2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cmplxprod:kArr
-  :args (s/cat :in1 valid-kArr? :in2 valid-kArr? ))
-(stest/instrument `cmplxprod:kArr)
-
 (defn loopxseg
   {:arglists '([kfreq ktrig iphase & ktime1* kvalue2* ktime3* kvalue4* ktime5* kvalue6* kvalue7* kvalue8* kvalue9* kvalue10* kvalue11* kvalue12* kvalue13* kvalue14* kvalue15* kvalue16*])}
   [freq trig phase & [ time1* value2* time3* value4* time5* value6* value7* value8* value9* value10* value11* value12* value13* value14* value15* value16* ]]
@@ -14205,23 +11267,8 @@
     (new out-types ast)))
 
 (s/fdef loopxseg
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :time1* valid-kr?* :value2* valid-kr?* :time3* valid-kr?* :value4* valid-kr?* :time5* valid-kr?* :value6* valid-kr?* :value7* valid-kr?* :value8* valid-kr?* :value9* valid-kr?* :value10* valid-kr?* :value11* valid-kr?* :value12* valid-kr?* :value13* valid-kr?* :value14* valid-kr?* :value15* valid-kr?* :value16* valid-kr?* ))
+  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :time1* (s/? valid-kr?*) :value2* (s/? valid-kr?*) :time3* (s/? valid-kr?*) :value4* (s/? valid-kr?*) :time5* (s/? valid-kr?*) :value6* (s/? valid-kr?*) :value7* (s/? valid-kr?*) :value8* (s/? valid-kr?*) :value9* (s/? valid-kr?*) :value10* (s/? valid-kr?*) :value11* (s/? valid-kr?*) :value12* (s/? valid-kr?*) :value13* (s/? valid-kr?*) :value14* (s/? valid-kr?*) :value15* (s/? valid-kr?*) :value16* (s/? valid-kr?*) ))
 (stest/instrument `loopxseg)
-
-(defn loopxseg:k
-  {:arglists '([kfreq ktrig iphase & ktime1* kvalue2* ktime3* kvalue4* ktime5* kvalue6* kvalue7* kvalue8* kvalue9* kvalue10* kvalue11* kvalue12* kvalue13* kvalue14* kvalue15* kvalue16*])}
-  [freq trig phase & [ time1* value2* time3* value4* time5* value6* value7* value8* value9* value10* value11* value12* value13* value14* value15* value16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "loopxseg"
-                      [freq trig phase time1* value2* time3* value4* time5* value6* value7* value8* value9* value10* value11* value12* value13* value14* value15* value16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef loopxseg:k
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :time1* valid-kr?* :value2* valid-kr?* :time3* valid-kr?* :value4* valid-kr?* :time5* valid-kr?* :value6* valid-kr?* :value7* valid-kr?* :value8* valid-kr?* :value9* valid-kr?* :value10* valid-kr?* :value11* valid-kr?* :value12* valid-kr?* :value13* valid-kr?* :value14* valid-kr?* :value15* valid-kr?* :value16* valid-kr?* ))
-(stest/instrument `loopxseg:k)
 
 (defn poscil3
   {:arglists '([aamp acps & itable* iphase*] [aamp kcps & itable* iphase*] [kamp acps & itable* iphase*] [kamp kcps & itable* iphase*] [kamp kcps & itable* iphase*])}
@@ -14236,7 +11283,10 @@
 
 (s/fdef poscil3
   :args (s/alt
-         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* valid-i?* :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `poscil3)
 
@@ -14253,7 +11303,10 @@
 
 (s/fdef poscil3:a
   :args (s/alt
-         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* valid-i?* :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `poscil3:a)
 
@@ -14269,7 +11322,7 @@
     (new out-types ast)))
 
 (s/fdef poscil3:k
-  :args (s/cat :amp valid-kr? :cps valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `poscil3:k)
 
 (defn seed
@@ -14299,23 +11352,8 @@
     (new out-types ast)))
 
 (s/fdef resonk
-  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `resonk)
-
-(defn resonk:k
-  {:arglists '([ksig kcenter-frequency kbandwidth & iscale* iskip*])}
-  [sig center-frequency bandwidth & [ scale* skip* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "resonk"
-                      [sig center-frequency bandwidth scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resonk:k
-  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `resonk:k)
 
 (defn mp3len
   {:arglists '([Sfilcod] [ifilcod])}
@@ -14330,26 +11368,10 @@
 
 (s/fdef mp3len
   :args (s/alt
+         :i (s/cat :filcod valid-i? )
          :S (s/cat :filcod valid-S? )
          ))
 (stest/instrument `mp3len)
-
-(defn mp3len:i
-  {:arglists '([Sfilcod] [ifilcod])}
-  [filcod]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "mp3len"
-                      [filcod]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mp3len:i
-  :args (s/alt
-         :S (s/cat :filcod valid-S? )
-         ))
-(stest/instrument `mp3len:i)
 
 (defn minarray
   {:arglists '([iarrayArr] [karrayArr])}
@@ -14364,6 +11386,7 @@
 
 (s/fdef minarray
   :args (s/alt
+         :kArr (s/cat :array valid-kArr? )
          :iArr (s/cat :array valid-iArr? )
          ))
 (stest/instrument `minarray)
@@ -14381,7 +11404,7 @@
 
 (s/fdef vbap
   :args (s/alt
-         :akkki (s/cat :sig valid-ar? :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :layout* valid-i?* )
+         :akkki (s/cat :sig valid-ar? :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :layout* (s/? valid-i?*) )
          ))
 (stest/instrument `vbap)
 
@@ -14397,7 +11420,7 @@
     (new out-types ast)))
 
 (s/fdef vbap:aArr
-  :args (s/cat :sig valid-ar? :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :layout* valid-i?* ))
+  :args (s/cat :sig valid-ar? :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :layout* (s/? valid-i?*) ))
 (stest/instrument `vbap:aArr)
 
 (defn vbap:a
@@ -14412,7 +11435,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vbap:a
-  :args (s/cat :sig valid-ar? :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :layout* valid-i?* ))
+  :args (s/cat :sig valid-ar? :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :layout* (s/? valid-i?*) ))
 (stest/instrument `vbap:a)
 
 (defn vco2init
@@ -14427,23 +11450,8 @@
     (new out-types ast)))
 
 (s/fdef vco2init
-  :args (s/cat :wave valid-i? :basfn* valid-i?* :pmul* valid-i?* :minsiz* valid-i?* :maxsiz* valid-i?* :srcft* valid-i?* ))
+  :args (s/cat :wave valid-i? :basfn* (s/? valid-i?*) :pmul* (s/? valid-i?*) :minsiz* (s/? valid-i?*) :maxsiz* (s/? valid-i?*) :srcft* (s/? valid-i?*) ))
 (stest/instrument `vco2init)
-
-(defn vco2init:i
-  {:arglists '([iwave & ibasfn* ipmul* iminsiz* imaxsiz* isrcft*])}
-  [wave & [ basfn* pmul* minsiz* maxsiz* srcft* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "vco2init"
-                      [wave basfn* pmul* minsiz* maxsiz* srcft*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vco2init:i
-  :args (s/cat :wave valid-i? :basfn* valid-i?* :pmul* valid-i?* :minsiz* valid-i?* :maxsiz* valid-i?* :srcft* valid-i?* ))
-(stest/instrument `vco2init:i)
 
 (defn setscorepos
   {:arglists '([ipos])}
@@ -14473,7 +11481,8 @@
 
 (s/fdef schedkwhen
   :args (s/alt
-         :kkkSkkkkkkkkkkkkkkkkk (s/cat :trigger valid-kr? :mintim valid-kr? :maxnum valid-kr? :insname valid-S? :when valid-kr? :dur1* valid-kr?* :p2* valid-kr?* :p3* valid-kr?* :p4* valid-kr?* :p5* valid-kr?* :p6* valid-kr?* :p7* valid-kr?* :p8* valid-kr?* :p9* valid-kr?* :p10* valid-kr?* :p11* valid-kr?* :p12* valid-kr?* :p13* valid-kr?* :p14* valid-kr?* :p15* valid-kr?* :p16* valid-kr?* )
+         :kkkkkkkkkkkkkkkkkkkkk (s/cat :trigger valid-kr? :mintim valid-kr? :maxnum valid-kr? :insname valid-kr? :when valid-kr? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
+         :kkkSkkkkkkkkkkkkkkkkk (s/cat :trigger valid-kr? :mintim valid-kr? :maxnum valid-kr? :insname valid-S? :when valid-kr? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
          ))
 (stest/instrument `schedkwhen)
 
@@ -14492,21 +11501,6 @@
   :args (s/cat :sig valid-ar? :estfrq valid-kr? :maxvar valid-kr? :genfreq4 valid-kr? :genfreq5 valid-kr? :mode valid-i? :minfrq valid-i? :prd valid-i? ))
 (stest/instrument `harmon)
 
-(defn harmon:a
-  {:arglists '([asig kestfrq kmaxvar kgenfreq4 kgenfreq5 imode iminfrq iprd])}
-  [sig estfrq maxvar genfreq4 genfreq5 mode minfrq prd]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "harmon"
-                      [sig estfrq maxvar genfreq4 genfreq5 mode minfrq prd]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef harmon:a
-  :args (s/cat :sig valid-ar? :estfrq valid-kr? :maxvar valid-kr? :genfreq4 valid-kr? :genfreq5 valid-kr? :mode valid-i? :minfrq valid-i? :prd valid-i? ))
-(stest/instrument `harmon:a)
-
 (defn pvsarp
   {:arglists '([fsigin kbin kdepth kgain])}
   [sigin bin depth gain]
@@ -14522,21 +11516,6 @@
   :args (s/cat :sigin valid-f? :bin valid-kr? :depth valid-kr? :gain valid-kr? ))
 (stest/instrument `pvsarp)
 
-(defn pvsarp:f
-  {:arglists '([fsigin kbin kdepth kgain])}
-  [sigin bin depth gain]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsarp"
-                      [sigin bin depth gain]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsarp:f
-  :args (s/cat :sigin valid-f? :bin valid-kr? :depth valid-kr? :gain valid-kr? ))
-(stest/instrument `pvsarp:f)
-
 (defn tablekt
   {:arglists '([xindex ktable & ixmode* ixoff* iwrap*] [xindex ktable & ixmode* ixoff* iwrap*])}
   [index table & [ xmode* xoff* wrap* ]]
@@ -14550,7 +11529,7 @@
 
 (s/fdef tablekt
   :args (s/alt
-         :xkiii (s/cat :index valid-x? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :xkiii (s/cat :index valid-x? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `tablekt)
 
@@ -14566,7 +11545,7 @@
     (new out-types ast)))
 
 (s/fdef tablekt:a
-  :args (s/cat :index valid-x? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tablekt:a)
 
 (defn tablekt:k
@@ -14581,7 +11560,7 @@
     (new out-types ast)))
 
 (s/fdef tablekt:k
-  :args (s/cat :index valid-x? :table valid-kr? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-kr? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tablekt:k)
 
 (defn insremot
@@ -14596,7 +11575,7 @@
     (new out-types ast)))
 
 (s/fdef insremot
-  :args (s/cat :destination valid-S? :source valid-S? :nstrnum1* valid-i?* :nstrnum2* valid-i?* :nstrnum3* valid-i?* :nstrnum4* valid-i?* :nstrnum5* valid-i?* :nstrnum6* valid-i?* :nstrnum7* valid-i?* :nstrnum8* valid-i?* :nstrnum9* valid-i?* :nstrnum10* valid-i?* :nstrnum11* valid-i?* :nstrnum12* valid-i?* :nstrnum13* valid-i?* :nstrnum14* valid-i?* :nstrnum15* valid-i?* :nstrnum16* valid-i?* ))
+  :args (s/cat :destination valid-S? :source valid-S? :nstrnum1* (s/? valid-i?*) :nstrnum2* (s/? valid-i?*) :nstrnum3* (s/? valid-i?*) :nstrnum4* (s/? valid-i?*) :nstrnum5* (s/? valid-i?*) :nstrnum6* (s/? valid-i?*) :nstrnum7* (s/? valid-i?*) :nstrnum8* (s/? valid-i?*) :nstrnum9* (s/? valid-i?*) :nstrnum10* (s/? valid-i?*) :nstrnum11* (s/? valid-i?*) :nstrnum12* (s/? valid-i?*) :nstrnum13* (s/? valid-i?*) :nstrnum14* (s/? valid-i?*) :nstrnum15* (s/? valid-i?*) :nstrnum16* (s/? valid-i?*) ))
 (stest/instrument `insremot)
 
 (defn minabsaccum
@@ -14627,26 +11606,12 @@
 
 (s/fdef mvclpf3
   :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
+         :akki (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :akai (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-ar? :stor* (s/? valid-i?*) )
+         :aaki (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `mvclpf3)
-
-(defn mvclpf3:a
-  {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
-  [in center-frequency resonance & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mvclpf3"
-                      [in center-frequency resonance stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mvclpf3:a
-  :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
-         ))
-(stest/instrument `mvclpf3:a)
 
 (defn tonek
   {:arglists '([ksig khp & iskip*])}
@@ -14660,23 +11625,8 @@
     (new out-types ast)))
 
 (s/fdef tonek
-  :args (s/cat :sig valid-kr? :hp valid-kr? :skip* valid-i?* ))
+  :args (s/cat :sig valid-kr? :hp valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `tonek)
-
-(defn tonek:k
-  {:arglists '([ksig khp & iskip*])}
-  [sig hp & [ skip* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tonek"
-                      [sig hp skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tonek:k
-  :args (s/cat :sig valid-kr? :hp valid-kr? :skip* valid-i?* ))
-(stest/instrument `tonek:k)
 
 (defn phs
   {:arglists '([kinArr])}
@@ -14693,21 +11643,6 @@
   :args (s/cat :in valid-kArr? ))
 (stest/instrument `phs)
 
-(defn phs:kArr
-  {:arglists '([kinArr])}
-  [in]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "phs"
-                      [in]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef phs:kArr
-  :args (s/cat :in valid-kArr? ))
-(stest/instrument `phs:kArr)
-
 (defn guiro
   {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1*])}
   [amp dettack & [ num* damp* maxshake* freq* freq1* ]]
@@ -14720,23 +11655,8 @@
     (new out-types ast)))
 
 (s/fdef guiro
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) :freq* (s/? valid-i?*) :freq1* (s/? valid-i?*) ))
 (stest/instrument `guiro)
-
-(defn guiro:a
-  {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1*])}
-  [amp dettack & [ num* damp* maxshake* freq* freq1* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "guiro"
-                      [amp dettack num* damp* maxshake* freq* freq1*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef guiro:a
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* ))
-(stest/instrument `guiro:a)
 
 (defn exp
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
@@ -14751,6 +11671,10 @@
 
 (s/fdef exp
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `exp)
@@ -14842,7 +11766,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef xscanmap
-  :args (s/cat :scan valid-i? :amp valid-kr? :vamp valid-kr? :which* valid-i?* ))
+  :args (s/cat :scan valid-i? :amp valid-kr? :vamp valid-kr? :which* (s/? valid-i?*) ))
 (stest/instrument `xscanmap)
 
 (defn getcfg
@@ -14860,21 +11784,6 @@
   :args (s/cat :opt valid-i? ))
 (stest/instrument `getcfg)
 
-(defn getcfg:S
-  {:arglists '([iopt])}
-  [opt]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "getcfg"
-                      [opt]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef getcfg:S
-  :args (s/cat :opt valid-i? ))
-(stest/instrument `getcfg:S)
-
 (defn sorta
   {:arglists '([iarg1Arr] [karg1Arr])}
   [arg1]
@@ -14888,6 +11797,7 @@
 
 (s/fdef sorta
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
          :iArr (s/cat :arg1 valid-iArr? )
          ))
 (stest/instrument `sorta)
@@ -14935,6 +11845,7 @@
 
 (s/fdef maparray
   :args (s/alt
+         :kArrS (s/cat :i valid-kArr? :inarray valid-S? )
          :iArrS (s/cat :i valid-iArr? :inarray valid-S? )
          ))
 (stest/instrument `maparray)
@@ -14984,21 +11895,6 @@
   :args (s/cat :in valid-ar? :a valid-kr? :b valid-kr? :d valid-kr? :C valid-kr? :L valid-kr? ))
 (stest/instrument `nlfilt)
 
-(defn nlfilt:a
-  {:arglists '([ain ka kb kd kC kL])}
-  [in a b d C L]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "nlfilt"
-                      [in a b d C L]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef nlfilt:a
-  :args (s/cat :in valid-ar? :a valid-kr? :b valid-kr? :d valid-kr? :C valid-kr? :L valid-kr? ))
-(stest/instrument `nlfilt:a)
-
 (defn vmultv
   {:arglists '([ifn1 ifn2 kelements & kdstoffset* ksrcoffset* kverbose*])}
   [fn1 fn2 elements & [ dstoffset* srcoffset* verbose* ]]
@@ -15011,7 +11907,7 @@
     (new out-types ast)))
 
 (s/fdef vmultv
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vmultv)
 
 (defn modmatrix
@@ -15044,21 +11940,6 @@
   :args (s/cat :arg1 valid-ar? :arg2 valid-ar? :less valid-ar? :equal valid-ar? :more valid-ar? ))
 (stest/instrument `select)
 
-(defn select:a
-  {:arglists '([aarg1 aarg2 aless aequal amore])}
-  [arg1 arg2 less equal more]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "select"
-                      [arg1 arg2 less equal more]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef select:a
-  :args (s/cat :arg1 valid-ar? :arg2 valid-ar? :less valid-ar? :equal valid-ar? :more valid-ar? ))
-(stest/instrument `select:a)
-
 (defn wguide1
   {:arglists '([asig xfreq kcutoff kfeedback])}
   [sig freq cutoff feedback]
@@ -15074,21 +11955,6 @@
   :args (s/cat :sig valid-ar? :freq valid-x? :cutoff valid-kr? :feedback valid-kr? ))
 (stest/instrument `wguide1)
 
-(defn wguide1:a
-  {:arglists '([asig xfreq kcutoff kfeedback])}
-  [sig freq cutoff feedback]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wguide1"
-                      [sig freq cutoff feedback]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wguide1:a
-  :args (s/cat :sig valid-ar? :freq valid-x? :cutoff valid-kr? :feedback valid-kr? ))
-(stest/instrument `wguide1:a)
-
 (defn resonz
   {:arglists '([asig xcenter-frequency xbandwidth & iscale* iskip*])}
   [sig center-frequency bandwidth & [ scale* skip* ]]
@@ -15101,23 +11967,8 @@
     (new out-types ast)))
 
 (s/fdef resonz
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `resonz)
-
-(defn resonz:a
-  {:arglists '([asig xcenter-frequency xbandwidth & iscale* iskip*])}
-  [sig center-frequency bandwidth & [ scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "resonz"
-                      [sig center-frequency bandwidth scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resonz:a
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :bandwidth valid-x? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `resonz:a)
 
 (defn dctinv
   {:arglists '([iinArr] [kinArr])}
@@ -15132,6 +11983,7 @@
 
 (s/fdef dctinv
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `dctinv)
@@ -15193,7 +12045,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef sfplay3
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* valid-i?* :offset* valid-i?* :env* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :preindex valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :env* (s/? valid-i?*) ))
 (stest/instrument `sfplay3)
 
 (defn prealloc
@@ -15209,7 +12061,8 @@
 
 (s/fdef prealloc
   :args (s/alt
-         :Sii (s/cat :insname valid-S? :count valid-i? :count* valid-i?* )
+         :iii (s/cat :insname valid-i? :count valid-i? :count* (s/? valid-i?*) )
+         :Sii (s/cat :insname valid-S? :count valid-i? :count* (s/? valid-i?*) )
          ))
 (stest/instrument `prealloc)
 
@@ -15225,23 +12078,8 @@
     (new out-types ast)))
 
 (s/fdef fof2
-  :args (s/cat :amp valid-x? :fund valid-x? :form valid-x? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase valid-kr? :gliss valid-kr? :skip* valid-i?* ))
+  :args (s/cat :amp valid-x? :fund valid-x? :form valid-x? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase valid-kr? :gliss valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `fof2)
-
-(defn fof2:a
-  {:arglists '([xamp xfund xform koct kband kris kdur kdec iolaps ifna ifnb itotdur kphase kgliss & iskip*])}
-  [amp fund form oct band ris dur dec olaps fna fnb totdur phase gliss & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fof2"
-                      [amp fund form oct band ris dur dec olaps fna fnb totdur phase gliss skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fof2:a
-  :args (s/cat :amp valid-x? :fund valid-x? :form valid-x? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase valid-kr? :gliss valid-kr? :skip* valid-i?* ))
-(stest/instrument `fof2:a)
 
 (defn vtablei
   {:arglists '([iindex itable interp ixmode & iout1* iout2* iout3* ioutN4* ioutN5* ioutN6* ioutN7* ioutN8* ioutN9* ioutN10* ioutN11* ioutN12* ioutN13* ioutN14* ioutN15* ioutN16*])}
@@ -15255,7 +12093,7 @@
     (new out-types ast)))
 
 (s/fdef vtablei
-  :args (s/cat :index valid-i? :table valid-i? :nterp valid-i? :xmode valid-i? :out1* valid-i?* :out2* valid-i?* :out3* valid-i?* :outN4* valid-i?* :outN5* valid-i?* :outN6* valid-i?* :outN7* valid-i?* :outN8* valid-i?* :outN9* valid-i?* :outN10* valid-i?* :outN11* valid-i?* :outN12* valid-i?* :outN13* valid-i?* :outN14* valid-i?* :outN15* valid-i?* :outN16* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :nterp valid-i? :xmode valid-i? :out1* (s/? valid-i?*) :out2* (s/? valid-i?*) :out3* (s/? valid-i?*) :outN4* (s/? valid-i?*) :outN5* (s/? valid-i?*) :outN6* (s/? valid-i?*) :outN7* (s/? valid-i?*) :outN8* (s/? valid-i?*) :outN9* (s/? valid-i?*) :outN10* (s/? valid-i?*) :outN11* (s/? valid-i?*) :outN12* (s/? valid-i?*) :outN13* (s/? valid-i?*) :outN14* (s/? valid-i?*) :outN15* (s/? valid-i?*) :outN16* (s/? valid-i?*) ))
 (stest/instrument `vtablei)
 
 (defn harmon3
@@ -15270,37 +12108,10 @@
     (new out-types ast)))
 
 (s/fdef harmon3
-  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :frq5 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* valid-i?* ))
+  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :frq5 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* (s/? valid-i?*) ))
 (stest/instrument `harmon3)
 
-(defn harmon3:a
-  {:arglists '([asig koct kfrq3 kfrq4 kfrq5 icpsmode ilowest & ipolarity*])}
-  [sig oct frq3 frq4 frq5 cpsmode lowest & [ polarity* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "harmon3"
-                      [sig oct frq3 frq4 frq5 cpsmode lowest polarity*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef harmon3:a
-  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :frq5 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* valid-i?* ))
-(stest/instrument `harmon3:a)
-
 (defn timeinstk
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "timeinstk"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn timeinstk:k
   {:arglists '()}
   []
   (let [out-types-quoted 'ControlSignal
@@ -15325,26 +12136,14 @@
 
 (s/fdef ftgen
   :args (s/alt
-         :iiiSSiiiiiiiiiiiiiiii (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-S? :array valid-S? :array1* valid-i?* :array2* valid-i?* :array3* valid-i?* :array4* valid-i?* :array5* valid-i?* :array6* valid-i?* :array7* valid-i?* :array8* valid-i?* :array9* valid-i?* :array10* valid-i?* :array11* valid-i?* :array12* valid-i?* :array13* valid-i?* :array14* valid-i?* :array15* valid-i?* :array16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiiiii (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-i? :array valid-i? :array1* (s/? valid-i?*) :array2* (s/? valid-i?*) :array3* (s/? valid-i?*) :array4* (s/? valid-i?*) :array5* (s/? valid-i?*) :array6* (s/? valid-i?*) :array7* (s/? valid-i?*) :array8* (s/? valid-i?*) :array9* (s/? valid-i?*) :array10* (s/? valid-i?*) :array11* (s/? valid-i?*) :array12* (s/? valid-i?*) :array13* (s/? valid-i?*) :array14* (s/? valid-i?*) :array15* (s/? valid-i?*) :array16* (s/? valid-i?*) )
+         :iiiiiArr (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-i? :array valid-iArr? )
+         :iiiiSiiiiiiiiiiiiiiii (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-i? :array valid-S? :array1* (s/? valid-i?*) :array2* (s/? valid-i?*) :array3* (s/? valid-i?*) :array4* (s/? valid-i?*) :array5* (s/? valid-i?*) :array6* (s/? valid-i?*) :array7* (s/? valid-i?*) :array8* (s/? valid-i?*) :array9* (s/? valid-i?*) :array10* (s/? valid-i?*) :array11* (s/? valid-i?*) :array12* (s/? valid-i?*) :array13* (s/? valid-i?*) :array14* (s/? valid-i?*) :array15* (s/? valid-i?*) :array16* (s/? valid-i?*) )
+         :iiiSiiiiiiiiiiiiiiiii (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-S? :array valid-i? :array1* (s/? valid-i?*) :array2* (s/? valid-i?*) :array3* (s/? valid-i?*) :array4* (s/? valid-i?*) :array5* (s/? valid-i?*) :array6* (s/? valid-i?*) :array7* (s/? valid-i?*) :array8* (s/? valid-i?*) :array9* (s/? valid-i?*) :array10* (s/? valid-i?*) :array11* (s/? valid-i?*) :array12* (s/? valid-i?*) :array13* (s/? valid-i?*) :array14* (s/? valid-i?*) :array15* (s/? valid-i?*) :array16* (s/? valid-i?*) )
+         :iiiSiArr (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-S? :array valid-iArr? )
+         :iiiSSiiiiiiiiiiiiiiii (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-S? :array valid-S? :array1* (s/? valid-i?*) :array2* (s/? valid-i?*) :array3* (s/? valid-i?*) :array4* (s/? valid-i?*) :array5* (s/? valid-i?*) :array6* (s/? valid-i?*) :array7* (s/? valid-i?*) :array8* (s/? valid-i?*) :array9* (s/? valid-i?*) :array10* (s/? valid-i?*) :array11* (s/? valid-i?*) :array12* (s/? valid-i?*) :array13* (s/? valid-i?*) :array14* (s/? valid-i?*) :array15* (s/? valid-i?*) :array16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftgen)
-
-(defn ftgen:i
-  {:arglists '([itable itime isize Sgen Sarray & iarray1* iarray2* iarray3* iarray4* iarray5* iarray6* iarray7* iarray8* iarray9* iarray10* iarray11* iarray12* iarray13* iarray14* iarray15* iarray16*] [itable itime isize Sgen iarrayArr] [itable itime isize Sgen iarray & iarray1* iarray2* iarray3* iarray4* iarray5* iarray6* iarray7* iarray8* iarray9* iarray10* iarray11* iarray12* iarray13* iarray14* iarray15* iarray16*] [itable itime isize igen Sarray & iarray1* iarray2* iarray3* iarray4* iarray5* iarray6* iarray7* iarray8* iarray9* iarray10* iarray11* iarray12* iarray13* iarray14* iarray15* iarray16*] [itable itime isize igen iarrayArr] [itable itime isize igen iarray & iarray1* iarray2* iarray3* iarray4* iarray5* iarray6* iarray7* iarray8* iarray9* iarray10* iarray11* iarray12* iarray13* iarray14* iarray15* iarray16*])}
-  [table time size gen array & [ array1* array2* array3* array4* array5* array6* array7* array8* array9* array10* array11* array12* array13* array14* array15* array16* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "ftgen"
-                      [table time size gen array array1* array2* array3* array4* array5* array6* array7* array8* array9* array10* array11* array12* array13* array14* array15* array16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ftgen:i
-  :args (s/alt
-         :iiiSSiiiiiiiiiiiiiiii (s/cat :table valid-i? :time valid-i? :size valid-i? :gen valid-S? :array valid-S? :array1* valid-i?* :array2* valid-i?* :array3* valid-i?* :array4* valid-i?* :array5* valid-i?* :array6* valid-i?* :array7* valid-i?* :array8* valid-i?* :array9* valid-i?* :array10* valid-i?* :array11* valid-i?* :array12* valid-i?* :array13* valid-i?* :array14* valid-i?* :array15* valid-i?* :array16* valid-i?* )
-         ))
-(stest/instrument `ftgen:i)
 
 (defn outkc
   {:arglists '([kchn knum kvalue kmin kmax])}
@@ -15373,7 +12172,7 @@
     (new out-types ast)))
 
 (s/fdef vmult
-  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :table valid-i? :val valid-kr? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vmult)
 
 (defn chnset
@@ -15389,6 +12188,9 @@
 
 (s/fdef chnset
   :args (s/alt
+         :kS (s/cat :s valid-kr? :val valid-S? )
+         :iS (s/cat :s valid-i? :val valid-S? )
+         :aS (s/cat :s valid-ar? :val valid-S? )
          :SS (s/cat :s valid-S? :val valid-S? )
          ))
 (stest/instrument `chnset)
@@ -15420,21 +12222,6 @@
   :args (s/cat :time_unit valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_times valid-kr? ))
 (stest/instrument `seqtime)
 
-(defn seqtime:k
-  {:arglists '([ktime_unit kstart kloop kinitndx kfn_times])}
-  [time_unit start loop initndx fn_times]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "seqtime"
-                      [time_unit start loop initndx fn_times]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef seqtime:k
-  :args (s/cat :time_unit valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_times valid-kr? ))
-(stest/instrument `seqtime:k)
-
 (defn syncloop
   {:arglists '([kamp kfreq kpitch kgrsize kprate klstart klend ifun8 ifun9 iolaps & istart* iskip*])}
   [amp freq pitch grsize prate lstart lend fun8 fun9 olaps & [ start* skip* ]]
@@ -15447,23 +12234,8 @@
     (new out-types ast)))
 
 (s/fdef syncloop
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :lstart valid-kr? :lend valid-kr? :fun8 valid-i? :fun9 valid-i? :olaps valid-i? :start* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :lstart valid-kr? :lend valid-kr? :fun8 valid-i? :fun9 valid-i? :olaps valid-i? :start* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `syncloop)
-
-(defn syncloop:a
-  {:arglists '([kamp kfreq kpitch kgrsize kprate klstart klend ifun8 ifun9 iolaps & istart* iskip*])}
-  [amp freq pitch grsize prate lstart lend fun8 fun9 olaps & [ start* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "syncloop"
-                      [amp freq pitch grsize prate lstart lend fun8 fun9 olaps start* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef syncloop:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pitch valid-kr? :grsize valid-kr? :prate valid-kr? :lstart valid-kr? :lend valid-kr? :fun8 valid-i? :fun9 valid-i? :olaps valid-i? :start* valid-i?* :skip* valid-i?* ))
-(stest/instrument `syncloop:a)
 
 (defn lpfreson
   {:arglists '([asig kfrqratio])}
@@ -15480,21 +12252,6 @@
   :args (s/cat :sig valid-ar? :frqratio valid-kr? ))
 (stest/instrument `lpfreson)
 
-(defn lpfreson:a
-  {:arglists '([asig kfrqratio])}
-  [sig frqratio]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lpfreson"
-                      [sig frqratio]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lpfreson:a
-  :args (s/cat :sig valid-ar? :frqratio valid-kr? ))
-(stest/instrument `lpfreson:a)
-
 (defn dates
   {:arglists '([& itime*])}
   [& [ time* ]]
@@ -15507,23 +12264,8 @@
     (new out-types ast)))
 
 (s/fdef dates
-  :args (s/cat :time* valid-i?* ))
+  :args (s/cat :time* (s/? valid-i?*) ))
 (stest/instrument `dates)
-
-(defn dates:S
-  {:arglists '([& itime*])}
-  [& [ time* ]]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "dates"
-                      [time*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dates:S
-  :args (s/cat :time* valid-i?* ))
-(stest/instrument `dates:S)
 
 (defn pvsgain
   {:arglists '([fsigin kgain])}
@@ -15540,21 +12282,6 @@
   :args (s/cat :sigin valid-f? :gain valid-kr? ))
 (stest/instrument `pvsgain)
 
-(defn pvsgain:f
-  {:arglists '([fsigin kgain])}
-  [sigin gain]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsgain"
-                      [sigin gain]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsgain:f
-  :args (s/cat :sigin valid-f? :gain valid-kr? ))
-(stest/instrument `pvsgain:f)
-
 (defn biquada
   {:arglists '([asig ab2 ab3 ab4 aa5 aa6 aa7 & iskip*])}
   [sig b2 b3 b4 a5 a6 a7 & [ skip* ]]
@@ -15567,23 +12294,8 @@
     (new out-types ast)))
 
 (s/fdef biquada
-  :args (s/cat :sig valid-ar? :b2 valid-ar? :b3 valid-ar? :b4 valid-ar? :a5 valid-ar? :a6 valid-ar? :a7 valid-ar? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :b2 valid-ar? :b3 valid-ar? :b4 valid-ar? :a5 valid-ar? :a6 valid-ar? :a7 valid-ar? :skip* (s/? valid-i?*) ))
 (stest/instrument `biquada)
-
-(defn biquada:a
-  {:arglists '([asig ab2 ab3 ab4 aa5 aa6 aa7 & iskip*])}
-  [sig b2 b3 b4 a5 a6 a7 & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "biquada"
-                      [sig b2 b3 b4 a5 a6 a7 skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef biquada:a
-  :args (s/cat :sig valid-ar? :b2 valid-ar? :b3 valid-ar? :b4 valid-ar? :a5 valid-ar? :a6 valid-ar? :a7 valid-ar? :skip* valid-i?* ))
-(stest/instrument `biquada:a)
 
 (defn strlenk
   {:arglists '([Sstr])}
@@ -15600,21 +12312,6 @@
   :args (s/cat :str valid-S? ))
 (stest/instrument `strlenk)
 
-(defn strlenk:k
-  {:arglists '([Sstr])}
-  [str]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strlenk"
-                      [str]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strlenk:k
-  :args (s/cat :str valid-S? ))
-(stest/instrument `strlenk:k)
-
 (defn framebuffer
   {:arglists '([ain isize] [kin isize])}
   [in size]
@@ -15628,6 +12325,7 @@
 
 (s/fdef framebuffer
   :args (s/alt
+         :ki (s/cat :in valid-kr? :size valid-i? )
          :ai (s/cat :in valid-ar? :size valid-i? )
          ))
 (stest/instrument `framebuffer)
@@ -15675,7 +12373,8 @@
 
 (s/fdef lenarray
   :args (s/alt
-         :iArri (s/cat :array valid-iArr? :which* valid-i?* )
+         :kArri (s/cat :array valid-kArr? :which* (s/? valid-i?*) )
+         :iArri (s/cat :array valid-iArr? :which* (s/? valid-i?*) )
          ))
 (stest/instrument `lenarray)
 
@@ -15691,7 +12390,7 @@
     (new out-types ast)))
 
 (s/fdef lenarray:i
-  :args (s/cat :array valid-iArr? :which* valid-i?* ))
+  :args (s/cat :array valid-iArr? :which* (s/? valid-i?*) ))
 (stest/instrument `lenarray:i)
 
 (defn lenarray:k
@@ -15706,7 +12405,7 @@
     (new out-types ast)))
 
 (s/fdef lenarray:k
-  :args (s/cat :array valid-kArr? :which* valid-i?* ))
+  :args (s/cat :array valid-kArr? :which* (s/? valid-i?*) ))
 (stest/instrument `lenarray:k)
 
 (defn hrtfreverb
@@ -15721,7 +12420,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef hrtfreverb
-  :args (s/cat :src valid-ar? :lowrt2 valid-i? :highrt3 valid-i? :filel valid-S? :filer valid-S? :sr* valid-i?* :mfp* valid-i?* :order* valid-i?* ))
+  :args (s/cat :src valid-ar? :lowrt2 valid-i? :highrt3 valid-i? :filel valid-S? :filer valid-S? :sr* (s/? valid-i?*) :mfp* (s/? valid-i?*) :order* (s/? valid-i?*) ))
 (stest/instrument `hrtfreverb)
 
 (defn scans
@@ -15736,23 +12435,8 @@
     (new out-types ast)))
 
 (s/fdef scans
-  :args (s/cat :amp valid-kr? :freq valid-kr? :table valid-i? :d valid-i? :order* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :table valid-i? :d valid-i? :order* (s/? valid-i?*) ))
 (stest/instrument `scans)
-
-(defn scans:a
-  {:arglists '([kamp kfreq itable id & iorder*])}
-  [amp freq table d & [ order* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "scans"
-                      [amp freq table d order*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef scans:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :table valid-i? :d valid-i? :order* valid-i?* ))
-(stest/instrument `scans:a)
 
 (defn vdelayxq
   {:arglists '([ain1 ain2 ain3 ain4 adl imd iws & ist*])}
@@ -15766,7 +12450,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vdelayxq
-  :args (s/cat :in1 valid-ar? :in2 valid-ar? :in3 valid-ar? :in4 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
+  :args (s/cat :in1 valid-ar? :in2 valid-ar? :in3 valid-ar? :in4 valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* (s/? valid-i?*) ))
 (stest/instrument `vdelayxq)
 
 (defn wgpluck2
@@ -15784,21 +12468,6 @@
   :args (s/cat :plk valid-i? :amp valid-kr? :cps valid-i? :pick valid-kr? :refl valid-kr? ))
 (stest/instrument `wgpluck2)
 
-(defn wgpluck2:a
-  {:arglists '([iplk kamp icps kpick krefl])}
-  [plk amp cps pick refl]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgpluck2"
-                      [plk amp cps pick refl]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgpluck2:a
-  :args (s/cat :plk valid-i? :amp valid-kr? :cps valid-i? :pick valid-kr? :refl valid-kr? ))
-(stest/instrument `wgpluck2:a)
-
 (defn remove
   {:arglists '([iinsnum] [Sinsnum])}
   [insnum]
@@ -15812,6 +12481,7 @@
 
 (s/fdef remove
   :args (s/alt
+         :S (s/cat :insnum valid-S? )
          :i (s/cat :insnum valid-i? )
          ))
 (stest/instrument `remove)
@@ -15831,21 +12501,6 @@
   :args (s/cat :sig valid-ar? :incr valid-kr? ))
 (stest/instrument `fold)
 
-(defn fold:a
-  {:arglists '([asig kincr])}
-  [sig incr]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fold"
-                      [sig incr]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fold:a
-  :args (s/cat :sig valid-ar? :incr valid-kr? ))
-(stest/instrument `fold:a)
-
 (defn mpulse
   {:arglists '([kamp kintvl & ioffset*])}
   [amp intvl & [ offset* ]]
@@ -15858,23 +12513,8 @@
     (new out-types ast)))
 
 (s/fdef mpulse
-  :args (s/cat :amp valid-kr? :intvl valid-kr? :offset* valid-i?* ))
+  :args (s/cat :amp valid-kr? :intvl valid-kr? :offset* (s/? valid-i?*) ))
 (stest/instrument `mpulse)
-
-(defn mpulse:a
-  {:arglists '([kamp kintvl & ioffset*])}
-  [amp intvl & [ offset* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mpulse"
-                      [amp intvl offset*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mpulse:a
-  :args (s/cat :amp valid-kr? :intvl valid-kr? :offset* valid-i?* ))
-(stest/instrument `mpulse:a)
 
 (defn hvs1
   {:arglists '([kx inumParms inumPointsX iOutTab iPositionsTab iSnapTab & iConfigTab*])}
@@ -15888,7 +12528,7 @@
     (new out-types ast)))
 
 (s/fdef hvs1
-  :args (s/cat :x valid-kr? :numParms valid-i? :numPointsX valid-i? :OutTab valid-i? :PositionsTab valid-i? :SnapTab valid-i? :ConfigTab* valid-i?* ))
+  :args (s/cat :x valid-kr? :numParms valid-i? :numPointsX valid-i? :OutTab valid-i? :PositionsTab valid-i? :SnapTab valid-i? :ConfigTab* (s/? valid-i?*) ))
 (stest/instrument `hvs1)
 
 (defn chn_S
@@ -15918,7 +12558,7 @@
     (new out-types ast)))
 
 (s/fdef vexpv_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vexpv_i)
 
 (defn pvcross
@@ -15934,26 +12574,10 @@
 
 (s/fdef pvcross
   :args (s/alt
-         :kkSkki (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :ampscale4 valid-kr? :ampscale5 valid-kr? :specwp* valid-i?* )
+         :kkikki (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-i? :ampscale4 valid-kr? :ampscale5 valid-kr? :specwp* (s/? valid-i?*) )
+         :kkSkki (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :ampscale4 valid-kr? :ampscale5 valid-kr? :specwp* (s/? valid-i?*) )
          ))
 (stest/instrument `pvcross)
-
-(defn pvcross:a
-  {:arglists '([ktimpnt kfmod Sfile kampscale4 kampscale5 & ispecwp*] [ktimpnt kfmod ifile kampscale4 kampscale5 & ispecwp*])}
-  [timpnt fmod file ampscale4 ampscale5 & [ specwp* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pvcross"
-                      [timpnt fmod file ampscale4 ampscale5 specwp*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvcross:a
-  :args (s/alt
-         :kkSkki (s/cat :timpnt valid-kr? :fmod valid-kr? :file valid-S? :ampscale4 valid-kr? :ampscale5 valid-kr? :specwp* valid-i?* )
-         ))
-(stest/instrument `pvcross:a)
 
 (defn randi
   {:arglists '([xamp xcps iseed & isize* ioffset*] [xamp xcps iseed & isize* ioffset*])}
@@ -15968,7 +12592,7 @@
 
 (s/fdef randi
   :args (s/alt
-         :xxiii (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* valid-i?* :offset* valid-i?* )
+         :xxiii (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* (s/? valid-i?*) :offset* (s/? valid-i?*) )
          ))
 (stest/instrument `randi)
 
@@ -15984,7 +12608,7 @@
     (new out-types ast)))
 
 (s/fdef randi:a
-  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `randi:a)
 
 (defn randi:k
@@ -15999,7 +12623,7 @@
     (new out-types ast)))
 
 (s/fdef randi:k
-  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `randi:k)
 
 (defn compilestr
@@ -16017,21 +12641,6 @@
   :args (s/cat :orch valid-S? ))
 (stest/instrument `compilestr)
 
-(defn compilestr:i
-  {:arglists '([Sorch])}
-  [orch]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "compilestr"
-                      [orch]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef compilestr:i
-  :args (s/cat :orch valid-S? ))
-(stest/instrument `compilestr:i)
-
 (defn cpstuni
   {:arglists '([index itable])}
   [ndex table]
@@ -16047,21 +12656,6 @@
   :args (s/cat :ndex valid-i? :table valid-i? ))
 (stest/instrument `cpstuni)
 
-(defn cpstuni:i
-  {:arglists '([index itable])}
-  [ndex table]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "cpstuni"
-                      [ndex table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cpstuni:i
-  :args (s/cat :ndex valid-i? :table valid-i? ))
-(stest/instrument `cpstuni:i)
-
 (defn log10
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
   [arg1]
@@ -16075,6 +12669,10 @@
 
 (s/fdef log10
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `log10)
@@ -16167,26 +12765,10 @@
 
 (s/fdef mton
   :args (s/alt
+         :k (s/cat :midi valid-kr? )
          :i (s/cat :midi valid-i? )
          ))
 (stest/instrument `mton)
-
-(defn mton:S
-  {:arglists '([imidi] [kmidi])}
-  [midi]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "mton"
-                      [midi]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mton:S
-  :args (s/alt
-         :i (s/cat :midi valid-i? )
-         ))
-(stest/instrument `mton:S)
 
 (defn midion2
   {:arglists '([kchn knum kvel ktrig])}
@@ -16218,21 +12800,6 @@
   :args (s/cat :sig valid-f? ))
 (stest/instrument `pvscent)
 
-(defn pvscent:k
-  {:arglists '([fsig])}
-  [sig]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "pvscent"
-                      [sig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvscent:k
-  :args (s/cat :sig valid-f? ))
-(stest/instrument `pvscent:k)
-
 (defn readk2
   {:arglists '([Sfilname iformat iprd] [ifilname iformat iprd])}
   [filname format prd]
@@ -16246,6 +12813,7 @@
 
 (s/fdef readk2
   :args (s/alt
+         :iii (s/cat :filname valid-i? :format valid-i? :prd valid-i? )
          :Sii (s/cat :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `readk2)
@@ -16262,23 +12830,8 @@
     (new out-types ast)))
 
 (s/fdef harmon4
-  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :frq5 valid-kr? :frq6 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* valid-i?* ))
+  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :frq5 valid-kr? :frq6 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* (s/? valid-i?*) ))
 (stest/instrument `harmon4)
-
-(defn harmon4:a
-  {:arglists '([asig koct kfrq3 kfrq4 kfrq5 kfrq6 icpsmode ilowest & ipolarity*])}
-  [sig oct frq3 frq4 frq5 frq6 cpsmode lowest & [ polarity* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "harmon4"
-                      [sig oct frq3 frq4 frq5 frq6 cpsmode lowest polarity*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef harmon4:a
-  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :frq5 valid-kr? :frq6 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* valid-i?* ))
-(stest/instrument `harmon4:a)
 
 (defn jitter
   {:arglists '([kamp kcpsMin kcpsMax])}
@@ -16295,21 +12848,6 @@
   :args (s/cat :amp valid-kr? :cpsMin valid-kr? :cpsMax valid-kr? ))
 (stest/instrument `jitter)
 
-(defn jitter:k
-  {:arglists '([kamp kcpsMin kcpsMax])}
-  [amp cpsMin cpsMax]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "jitter"
-                      [amp cpsMin cpsMax]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef jitter:k
-  :args (s/cat :amp valid-kr? :cpsMin valid-kr? :cpsMax valid-kr? ))
-(stest/instrument `jitter:k)
-
 (defn moogladder
   {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
   [in center-frequency resonance & [ stor* ]]
@@ -16323,26 +12861,12 @@
 
 (s/fdef moogladder
   :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
+         :akki (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :akai (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-ar? :stor* (s/? valid-i?*) )
+         :aaki (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `moogladder)
-
-(defn moogladder:a
-  {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
-  [in center-frequency resonance & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "moogladder"
-                      [in center-frequency resonance stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef moogladder:a
-  :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
-         ))
-(stest/instrument `moogladder:a)
 
 (defn diode_ladder
   {:arglists '([ain xcenter-frequency xk & knlp* ksaturation* istor*])}
@@ -16356,37 +12880,10 @@
     (new out-types ast)))
 
 (s/fdef diode_ladder
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :k valid-x? :nlp* valid-kr?* :saturation* valid-kr?* :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :k valid-x? :nlp* (s/? valid-kr?*) :saturation* (s/? valid-kr?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `diode_ladder)
 
-(defn diode_ladder:a
-  {:arglists '([ain xcenter-frequency xk & knlp* ksaturation* istor*])}
-  [in center-frequency k & [ nlp* saturation* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "diode_ladder"
-                      [in center-frequency k nlp* saturation* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef diode_ladder:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :k valid-x? :nlp* valid-kr?* :saturation* valid-kr?* :stor* valid-i?* ))
-(stest/instrument `diode_ladder:a)
-
 (defn notnum
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "notnum"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn notnum:i
   {:arglists '()}
   []
   (let [out-types-quoted 'Variable
@@ -16410,23 +12907,8 @@
     (new out-types ast)))
 
 (s/fdef delayk
-  :args (s/cat :sig valid-kr? :delay valid-i? :mode* valid-i?* ))
+  :args (s/cat :sig valid-kr? :delay valid-i? :mode* (s/? valid-i?*) ))
 (stest/instrument `delayk)
-
-(defn delayk:k
-  {:arglists '([ksig idelay & imode*])}
-  [sig delay & [ mode* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "delayk"
-                      [sig delay mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef delayk:k
-  :args (s/cat :sig valid-kr? :delay valid-i? :mode* valid-i?* ))
-(stest/instrument `delayk:k)
 
 (defn ATSsinnoi
   {:arglists '([ktimepnt ksinlev knzlev kfmod Satsfile ipartials & ipartialoffset* ipartialincr*] [ktimepnt ksinlev knzlev kfmod iatsfile ipartials & ipartialoffset* ipartialincr*])}
@@ -16441,26 +12923,10 @@
 
 (s/fdef ATSsinnoi
   :args (s/alt
-         :kkkkSiii (s/cat :timepnt valid-kr? :sinlev valid-kr? :nzlev valid-kr? :fmod valid-kr? :atsfile valid-S? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* )
+         :kkkkiiii (s/cat :timepnt valid-kr? :sinlev valid-kr? :nzlev valid-kr? :fmod valid-kr? :atsfile valid-i? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) )
+         :kkkkSiii (s/cat :timepnt valid-kr? :sinlev valid-kr? :nzlev valid-kr? :fmod valid-kr? :atsfile valid-S? :partials valid-i? :partialoffset* (s/? valid-i?*) :partialincr* (s/? valid-i?*) )
          ))
 (stest/instrument `ATSsinnoi)
-
-(defn ATSsinnoi:a
-  {:arglists '([ktimepnt ksinlev knzlev kfmod Satsfile ipartials & ipartialoffset* ipartialincr*] [ktimepnt ksinlev knzlev kfmod iatsfile ipartials & ipartialoffset* ipartialincr*])}
-  [timepnt sinlev nzlev fmod atsfile partials & [ partialoffset* partialincr* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "ATSsinnoi"
-                      [timepnt sinlev nzlev fmod atsfile partials partialoffset* partialincr*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATSsinnoi:a
-  :args (s/alt
-         :kkkkSiii (s/cat :timepnt valid-kr? :sinlev valid-kr? :nzlev valid-kr? :fmod valid-kr? :atsfile valid-S? :partials valid-i? :partialoffset* valid-i?* :partialincr* valid-i?* )
-         ))
-(stest/instrument `ATSsinnoi:a)
 
 (defn fmax
   {:arglists '([iargArr iarg2] [iargArr iarg2Arr] [kargArr karg2] [kargArr karg2Arr])}
@@ -16475,6 +12941,9 @@
 
 (s/fdef fmax
   :args (s/alt
+         :kArrkArr (s/cat :arg valid-kArr? :arg2 valid-kArr? )
+         :kArrk (s/cat :arg valid-kArr? :arg2 valid-kr? )
+         :iArriArr (s/cat :arg valid-iArr? :arg2 valid-iArr? )
          :iArri (s/cat :arg valid-iArr? :arg2 valid-i? )
          ))
 (stest/instrument `fmax)
@@ -16492,6 +12961,7 @@
 
 (s/fdef fmax:iArr
   :args (s/alt
+         :iArriArr (s/cat :arg valid-iArr? :arg2 valid-iArr? )
          :iArri (s/cat :arg valid-iArr? :arg2 valid-i? )
          ))
 (stest/instrument `fmax:iArr)
@@ -16509,6 +12979,7 @@
 
 (s/fdef fmax:kArr
   :args (s/alt
+         :kArrkArr (s/cat :arg valid-kArr? :arg2 valid-kArr? )
          :kArrk (s/cat :arg valid-kArr? :arg2 valid-kr? )
          ))
 (stest/instrument `fmax:kArr)
@@ -16526,6 +12997,7 @@
 
 (s/fdef dumpk2
   :args (s/alt
+         :kkiii (s/cat :sig1 valid-kr? :sig2 valid-kr? :filname valid-i? :format valid-i? :prd valid-i? )
          :kkSii (s/cat :sig1 valid-kr? :sig2 valid-kr? :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `dumpk2)
@@ -16557,23 +13029,8 @@
     (new out-types ast)))
 
 (s/fdef moogvcf2
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `moogvcf2)
-
-(defn moogvcf2:a
-  {:arglists '([asig xcutoff-frequency xresonance & iscale* iskip*])}
-  [sig cutoff-frequency resonance & [ scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "moogvcf2"
-                      [sig cutoff-frequency resonance scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef moogvcf2:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `moogvcf2:a)
 
 (defn pvsin
   {:arglists '([kchan & isize* iolap* iwinsize* iwintype* iformat*])}
@@ -16587,23 +13044,8 @@
     (new out-types ast)))
 
 (s/fdef pvsin
-  :args (s/cat :chan valid-kr? :size* valid-i?* :olap* valid-i?* :winsize* valid-i?* :wintype* valid-i?* :format* valid-i?* ))
+  :args (s/cat :chan valid-kr? :size* (s/? valid-i?*) :olap* (s/? valid-i?*) :winsize* (s/? valid-i?*) :wintype* (s/? valid-i?*) :format* (s/? valid-i?*) ))
 (stest/instrument `pvsin)
-
-(defn pvsin:f
-  {:arglists '([kchan & isize* iolap* iwinsize* iwintype* iformat*])}
-  [chan & [ size* olap* winsize* wintype* format* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsin"
-                      [chan size* olap* winsize* wintype* format*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsin:f
-  :args (s/cat :chan valid-kr? :size* valid-i?* :olap* valid-i?* :winsize* valid-i?* :wintype* valid-i?* :format* valid-i?* ))
-(stest/instrument `pvsin:f)
 
 (defn dcblock
   {:arglists '([ain & igain*])}
@@ -16617,23 +13059,8 @@
     (new out-types ast)))
 
 (s/fdef dcblock
-  :args (s/cat :in valid-ar? :gain* valid-i?* ))
+  :args (s/cat :in valid-ar? :gain* (s/? valid-i?*) ))
 (stest/instrument `dcblock)
-
-(defn dcblock:a
-  {:arglists '([ain & igain*])}
-  [in & [ gain* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "dcblock"
-                      [in gain*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dcblock:a
-  :args (s/cat :in valid-ar? :gain* valid-i?* ))
-(stest/instrument `dcblock:a)
 
 (defn strtol
   {:arglists '([Sindex] [iindex])}
@@ -16648,26 +13075,10 @@
 
 (s/fdef strtol
   :args (s/alt
+         :i (s/cat :index valid-i? )
          :S (s/cat :index valid-S? )
          ))
 (stest/instrument `strtol)
-
-(defn strtol:i
-  {:arglists '([Sindex] [iindex])}
-  [index]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strtol"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strtol:i
-  :args (s/alt
-         :S (s/cat :index valid-S? )
-         ))
-(stest/instrument `strtol:i)
 
 (defn sfplist
   {:arglists '([ifilhandle])}
@@ -16711,23 +13122,8 @@
     (new out-types ast)))
 
 (s/fdef pdclip
-  :args (s/cat :in valid-ar? :Width valid-kr? :Center valid-kr? :bipolar* valid-i?* :fullscale* valid-i?* ))
+  :args (s/cat :in valid-ar? :Width valid-kr? :Center valid-kr? :bipolar* (s/? valid-i?*) :fullscale* (s/? valid-i?*) ))
 (stest/instrument `pdclip)
-
-(defn pdclip:a
-  {:arglists '([ain kWidth kCenter & ibipolar* ifullscale*])}
-  [in Width Center & [ bipolar* fullscale* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pdclip"
-                      [in Width Center bipolar* fullscale*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pdclip:a
-  :args (s/cat :in valid-ar? :Width valid-kr? :Center valid-kr? :bipolar* valid-i?* :fullscale* valid-i?* ))
-(stest/instrument `pdclip:a)
 
 (defn pdhalf
   {:arglists '([ain kShapeAmount & ibipolar* ifullscale*])}
@@ -16741,23 +13137,8 @@
     (new out-types ast)))
 
 (s/fdef pdhalf
-  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :bipolar* valid-i?* :fullscale* valid-i?* ))
+  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :bipolar* (s/? valid-i?*) :fullscale* (s/? valid-i?*) ))
 (stest/instrument `pdhalf)
-
-(defn pdhalf:a
-  {:arglists '([ain kShapeAmount & ibipolar* ifullscale*])}
-  [in ShapeAmount & [ bipolar* fullscale* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pdhalf"
-                      [in ShapeAmount bipolar* fullscale*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pdhalf:a
-  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :bipolar* valid-i?* :fullscale* valid-i?* ))
-(stest/instrument `pdhalf:a)
 
 (defn vrandi
   {:arglists '([itable krange kcps ielements & idstoffset* iseed* isize* ioffset*])}
@@ -16771,7 +13152,7 @@
     (new out-types ast)))
 
 (s/fdef vrandi
-  :args (s/cat :table valid-i? :range valid-kr? :cps valid-kr? :elements valid-i? :dstoffset* valid-i?* :seed* valid-i?* :size* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :table valid-i? :range valid-kr? :cps valid-kr? :elements valid-i? :dstoffset* (s/? valid-i?*) :seed* (s/? valid-i?*) :size* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `vrandi)
 
 (defn butterhp
@@ -16787,26 +13168,10 @@
 
 (s/fdef butterhp
   :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
+         :aki (s/cat :sig valid-ar? :freq valid-kr? :skip* (s/? valid-i?*) )
+         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `butterhp)
-
-(defn butterhp:a
-  {:arglists '([asig afreq & iskip*] [asig kfreq & iskip*])}
-  [sig freq & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butterhp"
-                      [sig freq skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butterhp:a
-  :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `butterhp:a)
 
 (defn invalue
   {:arglists '([Schannel-name] [ichannel-name] [Schannel-name] [ichannel-name] [Schannel-name] [ichannel-name])}
@@ -16821,6 +13186,7 @@
 
 (s/fdef invalue
   :args (s/alt
+         :i (s/cat :channel-name valid-i? )
          :S (s/cat :channel-name valid-S? )
          ))
 (stest/instrument `invalue)
@@ -16838,6 +13204,7 @@
 
 (s/fdef invalue:S
   :args (s/alt
+         :i (s/cat :channel-name valid-i? )
          :S (s/cat :channel-name valid-S? )
          ))
 (stest/instrument `invalue:S)
@@ -16855,6 +13222,7 @@
 
 (s/fdef invalue:i
   :args (s/alt
+         :i (s/cat :channel-name valid-i? )
          :S (s/cat :channel-name valid-S? )
          ))
 (stest/instrument `invalue:i)
@@ -16872,6 +13240,7 @@
 
 (s/fdef invalue:k
   :args (s/alt
+         :i (s/cat :channel-name valid-i? )
          :S (s/cat :channel-name valid-S? )
          ))
 (stest/instrument `invalue:k)
@@ -16891,21 +13260,6 @@
   :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
 (stest/instrument `strindex)
 
-(defn strindex:i
-  {:arglists '([Sarg1 Sarg2])}
-  [arg1 arg2]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strindex"
-                      [arg1 arg2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strindex:i
-  :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
-(stest/instrument `strindex:i)
-
 (defn sqrt
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
   [arg1]
@@ -16919,6 +13273,10 @@
 
 (s/fdef sqrt
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `sqrt)
@@ -17011,26 +13369,10 @@
 
 (s/fdef butterlp
   :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
+         :aki (s/cat :sig valid-ar? :freq valid-kr? :skip* (s/? valid-i?*) )
+         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `butterlp)
-
-(defn butterlp:a
-  {:arglists '([asig afreq & iskip*] [asig kfreq & iskip*])}
-  [sig freq & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butterlp"
-                      [sig freq skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butterlp:a
-  :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `butterlp:a)
 
 (defn vtabk
   {:arglists '([kindex itable & kout1* kout2* kout3* koutN4* koutN5* koutN6* koutN7* koutN8* koutN9* koutN10* koutN11* koutN12* koutN13* koutN14* koutN15* koutN16*])}
@@ -17044,7 +13386,7 @@
     (new out-types ast)))
 
 (s/fdef vtabk
-  :args (s/cat :index valid-kr? :table valid-i? :out1* valid-kr?* :out2* valid-kr?* :out3* valid-kr?* :outN4* valid-kr?* :outN5* valid-kr?* :outN6* valid-kr?* :outN7* valid-kr?* :outN8* valid-kr?* :outN9* valid-kr?* :outN10* valid-kr?* :outN11* valid-kr?* :outN12* valid-kr?* :outN13* valid-kr?* :outN14* valid-kr?* :outN15* valid-kr?* :outN16* valid-kr?* ))
+  :args (s/cat :index valid-kr? :table valid-i? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :out3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) ))
 (stest/instrument `vtabk)
 
 (defn printk2
@@ -17059,7 +13401,7 @@
     (new out-types ast)))
 
 (s/fdef printk2
-  :args (s/cat :var valid-kr? :numspaces* valid-i?* ))
+  :args (s/cat :var valid-kr? :numspaces* (s/? valid-i?*) ))
 (stest/instrument `printk2)
 
 (defn tempo
@@ -17090,6 +13432,7 @@
 
 (s/fdef sortd
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
          :iArr (s/cat :arg1 valid-iArr? )
          ))
 (stest/instrument `sortd)
@@ -17137,6 +13480,7 @@
 
 (s/fdef serialWrite_i
   :args (s/alt
+         :ii (s/cat :Port valid-i? :Bytes valid-i? )
          :iS (s/cat :Port valid-i? :Bytes valid-S? )
          ))
 (stest/instrument `serialWrite_i)
@@ -17168,23 +13512,8 @@
     (new out-types ast)))
 
 (s/fdef lphasor
-  :args (s/cat :trns valid-x? :lps* valid-i?* :lpe* valid-i?* :mode* valid-i?* :strt* valid-i?* :stor* valid-i?* :stor* valid-i?* :stor* valid-i?* ))
+  :args (s/cat :trns valid-x? :lps* (s/? valid-i?*) :lpe* (s/? valid-i?*) :mode* (s/? valid-i?*) :strt* (s/? valid-i?*) :stor* (s/? valid-i?*) :stor* (s/? valid-i?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `lphasor)
-
-(defn lphasor:a
-  {:arglists '([xtrns & ilps* ilpe* imode* istrt* istor* istor* istor*])}
-  [trns & [ lps* lpe* mode* strt* stor* stor* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lphasor"
-                      [trns lps* lpe* mode* strt* stor* stor* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lphasor:a
-  :args (s/cat :trns valid-x? :lps* valid-i?* :lpe* valid-i?* :mode* valid-i?* :strt* valid-i?* :stor* valid-i?* :stor* valid-i?* :stor* valid-i?* ))
-(stest/instrument `lphasor:a)
 
 (defn bformenc1
   {:arglists '([asig kalpha kbeta] [asig kalpha kbeta])}
@@ -17245,23 +13574,8 @@
     (new out-types ast)))
 
 (s/fdef pareq
-  :args (s/cat :sig valid-ar? :c valid-kr? :v valid-kr? :q valid-kr? :mode* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :c valid-kr? :v valid-kr? :q valid-kr? :mode* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `pareq)
-
-(defn pareq:a
-  {:arglists '([asig kc kv kq & imode* iskip*])}
-  [sig c v q & [ mode* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pareq"
-                      [sig c v q mode* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pareq:a
-  :args (s/cat :sig valid-ar? :c valid-kr? :v valid-kr? :q valid-kr? :mode* valid-i?* :skip* valid-i?* ))
-(stest/instrument `pareq:a)
 
 (defn control
   {:arglists '([knum])}
@@ -17278,21 +13592,6 @@
   :args (s/cat :num valid-kr? ))
 (stest/instrument `control)
 
-(defn control:k
-  {:arglists '([knum])}
-  [num]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "control"
-                      [num]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef control:k
-  :args (s/cat :num valid-kr? ))
-(stest/instrument `control:k)
-
 (defn zdf_1pole
   {:arglists '([ain xcenter-frequency & kmode* istor*])}
   [in center-frequency & [ mode* stor* ]]
@@ -17305,23 +13604,8 @@
     (new out-types ast)))
 
 (s/fdef zdf_1pole
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :mode* valid-kr?* :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :mode* (s/? valid-kr?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `zdf_1pole)
-
-(defn zdf_1pole:a
-  {:arglists '([ain xcenter-frequency & kmode* istor*])}
-  [in center-frequency & [ mode* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zdf_1pole"
-                      [in center-frequency mode* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zdf_1pole:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :mode* valid-kr?* :stor* valid-i?* ))
-(stest/instrument `zdf_1pole:a)
 
 (defn pvsbufread2
   {:arglists '([ktime khandle kft3 kft4])}
@@ -17338,21 +13622,6 @@
   :args (s/cat :time valid-kr? :handle valid-kr? :ft3 valid-kr? :ft4 valid-kr? ))
 (stest/instrument `pvsbufread2)
 
-(defn pvsbufread2:f
-  {:arglists '([ktime khandle kft3 kft4])}
-  [time handle ft3 ft4]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsbufread2"
-                      [time handle ft3 ft4]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsbufread2:f
-  :args (s/cat :time valid-kr? :handle valid-kr? :ft3 valid-kr? :ft4 valid-kr? ))
-(stest/instrument `pvsbufread2:f)
-
 (defn genarray_i
   {:arglists '([istart iend & inc*])}
   [start end & [ nc* ]]
@@ -17365,23 +13634,8 @@
     (new out-types ast)))
 
 (s/fdef genarray_i
-  :args (s/cat :start valid-i? :end valid-i? :nc* valid-i?* ))
+  :args (s/cat :start valid-i? :end valid-i? :nc* (s/? valid-i?*) ))
 (stest/instrument `genarray_i)
-
-(defn genarray_i:kArr
-  {:arglists '([istart iend & inc*])}
-  [start end & [ nc* ]]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "genarray_i"
-                      [start end nc*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef genarray_i:kArr
-  :args (s/cat :start valid-i? :end valid-i? :nc* valid-i?* ))
-(stest/instrument `genarray_i:kArr)
 
 (defn zakinit
   {:arglists '([isizea isizek])}
@@ -17411,7 +13665,9 @@
 
 (s/fdef ctrl7
   :args (s/alt
-         :iikkii (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* :cutoff* valid-i?* )
+         :iikki (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) )
+         :iiiii (s/cat :chan valid-i? :ctlno valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) )
+         :iikkii (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) :cutoff* (s/? valid-i?*) )
          ))
 (stest/instrument `ctrl7)
 
@@ -17427,7 +13683,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl7:a
-  :args (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* :cutoff* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) :cutoff* (s/? valid-i?*) ))
 (stest/instrument `ctrl7:a)
 
 (defn ctrl7:i
@@ -17442,7 +13698,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl7:i
-  :args (s/cat :chan valid-i? :ctlno valid-i? :min valid-i? :max valid-i? :table* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `ctrl7:i)
 
 (defn ctrl7:k
@@ -17457,7 +13713,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl7:k
-  :args (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) ))
 (stest/instrument `ctrl7:k)
 
 (defn vpow_i
@@ -17472,7 +13728,7 @@
     (new out-types ast)))
 
 (s/fdef vpow_i
-  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* valid-i?* ))
+  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) ))
 (stest/instrument `vpow_i)
 
 (defn zdf_2pole_mode
@@ -17487,7 +13743,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef zdf_2pole_mode
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :stor* (s/? valid-i?*) ))
 (stest/instrument `zdf_2pole_mode)
 
 (defn wgbowedbar
@@ -17502,23 +13758,8 @@
     (new out-types ast)))
 
 (s/fdef wgbowedbar
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pos valid-kr? :bowpres valid-kr? :gain valid-kr? :const* valid-i?* :tvel* valid-i?* :bowpos* valid-i?* :low* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :pos valid-kr? :bowpres valid-kr? :gain valid-kr? :const* (s/? valid-i?*) :tvel* (s/? valid-i?*) :bowpos* (s/? valid-i?*) :low* (s/? valid-i?*) ))
 (stest/instrument `wgbowedbar)
-
-(defn wgbowedbar:a
-  {:arglists '([kamp kfreq kpos kbowpres kgain & iconst* itvel* ibowpos* ilow*])}
-  [amp freq pos bowpres gain & [ const* tvel* bowpos* low* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wgbowedbar"
-                      [amp freq pos bowpres gain const* tvel* bowpos* low*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wgbowedbar:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pos valid-kr? :bowpres valid-kr? :gain valid-kr? :const* valid-i?* :tvel* valid-i?* :bowpos* valid-i?* :low* valid-i?* ))
-(stest/instrument `wgbowedbar:a)
 
 (defn pvslock
   {:arglists '([fsigin klock])}
@@ -17535,21 +13776,6 @@
   :args (s/cat :sigin valid-f? :lock valid-kr? ))
 (stest/instrument `pvslock)
 
-(defn pvslock:f
-  {:arglists '([fsigin klock])}
-  [sigin lock]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvslock"
-                      [sigin lock]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvslock:f
-  :args (s/cat :sigin valid-f? :lock valid-kr? ))
-(stest/instrument `pvslock:f)
-
 (defn hrtfmove
   {:arglists '([asrc kAz kElev Sfilel Sfiler & imode* ifade* isr*])}
   [src Az Elev filel filer & [ mode* fade* sr* ]]
@@ -17562,7 +13788,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef hrtfmove
-  :args (s/cat :src valid-ar? :Az valid-kr? :Elev valid-kr? :filel valid-S? :filer valid-S? :mode* valid-i?* :fade* valid-i?* :sr* valid-i?* ))
+  :args (s/cat :src valid-ar? :Az valid-kr? :Elev valid-kr? :filel valid-S? :filer valid-S? :mode* (s/? valid-i?*) :fade* (s/? valid-i?*) :sr* (s/? valid-i?*) ))
 (stest/instrument `hrtfmove)
 
 (defn dssiaudio
@@ -17577,7 +13803,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef dssiaudio
-  :args (s/cat :handle valid-i? :in1* valid-x?* :in2* valid-x?* :in3* valid-x?* :in4* valid-x?* :in5* valid-x?* :in6* valid-x?* :in7* valid-x?* :in8* valid-x?* :in9* valid-x?* :in10* valid-x?* :in11* valid-x?* :in12* valid-x?* :in13* valid-x?* :in14* valid-x?* :in15* valid-x?* :in16* valid-x?* ))
+  :args (s/cat :handle valid-i? :in1* (s/? valid-x?*) :in2* (s/? valid-x?*) :in3* (s/? valid-x?*) :in4* (s/? valid-x?*) :in5* (s/? valid-x?*) :in6* (s/? valid-x?*) :in7* (s/? valid-x?*) :in8* (s/? valid-x?*) :in9* (s/? valid-x?*) :in10* (s/? valid-x?*) :in11* (s/? valid-x?*) :in12* (s/? valid-x?*) :in13* (s/? valid-x?*) :in14* (s/? valid-x?*) :in15* (s/? valid-x?*) :in16* (s/? valid-x?*) ))
 (stest/instrument `dssiaudio)
 
 (defn vtable1k
@@ -17592,7 +13818,7 @@
     (new out-types ast)))
 
 (s/fdef vtable1k
-  :args (s/cat :table valid-kr? :out1* valid-kr?* :out2* valid-kr?* :out3* valid-kr?* :outN4* valid-kr?* :outN5* valid-kr?* :outN6* valid-kr?* :outN7* valid-kr?* :outN8* valid-kr?* :outN9* valid-kr?* :outN10* valid-kr?* :outN11* valid-kr?* :outN12* valid-kr?* :outN13* valid-kr?* :outN14* valid-kr?* :outN15* valid-kr?* :outN16* valid-kr?* ))
+  :args (s/cat :table valid-kr? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :out3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) ))
 (stest/instrument `vtable1k)
 
 (defn butlp
@@ -17608,26 +13834,10 @@
 
 (s/fdef butlp
   :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
+         :aki (s/cat :sig valid-ar? :freq valid-kr? :skip* (s/? valid-i?*) )
+         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `butlp)
-
-(defn butlp:a
-  {:arglists '([asig afreq & iskip*] [asig kfreq & iskip*])}
-  [sig freq & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butlp"
-                      [sig freq skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butlp:a
-  :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `butlp:a)
 
 (defn fouti
   {:arglists '([ihandle iformat iflag & iout1* iout2* iout3* ioutN4* ioutN5* ioutN6* ioutN7* ioutN8* ioutN9* ioutN10* ioutN11* ioutN12* ioutN13* ioutN14* ioutN15* ioutN16*])}
@@ -17641,7 +13851,7 @@
     (new out-types ast)))
 
 (s/fdef fouti
-  :args (s/cat :handle valid-i? :format valid-i? :flag valid-i? :out1* valid-i?* :out2* valid-i?* :out3* valid-i?* :outN4* valid-i?* :outN5* valid-i?* :outN6* valid-i?* :outN7* valid-i?* :outN8* valid-i?* :outN9* valid-i?* :outN10* valid-i?* :outN11* valid-i?* :outN12* valid-i?* :outN13* valid-i?* :outN14* valid-i?* :outN15* valid-i?* :outN16* valid-i?* ))
+  :args (s/cat :handle valid-i? :format valid-i? :flag valid-i? :out1* (s/? valid-i?*) :out2* (s/? valid-i?*) :out3* (s/? valid-i?*) :outN4* (s/? valid-i?*) :outN5* (s/? valid-i?*) :outN6* (s/? valid-i?*) :outN7* (s/? valid-i?*) :outN8* (s/? valid-i?*) :outN9* (s/? valid-i?*) :outN10* (s/? valid-i?*) :outN11* (s/? valid-i?*) :outN12* (s/? valid-i?*) :outN13* (s/? valid-i?*) :outN14* (s/? valid-i?*) :outN15* (s/? valid-i?*) :outN16* (s/? valid-i?*) ))
 (stest/instrument `fouti)
 
 (defn lowresx
@@ -17656,23 +13866,8 @@
     (new out-types ast)))
 
 (s/fdef lowresx
-  :args (s/cat :sig valid-ar? :cutoff valid-x? :resonance valid-x? :numlayer* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff valid-x? :resonance valid-x? :numlayer* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `lowresx)
-
-(defn lowresx:a
-  {:arglists '([asig xcutoff xresonance & inumlayer* iskip*])}
-  [sig cutoff resonance & [ numlayer* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lowresx"
-                      [sig cutoff resonance numlayer* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lowresx:a
-  :args (s/cat :sig valid-ar? :cutoff valid-x? :resonance valid-x? :numlayer* valid-i?* :skip* valid-i?* ))
-(stest/instrument `lowresx:a)
 
 (defn fprints
   {:arglists '([Sfilename Sstring & xval1* xval2* xval3* xval4* xval5* xval6* xval7* xval8* xval9* xval10* xval11* xval12* xval13* xval14* xval15* xval16*] [ifilename Sstring & xval1* xval2* xval3* xval4* xval5* xval6* xval7* xval8* xval9* xval10* xval11* xval12* xval13* xval14* xval15* xval16*])}
@@ -17687,7 +13882,8 @@
 
 (s/fdef fprints
   :args (s/alt
-         :SSxxxxxxxxxxxxxxxx (s/cat :filename valid-S? :string valid-S? :val1* valid-x?* :val2* valid-x?* :val3* valid-x?* :val4* valid-x?* :val5* valid-x?* :val6* valid-x?* :val7* valid-x?* :val8* valid-x?* :val9* valid-x?* :val10* valid-x?* :val11* valid-x?* :val12* valid-x?* :val13* valid-x?* :val14* valid-x?* :val15* valid-x?* :val16* valid-x?* )
+         :iSxxxxxxxxxxxxxxxx (s/cat :filename valid-i? :string valid-S? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
+         :SSxxxxxxxxxxxxxxxx (s/cat :filename valid-S? :string valid-S? :val1* (s/? valid-x?*) :val2* (s/? valid-x?*) :val3* (s/? valid-x?*) :val4* (s/? valid-x?*) :val5* (s/? valid-x?*) :val6* (s/? valid-x?*) :val7* (s/? valid-x?*) :val8* (s/? valid-x?*) :val9* (s/? valid-x?*) :val10* (s/? valid-x?*) :val11* (s/? valid-x?*) :val12* (s/? valid-x?*) :val13* (s/? valid-x?*) :val14* (s/? valid-x?*) :val15* (s/? valid-x?*) :val16* (s/? valid-x?*) )
          ))
 (stest/instrument `fprints)
 
@@ -17703,23 +13899,8 @@
     (new out-types ast)))
 
 (s/fdef port
-  :args (s/cat :sig valid-kr? :htim valid-i? :sig* valid-i?* ))
+  :args (s/cat :sig valid-kr? :htim valid-i? :sig* (s/? valid-i?*) ))
 (stest/instrument `port)
-
-(defn port:k
-  {:arglists '([ksig ihtim & isig*])}
-  [sig htim & [ sig* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "port"
-                      [sig htim sig*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef port:k
-  :args (s/cat :sig valid-kr? :htim valid-i? :sig* valid-i?* ))
-(stest/instrument `port:k)
 
 (defn nstance
   {:arglists '([Sinsname iwhen idur & ip1* ip2* ip3* ip4* ip5* ip6* ip7* ip8* ip9* ip10* ip11* ip12* ip13* ip14* ip15* ip16*] [iinsname iwhen idur & ip1* ip2* ip3* ip4* ip5* ip6* ip7* ip8* ip9* ip10* ip11* ip12* ip13* ip14* ip15* ip16*] [Sinsname Swhen & kdur1* kp2* kp3* kp4* kp5* kp6* kp7* kp8* kp9* kp10* kp11* kp12* kp13* kp14* kp15* kp16*] [kinsname kwhen & kdur1* kp2* kp3* kp4* kp5* kp6* kp7* kp8* kp9* kp10* kp11* kp12* kp13* kp14* kp15* kp16*])}
@@ -17734,7 +13915,10 @@
 
 (s/fdef nstance
   :args (s/alt
-         :Siiiiiiiiiiiiiiiiii (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* valid-i?* :p2* valid-i?* :p3* valid-i?* :p4* valid-i?* :p5* valid-i?* :p6* valid-i?* :p7* valid-i?* :p8* valid-i?* :p9* valid-i?* :p10* valid-i?* :p11* valid-i?* :p12* valid-i?* :p13* valid-i?* :p14* valid-i?* :p15* valid-i?* :p16* valid-i?* )
+         :kkkkkkkkkkkkkkkkkk (s/cat :insname valid-kr? :when valid-kr? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
+         :SSkkkkkkkkkkkkkkkk (s/cat :insname valid-S? :when valid-S? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
+         :iiiiiiiiiiiiiiiiiii (s/cat :insname valid-i? :when valid-i? :dur valid-i? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
+         :Siiiiiiiiiiiiiiiiii (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
          ))
 (stest/instrument `nstance)
 
@@ -17751,7 +13935,8 @@
 
 (s/fdef nstance:i
   :args (s/alt
-         :Siiiiiiiiiiiiiiiiii (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* valid-i?* :p2* valid-i?* :p3* valid-i?* :p4* valid-i?* :p5* valid-i?* :p6* valid-i?* :p7* valid-i?* :p8* valid-i?* :p9* valid-i?* :p10* valid-i?* :p11* valid-i?* :p12* valid-i?* :p13* valid-i?* :p14* valid-i?* :p15* valid-i?* :p16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :insname valid-i? :when valid-i? :dur valid-i? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
+         :Siiiiiiiiiiiiiiiiii (s/cat :insname valid-S? :when valid-i? :dur valid-i? :p1* (s/? valid-i?*) :p2* (s/? valid-i?*) :p3* (s/? valid-i?*) :p4* (s/? valid-i?*) :p5* (s/? valid-i?*) :p6* (s/? valid-i?*) :p7* (s/? valid-i?*) :p8* (s/? valid-i?*) :p9* (s/? valid-i?*) :p10* (s/? valid-i?*) :p11* (s/? valid-i?*) :p12* (s/? valid-i?*) :p13* (s/? valid-i?*) :p14* (s/? valid-i?*) :p15* (s/? valid-i?*) :p16* (s/? valid-i?*) )
          ))
 (stest/instrument `nstance:i)
 
@@ -17768,7 +13953,8 @@
 
 (s/fdef nstance:k
   :args (s/alt
-         :SSkkkkkkkkkkkkkkkk (s/cat :insname valid-S? :when valid-S? :dur1* valid-kr?* :p2* valid-kr?* :p3* valid-kr?* :p4* valid-kr?* :p5* valid-kr?* :p6* valid-kr?* :p7* valid-kr?* :p8* valid-kr?* :p9* valid-kr?* :p10* valid-kr?* :p11* valid-kr?* :p12* valid-kr?* :p13* valid-kr?* :p14* valid-kr?* :p15* valid-kr?* :p16* valid-kr?* )
+         :kkkkkkkkkkkkkkkkkk (s/cat :insname valid-kr? :when valid-kr? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
+         :SSkkkkkkkkkkkkkkkk (s/cat :insname valid-S? :when valid-S? :dur1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :p4* (s/? valid-kr?*) :p5* (s/? valid-kr?*) :p6* (s/? valid-kr?*) :p7* (s/? valid-kr?*) :p8* (s/? valid-kr?*) :p9* (s/? valid-kr?*) :p10* (s/? valid-kr?*) :p11* (s/? valid-kr?*) :p12* (s/? valid-kr?*) :p13* (s/? valid-kr?*) :p14* (s/? valid-kr?*) :p15* (s/? valid-kr?*) :p16* (s/? valid-kr?*) )
          ))
 (stest/instrument `nstance:k)
 
@@ -17800,7 +13986,8 @@
 
 (s/fdef ampmidid
   :args (s/alt
-         :iii (s/cat :velocity valid-i? :decibels valid-i? :decibels* valid-i?* )
+         :kii (s/cat :velocity valid-kr? :decibels valid-i? :decibels* (s/? valid-i?*) )
+         :iii (s/cat :velocity valid-i? :decibels valid-i? :decibels* (s/? valid-i?*) )
          ))
 (stest/instrument `ampmidid)
 
@@ -17816,7 +14003,7 @@
     (new out-types ast)))
 
 (s/fdef ampmidid:i
-  :args (s/cat :velocity valid-i? :decibels valid-i? :decibels* valid-i?* ))
+  :args (s/cat :velocity valid-i? :decibels valid-i? :decibels* (s/? valid-i?*) ))
 (stest/instrument `ampmidid:i)
 
 (defn ampmidid:k
@@ -17831,7 +14018,7 @@
     (new out-types ast)))
 
 (s/fdef ampmidid:k
-  :args (s/cat :velocity valid-kr? :decibels valid-i? :decibels* valid-i?* ))
+  :args (s/cat :velocity valid-kr? :decibels valid-i? :decibels* (s/? valid-i?*) ))
 (stest/instrument `ampmidid:k)
 
 (defn tan
@@ -17847,6 +14034,10 @@
 
 (s/fdef tan
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `tan)
@@ -17938,7 +14129,7 @@
     (new out-types ast)))
 
 (s/fdef denorm
-  :args (s/cat :arg1* valid-ar?* :arg2* valid-ar?* :arg3* valid-ar?* :arg4* valid-ar?* :arg5* valid-ar?* :arg6* valid-ar?* :arg7* valid-ar?* :arg8* valid-ar?* :arg9* valid-ar?* :arg10* valid-ar?* :arg11* valid-ar?* :arg12* valid-ar?* :arg13* valid-ar?* :arg14* valid-ar?* :arg15* valid-ar?* :arg16* valid-ar?* :arg17* valid-ar?* :arg18* valid-ar?* :arg19* valid-ar?* :arg20* valid-ar?* :arg21* valid-ar?* :arg22* valid-ar?* :arg23* valid-ar?* :arg24* valid-ar?* :arg25* valid-ar?* :arg26* valid-ar?* :arg27* valid-ar?* :arg28* valid-ar?* :arg29* valid-ar?* :arg30* valid-ar?* :arg31* valid-ar?* :arg32* valid-ar?* ))
+  :args (s/cat :arg1* (s/? valid-ar?*) :arg2* (s/? valid-ar?*) :arg3* (s/? valid-ar?*) :arg4* (s/? valid-ar?*) :arg5* (s/? valid-ar?*) :arg6* (s/? valid-ar?*) :arg7* (s/? valid-ar?*) :arg8* (s/? valid-ar?*) :arg9* (s/? valid-ar?*) :arg10* (s/? valid-ar?*) :arg11* (s/? valid-ar?*) :arg12* (s/? valid-ar?*) :arg13* (s/? valid-ar?*) :arg14* (s/? valid-ar?*) :arg15* (s/? valid-ar?*) :arg16* (s/? valid-ar?*) :arg17* (s/? valid-ar?*) :arg18* (s/? valid-ar?*) :arg19* (s/? valid-ar?*) :arg20* (s/? valid-ar?*) :arg21* (s/? valid-ar?*) :arg22* (s/? valid-ar?*) :arg23* (s/? valid-ar?*) :arg24* (s/? valid-ar?*) :arg25* (s/? valid-ar?*) :arg26* (s/? valid-ar?*) :arg27* (s/? valid-ar?*) :arg28* (s/? valid-ar?*) :arg29* (s/? valid-ar?*) :arg30* (s/? valid-ar?*) :arg31* (s/? valid-ar?*) :arg32* (s/? valid-ar?*) ))
 (stest/instrument `denorm)
 
 (defn cos
@@ -17954,6 +14145,10 @@
 
 (s/fdef cos
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `cos)
@@ -18045,7 +14240,7 @@
     (new out-types ast)))
 
 (s/fdef outo
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `outo)
 
 (defn dumpk4
@@ -18061,23 +14256,12 @@
 
 (s/fdef dumpk4
   :args (s/alt
+         :kkkkiii (s/cat :sig1 valid-kr? :sig2 valid-kr? :sig3 valid-kr? :sig4 valid-kr? :filname valid-i? :format valid-i? :prd valid-i? )
          :kkkkSii (s/cat :sig1 valid-kr? :sig2 valid-kr? :sig3 valid-kr? :sig4 valid-kr? :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `dumpk4)
 
 (defn midifilestatus
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "midifilestatus"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn midifilestatus:k
   {:arglists '()}
   []
   (let [out-types-quoted 'ControlSignal
@@ -18101,7 +14285,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef syncphasor
-  :args (s/cat :cps valid-x? :syncin valid-ar? :phase* valid-i?* ))
+  :args (s/cat :cps valid-x? :syncin valid-ar? :phase* (s/? valid-i?*) ))
 (stest/instrument `syncphasor)
 
 (defn vtabwk
@@ -18116,7 +14300,7 @@
     (new out-types ast)))
 
 (s/fdef vtabwk
-  :args (s/cat :index valid-kr? :table valid-i? :inarg1* valid-kr?* :inarg2* valid-kr?* :inarg3* valid-kr?* :inargN4* valid-kr?* :inargN5* valid-kr?* :inargN6* valid-kr?* :inargN7* valid-kr?* :inargN8* valid-kr?* :inargN9* valid-kr?* :inargN10* valid-kr?* :inargN11* valid-kr?* :inargN12* valid-kr?* :inargN13* valid-kr?* :inargN14* valid-kr?* :inargN15* valid-kr?* :inargN16* valid-kr?* ))
+  :args (s/cat :index valid-kr? :table valid-i? :inarg1* (s/? valid-kr?*) :inarg2* (s/? valid-kr?*) :inarg3* (s/? valid-kr?*) :inargN4* (s/? valid-kr?*) :inargN5* (s/? valid-kr?*) :inargN6* (s/? valid-kr?*) :inargN7* (s/? valid-kr?*) :inargN8* (s/? valid-kr?*) :inargN9* (s/? valid-kr?*) :inargN10* (s/? valid-kr?*) :inargN11* (s/? valid-kr?*) :inargN12* (s/? valid-kr?*) :inargN13* (s/? valid-kr?*) :inargN14* (s/? valid-kr?*) :inargN15* (s/? valid-kr?*) :inargN16* (s/? valid-kr?*) ))
 (stest/instrument `vtabwk)
 
 (defn midic21
@@ -18132,7 +14316,8 @@
 
 (s/fdef midic21
   :args (s/alt
-         :iiiiii (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* valid-i?* )
+         :iiikki (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) )
+         :iiiiii (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) )
          ))
 (stest/instrument `midic21)
 
@@ -18148,7 +14333,7 @@
     (new out-types ast)))
 
 (s/fdef midic21:i
-  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* valid-i?* ))
+  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `midic21:i)
 
 (defn midic21:k
@@ -18163,7 +14348,7 @@
     (new out-types ast)))
 
 (s/fdef midic21:k
-  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* ))
+  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) ))
 (stest/instrument `midic21:k)
 
 (defn mandel
@@ -18194,26 +14379,10 @@
 
 (s/fdef filebit
   :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
+         :ii (s/cat :filcod valid-i? :allowraw* (s/? valid-i?*) )
+         :Si (s/cat :filcod valid-S? :allowraw* (s/? valid-i?*) )
          ))
 (stest/instrument `filebit)
-
-(defn filebit:i
-  {:arglists '([Sfilcod & iallowraw*] [ifilcod & iallowraw*])}
-  [filcod & [ allowraw* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "filebit"
-                      [filcod allowraw*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef filebit:i
-  :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
-         ))
-(stest/instrument `filebit:i)
 
 (defn chn_k
   {:arglists '([Sname imode & itype* idflt* imin* ima* ix* iy* iwidth* iheight* xattribute1* xattribute2* xattribute3* xattribute4* xattribute5* xattribute6* xattribute7* xattribute8* xattribute9* xattribute10* xattribute11* xattribute12* xattribute13* xattribute14* xattribute15* xattribute16*])}
@@ -18227,7 +14396,7 @@
     (new out-types ast)))
 
 (s/fdef chn_k
-  :args (s/cat :name valid-S? :mode valid-i? :type* valid-i?* :dflt* valid-i?* :min* valid-i?* :ma* valid-i?* :x* valid-i?* :y* valid-i?* :width* valid-i?* :height* valid-i?* :attribute1* valid-x?* :attribute2* valid-x?* :attribute3* valid-x?* :attribute4* valid-x?* :attribute5* valid-x?* :attribute6* valid-x?* :attribute7* valid-x?* :attribute8* valid-x?* :attribute9* valid-x?* :attribute10* valid-x?* :attribute11* valid-x?* :attribute12* valid-x?* :attribute13* valid-x?* :attribute14* valid-x?* :attribute15* valid-x?* :attribute16* valid-x?* ))
+  :args (s/cat :name valid-S? :mode valid-i? :type* (s/? valid-i?*) :dflt* (s/? valid-i?*) :min* (s/? valid-i?*) :ma* (s/? valid-i?*) :x* (s/? valid-i?*) :y* (s/? valid-i?*) :width* (s/? valid-i?*) :height* (s/? valid-i?*) :attribute1* (s/? valid-x?*) :attribute2* (s/? valid-x?*) :attribute3* (s/? valid-x?*) :attribute4* (s/? valid-x?*) :attribute5* (s/? valid-x?*) :attribute6* (s/? valid-x?*) :attribute7* (s/? valid-x?*) :attribute8* (s/? valid-x?*) :attribute9* (s/? valid-x?*) :attribute10* (s/? valid-x?*) :attribute11* (s/? valid-x?*) :attribute12* (s/? valid-x?*) :attribute13* (s/? valid-x?*) :attribute14* (s/? valid-x?*) :attribute15* (s/? valid-x?*) :attribute16* (s/? valid-x?*) ))
 (stest/instrument `chn_k)
 
 (defn powershape
@@ -18242,23 +14411,8 @@
     (new out-types ast)))
 
 (s/fdef powershape
-  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :fullscale* valid-i?* ))
+  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :fullscale* (s/? valid-i?*) ))
 (stest/instrument `powershape)
-
-(defn powershape:a
-  {:arglists '([ain kShapeAmount & ifullscale*])}
-  [in ShapeAmount & [ fullscale* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "powershape"
-                      [in ShapeAmount fullscale*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef powershape:a
-  :args (s/cat :in valid-ar? :ShapeAmount valid-kr? :fullscale* valid-i?* ))
-(stest/instrument `powershape:a)
 
 (defn vtabwi
   {:arglists '([iindex itable & inarg1* inarg2* inarg3* inargN4* inargN5* inargN6* inargN7* inargN8* inargN9* inargN10* inargN11* inargN12* inargN13* inargN14* inargN15* inargN16*])}
@@ -18272,7 +14426,7 @@
     (new out-types ast)))
 
 (s/fdef vtabwi
-  :args (s/cat :index valid-i? :table valid-i? :narg1* valid-i?* :narg2* valid-i?* :narg3* valid-i?* :nargN4* valid-i?* :nargN5* valid-i?* :nargN6* valid-i?* :nargN7* valid-i?* :nargN8* valid-i?* :nargN9* valid-i?* :nargN10* valid-i?* :nargN11* valid-i?* :nargN12* valid-i?* :nargN13* valid-i?* :nargN14* valid-i?* :nargN15* valid-i?* :nargN16* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :narg1* (s/? valid-i?*) :narg2* (s/? valid-i?*) :narg3* (s/? valid-i?*) :nargN4* (s/? valid-i?*) :nargN5* (s/? valid-i?*) :nargN6* (s/? valid-i?*) :nargN7* (s/? valid-i?*) :nargN8* (s/? valid-i?*) :nargN9* (s/? valid-i?*) :nargN10* (s/? valid-i?*) :nargN11* (s/? valid-i?*) :nargN12* (s/? valid-i?*) :nargN13* (s/? valid-i?*) :nargN14* (s/? valid-i?*) :nargN15* (s/? valid-i?*) :nargN16* (s/? valid-i?*) ))
 (stest/instrument `vtabwi)
 
 (defn mirror
@@ -18288,6 +14442,8 @@
 
 (s/fdef mirror
   :args (s/alt
+         :kkk (s/cat :sig valid-kr? :low valid-kr? :high valid-kr? )
+         :iii (s/cat :sig valid-i? :low valid-i? :high valid-i? )
          :akk (s/cat :sig valid-ar? :low valid-kr? :high valid-kr? )
          ))
 (stest/instrument `mirror)
@@ -18396,23 +14552,8 @@
     (new out-types ast)))
 
 (s/fdef bamboo
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) :freq* (s/? valid-i?*) :freq1* (s/? valid-i?*) :freq1* (s/? valid-i?*) ))
 (stest/instrument `bamboo)
-
-(defn bamboo:a
-  {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
-  [amp dettack & [ num* damp* maxshake* freq* freq1* freq1* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "bamboo"
-                      [amp dettack num* damp* maxshake* freq* freq1* freq1*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef bamboo:a
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
-(stest/instrument `bamboo:a)
 
 (defn out
   {:arglists '([aarrayArr] [aarrayArr] [& aarray1* aarray2* aarray3* aarray4* aarray5* aarray6* aarray7* aarray8* aarray9* aarray10* aarray11* aarray12* aarray13* aarray14* aarray15* aarray16* aarray17* aarray18* aarray19* aarray20* aarray21* aarray22* aarray23* aarray24* aarray25* aarray26* aarray27* aarray28* aarray29* aarray30* aarray31* aarray32*])}
@@ -18427,6 +14568,7 @@
 
 (s/fdef out
   :args (s/alt
+         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :array1* (s/? valid-ar?*) :array2* (s/? valid-ar?*) :array3* (s/? valid-ar?*) :array4* (s/? valid-ar?*) :array5* (s/? valid-ar?*) :array6* (s/? valid-ar?*) :array7* (s/? valid-ar?*) :array8* (s/? valid-ar?*) :array9* (s/? valid-ar?*) :array10* (s/? valid-ar?*) :array11* (s/? valid-ar?*) :array12* (s/? valid-ar?*) :array13* (s/? valid-ar?*) :array14* (s/? valid-ar?*) :array15* (s/? valid-ar?*) :array16* (s/? valid-ar?*) :array17* (s/? valid-ar?*) :array18* (s/? valid-ar?*) :array19* (s/? valid-ar?*) :array20* (s/? valid-ar?*) :array21* (s/? valid-ar?*) :array22* (s/? valid-ar?*) :array23* (s/? valid-ar?*) :array24* (s/? valid-ar?*) :array25* (s/? valid-ar?*) :array26* (s/? valid-ar?*) :array27* (s/? valid-ar?*) :array28* (s/? valid-ar?*) :array29* (s/? valid-ar?*) :array30* (s/? valid-ar?*) :array31* (s/? valid-ar?*) :array32* (s/? valid-ar?*) )
          :aArr (s/cat :array valid-aArr? )
          ))
 (stest/instrument `out)
@@ -18456,7 +14598,8 @@
 
 (s/fdef minabs
   :args (s/alt
-         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :in1 valid-ar? :in1* valid-ar?* :in2* valid-ar?* :in3* valid-ar?* :in4* valid-ar?* :in5* valid-ar?* :in6* valid-ar?* :in7* valid-ar?* :in8* valid-ar?* :in9* valid-ar?* :in10* valid-ar?* :in11* valid-ar?* :in12* valid-ar?* :in13* valid-ar?* :in14* valid-ar?* :in15* valid-ar?* :in16* valid-ar?* :in17* valid-ar?* :in18* valid-ar?* :in19* valid-ar?* :in20* valid-ar?* :in21* valid-ar?* :in22* valid-ar?* :in23* valid-ar?* :in24* valid-ar?* :in25* valid-ar?* :in26* valid-ar?* :in27* valid-ar?* :in28* valid-ar?* :in29* valid-ar?* :in30* valid-ar?* :in31* valid-ar?* :in32* valid-ar?* )
+         :kkkkkkkkkkkkkkkkk (s/cat :in1 valid-kr? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :in3* (s/? valid-kr?*) :in4* (s/? valid-kr?*) :in5* (s/? valid-kr?*) :in6* (s/? valid-kr?*) :in7* (s/? valid-kr?*) :in8* (s/? valid-kr?*) :in9* (s/? valid-kr?*) :in10* (s/? valid-kr?*) :in11* (s/? valid-kr?*) :in12* (s/? valid-kr?*) :in13* (s/? valid-kr?*) :in14* (s/? valid-kr?*) :in15* (s/? valid-kr?*) :in16* (s/? valid-kr?*) )
+         :aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :in1 valid-ar? :in1* (s/? valid-ar?*) :in2* (s/? valid-ar?*) :in3* (s/? valid-ar?*) :in4* (s/? valid-ar?*) :in5* (s/? valid-ar?*) :in6* (s/? valid-ar?*) :in7* (s/? valid-ar?*) :in8* (s/? valid-ar?*) :in9* (s/? valid-ar?*) :in10* (s/? valid-ar?*) :in11* (s/? valid-ar?*) :in12* (s/? valid-ar?*) :in13* (s/? valid-ar?*) :in14* (s/? valid-ar?*) :in15* (s/? valid-ar?*) :in16* (s/? valid-ar?*) :in17* (s/? valid-ar?*) :in18* (s/? valid-ar?*) :in19* (s/? valid-ar?*) :in20* (s/? valid-ar?*) :in21* (s/? valid-ar?*) :in22* (s/? valid-ar?*) :in23* (s/? valid-ar?*) :in24* (s/? valid-ar?*) :in25* (s/? valid-ar?*) :in26* (s/? valid-ar?*) :in27* (s/? valid-ar?*) :in28* (s/? valid-ar?*) :in29* (s/? valid-ar?*) :in30* (s/? valid-ar?*) :in31* (s/? valid-ar?*) :in32* (s/? valid-ar?*) )
          ))
 (stest/instrument `minabs)
 
@@ -18472,7 +14615,7 @@
     (new out-types ast)))
 
 (s/fdef minabs:a
-  :args (s/cat :in1 valid-ar? :in1* valid-ar?* :in2* valid-ar?* :in3* valid-ar?* :in4* valid-ar?* :in5* valid-ar?* :in6* valid-ar?* :in7* valid-ar?* :in8* valid-ar?* :in9* valid-ar?* :in10* valid-ar?* :in11* valid-ar?* :in12* valid-ar?* :in13* valid-ar?* :in14* valid-ar?* :in15* valid-ar?* :in16* valid-ar?* :in17* valid-ar?* :in18* valid-ar?* :in19* valid-ar?* :in20* valid-ar?* :in21* valid-ar?* :in22* valid-ar?* :in23* valid-ar?* :in24* valid-ar?* :in25* valid-ar?* :in26* valid-ar?* :in27* valid-ar?* :in28* valid-ar?* :in29* valid-ar?* :in30* valid-ar?* :in31* valid-ar?* :in32* valid-ar?* ))
+  :args (s/cat :in1 valid-ar? :in1* (s/? valid-ar?*) :in2* (s/? valid-ar?*) :in3* (s/? valid-ar?*) :in4* (s/? valid-ar?*) :in5* (s/? valid-ar?*) :in6* (s/? valid-ar?*) :in7* (s/? valid-ar?*) :in8* (s/? valid-ar?*) :in9* (s/? valid-ar?*) :in10* (s/? valid-ar?*) :in11* (s/? valid-ar?*) :in12* (s/? valid-ar?*) :in13* (s/? valid-ar?*) :in14* (s/? valid-ar?*) :in15* (s/? valid-ar?*) :in16* (s/? valid-ar?*) :in17* (s/? valid-ar?*) :in18* (s/? valid-ar?*) :in19* (s/? valid-ar?*) :in20* (s/? valid-ar?*) :in21* (s/? valid-ar?*) :in22* (s/? valid-ar?*) :in23* (s/? valid-ar?*) :in24* (s/? valid-ar?*) :in25* (s/? valid-ar?*) :in26* (s/? valid-ar?*) :in27* (s/? valid-ar?*) :in28* (s/? valid-ar?*) :in29* (s/? valid-ar?*) :in30* (s/? valid-ar?*) :in31* (s/? valid-ar?*) :in32* (s/? valid-ar?*) ))
 (stest/instrument `minabs:a)
 
 (defn minabs:k
@@ -18487,7 +14630,7 @@
     (new out-types ast)))
 
 (s/fdef minabs:k
-  :args (s/cat :in1 valid-kr? :in1* valid-kr?* :in2* valid-kr?* :in3* valid-kr?* :in4* valid-kr?* :in5* valid-kr?* :in6* valid-kr?* :in7* valid-kr?* :in8* valid-kr?* :in9* valid-kr?* :in10* valid-kr?* :in11* valid-kr?* :in12* valid-kr?* :in13* valid-kr?* :in14* valid-kr?* :in15* valid-kr?* :in16* valid-kr?* ))
+  :args (s/cat :in1 valid-kr? :in1* (s/? valid-kr?*) :in2* (s/? valid-kr?*) :in3* (s/? valid-kr?*) :in4* (s/? valid-kr?*) :in5* (s/? valid-kr?*) :in6* (s/? valid-kr?*) :in7* (s/? valid-kr?*) :in8* (s/? valid-kr?*) :in9* (s/? valid-kr?*) :in10* (s/? valid-kr?*) :in11* (s/? valid-kr?*) :in12* (s/? valid-kr?*) :in13* (s/? valid-kr?*) :in14* (s/? valid-kr?*) :in15* (s/? valid-kr?*) :in16* (s/? valid-kr?*) ))
 (stest/instrument `minabs:k)
 
 (defn randomi
@@ -18503,7 +14646,8 @@
 
 (s/fdef randomi
   :args (s/alt
-         :kkxii (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* valid-i?* :firstval* valid-i?* )
+         :kkkii (s/cat :min valid-kr? :max valid-kr? :cps valid-kr? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) )
+         :kkxii (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) )
          ))
 (stest/instrument `randomi)
 
@@ -18519,7 +14663,7 @@
     (new out-types ast)))
 
 (s/fdef randomi:a
-  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* valid-i?* :firstval* valid-i?* ))
+  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) ))
 (stest/instrument `randomi:a)
 
 (defn randomi:k
@@ -18534,7 +14678,7 @@
     (new out-types ast)))
 
 (s/fdef randomi:k
-  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-kr? :mode* valid-i?* :firstval* valid-i?* ))
+  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-kr? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) ))
 (stest/instrument `randomi:k)
 
 (defn zar
@@ -18552,21 +14696,6 @@
   :args (s/cat :index valid-kr? ))
 (stest/instrument `zar)
 
-(defn zar:a
-  {:arglists '([kindex])}
-  [index]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zar"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zar:a
-  :args (s/cat :index valid-kr? ))
-(stest/instrument `zar:a)
-
 (defn outrg
   {:arglists '([kstart & aout1* aout2* aout3* aoutN4* aoutN5* aoutN6* aoutN7* aoutN8* aoutN9* aoutN10* aoutN11* aoutN12* aoutN13* aoutN14* aoutN15* aoutN16* aoutN17* aoutN18* aoutN19* aoutN20* aoutN21* aoutN22* aoutN23* aoutN24* aoutN25* aoutN26* aoutN27* aoutN28* aoutN29* aoutN30* aoutN31* aoutN32*])}
   [start & [ out1* out2* out3* outN4* outN5* outN6* outN7* outN8* outN9* outN10* outN11* outN12* outN13* outN14* outN15* outN16* outN17* outN18* outN19* outN20* outN21* outN22* outN23* outN24* outN25* outN26* outN27* outN28* outN29* outN30* outN31* outN32* ]]
@@ -18579,7 +14708,7 @@
     (new out-types ast)))
 
 (s/fdef outrg
-  :args (s/cat :start valid-kr? :out1* valid-ar?* :out2* valid-ar?* :out3* valid-ar?* :outN4* valid-ar?* :outN5* valid-ar?* :outN6* valid-ar?* :outN7* valid-ar?* :outN8* valid-ar?* :outN9* valid-ar?* :outN10* valid-ar?* :outN11* valid-ar?* :outN12* valid-ar?* :outN13* valid-ar?* :outN14* valid-ar?* :outN15* valid-ar?* :outN16* valid-ar?* :outN17* valid-ar?* :outN18* valid-ar?* :outN19* valid-ar?* :outN20* valid-ar?* :outN21* valid-ar?* :outN22* valid-ar?* :outN23* valid-ar?* :outN24* valid-ar?* :outN25* valid-ar?* :outN26* valid-ar?* :outN27* valid-ar?* :outN28* valid-ar?* :outN29* valid-ar?* :outN30* valid-ar?* :outN31* valid-ar?* :outN32* valid-ar?* ))
+  :args (s/cat :start valid-kr? :out1* (s/? valid-ar?*) :out2* (s/? valid-ar?*) :out3* (s/? valid-ar?*) :outN4* (s/? valid-ar?*) :outN5* (s/? valid-ar?*) :outN6* (s/? valid-ar?*) :outN7* (s/? valid-ar?*) :outN8* (s/? valid-ar?*) :outN9* (s/? valid-ar?*) :outN10* (s/? valid-ar?*) :outN11* (s/? valid-ar?*) :outN12* (s/? valid-ar?*) :outN13* (s/? valid-ar?*) :outN14* (s/? valid-ar?*) :outN15* (s/? valid-ar?*) :outN16* (s/? valid-ar?*) :outN17* (s/? valid-ar?*) :outN18* (s/? valid-ar?*) :outN19* (s/? valid-ar?*) :outN20* (s/? valid-ar?*) :outN21* (s/? valid-ar?*) :outN22* (s/? valid-ar?*) :outN23* (s/? valid-ar?*) :outN24* (s/? valid-ar?*) :outN25* (s/? valid-ar?*) :outN26* (s/? valid-ar?*) :outN27* (s/? valid-ar?*) :outN28* (s/? valid-ar?*) :outN29* (s/? valid-ar?*) :outN30* (s/? valid-ar?*) :outN31* (s/? valid-ar?*) :outN32* (s/? valid-ar?*) ))
 (stest/instrument `outrg)
 
 (defn partikkelget
@@ -18596,21 +14725,6 @@
 (s/fdef partikkelget
   :args (s/cat :parameterindex valid-kr? :opcode_id valid-i? ))
 (stest/instrument `partikkelget)
-
-(defn partikkelget:k
-  {:arglists '([kparameterindex iopcode_id])}
-  [parameterindex opcode_id]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "partikkelget"
-                      [parameterindex opcode_id]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef partikkelget:k
-  :args (s/cat :parameterindex valid-kr? :opcode_id valid-i? ))
-(stest/instrument `partikkelget:k)
 
 (defn chn_a
   {:arglists '([Sname imode])}
@@ -18639,23 +14753,8 @@
     (new out-types ast)))
 
 (s/fdef sandpaper
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
+  :args (s/cat :amp valid-i? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) ))
 (stest/instrument `sandpaper)
-
-(defn sandpaper:a
-  {:arglists '([iamp idettack & inum* idamp* imaxshake*])}
-  [amp dettack & [ num* damp* maxshake* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sandpaper"
-                      [amp dettack num* damp* maxshake*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sandpaper:a
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
-(stest/instrument `sandpaper:a)
 
 (defn outq4
   {:arglists '([asig])}
@@ -18702,34 +14801,7 @@
   :args (s/cat :index valid-kr? :gain valid-kr? ))
 (stest/instrument `zarg)
 
-(defn zarg:a
-  {:arglists '([kindex kgain])}
-  [index gain]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zarg"
-                      [index gain]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zarg:a
-  :args (s/cat :index valid-kr? :gain valid-kr? ))
-(stest/instrument `zarg:a)
-
 (defn cpsmidi
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "cpsmidi"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn cpsmidi:i
   {:arglists '()}
   []
   (let [out-types-quoted 'Variable
@@ -18754,7 +14826,7 @@
 
 (s/fdef gendy
   :args (s/alt
-         :kkkkkkkkkik (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* valid-i?* :num* valid-kr?* )
+         :kkkkkkkkkik (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) )
          ))
 (stest/instrument `gendy)
 
@@ -18770,7 +14842,7 @@
     (new out-types ast)))
 
 (s/fdef gendy:a
-  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* valid-i?* :num* valid-kr?* ))
+  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) ))
 (stest/instrument `gendy:a)
 
 (defn gendy:k
@@ -18785,7 +14857,7 @@
     (new out-types ast)))
 
 (s/fdef gendy:k
-  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* valid-i?* :num* valid-kr?* ))
+  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) ))
 (stest/instrument `gendy:k)
 
 (defn xscans
@@ -18800,23 +14872,8 @@
     (new out-types ast)))
 
 (s/fdef xscans
-  :args (s/cat :amp valid-kr? :freq valid-kr? :fntraj valid-i? :d valid-i? :order* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :fntraj valid-i? :d valid-i? :order* (s/? valid-i?*) ))
 (stest/instrument `xscans)
-
-(defn xscans:a
-  {:arglists '([kamp kfreq ifntraj id & iorder*])}
-  [amp freq fntraj d & [ order* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "xscans"
-                      [amp freq fntraj d order*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef xscans:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :fntraj valid-i? :d valid-i? :order* valid-i?* ))
-(stest/instrument `xscans:a)
 
 (defn hrtfmove2
   {:arglists '([asrc kAz kElev Sfilel Sfiler & ioverlap* iradius* isr*])}
@@ -18830,7 +14887,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef hrtfmove2
-  :args (s/cat :src valid-ar? :Az valid-kr? :Elev valid-kr? :filel valid-S? :filer valid-S? :overlap* valid-i?* :radius* valid-i?* :sr* valid-i?* ))
+  :args (s/cat :src valid-ar? :Az valid-kr? :Elev valid-kr? :filel valid-S? :filer valid-S? :overlap* (s/? valid-i?*) :radius* (s/? valid-i?*) :sr* (s/? valid-i?*) ))
 (stest/instrument `hrtfmove2)
 
 (defn dust2
@@ -18895,21 +14952,6 @@
   :args (s/cat :table valid-i? ))
 (stest/instrument `cpstmid)
 
-(defn cpstmid:i
-  {:arglists '([itable])}
-  [table]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "cpstmid"
-                      [table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cpstmid:i
-  :args (s/cat :table valid-i? ))
-(stest/instrument `cpstmid:i)
-
 (defn evalstr
   {:arglists '([Scode] [Scode ktrig])}
   [code]
@@ -18923,6 +14965,7 @@
 
 (s/fdef evalstr
   :args (s/alt
+         :Sk (s/cat :code valid-S? :trig valid-kr? )
          :S (s/cat :code valid-S? )
          ))
 (stest/instrument `evalstr)
@@ -18969,7 +15012,7 @@
     (new out-types ast)))
 
 (s/fdef midichannelaftertouch
-  :args (s/cat :channelaftertouch valid-x? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :channelaftertouch valid-x? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `midichannelaftertouch)
 
 (defn filesr
@@ -18985,26 +15028,10 @@
 
 (s/fdef filesr
   :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
+         :ii (s/cat :filcod valid-i? :allowraw* (s/? valid-i?*) )
+         :Si (s/cat :filcod valid-S? :allowraw* (s/? valid-i?*) )
          ))
 (stest/instrument `filesr)
-
-(defn filesr:i
-  {:arglists '([Sfilcod & iallowraw*] [ifilcod & iallowraw*])}
-  [filcod & [ allowraw* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "filesr"
-                      [filcod allowraw*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef filesr:i
-  :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
-         ))
-(stest/instrument `filesr:i)
 
 (defn dispfft
   {:arglists '([xsig iprd iwsiz & iwtyp* idbout* iwtflg* imin* imax*])}
@@ -19018,7 +15045,7 @@
     (new out-types ast)))
 
 (s/fdef dispfft
-  :args (s/cat :sig valid-x? :prd valid-i? :wsiz valid-i? :wtyp* valid-i?* :dbout* valid-i?* :wtflg* valid-i?* :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :sig valid-x? :prd valid-i? :wsiz valid-i? :wtyp* (s/? valid-i?*) :dbout* (s/? valid-i?*) :wtflg* (s/? valid-i?*) :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `dispfft)
 
 (defn chnmix
@@ -19048,23 +15075,8 @@
     (new out-types ast)))
 
 (s/fdef delay
-  :args (s/cat :sig valid-ar? :dlt valid-i? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :dlt valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `delay)
-
-(defn delay:a
-  {:arglists '([asig idlt & iskip*])}
-  [sig dlt & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "delay"
-                      [sig dlt skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef delay:a
-  :args (s/cat :sig valid-ar? :dlt valid-i? :skip* valid-i?* ))
-(stest/instrument `delay:a)
 
 (defn zdf_ladder
   {:arglists '([ain xcenter-frequency xQ & istor*])}
@@ -19078,23 +15090,8 @@
     (new out-types ast)))
 
 (s/fdef zdf_ladder
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :stor* (s/? valid-i?*) ))
 (stest/instrument `zdf_ladder)
-
-(defn zdf_ladder:a
-  {:arglists '([ain xcenter-frequency xQ & istor*])}
-  [in center-frequency Q & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zdf_ladder"
-                      [in center-frequency Q stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zdf_ladder:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :stor* valid-i?* ))
-(stest/instrument `zdf_ladder:a)
 
 (defn expcurve
   {:arglists '([kindex ksteepness])}
@@ -19111,21 +15108,6 @@
   :args (s/cat :index valid-kr? :steepness valid-kr? ))
 (stest/instrument `expcurve)
 
-(defn expcurve:k
-  {:arglists '([kindex ksteepness])}
-  [index steepness]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "expcurve"
-                      [index steepness]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef expcurve:k
-  :args (s/cat :index valid-kr? :steepness valid-kr? ))
-(stest/instrument `expcurve:k)
-
 (defn squinewave
   {:arglists '([acps aClip aSkew xsyncin & iMinSweep* iphase*])}
   [cps Clip Skew syncin & [ MinSweep* phase* ]]
@@ -19138,7 +15120,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef squinewave
-  :args (s/cat :cps valid-ar? :Clip valid-ar? :Skew valid-ar? :syncin valid-x? :MinSweep* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :cps valid-ar? :Clip valid-ar? :Skew valid-ar? :syncin valid-x? :MinSweep* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `squinewave)
 
 (defn OSCraw
@@ -19157,99 +15139,99 @@
 (stest/instrument `OSCraw)
 
 (defn taninv
-  {:arglists '([aarg1] [iarg1] [iarg1Arr] [iarg1Arr iArr] [karg1] [karg1Arr] [karg1Arr kArr])}
-  [arg1]
+  {:arglists '([aradian] [iradian] [iradianArr] [kradian] [kradianArr])}
+  [radian]
   (let [out-types-quoted 'AudioSignal
         out-types AudioSignal
         ast (ast-node out-types-quoted
                       "taninv"
-                      [arg1]
+                      [radian]
                       *global*)]
     (new out-types ast)))
 
 (s/fdef taninv
   :args (s/alt
-         :a (s/cat :arg1 valid-ar? )
+         :kArr (s/cat :radian valid-kArr? )
+         :k (s/cat :radian valid-kr? )
+         :iArr (s/cat :radian valid-iArr? )
+         :i (s/cat :radian valid-i? )
+         :a (s/cat :radian valid-ar? )
          ))
 (stest/instrument `taninv)
 
 (defn taninv:a
-  {:arglists '([aarg1])}
-  [arg1]
+  {:arglists '([aradian])}
+  [radian]
   (let [out-types-quoted 'AudioSignal
         out-types AudioSignal
         ast (ast-node out-types-quoted
                       "taninv"
-                      [arg1]
+                      [radian]
                       *global*)]
     (new out-types ast)))
 
 (s/fdef taninv:a
-  :args (s/cat :arg1 valid-ar? ))
+  :args (s/cat :radian valid-ar? ))
 (stest/instrument `taninv:a)
 
 (defn taninv:i
-  {:arglists '([iarg1])}
-  [arg1]
+  {:arglists '([iradian])}
+  [radian]
   (let [out-types-quoted 'Variable
         out-types Variable
         ast (ast-node out-types-quoted
                       "taninv"
-                      [arg1]
+                      [radian]
                       *global*)]
     (new out-types ast)))
 
 (s/fdef taninv:i
-  :args (s/cat :arg1 valid-i? ))
+  :args (s/cat :radian valid-i? ))
 (stest/instrument `taninv:i)
 
 (defn taninv:iArr
-  {:arglists '([iarg1Arr] [iarg1Arr iArr])}
-  [arg1]
+  {:arglists '([iradianArr])}
+  [radian]
   (let [out-types-quoted 'VariableArray
         out-types VariableArray
         ast (ast-node out-types-quoted
                       "taninv"
-                      [arg1]
+                      [radian]
                       *global*)]
     (new out-types ast)))
 
 (s/fdef taninv:iArr
-  :args (s/alt
-         :iArr (s/cat :arg1 valid-iArr? )
-         ))
+  :args (s/cat :radian valid-iArr? ))
 (stest/instrument `taninv:iArr)
 
 (defn taninv:k
-  {:arglists '([karg1])}
-  [arg1]
+  {:arglists '([kradian])}
+  [radian]
   (let [out-types-quoted 'ControlSignal
         out-types ControlSignal
         ast (ast-node out-types-quoted
                       "taninv"
-                      [arg1]
+                      [radian]
                       *global*)]
     (new out-types ast)))
 
 (s/fdef taninv:k
-  :args (s/cat :arg1 valid-kr? ))
+  :args (s/cat :radian valid-kr? ))
 (stest/instrument `taninv:k)
 
 (defn taninv:kArr
-  {:arglists '([karg1Arr] [karg1Arr kArr])}
-  [arg1]
+  {:arglists '([kradianArr])}
+  [radian]
   (let [out-types-quoted 'ControlArray
         out-types ControlArray
         ast (ast-node out-types-quoted
                       "taninv"
-                      [arg1]
+                      [radian]
                       *global*)]
     (new out-types ast)))
 
 (s/fdef taninv:kArr
-  :args (s/alt
-         :kArr (s/cat :arg1 valid-kArr? )
-         ))
+  :args (s/cat :radian valid-kArr? ))
 (stest/instrument `taninv:kArr)
 
 (defn mclock
@@ -19279,7 +15261,7 @@
     (new out-types ast)))
 
 (s/fdef ziwm
-  :args (s/cat :sig valid-i? :index valid-i? :mix* valid-i?* ))
+  :args (s/cat :sig valid-i? :index valid-i? :mix* (s/? valid-i?*) ))
 (stest/instrument `ziwm)
 
 (defn partikkelset
@@ -19310,26 +15292,12 @@
 
 (s/fdef i
   :args (s/alt
+         :kArrkkkkkkkkkkkkkkkk (s/cat :karray valid-kArr? :karray1* (s/? valid-kr?*) :karray2* (s/? valid-kr?*) :karray3* (s/? valid-kr?*) :karray4* (s/? valid-kr?*) :karray5* (s/? valid-kr?*) :karray6* (s/? valid-kr?*) :karray7* (s/? valid-kr?*) :karray8* (s/? valid-kr?*) :karray9* (s/? valid-kr?*) :karray10* (s/? valid-kr?*) :karray11* (s/? valid-kr?*) :karray12* (s/? valid-kr?*) :karray13* (s/? valid-kr?*) :karray14* (s/? valid-kr?*) :karray15* (s/? valid-kr?*) :karray16* (s/? valid-kr?*) )
+         :kArriiiiiiiiiiiiiiii (s/cat :karray valid-kArr? :karray1* (s/? valid-i?*) :karray2* (s/? valid-i?*) :karray3* (s/? valid-i?*) :karray4* (s/? valid-i?*) :karray5* (s/? valid-i?*) :karray6* (s/? valid-i?*) :karray7* (s/? valid-i?*) :karray8* (s/? valid-i?*) :karray9* (s/? valid-i?*) :karray10* (s/? valid-i?*) :karray11* (s/? valid-i?*) :karray12* (s/? valid-i?*) :karray13* (s/? valid-i?*) :karray14* (s/? valid-i?*) :karray15* (s/? valid-i?*) :karray16* (s/? valid-i?*) )
+         :k (s/cat :karray valid-kr? )
          :i (s/cat :karray valid-i? )
          ))
 (stest/instrument `i)
-
-(defn i:i
-  {:arglists '([ikarray] [kkarray] [kkarrayArr & ikarray1* ikarray2* ikarray3* ikarray4* ikarray5* ikarray6* ikarray7* ikarray8* ikarray9* ikarray10* ikarray11* ikarray12* ikarray13* ikarray14* ikarray15* ikarray16*] [kkarrayArr & kkarray1* kkarray2* kkarray3* kkarray4* kkarray5* kkarray6* kkarray7* kkarray8* kkarray9* kkarray10* kkarray11* kkarray12* kkarray13* kkarray14* kkarray15* kkarray16*])}
-  [karray]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "i"
-                      [karray]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef i:i
-  :args (s/alt
-         :i (s/cat :karray valid-i? )
-         ))
-(stest/instrument `i:i)
 
 (defn hilbert
   {:arglists '([asig])}
@@ -19373,21 +15341,6 @@
   :args (s/cat :prog valid-i? :bank valid-i? :filhandle valid-i? :preindex valid-i? ))
 (stest/instrument `sfpreset)
 
-(defn sfpreset:i
-  {:arglists '([iprog ibank ifilhandle ipreindex])}
-  [prog bank filhandle preindex]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "sfpreset"
-                      [prog bank filhandle preindex]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sfpreset:i
-  :args (s/cat :prog valid-i? :bank valid-i? :filhandle valid-i? :preindex valid-i? ))
-(stest/instrument `sfpreset:i)
-
 (defn tableseg
   {:arglists '([ifn1 idur2 & ifn1* idur2* ifn3* ifn4* ifn5* ifn6* ifn7* ifn8* ifn9* ifn10* ifn11* ifn12* ifn13* ifn14* ifn15* ifn16*])}
   [fn1 dur2 & [ fn1* dur2* fn3* fn4* fn5* fn6* fn7* fn8* fn9* fn10* fn11* fn12* fn13* fn14* fn15* fn16* ]]
@@ -19400,7 +15353,7 @@
     (new out-types ast)))
 
 (s/fdef tableseg
-  :args (s/cat :fn1 valid-i? :dur2 valid-i? :fn1* valid-i?* :dur2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :dur2 valid-i? :fn1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) ))
 (stest/instrument `tableseg)
 
 (defn timedseq
@@ -19415,23 +15368,8 @@
     (new out-types ast)))
 
 (s/fdef timedseq
-  :args (s/cat :timpnt valid-kr? :table valid-i? :p1* valid-kr?* :p2* valid-kr?* :p3* valid-kr?* :pN4* valid-kr?* :pN5* valid-kr?* :pN6* valid-kr?* :pN7* valid-kr?* :pN8* valid-kr?* :pN9* valid-kr?* :pN10* valid-kr?* :pN11* valid-kr?* :pN12* valid-kr?* :pN13* valid-kr?* :pN14* valid-kr?* :pN15* valid-kr?* :pN16* valid-kr?* ))
+  :args (s/cat :timpnt valid-kr? :table valid-i? :p1* (s/? valid-kr?*) :p2* (s/? valid-kr?*) :p3* (s/? valid-kr?*) :pN4* (s/? valid-kr?*) :pN5* (s/? valid-kr?*) :pN6* (s/? valid-kr?*) :pN7* (s/? valid-kr?*) :pN8* (s/? valid-kr?*) :pN9* (s/? valid-kr?*) :pN10* (s/? valid-kr?*) :pN11* (s/? valid-kr?*) :pN12* (s/? valid-kr?*) :pN13* (s/? valid-kr?*) :pN14* (s/? valid-kr?*) :pN15* (s/? valid-kr?*) :pN16* (s/? valid-kr?*) ))
 (stest/instrument `timedseq)
-
-(defn timedseq:k
-  {:arglists '([ktimpnt itable & kp1* kp2* kp3* kpN4* kpN5* kpN6* kpN7* kpN8* kpN9* kpN10* kpN11* kpN12* kpN13* kpN14* kpN15* kpN16*])}
-  [timpnt table & [ p1* p2* p3* pN4* pN5* pN6* pN7* pN8* pN9* pN10* pN11* pN12* pN13* pN14* pN15* pN16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "timedseq"
-                      [timpnt table p1* p2* p3* pN4* pN5* pN6* pN7* pN8* pN9* pN10* pN11* pN12* pN13* pN14* pN15* pN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef timedseq:k
-  :args (s/cat :timpnt valid-kr? :table valid-i? :p1* valid-kr?* :p2* valid-kr?* :p3* valid-kr?* :pN4* valid-kr?* :pN5* valid-kr?* :pN6* valid-kr?* :pN7* valid-kr?* :pN8* valid-kr?* :pN9* valid-kr?* :pN10* valid-kr?* :pN11* valid-kr?* :pN12* valid-kr?* :pN13* valid-kr?* :pN14* valid-kr?* :pN15* valid-kr?* :pN16* valid-kr?* ))
-(stest/instrument `timedseq:k)
 
 (defn pvsdemix
   {:arglists '([fleft fright kpos kwidth ipoints])}
@@ -19448,21 +15386,6 @@
   :args (s/cat :left valid-f? :right valid-f? :pos valid-kr? :width valid-kr? :points valid-i? ))
 (stest/instrument `pvsdemix)
 
-(defn pvsdemix:f
-  {:arglists '([fleft fright kpos kwidth ipoints])}
-  [left right pos width points]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsdemix"
-                      [left right pos width points]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsdemix:f
-  :args (s/cat :left valid-f? :right valid-f? :pos valid-kr? :width valid-kr? :points valid-i? ))
-(stest/instrument `pvsdemix:f)
-
 (defn ptablew
   {:arglists '([asig aindex itable & ixmode* ixoff* iwgmode*] [ksig kindex itable & ixmode* ixoff* iwgmode*])}
   [sig index table & [ xmode* xoff* wgmode* ]]
@@ -19476,7 +15399,8 @@
 
 (s/fdef ptablew
   :args (s/alt
-         :aaiiii (s/cat :sig valid-ar? :index valid-ar? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wgmode* valid-i?* )
+         :kkiiii (s/cat :sig valid-kr? :index valid-kr? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
+         :aaiiii (s/cat :sig valid-ar? :index valid-ar? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
          ))
 (stest/instrument `ptablew)
 
@@ -19492,7 +15416,7 @@
     (new out-types ast)))
 
 (s/fdef pset
-  :args (s/cat :con1* valid-i?* :con2* valid-i?* :con3* valid-i?* :con4* valid-i?* :con5* valid-i?* :con6* valid-i?* :con7* valid-i?* :con8* valid-i?* :con9* valid-i?* :con10* valid-i?* :con11* valid-i?* :con12* valid-i?* :con13* valid-i?* :con14* valid-i?* :con15* valid-i?* :con16* valid-i?* ))
+  :args (s/cat :con1* (s/? valid-i?*) :con2* (s/? valid-i?*) :con3* (s/? valid-i?*) :con4* (s/? valid-i?*) :con5* (s/? valid-i?*) :con6* (s/? valid-i?*) :con7* (s/? valid-i?*) :con8* (s/? valid-i?*) :con9* (s/? valid-i?*) :con10* (s/? valid-i?*) :con11* (s/? valid-i?*) :con12* (s/? valid-i?*) :con13* (s/? valid-i?*) :con14* (s/? valid-i?*) :con15* (s/? valid-i?*) :con16* (s/? valid-i?*) ))
 (stest/instrument `pset)
 
 (defn downsamp
@@ -19507,23 +15431,8 @@
     (new out-types ast)))
 
 (s/fdef downsamp
-  :args (s/cat :sig valid-ar? :wlen* valid-i?* ))
+  :args (s/cat :sig valid-ar? :wlen* (s/? valid-i?*) ))
 (stest/instrument `downsamp)
-
-(defn downsamp:k
-  {:arglists '([asig & iwlen*])}
-  [sig & [ wlen* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "downsamp"
-                      [sig wlen*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef downsamp:k
-  :args (s/cat :sig valid-ar? :wlen* valid-i?* ))
-(stest/instrument `downsamp:k)
 
 (defn atonex
   {:arglists '([asig ahp & inumlayer* iskip*] [asig khp & inumlayer* iskip*])}
@@ -19538,26 +15447,10 @@
 
 (s/fdef atonex
   :args (s/alt
-         :aaii (s/cat :sig valid-ar? :hp valid-ar? :numlayer* valid-i?* :skip* valid-i?* )
+         :akii (s/cat :sig valid-ar? :hp valid-kr? :numlayer* (s/? valid-i?*) :skip* (s/? valid-i?*) )
+         :aaii (s/cat :sig valid-ar? :hp valid-ar? :numlayer* (s/? valid-i?*) :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `atonex)
-
-(defn atonex:a
-  {:arglists '([asig ahp & inumlayer* iskip*] [asig khp & inumlayer* iskip*])}
-  [sig hp & [ numlayer* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "atonex"
-                      [sig hp numlayer* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef atonex:a
-  :args (s/alt
-         :aaii (s/cat :sig valid-ar? :hp valid-ar? :numlayer* valid-i?* :skip* valid-i?* )
-         ))
-(stest/instrument `atonex:a)
 
 (defn sinsyn
   {:arglists '([fin kscal kmaxtracks itable & itable*])}
@@ -19571,23 +15464,8 @@
     (new out-types ast)))
 
 (s/fdef sinsyn
-  :args (s/cat :in valid-f? :scal valid-kr? :maxtracks valid-kr? :table valid-i? :table* valid-i?* ))
+  :args (s/cat :in valid-f? :scal valid-kr? :maxtracks valid-kr? :table valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `sinsyn)
-
-(defn sinsyn:a
-  {:arglists '([fin kscal kmaxtracks itable & itable*])}
-  [in scal maxtracks table & [ table* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sinsyn"
-                      [in scal maxtracks table table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sinsyn:a
-  :args (s/cat :in valid-f? :scal valid-kr? :maxtracks valid-kr? :table valid-i? :table* valid-i?* ))
-(stest/instrument `sinsyn:a)
 
 (defn fmvoice
   {:arglists '([kamp kfreq kvowel ktilt kvibamt kvibrate & ifn1* ifn1* ifn1* ifn1* ivibfn*])}
@@ -19601,23 +15479,8 @@
     (new out-types ast)))
 
 (s/fdef fmvoice
-  :args (s/cat :amp valid-kr? :freq valid-kr? :vowel valid-kr? :tilt valid-kr? :vibamt valid-kr? :vibrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vibfn* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :vowel valid-kr? :tilt valid-kr? :vibamt valid-kr? :vibrate valid-kr? :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :vibfn* (s/? valid-i?*) ))
 (stest/instrument `fmvoice)
-
-(defn fmvoice:a
-  {:arglists '([kamp kfreq kvowel ktilt kvibamt kvibrate & ifn1* ifn1* ifn1* ifn1* ivibfn*])}
-  [amp freq vowel tilt vibamt vibrate & [ fn1* fn1* fn1* fn1* vibfn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmvoice"
-                      [amp freq vowel tilt vibamt vibrate fn1* fn1* fn1* fn1* vibfn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmvoice:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :vowel valid-kr? :tilt valid-kr? :vibamt valid-kr? :vibrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vibfn* valid-i?* ))
-(stest/instrument `fmvoice:a)
 
 (defn atonek
   {:arglists '([ksig khp & iskip*])}
@@ -19631,23 +15494,8 @@
     (new out-types ast)))
 
 (s/fdef atonek
-  :args (s/cat :sig valid-kr? :hp valid-kr? :skip* valid-i?* ))
+  :args (s/cat :sig valid-kr? :hp valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `atonek)
-
-(defn atonek:k
-  {:arglists '([ksig khp & iskip*])}
-  [sig hp & [ skip* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "atonek"
-                      [sig hp skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef atonek:k
-  :args (s/cat :sig valid-kr? :hp valid-kr? :skip* valid-i?* ))
-(stest/instrument `atonek:k)
 
 (defn endin
   {:arglists '()}
@@ -19673,23 +15521,8 @@
     (new out-types ast)))
 
 (s/fdef pvsbandp
-  :args (s/cat :sigin valid-f? :lowcut valid-x? :lowfull valid-x? :highfull valid-x? :highcut valid-x? :type* valid-kr?* ))
+  :args (s/cat :sigin valid-f? :lowcut valid-x? :lowfull valid-x? :highfull valid-x? :highcut valid-x? :type* (s/? valid-kr?*) ))
 (stest/instrument `pvsbandp)
-
-(defn pvsbandp:f
-  {:arglists '([fsigin xlowcut xlowfull xhighfull xhighcut & ktype*])}
-  [sigin lowcut lowfull highfull highcut & [ type* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsbandp"
-                      [sigin lowcut lowfull highfull highcut type*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsbandp:f
-  :args (s/cat :sigin valid-f? :lowcut valid-x? :lowfull valid-x? :highfull valid-x? :highcut valid-x? :type* valid-kr?* ))
-(stest/instrument `pvsbandp:f)
 
 (defn writescratch
   {:arglists '([ival & index*])}
@@ -19703,7 +15536,7 @@
     (new out-types ast)))
 
 (s/fdef writescratch
-  :args (s/cat :val valid-i? :ndex* valid-i?* ))
+  :args (s/cat :val valid-i? :ndex* (s/? valid-i?*) ))
 (stest/instrument `writescratch)
 
 (defn liveconv
@@ -19720,21 +15553,6 @@
 (s/fdef liveconv
   :args (s/cat :in valid-ar? :ft valid-i? :plen valid-i? :update valid-kr? :clear valid-kr? ))
 (stest/instrument `liveconv)
-
-(defn liveconv:a
-  {:arglists '([ain ift iplen kupdate kclear])}
-  [in ft plen update clear]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "liveconv"
-                      [in ft plen update clear]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef liveconv:a
-  :args (s/cat :in valid-ar? :ft valid-i? :plen valid-i? :update valid-kr? :clear valid-kr? ))
-(stest/instrument `liveconv:a)
 
 (defn pvsbin
   {:arglists '([fsig kbin])}
@@ -19781,21 +15599,6 @@
   :args (s/cat :sig valid-ar? :freq2 valid-x? :freq3 valid-x? :cutoff4 valid-kr? :cutoff5 valid-kr? :feedback6 valid-kr? :feedback7 valid-kr? ))
 (stest/instrument `wguide2)
 
-(defn wguide2:a
-  {:arglists '([asig xfreq2 xfreq3 kcutoff4 kcutoff5 kfeedback6 kfeedback7])}
-  [sig freq2 freq3 cutoff4 cutoff5 feedback6 feedback7]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "wguide2"
-                      [sig freq2 freq3 cutoff4 cutoff5 feedback6 feedback7]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef wguide2:a
-  :args (s/cat :sig valid-ar? :freq2 valid-x? :freq3 valid-x? :cutoff4 valid-kr? :cutoff5 valid-kr? :feedback6 valid-kr? :feedback7 valid-kr? ))
-(stest/instrument `wguide2:a)
-
 (defn delayw
   {:arglists '([asig])}
   [sig]
@@ -19823,23 +15626,8 @@
     (new out-types ast)))
 
 (s/fdef cabasa
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
+  :args (s/cat :amp valid-i? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) ))
 (stest/instrument `cabasa)
-
-(defn cabasa:a
-  {:arglists '([iamp idettack & inum* idamp* imaxshake*])}
-  [amp dettack & [ num* damp* maxshake* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "cabasa"
-                      [amp dettack num* damp* maxshake*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cabasa:a
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
-(stest/instrument `cabasa:a)
 
 (defn strsubk
   {:arglists '([Ssrc kstart kend])}
@@ -19856,21 +15644,6 @@
   :args (s/cat :src valid-S? :start valid-kr? :end valid-kr? ))
 (stest/instrument `strsubk)
 
-(defn strsubk:S
-  {:arglists '([Ssrc kstart kend])}
-  [src start end]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strsubk"
-                      [src start end]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strsubk:S
-  :args (s/cat :src valid-S? :start valid-kr? :end valid-kr? ))
-(stest/instrument `strsubk:S)
-
 (defn linsegr
   {:arglists '([ia idur2 & ib1* idur2* ic3* irel4* iz5* iz6* iz7* iz8* iz9* iz10* iz11* iz12* iz13* iz14* iz15* iz16*] [ia idur2 & ib1* idur2* ic3* irel4* iz5* iz6* iz7* iz8* iz9* iz10* iz11* iz12* iz13* iz14* iz15* iz16*])}
   [a dur2 & [ b1* dur2* c3* rel4* z5* z6* z7* z8* z9* z10* z11* z12* z13* z14* z15* z16* ]]
@@ -19884,7 +15657,7 @@
 
 (s/fdef linsegr
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) )
          ))
 (stest/instrument `linsegr)
 
@@ -19900,7 +15673,7 @@
     (new out-types ast)))
 
 (s/fdef linsegr:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) ))
 (stest/instrument `linsegr:a)
 
 (defn linsegr:k
@@ -19915,7 +15688,7 @@
     (new out-types ast)))
 
 (s/fdef linsegr:k
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :rel4* valid-i?* :z5* valid-i?* :z6* valid-i?* :z7* valid-i?* :z8* valid-i?* :z9* valid-i?* :z10* valid-i?* :z11* valid-i?* :z12* valid-i?* :z13* valid-i?* :z14* valid-i?* :z15* valid-i?* :z16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :rel4* (s/? valid-i?*) :z5* (s/? valid-i?*) :z6* (s/? valid-i?*) :z7* (s/? valid-i?*) :z8* (s/? valid-i?*) :z9* (s/? valid-i?*) :z10* (s/? valid-i?*) :z11* (s/? valid-i?*) :z12* (s/? valid-i?*) :z13* (s/? valid-i?*) :z14* (s/? valid-i?*) :z15* (s/? valid-i?*) :z16* (s/? valid-i?*) ))
 (stest/instrument `linsegr:k)
 
 (defn moscil
@@ -19946,6 +15719,7 @@
 
 (s/fdef chano
   :args (s/alt
+         :kk (s/cat :val valid-kr? :chan valid-kr? )
          :ak (s/cat :val valid-ar? :chan valid-kr? )
          ))
 (stest/instrument `chano)
@@ -19962,23 +15736,8 @@
     (new out-types ast)))
 
 (s/fdef moogvcf
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `moogvcf)
-
-(defn moogvcf:a
-  {:arglists '([asig xcutoff-frequency xresonance & iscale* iskip*])}
-  [sig cutoff-frequency resonance & [ scale* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "moogvcf"
-                      [sig cutoff-frequency resonance scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef moogvcf:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `moogvcf:a)
 
 (defn svfilter
   {:arglists '([asig xcenter-frequency xq & iscale* iskip*])}
@@ -19992,7 +15751,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef svfilter
-  :args (s/cat :sig valid-ar? :center-frequency valid-x? :q valid-x? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :center-frequency valid-x? :q valid-x? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `svfilter)
 
 (defn ftsamplebank
@@ -20008,6 +15767,7 @@
 
 (s/fdef ftsamplebank
   :args (s/alt
+         :Skkkkk (s/cat :Directory valid-S? :FirstTableNumber valid-kr? :Trigger valid-kr? :SkipTime valid-kr? :Format valid-kr? :Channel valid-kr? )
          :Siiii (s/cat :Directory valid-S? :FirstTableNumber valid-i? :Trigger valid-i? :SkipTime valid-i? :Format valid-i? )
          ))
 (stest/instrument `ftsamplebank)
@@ -20054,23 +15814,8 @@
     (new out-types ast)))
 
 (s/fdef eqfil
-  :args (s/cat :in valid-ar? :center-frequency valid-kr? :bandwidth valid-kr? :gain valid-kr? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-kr? :bandwidth valid-kr? :gain valid-kr? :stor* (s/? valid-i?*) ))
 (stest/instrument `eqfil)
-
-(defn eqfil:a
-  {:arglists '([ain kcenter-frequency kbandwidth kgain & istor*])}
-  [in center-frequency bandwidth gain & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "eqfil"
-                      [in center-frequency bandwidth gain stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef eqfil:a
-  :args (s/cat :in valid-ar? :center-frequency valid-kr? :bandwidth valid-kr? :gain valid-kr? :stor* valid-i?* ))
-(stest/instrument `eqfil:a)
 
 (defn nchnls_hw
   {:arglists '()}
@@ -20097,26 +15842,10 @@
 
 (s/fdef readk
   :args (s/alt
+         :iii (s/cat :filname valid-i? :format valid-i? :prd valid-i? )
          :Sii (s/cat :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `readk)
-
-(defn readk:k
-  {:arglists '([Sfilname iformat iprd] [ifilname iformat iprd])}
-  [filname format prd]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "readk"
-                      [filname format prd]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef readk:k
-  :args (s/alt
-         :Sii (s/cat :filname valid-S? :format valid-i? :prd valid-i? )
-         ))
-(stest/instrument `readk:k)
 
 (defn dripwater
   {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
@@ -20130,23 +15859,8 @@
     (new out-types ast)))
 
 (s/fdef dripwater
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) :freq* (s/? valid-i?*) :freq1* (s/? valid-i?*) :freq1* (s/? valid-i?*) ))
 (stest/instrument `dripwater)
-
-(defn dripwater:a
-  {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
-  [amp dettack & [ num* damp* maxshake* freq* freq1* freq1* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "dripwater"
-                      [amp dettack num* damp* maxshake* freq* freq1* freq1*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dripwater:a
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
-(stest/instrument `dripwater:a)
 
 (defn midic14
   {:arglists '([ictlno1 ictlno2 imin imax & itable*] [ictlno1 ictlno2 kmin kmax & itable*])}
@@ -20161,7 +15875,8 @@
 
 (s/fdef midic14
   :args (s/alt
-         :iiiii (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-i? :max valid-i? :table* valid-i?* )
+         :iikki (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) )
+         :iiiii (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) )
          ))
 (stest/instrument `midic14)
 
@@ -20177,7 +15892,7 @@
     (new out-types ast)))
 
 (s/fdef midic14:i
-  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-i? :max valid-i? :table* valid-i?* ))
+  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `midic14:i)
 
 (defn midic14:k
@@ -20192,7 +15907,7 @@
     (new out-types ast)))
 
 (s/fdef midic14:k
-  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* ))
+  :args (s/cat :ctlno1 valid-i? :ctlno2 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) ))
 (stest/instrument `midic14:k)
 
 (defn granule
@@ -20207,23 +15922,8 @@
     (new out-types ast)))
 
 (s/fdef granule
-  :args (s/cat :amp valid-x? :voice valid-i? :ratio valid-i? :mode valid-i? :thd valid-i? :table valid-i? :pshift valid-i? :gskip valid-i? :gskip_os valid-i? :length valid-i? :gap valid-kr? :gap_os valid-i? :gsize valid-kr? :gsize_os valid-i? :att valid-i? :dec valid-i? :seed valid-i? :pitch1* valid-i?* :pitch1* valid-i?* :pitch1* valid-i?* :pitch1* valid-i?* :fnenv* valid-i?* ))
+  :args (s/cat :amp valid-x? :voice valid-i? :ratio valid-i? :mode valid-i? :thd valid-i? :table valid-i? :pshift valid-i? :gskip valid-i? :gskip_os valid-i? :length valid-i? :gap valid-kr? :gap_os valid-i? :gsize valid-kr? :gsize_os valid-i? :att valid-i? :dec valid-i? :seed valid-i? :pitch1* (s/? valid-i?*) :pitch1* (s/? valid-i?*) :pitch1* (s/? valid-i?*) :pitch1* (s/? valid-i?*) :fnenv* (s/? valid-i?*) ))
 (stest/instrument `granule)
-
-(defn granule:a
-  {:arglists '([xamp ivoice iratio imode ithd itable ipshift igskip igskip_os ilength kgap igap_os kgsize igsize_os iatt idec iseed & ipitch1* ipitch1* ipitch1* ipitch1* ifnenv*])}
-  [amp voice ratio mode thd table pshift gskip gskip_os length gap gap_os gsize gsize_os att dec seed & [ pitch1* pitch1* pitch1* pitch1* fnenv* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "granule"
-                      [amp voice ratio mode thd table pshift gskip gskip_os length gap gap_os gsize gsize_os att dec seed pitch1* pitch1* pitch1* pitch1* fnenv*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef granule:a
-  :args (s/cat :amp valid-x? :voice valid-i? :ratio valid-i? :mode valid-i? :thd valid-i? :table valid-i? :pshift valid-i? :gskip valid-i? :gskip_os valid-i? :length valid-i? :gap valid-kr? :gap_os valid-i? :gsize valid-kr? :gsize_os valid-i? :att valid-i? :dec valid-i? :seed valid-i? :pitch1* valid-i?* :pitch1* valid-i?* :pitch1* valid-i?* :pitch1* valid-i?* :fnenv* valid-i?* ))
-(stest/instrument `granule:a)
 
 (defn linsegb
   {:arglists '([ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
@@ -20238,7 +15938,7 @@
 
 (s/fdef linsegb
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `linsegb)
 
@@ -20254,7 +15954,7 @@
     (new out-types ast)))
 
 (s/fdef linsegb:a
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `linsegb:a)
 
 (defn linsegb:k
@@ -20269,7 +15969,7 @@
     (new out-types ast)))
 
 (s/fdef linsegb:k
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `linsegb:k)
 
 (defn strrindexk
@@ -20287,21 +15987,6 @@
   :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
 (stest/instrument `strrindexk)
 
-(defn strrindexk:k
-  {:arglists '([Sarg1 Sarg2])}
-  [arg1 arg2]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strrindexk"
-                      [arg1 arg2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strrindexk:k
-  :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
-(stest/instrument `strrindexk:k)
-
 (defn compilecsd
   {:arglists '([Sfilename])}
   [filename]
@@ -20316,21 +16001,6 @@
 (s/fdef compilecsd
   :args (s/cat :filename valid-S? ))
 (stest/instrument `compilecsd)
-
-(defn compilecsd:i
-  {:arglists '([Sfilename])}
-  [filename]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "compilecsd"
-                      [filename]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef compilecsd:i
-  :args (s/cat :filename valid-S? ))
-(stest/instrument `compilecsd:i)
 
 (defn exprandi
   {:arglists '([klambda xamp xcps] [klambda xamp xcps] [klambda xamp xcps])}
@@ -20422,26 +16092,10 @@
 
 (s/fdef filenchnls
   :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
+         :ii (s/cat :filcod valid-i? :allowraw* (s/? valid-i?*) )
+         :Si (s/cat :filcod valid-S? :allowraw* (s/? valid-i?*) )
          ))
 (stest/instrument `filenchnls)
-
-(defn filenchnls:i
-  {:arglists '([Sfilcod & iallowraw*] [ifilcod & iallowraw*])}
-  [filcod & [ allowraw* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "filenchnls"
-                      [filcod allowraw*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef filenchnls:i
-  :args (s/alt
-         :Si (s/cat :filcod valid-S? :allowraw* valid-i?* )
-         ))
-(stest/instrument `filenchnls:i)
 
 (defn outch
   {:arglists '([& karg1* aarg2* karg3* aarg4* karg5* aarg6* karg7* aarg8* karg9* aarg10* karg11* aarg12* karg13* aarg14* karg15* aarg16*])}
@@ -20455,7 +16109,7 @@
     (new out-types ast)))
 
 (s/fdef outch
-  :args (s/cat :arg1* valid-kr?* :arg2* valid-ar?* :arg3* valid-kr?* :arg4* valid-ar?* :arg5* valid-kr?* :arg6* valid-ar?* :arg7* valid-kr?* :arg8* valid-ar?* :arg9* valid-kr?* :arg10* valid-ar?* :arg11* valid-kr?* :arg12* valid-ar?* :arg13* valid-kr?* :arg14* valid-ar?* :arg15* valid-kr?* :arg16* valid-ar?* ))
+  :args (s/cat :arg1* (s/? valid-kr?*) :arg2* (s/? valid-ar?*) :arg3* (s/? valid-kr?*) :arg4* (s/? valid-ar?*) :arg5* (s/? valid-kr?*) :arg6* (s/? valid-ar?*) :arg7* (s/? valid-kr?*) :arg8* (s/? valid-ar?*) :arg9* (s/? valid-kr?*) :arg10* (s/? valid-ar?*) :arg11* (s/? valid-kr?*) :arg12* (s/? valid-ar?*) :arg13* (s/? valid-kr?*) :arg14* (s/? valid-ar?*) :arg15* (s/? valid-kr?*) :arg16* (s/? valid-ar?*) ))
 (stest/instrument `outch)
 
 (defn init:SArr
@@ -20470,7 +16124,7 @@
     (new out-types ast)))
 
 (s/fdef init:SArr
-  :args (s/cat :size1* valid-i?* :val2* valid-i?* :val3* valid-i?* :val4* valid-i?* :val5* valid-i?* :val6* valid-i?* :val7* valid-i?* :val8* valid-i?* :val9* valid-i?* :val10* valid-i?* :val11* valid-i?* :val12* valid-i?* :val13* valid-i?* :val14* valid-i?* :val15* valid-i?* :val16* valid-i?* ))
+  :args (s/cat :size1* (s/? valid-i?*) :val2* (s/? valid-i?*) :val3* (s/? valid-i?*) :val4* (s/? valid-i?*) :val5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) ))
 (stest/instrument `init:SArr)
 
 (defn init:iArr
@@ -20485,7 +16139,7 @@
     (new out-types ast)))
 
 (s/fdef init:iArr
-  :args (s/cat :size1* valid-i?* :val2* valid-i?* :val3* valid-i?* :val4* valid-i?* :val5* valid-i?* :val6* valid-i?* :val7* valid-i?* :val8* valid-i?* :val9* valid-i?* :val10* valid-i?* :val11* valid-i?* :val12* valid-i?* :val13* valid-i?* :val14* valid-i?* :val15* valid-i?* :val16* valid-i?* ))
+  :args (s/cat :size1* (s/? valid-i?*) :val2* (s/? valid-i?*) :val3* (s/? valid-i?*) :val4* (s/? valid-i?*) :val5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) ))
 (stest/instrument `init:iArr)
 
 (defn init:f
@@ -20546,7 +16200,12 @@
 
 (s/fdef init
   :args (s/alt
-         :iiiiiiiiiiiiiiii (s/cat :size1* valid-i?* :val2* valid-i?* :val3* valid-i?* :val4* valid-i?* :val5* valid-i?* :val6* valid-i?* :val7* valid-i?* :val8* valid-i?* :val9* valid-i?* :val10* valid-i?* :val11* valid-i?* :val12* valid-i?* :val13* valid-i?* :val14* valid-i?* :val15* valid-i?* :val16* valid-i?* )
+         :k (s/cat :size valid-kr? )
+         :a (s/cat :size valid-ar? )
+         :f (s/cat :size valid-f? )
+         :S (s/cat :size valid-S? )
+         :i (s/cat :size valid-i? )
+         :iiiiiiiiiiiiiiii (s/cat :size1* (s/? valid-i?*) :val2* (s/? valid-i?*) :val3* (s/? valid-i?*) :val4* (s/? valid-i?*) :val5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) )
          ))
 (stest/instrument `init)
 
@@ -20592,7 +16251,7 @@
     (new out-types ast)))
 
 (s/fdef init:aArr
-  :args (s/cat :size1* valid-i?* :val2* valid-i?* :val3* valid-i?* :val4* valid-i?* :val5* valid-i?* :val6* valid-i?* :val7* valid-i?* :val8* valid-i?* :val9* valid-i?* :val10* valid-i?* :val11* valid-i?* :val12* valid-i?* :val13* valid-i?* :val14* valid-i?* :val15* valid-i?* :val16* valid-i?* ))
+  :args (s/cat :size1* (s/? valid-i?*) :val2* (s/? valid-i?*) :val3* (s/? valid-i?*) :val4* (s/? valid-i?*) :val5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) ))
 (stest/instrument `init:aArr)
 
 (defn pvsmix
@@ -20610,21 +16269,6 @@
   :args (s/cat :sigin1 valid-f? :sigin2 valid-f? ))
 (stest/instrument `pvsmix)
 
-(defn pvsmix:f
-  {:arglists '([fsigin1 fsigin2])}
-  [sigin1 sigin2]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsmix"
-                      [sigin1 sigin2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsmix:f
-  :args (s/cat :sigin1 valid-f? :sigin2 valid-f? ))
-(stest/instrument `pvsmix:f)
-
 (defn logcurve
   {:arglists '([kindex ksteepness])}
   [index steepness]
@@ -20639,21 +16283,6 @@
 (s/fdef logcurve
   :args (s/cat :index valid-kr? :steepness valid-kr? ))
 (stest/instrument `logcurve)
-
-(defn logcurve:k
-  {:arglists '([kindex ksteepness])}
-  [index steepness]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "logcurve"
-                      [index steepness]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef logcurve:k
-  :args (s/cat :index valid-kr? :steepness valid-kr? ))
-(stest/instrument `logcurve:k)
 
 (defn in32
   {:arglists '()}
@@ -20741,7 +16370,7 @@
     (new out-types ast)))
 
 (s/fdef vexpv
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vexpv)
 
 (defn midiout_i
@@ -20774,21 +16403,6 @@
   :args (s/cat :amp valid-kr? :beta valid-kr? ))
 (stest/instrument `fractalnoise)
 
-(defn fractalnoise:a
-  {:arglists '([kamp kbeta])}
-  [amp beta]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fractalnoise"
-                      [amp beta]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fractalnoise:a
-  :args (s/cat :amp valid-kr? :beta valid-kr? ))
-(stest/instrument `fractalnoise:a)
-
 (defn strtodk
   {:arglists '([Sindex])}
   [index]
@@ -20804,21 +16418,6 @@
   :args (s/cat :index valid-S? ))
 (stest/instrument `strtodk)
 
-(defn strtodk:k
-  {:arglists '([Sindex])}
-  [index]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strtodk"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strtodk:k
-  :args (s/cat :index valid-S? ))
-(stest/instrument `strtodk:k)
-
 (defn harmon2
   {:arglists '([asig koct kfrq3 kfrq4 icpsmode ilowest & ipolarity*])}
   [sig oct frq3 frq4 cpsmode lowest & [ polarity* ]]
@@ -20831,23 +16430,8 @@
     (new out-types ast)))
 
 (s/fdef harmon2
-  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* valid-i?* ))
+  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* (s/? valid-i?*) ))
 (stest/instrument `harmon2)
-
-(defn harmon2:a
-  {:arglists '([asig koct kfrq3 kfrq4 icpsmode ilowest & ipolarity*])}
-  [sig oct frq3 frq4 cpsmode lowest & [ polarity* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "harmon2"
-                      [sig oct frq3 frq4 cpsmode lowest polarity*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef harmon2:a
-  :args (s/cat :sig valid-ar? :oct valid-kr? :frq3 valid-kr? :frq4 valid-kr? :cpsmode valid-i? :lowest valid-i? :polarity* valid-i?* ))
-(stest/instrument `harmon2:a)
 
 (defn zawm
   {:arglists '([asig kindex & imix*])}
@@ -20861,7 +16445,7 @@
     (new out-types ast)))
 
 (s/fdef zawm
-  :args (s/cat :sig valid-ar? :index valid-kr? :mix* valid-i?* ))
+  :args (s/cat :sig valid-ar? :index valid-kr? :mix* (s/? valid-i?*) ))
 (stest/instrument `zawm)
 
 (defn mp3scal
@@ -20876,7 +16460,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef mp3scal
-  :args (s/cat :file valid-S? :timescal valid-kr? :pitch valid-kr? :amp valid-kr? :skip* valid-i?* :fftsize* valid-i?* :decim* valid-i?* :lock* valid-kr?* :lock* valid-kr?* ))
+  :args (s/cat :file valid-S? :timescal valid-kr? :pitch valid-kr? :amp valid-kr? :skip* (s/? valid-i?*) :fftsize* (s/? valid-i?*) :decim* (s/? valid-i?*) :lock* (s/? valid-kr?*) :lock* (s/? valid-kr?*) ))
 (stest/instrument `mp3scal)
 
 (defn outc
@@ -20891,7 +16475,7 @@
     (new out-types ast)))
 
 (s/fdef outc
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `outc)
 
 (defn polyaft
@@ -20907,7 +16491,7 @@
 
 (s/fdef polyaft
   :args (s/alt
-         :iii (s/cat :note valid-i? :low* valid-i?* :high* valid-i?* )
+         :iii (s/cat :note valid-i? :low* (s/? valid-i?*) :high* (s/? valid-i?*) )
          ))
 (stest/instrument `polyaft)
 
@@ -20923,7 +16507,7 @@
     (new out-types ast)))
 
 (s/fdef polyaft:i
-  :args (s/cat :note valid-i? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :note valid-i? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `polyaft:i)
 
 (defn polyaft:k
@@ -20938,7 +16522,7 @@
     (new out-types ast)))
 
 (s/fdef polyaft:k
-  :args (s/cat :note valid-i? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :note valid-i? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `polyaft:k)
 
 (defn outq1
@@ -20984,6 +16568,7 @@
 
 (s/fdef dct
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `dct)
@@ -21031,26 +16616,11 @@
 
 (s/fdef bpf
   :args (s/alt
+         :kkkkkkkkkkk (s/cat :x valid-kr? :x2 valid-kr? :y3 valid-kr? :x4 valid-kr? :xn valid-kr? :yn valid-kr? :yn valid-kr? :yn valid-kr? :yn valid-kr? :yn valid-kr? :yn valid-kr? )
+         :kkkkkkkkk (s/cat :x valid-kr? :x2 valid-kr? :y3 valid-kr? :x4 valid-kr? :xn valid-kr? :yn valid-kr? :yn valid-kr? :yn valid-kr? :yn valid-kr? )
          :kkkkkkk (s/cat :x valid-kr? :x2 valid-kr? :y3 valid-kr? :x4 valid-kr? :xn valid-kr? :yn valid-kr? :yn valid-kr? )
          ))
 (stest/instrument `bpf)
-
-(defn bpf:k
-  {:arglists '([kx kx2 ky3 kx4 kxn kyn kyn] [kx kx2 ky3 kx4 kxn kyn kyn kyn kyn] [kx kx2 ky3 kx4 kxn kyn kyn kyn kyn kyn kyn])}
-  [x x2 y3 x4 xn yn yn]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "bpf"
-                      [x x2 y3 x4 xn yn yn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef bpf:k
-  :args (s/alt
-         :kkkkkkk (s/cat :x valid-kr? :x2 valid-kr? :y3 valid-kr? :x4 valid-kr? :xn valid-kr? :yn valid-kr? :yn valid-kr? )
-         ))
-(stest/instrument `bpf:k)
 
 (defn trlowest
   {:arglists '([fin1 kscal])}
@@ -21080,7 +16650,9 @@
 
 (s/fdef tablew
   :args (s/alt
-         :aaiiii (s/cat :sig valid-ar? :index valid-ar? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wgmode* valid-i?* )
+         :kkiiii (s/cat :sig valid-kr? :index valid-kr? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
+         :iiiiii (s/cat :sig valid-i? :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
+         :aaiiii (s/cat :sig valid-ar? :index valid-ar? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) )
          ))
 (stest/instrument `tablew)
 
@@ -21099,21 +16671,6 @@
   :args (s/cat :var1 valid-S? ))
 (stest/instrument `changed)
 
-(defn changed:k
-  {:arglists '([Svar1])}
-  [var1]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "changed"
-                      [var1]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef changed:k
-  :args (s/cat :var1 valid-S? ))
-(stest/instrument `changed:k)
-
 (defn nestedap
   {:arglists '([asig imode imaxdel idel4 igain5 & idel1* igain1* idel1* igain1* istor*])}
   [sig mode maxdel del4 gain5 & [ del1* gain1* del1* gain1* stor* ]]
@@ -21126,23 +16683,8 @@
     (new out-types ast)))
 
 (s/fdef nestedap
-  :args (s/cat :sig valid-ar? :mode valid-i? :maxdel valid-i? :del4 valid-i? :gain5 valid-i? :del1* valid-i?* :gain1* valid-i?* :del1* valid-i?* :gain1* valid-i?* :stor* valid-i?* ))
+  :args (s/cat :sig valid-ar? :mode valid-i? :maxdel valid-i? :del4 valid-i? :gain5 valid-i? :del1* (s/? valid-i?*) :gain1* (s/? valid-i?*) :del1* (s/? valid-i?*) :gain1* (s/? valid-i?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `nestedap)
-
-(defn nestedap:a
-  {:arglists '([asig imode imaxdel idel4 igain5 & idel1* igain1* idel1* igain1* istor*])}
-  [sig mode maxdel del4 gain5 & [ del1* gain1* del1* gain1* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "nestedap"
-                      [sig mode maxdel del4 gain5 del1* gain1* del1* gain1* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef nestedap:a
-  :args (s/cat :sig valid-ar? :mode valid-i? :maxdel valid-i? :del4 valid-i? :gain5 valid-i? :del1* valid-i?* :gain1* valid-i?* :del1* valid-i?* :gain1* valid-i?* :stor* valid-i?* ))
-(stest/instrument `nestedap:a)
 
 (defn strcmpk
   {:arglists '([Sarg1 Sarg2])}
@@ -21159,21 +16701,6 @@
   :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
 (stest/instrument `strcmpk)
 
-(defn strcmpk:k
-  {:arglists '([Sarg1 Sarg2])}
-  [arg1 arg2]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "strcmpk"
-                      [arg1 arg2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strcmpk:k
-  :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
-(stest/instrument `strcmpk:k)
-
 (defn expsega
   {:arglists '([ia idur2 & ib1* idur2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
   [a dur2 & [ b1* dur2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16* ]]
@@ -21186,23 +16713,8 @@
     (new out-types ast)))
 
 (s/fdef expsega
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `expsega)
-
-(defn expsega:a
-  {:arglists '([ia idur2 & ib1* idur2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
-  [a dur2 & [ b1* dur2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "expsega"
-                      [a dur2 b1* dur2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef expsega:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
-(stest/instrument `expsega:a)
 
 (defn vtabi
   {:arglists '([iindex itable & iout1* iout2* iout3* ioutN4* ioutN5* ioutN6* ioutN7* ioutN8* ioutN9* ioutN10* ioutN11* ioutN12* ioutN13* ioutN14* ioutN15* ioutN16*])}
@@ -21216,7 +16728,7 @@
     (new out-types ast)))
 
 (s/fdef vtabi
-  :args (s/cat :index valid-i? :table valid-i? :out1* valid-i?* :out2* valid-i?* :out3* valid-i?* :outN4* valid-i?* :outN5* valid-i?* :outN6* valid-i?* :outN7* valid-i?* :outN8* valid-i?* :outN9* valid-i?* :outN10* valid-i?* :outN11* valid-i?* :outN12* valid-i?* :outN13* valid-i?* :outN14* valid-i?* :outN15* valid-i?* :outN16* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :out1* (s/? valid-i?*) :out2* (s/? valid-i?*) :out3* (s/? valid-i?*) :outN4* (s/? valid-i?*) :outN5* (s/? valid-i?*) :outN6* (s/? valid-i?*) :outN7* (s/? valid-i?*) :outN8* (s/? valid-i?*) :outN9* (s/? valid-i?*) :outN10* (s/? valid-i?*) :outN11* (s/? valid-i?*) :outN12* (s/? valid-i?*) :outN13* (s/? valid-i?*) :outN14* (s/? valid-i?*) :outN15* (s/? valid-i?*) :outN16* (s/? valid-i?*) ))
 (stest/instrument `vtabi)
 
 (defn unirand
@@ -21294,7 +16806,10 @@
 
 (s/fdef mvclpf4
   :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
+         :akki (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :akai (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-ar? :stor* (s/? valid-i?*) )
+         :aaki (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `mvclpf4)
 
@@ -21311,6 +16826,7 @@
 
 (s/fdef pchtom
   :args (s/alt
+         :k (s/cat :pch valid-kr? )
          :i (s/cat :pch valid-i? )
          ))
 (stest/instrument `pchtom)
@@ -21358,6 +16874,7 @@
 
 (s/fdef r2c
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `r2c)
@@ -21407,21 +16924,6 @@
   :args (s/cat :index valid-kr? ))
 (stest/instrument `gainslider)
 
-(defn gainslider:k
-  {:arglists '([kindex])}
-  [index]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "gainslider"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef gainslider:k
-  :args (s/cat :index valid-kr? ))
-(stest/instrument `gainslider:k)
-
 (defn moogladder2
   {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
   [in center-frequency resonance & [ stor* ]]
@@ -21435,26 +16937,12 @@
 
 (s/fdef moogladder2
   :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
+         :akki (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :akai (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-ar? :stor* (s/? valid-i?*) )
+         :aaki (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `moogladder2)
-
-(defn moogladder2:a
-  {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
-  [in center-frequency resonance & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "moogladder2"
-                      [in center-frequency resonance stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef moogladder2:a
-  :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
-         ))
-(stest/instrument `moogladder2:a)
 
 (defn lpshold
   {:arglists '([kfreq ktrig iphase & ktime1* kvalue2* kvalue3* ktime4* kvalue5* ktime6* ktime7* ktime8* ktime9* ktime10* ktime11* ktime12* ktime13* ktime14* ktime15* ktime16*])}
@@ -21468,23 +16956,8 @@
     (new out-types ast)))
 
 (s/fdef lpshold
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :time1* valid-kr?* :value2* valid-kr?* :value3* valid-kr?* :time4* valid-kr?* :value5* valid-kr?* :time6* valid-kr?* :time7* valid-kr?* :time8* valid-kr?* :time9* valid-kr?* :time10* valid-kr?* :time11* valid-kr?* :time12* valid-kr?* :time13* valid-kr?* :time14* valid-kr?* :time15* valid-kr?* :time16* valid-kr?* ))
+  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :time1* (s/? valid-kr?*) :value2* (s/? valid-kr?*) :value3* (s/? valid-kr?*) :time4* (s/? valid-kr?*) :value5* (s/? valid-kr?*) :time6* (s/? valid-kr?*) :time7* (s/? valid-kr?*) :time8* (s/? valid-kr?*) :time9* (s/? valid-kr?*) :time10* (s/? valid-kr?*) :time11* (s/? valid-kr?*) :time12* (s/? valid-kr?*) :time13* (s/? valid-kr?*) :time14* (s/? valid-kr?*) :time15* (s/? valid-kr?*) :time16* (s/? valid-kr?*) ))
 (stest/instrument `lpshold)
-
-(defn lpshold:k
-  {:arglists '([kfreq ktrig iphase & ktime1* kvalue2* kvalue3* ktime4* kvalue5* ktime6* ktime7* ktime8* ktime9* ktime10* ktime11* ktime12* ktime13* ktime14* ktime15* ktime16*])}
-  [freq trig phase & [ time1* value2* value3* time4* value5* time6* time7* time8* time9* time10* time11* time12* time13* time14* time15* time16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "lpshold"
-                      [freq trig phase time1* value2* value3* time4* value5* time6* time7* time8* time9* time10* time11* time12* time13* time14* time15* time16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lpshold:k
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :time1* valid-kr?* :value2* valid-kr?* :value3* valid-kr?* :time4* valid-kr?* :value5* valid-kr?* :time6* valid-kr?* :time7* valid-kr?* :time8* valid-kr?* :time9* valid-kr?* :time10* valid-kr?* :time11* valid-kr?* :time12* valid-kr?* :time13* valid-kr?* :time14* valid-kr?* :time15* valid-kr?* :time16* valid-kr?* ))
-(stest/instrument `lpshold:k)
 
 (defn printks2
   {:arglists '([Sstring kval])}
@@ -21528,23 +17001,8 @@
     (new out-types ast)))
 
 (s/fdef K35_lpf
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :nlp* valid-kr?* :saturation* valid-kr?* :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :nlp* (s/? valid-kr?*) :saturation* (s/? valid-kr?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `K35_lpf)
-
-(defn K35_lpf:a
-  {:arglists '([ain xcenter-frequency xQ & knlp* ksaturation* istor*])}
-  [in center-frequency Q & [ nlp* saturation* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "K35_lpf"
-                      [in center-frequency Q nlp* saturation* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef K35_lpf:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :nlp* valid-kr?* :saturation* valid-kr?* :stor* valid-i?* ))
-(stest/instrument `K35_lpf:a)
 
 (defn tablecopy
   {:arglists '([kdft ksft])}
@@ -21573,23 +17031,8 @@
     (new out-types ast)))
 
 (s/fdef adsynt
-  :args (s/cat :amp valid-kr? :cps valid-kr? :wfn valid-i? :freqfn valid-i? :ampfn valid-i? :cnt valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :wfn valid-i? :freqfn valid-i? :ampfn valid-i? :cnt valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `adsynt)
-
-(defn adsynt:a
-  {:arglists '([kamp kcps iwfn ifreqfn iampfn icnt & iphase*])}
-  [amp cps wfn freqfn ampfn cnt & [ phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "adsynt"
-                      [amp cps wfn freqfn ampfn cnt phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef adsynt:a
-  :args (s/cat :amp valid-kr? :cps valid-kr? :wfn valid-i? :freqfn valid-i? :ampfn valid-i? :cnt valid-i? :phase* valid-i?* ))
-(stest/instrument `adsynt:a)
 
 (defn print
   {:arglists '([& iarg1* iarg2* iarg3* iarg4* iarg5* iarg6* iarg7* iarg8* iarg9* iarg10* iarg11* iarg12* iarg13* iarg14* iarg15* iarg16*])}
@@ -21603,7 +17046,7 @@
     (new out-types ast)))
 
 (s/fdef print
-  :args (s/cat :arg1* valid-i?* :arg2* valid-i?* :arg3* valid-i?* :arg4* valid-i?* :arg5* valid-i?* :arg6* valid-i?* :arg7* valid-i?* :arg8* valid-i?* :arg9* valid-i?* :arg10* valid-i?* :arg11* valid-i?* :arg12* valid-i?* :arg13* valid-i?* :arg14* valid-i?* :arg15* valid-i?* :arg16* valid-i?* ))
+  :args (s/cat :arg1* (s/? valid-i?*) :arg2* (s/? valid-i?*) :arg3* (s/? valid-i?*) :arg4* (s/? valid-i?*) :arg5* (s/? valid-i?*) :arg6* (s/? valid-i?*) :arg7* (s/? valid-i?*) :arg8* (s/? valid-i?*) :arg9* (s/? valid-i?*) :arg10* (s/? valid-i?*) :arg11* (s/? valid-i?*) :arg12* (s/? valid-i?*) :arg13* (s/? valid-i?*) :arg14* (s/? valid-i?*) :arg15* (s/? valid-i?*) :arg16* (s/? valid-i?*) ))
 (stest/instrument `print)
 
 (defn spdist
@@ -21621,21 +17064,6 @@
   :args (s/cat :table valid-i? :time valid-kr? :x valid-kr? :y valid-kr? ))
 (stest/instrument `spdist)
 
-(defn spdist:k
-  {:arglists '([itable ktime kx ky])}
-  [table time x y]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "spdist"
-                      [table time x y]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef spdist:k
-  :args (s/cat :table valid-i? :time valid-kr? :x valid-kr? :y valid-kr? ))
-(stest/instrument `spdist:k)
-
 (defn cpsxpch
   {:arglists '([ipch iequal irepeat ibase])}
   [pch equal repeat base]
@@ -21650,21 +17078,6 @@
 (s/fdef cpsxpch
   :args (s/cat :pch valid-i? :equal valid-i? :repeat valid-i? :base valid-i? ))
 (stest/instrument `cpsxpch)
-
-(defn cpsxpch:i
-  {:arglists '([ipch iequal irepeat ibase])}
-  [pch equal repeat base]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "cpsxpch"
-                      [pch equal repeat base]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cpsxpch:i
-  :args (s/cat :pch valid-i? :equal valid-i? :repeat valid-i? :base valid-i? ))
-(stest/instrument `cpsxpch:i)
 
 (defn date
   {:arglists '( )}
@@ -21690,7 +17103,7 @@
     (new out-types ast)))
 
 (s/fdef display
-  :args (s/cat :sig valid-x? :prd valid-i? :nprds* valid-i?* :wtflg* valid-i?* ))
+  :args (s/cat :sig valid-x? :prd valid-i? :nprds* (s/? valid-i?*) :wtflg* (s/? valid-i?*) ))
 (stest/instrument `display)
 
 (defn osciln
@@ -21708,21 +17121,6 @@
   :args (s/cat :amp valid-kr? :frq valid-i? :table valid-i? :times valid-i? ))
 (stest/instrument `osciln)
 
-(defn osciln:a
-  {:arglists '([kamp ifrq itable itimes])}
-  [amp frq table times]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "osciln"
-                      [amp frq table times]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef osciln:a
-  :args (s/cat :amp valid-kr? :frq valid-i? :table valid-i? :times valid-i? ))
-(stest/instrument `osciln:a)
-
 (defn oscili
   {:arglists '([aamp acps itableArr & iphase*] [aamp acps & itable* iphase*] [aamp kcps itableArr & iphase*] [aamp kcps & itable* iphase*] [kamp acps itableArr & iphase*] [kamp acps & itable* iphase*] [kamp kcps itableArr & iphase*] [kamp kcps & itable* iphase*] [kamp kcps itableArr & iphase*] [kamp kcps & itable* iphase*])}
   [amp cps table & [ phase* ]]
@@ -21736,7 +17134,14 @@
 
 (s/fdef oscili
   :args (s/alt
-         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaiArri (s/cat :amp valid-kr? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akiArri (s/cat :amp valid-ar? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscili)
 
@@ -21753,7 +17158,14 @@
 
 (s/fdef oscili:a
   :args (s/alt
-         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaiArri (s/cat :amp valid-kr? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akiArri (s/cat :amp valid-ar? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaiArri (s/cat :amp valid-ar? :cps valid-ar? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscili:a)
 
@@ -21770,7 +17182,8 @@
 
 (s/fdef oscili:k
   :args (s/alt
-         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kkiArri (s/cat :amp valid-kr? :cps valid-kr? :table valid-iArr? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `oscili:k)
 
@@ -21801,7 +17214,7 @@
     (new out-types ast)))
 
 (s/fdef splitrig
-  :args (s/cat :trig valid-kr? :index valid-kr? :maxtics valid-i? :table valid-i? :out1* valid-kr?* :out2* valid-kr?* :outN3* valid-kr?* :outN4* valid-kr?* :outN5* valid-kr?* :outN6* valid-kr?* :outN7* valid-kr?* :outN8* valid-kr?* :outN9* valid-kr?* :outN10* valid-kr?* :outN11* valid-kr?* :outN12* valid-kr?* :outN13* valid-kr?* :outN14* valid-kr?* :outN15* valid-kr?* :outN16* valid-kr?* ))
+  :args (s/cat :trig valid-kr? :index valid-kr? :maxtics valid-i? :table valid-i? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :outN3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) ))
 (stest/instrument `splitrig)
 
 (defn outvalue
@@ -21817,6 +17230,11 @@
 
 (s/fdef outvalue
   :args (s/alt
+         :ik (s/cat :channel-name valid-i? :string valid-kr? )
+         :ii (s/cat :channel-name valid-i? :string valid-i? )
+         :iS (s/cat :channel-name valid-i? :string valid-S? )
+         :Sk (s/cat :channel-name valid-S? :string valid-kr? )
+         :Si (s/cat :channel-name valid-S? :string valid-i? )
          :SS (s/cat :channel-name valid-S? :string valid-S? )
          ))
 (stest/instrument `outvalue)
@@ -21833,7 +17251,7 @@
     (new out-types ast)))
 
 (s/fdef deltapxw
-  :args (s/cat :in valid-ar? :del valid-ar? :wsize valid-i? :wsize* valid-i?* ))
+  :args (s/cat :in valid-ar? :del valid-ar? :wsize valid-i? :wsize* (s/? valid-i?*) ))
 (stest/instrument `deltapxw)
 
 (defn vdelay3
@@ -21848,23 +17266,8 @@
     (new out-types ast)))
 
 (s/fdef vdelay3
-  :args (s/cat :sig valid-ar? :del valid-x? :maxdel valid-i? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :del valid-x? :maxdel valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `vdelay3)
-
-(defn vdelay3:a
-  {:arglists '([asig xdel imaxdel & iskip*])}
-  [sig del maxdel & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vdelay3"
-                      [sig del maxdel skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vdelay3:a
-  :args (s/cat :sig valid-ar? :del valid-x? :maxdel valid-i? :skip* valid-i?* ))
-(stest/instrument `vdelay3:a)
 
 (defn voice
   {:arglists '([kamp kfreq kphoneme kform kvibf kvamp itable ivfn])}
@@ -21880,21 +17283,6 @@
 (s/fdef voice
   :args (s/cat :amp valid-kr? :freq valid-kr? :phoneme valid-kr? :form valid-kr? :vibf valid-kr? :vamp valid-kr? :table valid-i? :vfn valid-i? ))
 (stest/instrument `voice)
-
-(defn voice:a
-  {:arglists '([kamp kfreq kphoneme kform kvibf kvamp itable ivfn])}
-  [amp freq phoneme form vibf vamp table vfn]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "voice"
-                      [amp freq phoneme form vibf vamp table vfn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef voice:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :phoneme valid-kr? :form valid-kr? :vibf valid-kr? :vamp valid-kr? :table valid-i? :vfn valid-i? ))
-(stest/instrument `voice:a)
 
 (defn bexprnd
   {:arglists '([krange] [krange] [krange])}
@@ -21985,7 +17373,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef pvstanal
-  :args (s/cat :timescal valid-kr? :amp valid-kr? :pitch valid-kr? :tab valid-kr? :detect* valid-kr?* :wrap* valid-kr?* :offset* valid-i?* :fftsize* valid-i?* :hop* valid-i?* :dbthresh* valid-kr?* ))
+  :args (s/cat :timescal valid-kr? :amp valid-kr? :pitch valid-kr? :tab valid-kr? :detect* (s/? valid-kr?*) :wrap* (s/? valid-kr?*) :offset* (s/? valid-i?*) :fftsize* (s/? valid-i?*) :hop* (s/? valid-i?*) :dbthresh* (s/? valid-kr?*) ))
 (stest/instrument `pvstanal)
 
 (defn readf
@@ -22001,6 +17389,7 @@
 
 (s/fdef readf
   :args (s/alt
+         :i (s/cat :filname valid-i? )
          :S (s/cat :filname valid-S? )
          ))
 (stest/instrument `readf)
@@ -22018,7 +17407,8 @@
 
 (s/fdef randomh
   :args (s/alt
-         :kkxii (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* valid-i?* :firstval* valid-i?* )
+         :kkkii (s/cat :min valid-kr? :max valid-kr? :cps valid-kr? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) )
+         :kkxii (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) )
          ))
 (stest/instrument `randomh)
 
@@ -22034,7 +17424,7 @@
     (new out-types ast)))
 
 (s/fdef randomh:a
-  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* valid-i?* :firstval* valid-i?* ))
+  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-x? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) ))
 (stest/instrument `randomh:a)
 
 (defn randomh:k
@@ -22049,7 +17439,7 @@
     (new out-types ast)))
 
 (s/fdef randomh:k
-  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-kr? :mode* valid-i?* :firstval* valid-i?* ))
+  :args (s/cat :min valid-kr? :max valid-kr? :cps valid-kr? :mode* (s/? valid-i?*) :firstval* (s/? valid-i?*) ))
 (stest/instrument `randomh:k)
 
 (defn getcol
@@ -22066,21 +17456,6 @@
 (s/fdef getcol
   :args (s/cat :in valid-kArr? :col valid-kr? ))
 (stest/instrument `getcol)
-
-(defn getcol:kArr
-  {:arglists '([kinArr kcol])}
-  [in col]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "getcol"
-                      [in col]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef getcol:kArr
-  :args (s/cat :in valid-kArr? :col valid-kr? ))
-(stest/instrument `getcol:kArr)
 
 (defn xtratim
   {:arglists '([iextradur])}
@@ -22124,23 +17499,8 @@
     (new out-types ast)))
 
 (s/fdef tabsum
-  :args (s/cat :table valid-i? :min* valid-kr?* :max* valid-kr?* ))
+  :args (s/cat :table valid-i? :min* (s/? valid-kr?*) :max* (s/? valid-kr?*) ))
 (stest/instrument `tabsum)
-
-(defn tabsum:k
-  {:arglists '([itable & kmin* kmax*])}
-  [table & [ min* max* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tabsum"
-                      [table min* max*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tabsum:k
-  :args (s/cat :table valid-i? :min* valid-kr?* :max* valid-kr?* ))
-(stest/instrument `tabsum:k)
 
 (defn vdivv
   {:arglists '([ifn1 ifn2 kelements & kdstoffset* ksrcoffset* kverbose*])}
@@ -22154,7 +17514,7 @@
     (new out-types ast)))
 
 (s/fdef vdivv
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* valid-kr?* :srcoffset* valid-kr?* :verbose* valid-kr?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-kr? :dstoffset* (s/? valid-kr?*) :srcoffset* (s/? valid-kr?*) :verbose* (s/? valid-kr?*) ))
 (stest/instrument `vdivv)
 
 (defn fin
@@ -22170,6 +17530,8 @@
 
 (s/fdef fin
   :args (s/alt
+         :iiiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :filename valid-i? :skipframes valid-i? :format valid-i? :rr1* (s/? valid-ar?*) :rr2* (s/? valid-ar?*) :rr3* (s/? valid-ar?*) :rr4* (s/? valid-ar?*) :rr5* (s/? valid-ar?*) :rr6* (s/? valid-ar?*) :rr7* (s/? valid-ar?*) :rr8* (s/? valid-ar?*) :rr9* (s/? valid-ar?*) :rr10* (s/? valid-ar?*) :rr11* (s/? valid-ar?*) :rr12* (s/? valid-ar?*) :rr13* (s/? valid-ar?*) :rr14* (s/? valid-ar?*) :rr15* (s/? valid-ar?*) :rr16* (s/? valid-ar?*) :rr17* (s/? valid-ar?*) :rr18* (s/? valid-ar?*) :rr19* (s/? valid-ar?*) :rr20* (s/? valid-ar?*) :rr21* (s/? valid-ar?*) :rr22* (s/? valid-ar?*) :rr23* (s/? valid-ar?*) :rr24* (s/? valid-ar?*) :rr25* (s/? valid-ar?*) :rr26* (s/? valid-ar?*) :rr27* (s/? valid-ar?*) :rr28* (s/? valid-ar?*) :rr29* (s/? valid-ar?*) :rr30* (s/? valid-ar?*) :rr31* (s/? valid-ar?*) :rr32* (s/? valid-ar?*) )
+         :Siiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (s/cat :filename valid-S? :skipframes valid-i? :format valid-i? :rr1* (s/? valid-ar?*) :rr2* (s/? valid-ar?*) :rr3* (s/? valid-ar?*) :rr4* (s/? valid-ar?*) :rr5* (s/? valid-ar?*) :rr6* (s/? valid-ar?*) :rr7* (s/? valid-ar?*) :rr8* (s/? valid-ar?*) :rr9* (s/? valid-ar?*) :rr10* (s/? valid-ar?*) :rr11* (s/? valid-ar?*) :rr12* (s/? valid-ar?*) :rr13* (s/? valid-ar?*) :rr14* (s/? valid-ar?*) :rr15* (s/? valid-ar?*) :rr16* (s/? valid-ar?*) :rr17* (s/? valid-ar?*) :rr18* (s/? valid-ar?*) :rr19* (s/? valid-ar?*) :rr20* (s/? valid-ar?*) :rr21* (s/? valid-ar?*) :rr22* (s/? valid-ar?*) :rr23* (s/? valid-ar?*) :rr24* (s/? valid-ar?*) :rr25* (s/? valid-ar?*) :rr26* (s/? valid-ar?*) :rr27* (s/? valid-ar?*) :rr28* (s/? valid-ar?*) :rr29* (s/? valid-ar?*) :rr30* (s/? valid-ar?*) :rr31* (s/? valid-ar?*) :rr32* (s/? valid-ar?*) )
          :SiiaArr (s/cat :filename valid-S? :skipframes valid-i? :format valid-i? :rr valid-aArr? )
          ))
 (stest/instrument `fin)
@@ -22187,26 +17549,10 @@
 
 (s/fdef peak
   :args (s/alt
+         :k (s/cat :sig valid-kr? )
          :a (s/cat :sig valid-ar? )
          ))
 (stest/instrument `peak)
-
-(defn peak:k
-  {:arglists '([asig] [ksig])}
-  [sig]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "peak"
-                      [sig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef peak:k
-  :args (s/alt
-         :a (s/cat :sig valid-ar? )
-         ))
-(stest/instrument `peak:k)
 
 (defn pvscross
   {:arglists '([fsrc fdest kamp3 kamp4])}
@@ -22223,21 +17569,6 @@
   :args (s/cat :src valid-f? :dest valid-f? :amp3 valid-kr? :amp4 valid-kr? ))
 (stest/instrument `pvscross)
 
-(defn pvscross:f
-  {:arglists '([fsrc fdest kamp3 kamp4])}
-  [src dest amp3 amp4]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvscross"
-                      [src dest amp3 amp4]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvscross:f
-  :args (s/cat :src valid-f? :dest valid-f? :amp3 valid-kr? :amp4 valid-kr? ))
-(stest/instrument `pvscross:f)
-
 (defn convolve
   {:arglists '([ain Sfilcod & ichannel*] [ain ifilcod & ichannel*])}
   [in filcod & [ channel* ]]
@@ -22251,7 +17582,8 @@
 
 (s/fdef convolve
   :args (s/alt
-         :aSi (s/cat :in valid-ar? :filcod valid-S? :channel* valid-i?* )
+         :aii (s/cat :in valid-ar? :filcod valid-i? :channel* (s/? valid-i?*) )
+         :aSi (s/cat :in valid-ar? :filcod valid-S? :channel* (s/? valid-i?*) )
          ))
 (stest/instrument `convolve)
 
@@ -22268,7 +17600,8 @@
 
 (s/fdef ftload
   :args (s/alt
-         :Siiiiiiiiiiiiiiiii (s/cat :filename valid-S? :flag valid-i? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :filename valid-i? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
+         :Siiiiiiiiiiiiiiiii (s/cat :filename valid-S? :flag valid-i? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) )
          ))
 (stest/instrument `ftload)
 
@@ -22300,6 +17633,7 @@
 
 (s/fdef setctrl
   :args (s/alt
+         :iii (s/cat :num valid-i? :val valid-i? :type valid-i? )
          :iSi (s/cat :num valid-i? :val valid-S? :type valid-i? )
          ))
 (stest/instrument `setctrl)
@@ -22319,21 +17653,6 @@
   :args (s/cat :trig valid-kr? :min valid-kr? :max valid-kr? ))
 (stest/instrument `trandom)
 
-(defn trandom:k
-  {:arglists '([ktrig kmin kmax])}
-  [trig min max]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "trandom"
-                      [trig min max]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trandom:k
-  :args (s/cat :trig valid-kr? :min valid-kr? :max valid-kr? ))
-(stest/instrument `trandom:k)
-
 (defn aftouch
   {:arglists '([& imin* imax*])}
   [& [ min* max* ]]
@@ -22346,23 +17665,8 @@
     (new out-types ast)))
 
 (s/fdef aftouch
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `aftouch)
-
-(defn aftouch:k
-  {:arglists '([& imin* imax*])}
-  [& [ min* max* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "aftouch"
-                      [min* max*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef aftouch:k
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
-(stest/instrument `aftouch:k)
 
 (defn massign
   {:arglists '([ichnl Sinsname & ireset*] [ichnl iinsname & ireset*])}
@@ -22377,7 +17681,8 @@
 
 (s/fdef massign
   :args (s/alt
-         :iSi (s/cat :chnl valid-i? :insname valid-S? :reset* valid-i?* )
+         :iii (s/cat :chnl valid-i? :insname valid-i? :reset* (s/? valid-i?*) )
+         :iSi (s/cat :chnl valid-i? :insname valid-S? :reset* (s/? valid-i?*) )
          ))
 (stest/instrument `massign)
 
@@ -22393,7 +17698,7 @@
     (new out-types ast)))
 
 (s/fdef tableiw
-  :args (s/cat :sig valid-i? :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wgmode* valid-i?* ))
+  :args (s/cat :sig valid-i? :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wgmode* (s/? valid-i?*) ))
 (stest/instrument `tableiw)
 
 (defn pinkish
@@ -22408,23 +17713,8 @@
     (new out-types ast)))
 
 (s/fdef pinkish
-  :args (s/cat :in valid-x? :method* valid-i?* :numbands* valid-i?* :seed* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :in valid-x? :method* (s/? valid-i?*) :numbands* (s/? valid-i?*) :seed* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `pinkish)
-
-(defn pinkish:a
-  {:arglists '([xin & imethod* inumbands* iseed* iskip*])}
-  [in & [ method* numbands* seed* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pinkish"
-                      [in method* numbands* seed* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pinkish:a
-  :args (s/cat :in valid-x? :method* valid-i?* :numbands* valid-i?* :seed* valid-i?* :skip* valid-i?* ))
-(stest/instrument `pinkish:a)
 
 (defn linseg
   {:arglists '([ia idur2 & ib1* idur2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia idur2 & ib1* idur2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
@@ -22439,7 +17729,7 @@
 
 (s/fdef linseg
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `linseg)
 
@@ -22455,7 +17745,7 @@
     (new out-types ast)))
 
 (s/fdef linseg:a
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `linseg:a)
 
 (defn linseg:k
@@ -22470,7 +17760,7 @@
     (new out-types ast)))
 
 (s/fdef linseg:k
-  :args (s/cat :a valid-i? :dur2 valid-i? :b1* valid-i?* :dur2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur2 valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `linseg:k)
 
 (defn midinoteonkey
@@ -22501,6 +17791,7 @@
 
 (s/fdef dumpk
   :args (s/alt
+         :kiii (s/cat :sig valid-kr? :filname valid-i? :format valid-i? :prd valid-i? )
          :kSii (s/cat :sig valid-kr? :filname valid-S? :format valid-i? :prd valid-i? )
          ))
 (stest/instrument `dumpk)
@@ -22518,6 +17809,7 @@
 
 (s/fdef mtof
   :args (s/alt
+         :k (s/cat :midi valid-kr? )
          :i (s/cat :midi valid-i? )
          ))
 (stest/instrument `mtof)
@@ -22564,31 +17856,7 @@
     (new out-types ast)))
 
 
-(defn octmidi:i
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "octmidi"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
 (defn tempoval
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tempoval"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn tempoval:k
   {:arglists '()}
   []
   (let [out-types-quoted 'ControlSignal
@@ -22612,7 +17880,7 @@
     (new out-types ast)))
 
 (s/fdef midremot
-  :args (s/cat :destination valid-S? :source valid-S? :nstrnum1* valid-i?* :nstrnum2* valid-i?* :nstrnum3* valid-i?* :nstrnum4* valid-i?* :nstrnum5* valid-i?* :nstrnum6* valid-i?* :nstrnum7* valid-i?* :nstrnum8* valid-i?* :nstrnum9* valid-i?* :nstrnum10* valid-i?* :nstrnum11* valid-i?* :nstrnum12* valid-i?* :nstrnum13* valid-i?* :nstrnum14* valid-i?* :nstrnum15* valid-i?* :nstrnum16* valid-i?* ))
+  :args (s/cat :destination valid-S? :source valid-S? :nstrnum1* (s/? valid-i?*) :nstrnum2* (s/? valid-i?*) :nstrnum3* (s/? valid-i?*) :nstrnum4* (s/? valid-i?*) :nstrnum5* (s/? valid-i?*) :nstrnum6* (s/? valid-i?*) :nstrnum7* (s/? valid-i?*) :nstrnum8* (s/? valid-i?*) :nstrnum9* (s/? valid-i?*) :nstrnum10* (s/? valid-i?*) :nstrnum11* (s/? valid-i?*) :nstrnum12* (s/? valid-i?*) :nstrnum13* (s/? valid-i?*) :nstrnum14* (s/? valid-i?*) :nstrnum15* (s/? valid-i?*) :nstrnum16* (s/? valid-i?*) ))
 (stest/instrument `midremot)
 
 (defn madsr
@@ -22628,26 +17896,9 @@
 
 (s/fdef madsr
   :args (s/alt
-         :iiiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* :reltim* valid-i?* )
+         :iiiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) :reltim* (s/? valid-i?*) )
          ))
 (stest/instrument `madsr)
-
-(defn madsr:k
-  {:arglists '([iatt idec islev irel & idel* ireltim*] [iatt idec islev irel & idel* ireltim*])}
-  [att dec slev rel & [ del* reltim* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "madsr"
-                      [att dec slev rel del* reltim*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef madsr:k
-  :args (s/alt
-         :iiiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* :reltim* valid-i?* )
-         ))
-(stest/instrument `madsr:k)
 
 (defn tempest
   {:arglists '([kin iprd imindur imemdur ihp ithresh ihtim ixfdbak istartempo itable & idisprd* itweek*])}
@@ -22661,23 +17912,8 @@
     (new out-types ast)))
 
 (s/fdef tempest
-  :args (s/cat :in valid-kr? :prd valid-i? :mindur valid-i? :memdur valid-i? :hp valid-i? :thresh valid-i? :htim valid-i? :xfdbak valid-i? :startempo valid-i? :table valid-i? :disprd* valid-i?* :tweek* valid-i?* ))
+  :args (s/cat :in valid-kr? :prd valid-i? :mindur valid-i? :memdur valid-i? :hp valid-i? :thresh valid-i? :htim valid-i? :xfdbak valid-i? :startempo valid-i? :table valid-i? :disprd* (s/? valid-i?*) :tweek* (s/? valid-i?*) ))
 (stest/instrument `tempest)
-
-(defn tempest:k
-  {:arglists '([kin iprd imindur imemdur ihp ithresh ihtim ixfdbak istartempo itable & idisprd* itweek*])}
-  [in prd mindur memdur hp thresh htim xfdbak startempo table & [ disprd* tweek* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tempest"
-                      [in prd mindur memdur hp thresh htim xfdbak startempo table disprd* tweek*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tempest:k
-  :args (s/cat :in valid-kr? :prd valid-i? :mindur valid-i? :memdur valid-i? :hp valid-i? :thresh valid-i? :htim valid-i? :xfdbak valid-i? :startempo valid-i? :table valid-i? :disprd* valid-i?* :tweek* valid-i?* ))
-(stest/instrument `tempest:k)
 
 (defn lpsholdp
   {:arglists '([kphase & kvalue1* ktime2* kvalue3* ktime4* kvalue5* ktime6* ktime7* ktime8* ktime9* ktime10* ktime11* ktime12* ktime13* ktime14* ktime15* ktime16*])}
@@ -22691,23 +17927,8 @@
     (new out-types ast)))
 
 (s/fdef lpsholdp
-  :args (s/cat :phase valid-kr? :value1* valid-kr?* :time2* valid-kr?* :value3* valid-kr?* :time4* valid-kr?* :value5* valid-kr?* :time6* valid-kr?* :time7* valid-kr?* :time8* valid-kr?* :time9* valid-kr?* :time10* valid-kr?* :time11* valid-kr?* :time12* valid-kr?* :time13* valid-kr?* :time14* valid-kr?* :time15* valid-kr?* :time16* valid-kr?* ))
+  :args (s/cat :phase valid-kr? :value1* (s/? valid-kr?*) :time2* (s/? valid-kr?*) :value3* (s/? valid-kr?*) :time4* (s/? valid-kr?*) :value5* (s/? valid-kr?*) :time6* (s/? valid-kr?*) :time7* (s/? valid-kr?*) :time8* (s/? valid-kr?*) :time9* (s/? valid-kr?*) :time10* (s/? valid-kr?*) :time11* (s/? valid-kr?*) :time12* (s/? valid-kr?*) :time13* (s/? valid-kr?*) :time14* (s/? valid-kr?*) :time15* (s/? valid-kr?*) :time16* (s/? valid-kr?*) ))
 (stest/instrument `lpsholdp)
-
-(defn lpsholdp:k
-  {:arglists '([kphase & kvalue1* ktime2* kvalue3* ktime4* kvalue5* ktime6* ktime7* ktime8* ktime9* ktime10* ktime11* ktime12* ktime13* ktime14* ktime15* ktime16*])}
-  [phase & [ value1* time2* value3* time4* value5* time6* time7* time8* time9* time10* time11* time12* time13* time14* time15* time16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "lpsholdp"
-                      [phase value1* time2* value3* time4* value5* time6* time7* time8* time9* time10* time11* time12* time13* time14* time15* time16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lpsholdp:k
-  :args (s/cat :phase valid-kr? :value1* valid-kr?* :time2* valid-kr?* :value3* valid-kr?* :time4* valid-kr?* :value5* valid-kr?* :time6* valid-kr?* :time7* valid-kr?* :time8* valid-kr?* :time9* valid-kr?* :time10* valid-kr?* :time11* valid-kr?* :time12* valid-kr?* :time13* valid-kr?* :time14* valid-kr?* :time15* valid-kr?* :time16* valid-kr?* ))
-(stest/instrument `lpsholdp:k)
 
 (defn follow
   {:arglists '([asig idt])}
@@ -22724,21 +17945,6 @@
   :args (s/cat :sig valid-ar? :dt valid-i? ))
 (stest/instrument `follow)
 
-(defn follow:a
-  {:arglists '([asig idt])}
-  [sig dt]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "follow"
-                      [sig dt]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef follow:a
-  :args (s/cat :sig valid-ar? :dt valid-i? ))
-(stest/instrument `follow:a)
-
 (defn multitap
   {:arglists '([asig & itime1* igain2* itime3* igain4* igain5* igain6* igain7* igain8* igain9* igain10* igain11* igain12* igain13* igain14* igain15* igain16*])}
   [sig & [ time1* gain2* time3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16* ]]
@@ -22751,23 +17957,8 @@
     (new out-types ast)))
 
 (s/fdef multitap
-  :args (s/cat :sig valid-ar? :time1* valid-i?* :gain2* valid-i?* :time3* valid-i?* :gain4* valid-i?* :gain5* valid-i?* :gain6* valid-i?* :gain7* valid-i?* :gain8* valid-i?* :gain9* valid-i?* :gain10* valid-i?* :gain11* valid-i?* :gain12* valid-i?* :gain13* valid-i?* :gain14* valid-i?* :gain15* valid-i?* :gain16* valid-i?* ))
+  :args (s/cat :sig valid-ar? :time1* (s/? valid-i?*) :gain2* (s/? valid-i?*) :time3* (s/? valid-i?*) :gain4* (s/? valid-i?*) :gain5* (s/? valid-i?*) :gain6* (s/? valid-i?*) :gain7* (s/? valid-i?*) :gain8* (s/? valid-i?*) :gain9* (s/? valid-i?*) :gain10* (s/? valid-i?*) :gain11* (s/? valid-i?*) :gain12* (s/? valid-i?*) :gain13* (s/? valid-i?*) :gain14* (s/? valid-i?*) :gain15* (s/? valid-i?*) :gain16* (s/? valid-i?*) ))
 (stest/instrument `multitap)
-
-(defn multitap:a
-  {:arglists '([asig & itime1* igain2* itime3* igain4* igain5* igain6* igain7* igain8* igain9* igain10* igain11* igain12* igain13* igain14* igain15* igain16*])}
-  [sig & [ time1* gain2* time3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "multitap"
-                      [sig time1* gain2* time3* gain4* gain5* gain6* gain7* gain8* gain9* gain10* gain11* gain12* gain13* gain14* gain15* gain16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef multitap:a
-  :args (s/cat :sig valid-ar? :time1* valid-i?* :gain2* valid-i?* :time3* valid-i?* :gain4* valid-i?* :gain5* valid-i?* :gain6* valid-i?* :gain7* valid-i?* :gain8* valid-i?* :gain9* valid-i?* :gain10* valid-i?* :gain11* valid-i?* :gain12* valid-i?* :gain13* valid-i?* :gain14* valid-i?* :gain15* valid-i?* :gain16* valid-i?* ))
-(stest/instrument `multitap:a)
 
 (defn pvsmaska
   {:arglists '([fsrc itable kdepth])}
@@ -22784,21 +17975,6 @@
   :args (s/cat :src valid-f? :table valid-i? :depth valid-kr? ))
 (stest/instrument `pvsmaska)
 
-(defn pvsmaska:f
-  {:arglists '([fsrc itable kdepth])}
-  [src table depth]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsmaska"
-                      [src table depth]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsmaska:f
-  :args (s/cat :src valid-f? :table valid-i? :depth valid-kr? ))
-(stest/instrument `pvsmaska:f)
-
 (defn trcross
   {:arglists '([fin1 fin2 ksearch & kdepth1* kmode2* kmode3* kmode4* kmode5* kmode6* kmode7* kmode8* kmode9* kmode10* kmode11* kmode12* kmode13* kmode14* kmode15* kmode16*])}
   [in1 in2 search & [ depth1* mode2* mode3* mode4* mode5* mode6* mode7* mode8* mode9* mode10* mode11* mode12* mode13* mode14* mode15* mode16* ]]
@@ -22811,23 +17987,8 @@
     (new out-types ast)))
 
 (s/fdef trcross
-  :args (s/cat :in1 valid-f? :in2 valid-f? :search valid-kr? :depth1* valid-kr?* :mode2* valid-kr?* :mode3* valid-kr?* :mode4* valid-kr?* :mode5* valid-kr?* :mode6* valid-kr?* :mode7* valid-kr?* :mode8* valid-kr?* :mode9* valid-kr?* :mode10* valid-kr?* :mode11* valid-kr?* :mode12* valid-kr?* :mode13* valid-kr?* :mode14* valid-kr?* :mode15* valid-kr?* :mode16* valid-kr?* ))
+  :args (s/cat :in1 valid-f? :in2 valid-f? :search valid-kr? :depth1* (s/? valid-kr?*) :mode2* (s/? valid-kr?*) :mode3* (s/? valid-kr?*) :mode4* (s/? valid-kr?*) :mode5* (s/? valid-kr?*) :mode6* (s/? valid-kr?*) :mode7* (s/? valid-kr?*) :mode8* (s/? valid-kr?*) :mode9* (s/? valid-kr?*) :mode10* (s/? valid-kr?*) :mode11* (s/? valid-kr?*) :mode12* (s/? valid-kr?*) :mode13* (s/? valid-kr?*) :mode14* (s/? valid-kr?*) :mode15* (s/? valid-kr?*) :mode16* (s/? valid-kr?*) ))
 (stest/instrument `trcross)
-
-(defn trcross:f
-  {:arglists '([fin1 fin2 ksearch & kdepth1* kmode2* kmode3* kmode4* kmode5* kmode6* kmode7* kmode8* kmode9* kmode10* kmode11* kmode12* kmode13* kmode14* kmode15* kmode16*])}
-  [in1 in2 search & [ depth1* mode2* mode3* mode4* mode5* mode6* mode7* mode8* mode9* mode10* mode11* mode12* mode13* mode14* mode15* mode16* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "trcross"
-                      [in1 in2 search depth1* mode2* mode3* mode4* mode5* mode6* mode7* mode8* mode9* mode10* mode11* mode12* mode13* mode14* mode15* mode16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trcross:f
-  :args (s/cat :in1 valid-f? :in2 valid-f? :search valid-kr? :depth1* valid-kr?* :mode2* valid-kr?* :mode3* valid-kr?* :mode4* valid-kr?* :mode5* valid-kr?* :mode6* valid-kr?* :mode7* valid-kr?* :mode8* valid-kr?* :mode9* valid-kr?* :mode10* valid-kr?* :mode11* valid-kr?* :mode12* valid-kr?* :mode13* valid-kr?* :mode14* valid-kr?* :mode15* valid-kr?* :mode16* valid-kr?* ))
-(stest/instrument `trcross:f)
 
 (defn mvchpf
   {:arglists '([ain acenter-frequency & istor*] [ain kcenter-frequency & istor*])}
@@ -22842,26 +18003,10 @@
 
 (s/fdef mvchpf
   :args (s/alt
-         :aai (s/cat :in valid-ar? :center-frequency valid-ar? :stor* valid-i?* )
+         :aki (s/cat :in valid-ar? :center-frequency valid-kr? :stor* (s/? valid-i?*) )
+         :aai (s/cat :in valid-ar? :center-frequency valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `mvchpf)
-
-(defn mvchpf:a
-  {:arglists '([ain acenter-frequency & istor*] [ain kcenter-frequency & istor*])}
-  [in center-frequency & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mvchpf"
-                      [in center-frequency stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mvchpf:a
-  :args (s/alt
-         :aai (s/cat :in valid-ar? :center-frequency valid-ar? :stor* valid-i?* )
-         ))
-(stest/instrument `mvchpf:a)
 
 (defn butbp
   {:arglists '([asig xfreq xband & iskip*])}
@@ -22875,23 +18020,8 @@
     (new out-types ast)))
 
 (s/fdef butbp
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* (s/? valid-i?*) ))
 (stest/instrument `butbp)
-
-(defn butbp:a
-  {:arglists '([asig xfreq xband & iskip*])}
-  [sig freq band & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "butbp"
-                      [sig freq band skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef butbp:a
-  :args (s/cat :sig valid-ar? :freq valid-x? :band valid-x? :skip* valid-i?* ))
-(stest/instrument `butbp:a)
 
 (defn strsub
   {:arglists '([Ssrc & istart* iend*])}
@@ -22905,23 +18035,8 @@
     (new out-types ast)))
 
 (s/fdef strsub
-  :args (s/cat :src valid-S? :start* valid-i?* :end* valid-i?* ))
+  :args (s/cat :src valid-S? :start* (s/? valid-i?*) :end* (s/? valid-i?*) ))
 (stest/instrument `strsub)
-
-(defn strsub:S
-  {:arglists '([Ssrc & istart* iend*])}
-  [src & [ start* end* ]]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strsub"
-                      [src start* end*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strsub:S
-  :args (s/cat :src valid-S? :start* valid-i?* :end* valid-i?* ))
-(stest/instrument `strsub:S)
 
 (defn poscil
   {:arglists '([aamp acps & itable* iphase*] [aamp kcps & itable* iphase*] [kamp acps & itable* iphase*] [kamp kcps & itable* iphase*] [kamp kcps & itable* iphase*])}
@@ -22936,7 +18051,10 @@
 
 (s/fdef poscil
   :args (s/alt
-         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* valid-i?* :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `poscil)
 
@@ -22953,7 +18071,10 @@
 
 (s/fdef poscil:a
   :args (s/alt
-         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* valid-i?* :phase* valid-i?* )
+         :kkii (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :kaii (s/cat :amp valid-kr? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :akii (s/cat :amp valid-ar? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
+         :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `poscil:a)
 
@@ -22969,7 +18090,7 @@
     (new out-types ast)))
 
 (s/fdef poscil:k
-  :args (s/cat :amp valid-kr? :cps valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `poscil:k)
 
 (defn tablewa
@@ -22984,23 +18105,8 @@
     (new out-types ast)))
 
 (s/fdef tablewa
-  :args (s/cat :table valid-kr? :sig valid-ar? :off valid-kr? :off* valid-i?* ))
+  :args (s/cat :table valid-kr? :sig valid-ar? :off valid-kr? :off* (s/? valid-i?*) ))
 (stest/instrument `tablewa)
-
-(defn tablewa:k
-  {:arglists '([ktable asig koff & ioff*])}
-  [table sig off & [ off* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "tablewa"
-                      [table sig off off*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tablewa:k
-  :args (s/cat :table valid-kr? :sig valid-ar? :off valid-kr? :off* valid-i?* ))
-(stest/instrument `tablewa:k)
 
 (defn fmbell
   {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate & ifn1* ifn1* ifn1* ifn1* ivfn* isus*])}
@@ -23014,23 +18120,8 @@
     (new out-types ast)))
 
 (s/fdef fmbell
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vfn* valid-i?* :sus* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :vfn* (s/? valid-i?*) :sus* (s/? valid-i?*) ))
 (stest/instrument `fmbell)
-
-(defn fmbell:a
-  {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate & ifn1* ifn1* ifn1* ifn1* ivfn* isus*])}
-  [amp freq c3 c4 vdepth vrate & [ fn1* fn1* fn1* fn1* vfn* sus* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmbell"
-                      [amp freq c3 c4 vdepth vrate fn1* fn1* fn1* fn1* vfn* sus*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmbell:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vfn* valid-i?* :sus* valid-i?* ))
-(stest/instrument `fmbell:a)
 
 (defn buthp
   {:arglists '([asig afreq & iskip*] [asig kfreq & iskip*])}
@@ -23045,26 +18136,10 @@
 
 (s/fdef buthp
   :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
+         :aki (s/cat :sig valid-ar? :freq valid-kr? :skip* (s/? valid-i?*) )
+         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `buthp)
-
-(defn buthp:a
-  {:arglists '([asig afreq & iskip*] [asig kfreq & iskip*])}
-  [sig freq & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "buthp"
-                      [sig freq skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef buthp:a
-  :args (s/alt
-         :aai (s/cat :sig valid-ar? :freq valid-ar? :skip* valid-i?* )
-         ))
-(stest/instrument `buthp:a)
 
 (defn nlfilt2
   {:arglists '([ain ka kb kd kC kL])}
@@ -23081,21 +18156,6 @@
   :args (s/cat :in valid-ar? :a valid-kr? :b valid-kr? :d valid-kr? :C valid-kr? :L valid-kr? ))
 (stest/instrument `nlfilt2)
 
-(defn nlfilt2:a
-  {:arglists '([ain ka kb kd kC kL])}
-  [in a b d C L]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "nlfilt2"
-                      [in a b d C L]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef nlfilt2:a
-  :args (s/cat :in valid-ar? :a valid-kr? :b valid-kr? :d valid-kr? :C valid-kr? :L valid-kr? ))
-(stest/instrument `nlfilt2:a)
-
 (defn dssiinit
   {:arglists '([ilibraryname iplugindex & iverbose*] [Slibraryname iplugindex & iverbose*])}
   [libraryname plugindex & [ verbose* ]]
@@ -23109,26 +18169,10 @@
 
 (s/fdef dssiinit
   :args (s/alt
-         :iii (s/cat :libraryname valid-i? :plugindex valid-i? :verbose* valid-i?* )
+         :Sii (s/cat :libraryname valid-S? :plugindex valid-i? :verbose* (s/? valid-i?*) )
+         :iii (s/cat :libraryname valid-i? :plugindex valid-i? :verbose* (s/? valid-i?*) )
          ))
 (stest/instrument `dssiinit)
-
-(defn dssiinit:i
-  {:arglists '([ilibraryname iplugindex & iverbose*] [Slibraryname iplugindex & iverbose*])}
-  [libraryname plugindex & [ verbose* ]]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "dssiinit"
-                      [libraryname plugindex verbose*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dssiinit:i
-  :args (s/alt
-         :iii (s/cat :libraryname valid-i? :plugindex valid-i? :verbose* valid-i?* )
-         ))
-(stest/instrument `dssiinit:i)
 
 (defn envlpxr
   {:arglists '([aamp irise idec itable iatss iatdec & ixmod* irind*] [kamp irise idec itable iatss iatdec & ixmod* irind*] [kamp irise idec itable iatss iatdec & ixmod* irind*])}
@@ -23143,7 +18187,8 @@
 
 (s/fdef envlpxr
   :args (s/alt
-         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* valid-i?* :rind* valid-i?* )
+         :kiiiiiii (s/cat :amp valid-kr? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) :rind* (s/? valid-i?*) )
+         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) :rind* (s/? valid-i?*) )
          ))
 (stest/instrument `envlpxr)
 
@@ -23160,7 +18205,8 @@
 
 (s/fdef envlpxr:a
   :args (s/alt
-         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* valid-i?* :rind* valid-i?* )
+         :kiiiiiii (s/cat :amp valid-kr? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) :rind* (s/? valid-i?*) )
+         :aiiiiiii (s/cat :amp valid-ar? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) :rind* (s/? valid-i?*) )
          ))
 (stest/instrument `envlpxr:a)
 
@@ -23176,7 +18222,7 @@
     (new out-types ast)))
 
 (s/fdef envlpxr:k
-  :args (s/cat :amp valid-kr? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* valid-i?* :rind* valid-i?* ))
+  :args (s/cat :amp valid-kr? :rise valid-i? :dec valid-i? :table valid-i? :atss valid-i? :atdec valid-i? :xmod* (s/? valid-i?*) :rind* (s/? valid-i?*) ))
 (stest/instrument `envlpxr:k)
 
 (defn moog
@@ -23194,21 +18240,6 @@
   :args (s/cat :amp valid-kr? :freq valid-kr? :filtq valid-kr? :filtrate valid-kr? :vibf valid-kr? :vamp valid-kr? :afn valid-i? :wfn valid-i? :vfn valid-i? ))
 (stest/instrument `moog)
 
-(defn moog:a
-  {:arglists '([kamp kfreq kfiltq kfiltrate kvibf kvamp iafn iwfn ivfn])}
-  [amp freq filtq filtrate vibf vamp afn wfn vfn]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "moog"
-                      [amp freq filtq filtrate vibf vamp afn wfn vfn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef moog:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :filtq valid-kr? :filtrate valid-kr? :vibf valid-kr? :vamp valid-kr? :afn valid-i? :wfn valid-i? :vfn valid-i? ))
-(stest/instrument `moog:a)
-
 (defn vrandh
   {:arglists '([itable krange kcps ielements & idstoffset* iseed* isize* ioffset*])}
   [table range cps elements & [ dstoffset* seed* size* offset* ]]
@@ -23221,7 +18252,7 @@
     (new out-types ast)))
 
 (s/fdef vrandh
-  :args (s/cat :table valid-i? :range valid-kr? :cps valid-kr? :elements valid-i? :dstoffset* valid-i?* :seed* valid-i?* :size* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :table valid-i? :range valid-kr? :cps valid-kr? :elements valid-i? :dstoffset* (s/? valid-i?*) :seed* (s/? valid-i?*) :size* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `vrandh)
 
 (defn vdelayk
@@ -23236,23 +18267,8 @@
     (new out-types ast)))
 
 (s/fdef vdelayk
-  :args (s/cat :sig valid-kr? :del valid-kr? :maxdel valid-i? :skip* valid-i?* :mode* valid-i?* ))
+  :args (s/cat :sig valid-kr? :del valid-kr? :maxdel valid-i? :skip* (s/? valid-i?*) :mode* (s/? valid-i?*) ))
 (stest/instrument `vdelayk)
-
-(defn vdelayk:k
-  {:arglists '([ksig kdel imaxdel & iskip* imode*])}
-  [sig del maxdel & [ skip* mode* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "vdelayk"
-                      [sig del maxdel skip* mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vdelayk:k
-  :args (s/cat :sig valid-kr? :del valid-kr? :maxdel valid-i? :skip* valid-i?* :mode* valid-i?* ))
-(stest/instrument `vdelayk:k)
 
 (defn outs
   {:arglists '([& asig1* asig2* asig3* asig4* asig5* asig6* asig7* asig8* asig9* asig10* asig11* asig12* asig13* asig14* asig15* asig16* asig17* asig18* asig19* asig20* asig21* asig22* asig23* asig24* asig25* asig26* asig27* asig28* asig29* asig30* asig31* asig32*])}
@@ -23266,7 +18282,7 @@
     (new out-types ast)))
 
 (s/fdef outs
-  :args (s/cat :sig1* valid-ar?* :sig2* valid-ar?* :sig3* valid-ar?* :sig4* valid-ar?* :sig5* valid-ar?* :sig6* valid-ar?* :sig7* valid-ar?* :sig8* valid-ar?* :sig9* valid-ar?* :sig10* valid-ar?* :sig11* valid-ar?* :sig12* valid-ar?* :sig13* valid-ar?* :sig14* valid-ar?* :sig15* valid-ar?* :sig16* valid-ar?* :sig17* valid-ar?* :sig18* valid-ar?* :sig19* valid-ar?* :sig20* valid-ar?* :sig21* valid-ar?* :sig22* valid-ar?* :sig23* valid-ar?* :sig24* valid-ar?* :sig25* valid-ar?* :sig26* valid-ar?* :sig27* valid-ar?* :sig28* valid-ar?* :sig29* valid-ar?* :sig30* valid-ar?* :sig31* valid-ar?* :sig32* valid-ar?* ))
+  :args (s/cat :sig1* (s/? valid-ar?*) :sig2* (s/? valid-ar?*) :sig3* (s/? valid-ar?*) :sig4* (s/? valid-ar?*) :sig5* (s/? valid-ar?*) :sig6* (s/? valid-ar?*) :sig7* (s/? valid-ar?*) :sig8* (s/? valid-ar?*) :sig9* (s/? valid-ar?*) :sig10* (s/? valid-ar?*) :sig11* (s/? valid-ar?*) :sig12* (s/? valid-ar?*) :sig13* (s/? valid-ar?*) :sig14* (s/? valid-ar?*) :sig15* (s/? valid-ar?*) :sig16* (s/? valid-ar?*) :sig17* (s/? valid-ar?*) :sig18* (s/? valid-ar?*) :sig19* (s/? valid-ar?*) :sig20* (s/? valid-ar?*) :sig21* (s/? valid-ar?*) :sig22* (s/? valid-ar?*) :sig23* (s/? valid-ar?*) :sig24* (s/? valid-ar?*) :sig25* (s/? valid-ar?*) :sig26* (s/? valid-ar?*) :sig27* (s/? valid-ar?*) :sig28* (s/? valid-ar?*) :sig29* (s/? valid-ar?*) :sig30* (s/? valid-ar?*) :sig31* (s/? valid-ar?*) :sig32* (s/? valid-ar?*) ))
 (stest/instrument `outs)
 
 (defn midinoteoff
@@ -23296,7 +18312,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef crossfm
-  :args (s/cat :mi valid-x? :frq2 valid-x? :frq3 valid-x? :ndx4 valid-x? :ndx5 valid-kr? :cps valid-i? :fn7 valid-i? :fn1* valid-i?* :phs1* valid-i?* ))
+  :args (s/cat :mi valid-x? :frq2 valid-x? :frq3 valid-x? :ndx4 valid-x? :ndx5 valid-kr? :cps valid-i? :fn7 valid-i? :fn1* (s/? valid-i?*) :phs1* (s/? valid-i?*) ))
 (stest/instrument `crossfm)
 
 (defn strlower
@@ -23313,21 +18329,6 @@
 (s/fdef strlower
   :args (s/cat :src valid-S? ))
 (stest/instrument `strlower)
-
-(defn strlower:S
-  {:arglists '([Ssrc])}
-  [src]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strlower"
-                      [src]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strlower:S
-  :args (s/cat :src valid-S? ))
-(stest/instrument `strlower:S)
 
 (defn rspline
   {:arglists '([xrangeMin xrangeMax kcpsMin kcpsMax] [xrangeMin xrangeMax kcpsMin kcpsMax])}
@@ -23388,7 +18389,7 @@
     (new out-types ast)))
 
 (s/fdef vtablek
-  :args (s/cat :index valid-kr? :table valid-kr? :interp valid-kr? :xmode valid-i? :out1* valid-kr?* :out2* valid-kr?* :out3* valid-kr?* :outN4* valid-kr?* :outN5* valid-kr?* :outN6* valid-kr?* :outN7* valid-kr?* :outN8* valid-kr?* :outN9* valid-kr?* :outN10* valid-kr?* :outN11* valid-kr?* :outN12* valid-kr?* :outN13* valid-kr?* :outN14* valid-kr?* :outN15* valid-kr?* :outN16* valid-kr?* ))
+  :args (s/cat :index valid-kr? :table valid-kr? :interp valid-kr? :xmode valid-i? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :out3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) ))
 (stest/instrument `vtablek)
 
 (defn midiprogramchange
@@ -23433,23 +18434,8 @@
     (new out-types ast)))
 
 (s/fdef foscil
-  :args (s/cat :amp valid-x? :cps valid-kr? :car valid-x? :mod valid-x? :index valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-kr? :car valid-x? :mod valid-x? :index valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `foscil)
-
-(defn foscil:a
-  {:arglists '([xamp kcps xcar xmod kindex & itable* iphase*])}
-  [amp cps car mod index & [ table* phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "foscil"
-                      [amp cps car mod index table* phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef foscil:a
-  :args (s/cat :amp valid-x? :cps valid-kr? :car valid-x? :mod valid-x? :index valid-kr? :table* valid-i?* :phase* valid-i?* ))
-(stest/instrument `foscil:a)
 
 (defn transeg
   {:arglists '([ia idur itype & ib1* idur2* itype3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia idur itype & ib1* idur2* itype3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
@@ -23464,7 +18450,7 @@
 
 (s/fdef transeg
   :args (s/alt
-         :iiiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* valid-i?* :dur2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiiii (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `transeg)
 
@@ -23480,7 +18466,7 @@
     (new out-types ast)))
 
 (s/fdef transeg:a
-  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* valid-i?* :dur2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `transeg:a)
 
 (defn transeg:k
@@ -23495,7 +18481,7 @@
     (new out-types ast)))
 
 (s/fdef transeg:k
-  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* valid-i?* :dur2* valid-i?* :type3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :dur valid-i? :type valid-i? :b1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :type3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `transeg:k)
 
 (defn clear
@@ -23510,7 +18496,7 @@
     (new out-types ast)))
 
 (s/fdef clear
-  :args (s/cat :var1* valid-ar?* :var2* valid-ar?* :var3* valid-ar?* :var4* valid-ar?* :var5* valid-ar?* :var6* valid-ar?* :var7* valid-ar?* :var8* valid-ar?* :var9* valid-ar?* :var10* valid-ar?* :var11* valid-ar?* :var12* valid-ar?* :var13* valid-ar?* :var14* valid-ar?* :var15* valid-ar?* :var16* valid-ar?* :var17* valid-ar?* :var18* valid-ar?* :var19* valid-ar?* :var20* valid-ar?* :var21* valid-ar?* :var22* valid-ar?* :var23* valid-ar?* :var24* valid-ar?* :var25* valid-ar?* :var26* valid-ar?* :var27* valid-ar?* :var28* valid-ar?* :var29* valid-ar?* :var30* valid-ar?* :var31* valid-ar?* :var32* valid-ar?* ))
+  :args (s/cat :var1* (s/? valid-ar?*) :var2* (s/? valid-ar?*) :var3* (s/? valid-ar?*) :var4* (s/? valid-ar?*) :var5* (s/? valid-ar?*) :var6* (s/? valid-ar?*) :var7* (s/? valid-ar?*) :var8* (s/? valid-ar?*) :var9* (s/? valid-ar?*) :var10* (s/? valid-ar?*) :var11* (s/? valid-ar?*) :var12* (s/? valid-ar?*) :var13* (s/? valid-ar?*) :var14* (s/? valid-ar?*) :var15* (s/? valid-ar?*) :var16* (s/? valid-ar?*) :var17* (s/? valid-ar?*) :var18* (s/? valid-ar?*) :var19* (s/? valid-ar?*) :var20* (s/? valid-ar?*) :var21* (s/? valid-ar?*) :var22* (s/? valid-ar?*) :var23* (s/? valid-ar?*) :var24* (s/? valid-ar?*) :var25* (s/? valid-ar?*) :var26* (s/? valid-ar?*) :var27* (s/? valid-ar?*) :var28* (s/? valid-ar?*) :var29* (s/? valid-ar?*) :var30* (s/? valid-ar?*) :var31* (s/? valid-ar?*) :var32* (s/? valid-ar?*) ))
 (stest/instrument `clear)
 
 (defn locsend
@@ -23537,23 +18523,8 @@
     (new out-types ast)))
 
 (s/fdef pvsanal
-  :args (s/cat :in valid-ar? :fftsize valid-i? :overlap valid-i? :winsize valid-i? :wintype valid-i? :format* valid-i?* :init* valid-i?* ))
+  :args (s/cat :in valid-ar? :fftsize valid-i? :overlap valid-i? :winsize valid-i? :wintype valid-i? :format* (s/? valid-i?*) :init* (s/? valid-i?*) ))
 (stest/instrument `pvsanal)
-
-(defn pvsanal:f
-  {:arglists '([ain ifftsize ioverlap iwinsize iwintype & iformat* iinit*])}
-  [in fftsize overlap winsize wintype & [ format* init* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsanal"
-                      [in fftsize overlap winsize wintype format* init*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsanal:f
-  :args (s/cat :in valid-ar? :fftsize valid-i? :overlap valid-i? :winsize valid-i? :wintype valid-i? :format* valid-i?* :init* valid-i?* ))
-(stest/instrument `pvsanal:f)
 
 (defn active
   {:arglists '([Sinsnum & iopt* inorel*] [iinsnum & iopt* inorel*] [Sinsnum & iopt* inorel*] [kinsnum & iopt* inorel*])}
@@ -23568,7 +18539,9 @@
 
 (s/fdef active
   :args (s/alt
-         :Sii (s/cat :insnum valid-S? :opt* valid-i?* :norel* valid-i?* )
+         :kii (s/cat :insnum valid-kr? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
+         :iii (s/cat :insnum valid-i? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
+         :Sii (s/cat :insnum valid-S? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
          ))
 (stest/instrument `active)
 
@@ -23585,7 +18558,8 @@
 
 (s/fdef active:i
   :args (s/alt
-         :Sii (s/cat :insnum valid-S? :opt* valid-i?* :norel* valid-i?* )
+         :iii (s/cat :insnum valid-i? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
+         :Sii (s/cat :insnum valid-S? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
          ))
 (stest/instrument `active:i)
 
@@ -23602,7 +18576,8 @@
 
 (s/fdef active:k
   :args (s/alt
-         :Sii (s/cat :insnum valid-S? :opt* valid-i?* :norel* valid-i?* )
+         :kii (s/cat :insnum valid-kr? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
+         :Sii (s/cat :insnum valid-S? :opt* (s/? valid-i?*) :norel* (s/? valid-i?*) )
          ))
 (stest/instrument `active:k)
 
@@ -23633,7 +18608,7 @@
     (new out-types ast)))
 
 (s/fdef vexp_i
-  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* valid-i?* ))
+  :args (s/cat :table valid-i? :val valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) ))
 (stest/instrument `vexp_i)
 
 (defn urandom
@@ -23649,7 +18624,7 @@
 
 (s/fdef urandom
   :args (s/alt
-         :ii (s/cat :min* valid-i?* :max* valid-i?* )
+         :ii (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) )
          ))
 (stest/instrument `urandom)
 
@@ -23665,7 +18640,7 @@
     (new out-types ast)))
 
 (s/fdef urandom:a
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `urandom:a)
 
 (defn urandom:i
@@ -23680,7 +18655,7 @@
     (new out-types ast)))
 
 (s/fdef urandom:i
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `urandom:i)
 
 (defn urandom:k
@@ -23695,7 +18670,7 @@
     (new out-types ast)))
 
 (s/fdef urandom:k
-  :args (s/cat :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `urandom:k)
 
 (defn vlinseg
@@ -23710,7 +18685,7 @@
     (new out-types ast)))
 
 (s/fdef vlinseg
-  :args (s/cat :fnout valid-i? :elements valid-i? :fn1* valid-i?* :dur2* valid-i?* :fn3* valid-i?* :dur4* valid-i?* :fn5* valid-i?* :fn6* valid-i?* :fn7* valid-i?* :fn8* valid-i?* :fn9* valid-i?* :fn10* valid-i?* :fn11* valid-i?* :fn12* valid-i?* :fn13* valid-i?* :fn14* valid-i?* :fn15* valid-i?* :fn16* valid-i?* ))
+  :args (s/cat :fnout valid-i? :elements valid-i? :fn1* (s/? valid-i?*) :dur2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :dur4* (s/? valid-i?*) :fn5* (s/? valid-i?*) :fn6* (s/? valid-i?*) :fn7* (s/? valid-i?*) :fn8* (s/? valid-i?*) :fn9* (s/? valid-i?*) :fn10* (s/? valid-i?*) :fn11* (s/? valid-i?*) :fn12* (s/? valid-i?*) :fn13* (s/? valid-i?*) :fn14* (s/? valid-i?*) :fn15* (s/? valid-i?*) :fn16* (s/? valid-i?*) ))
 (stest/instrument `vlinseg)
 
 (defn pvsinfo
@@ -23740,7 +18715,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef partikkel
-  :args (s/cat :grainfreq valid-x? :distribution valid-kr? :disttab valid-i? :sync valid-ar? :env2amt valid-kr? :env2tab valid-i? :env_attack valid-i? :env_decay valid-i? :sustain_amount valid-kr? :a_d_ratio valid-kr? :duration valid-kr? :amp valid-kr? :gainmasks valid-i? :wavfreq valid-kr? :sweepshape valid-kr? :wavfreqstarttab valid-i? :wavfreqendtab valid-i? :wavfm valid-ar? :fmamptab valid-i? :fmenv valid-kr? :cosine valid-i? :traincps valid-kr? :numpartials valid-kr? :chroma valid-kr? :channelmasks valid-i? :randommask valid-kr? :waveform27 valid-kr? :waveform28 valid-kr? :waveform29 valid-kr? :waveform30 valid-kr? :waveamptab valid-i? :samplepos32 valid-ar? :samplepos33 valid-ar? :samplepos34 valid-ar? :samplepos35 valid-ar? :wavekey36 valid-kr? :wavekey37 valid-kr? :wavekey38 valid-kr? :wavekey39 valid-kr? :max_grains valid-i? :opcode_id* valid-i?* :panlaws* valid-i?* ))
+  :args (s/cat :grainfreq valid-x? :distribution valid-kr? :disttab valid-i? :sync valid-ar? :env2amt valid-kr? :env2tab valid-i? :env_attack valid-i? :env_decay valid-i? :sustain_amount valid-kr? :a_d_ratio valid-kr? :duration valid-kr? :amp valid-kr? :gainmasks valid-i? :wavfreq valid-kr? :sweepshape valid-kr? :wavfreqstarttab valid-i? :wavfreqendtab valid-i? :wavfm valid-ar? :fmamptab valid-i? :fmenv valid-kr? :cosine valid-i? :traincps valid-kr? :numpartials valid-kr? :chroma valid-kr? :channelmasks valid-i? :randommask valid-kr? :waveform27 valid-kr? :waveform28 valid-kr? :waveform29 valid-kr? :waveform30 valid-kr? :waveamptab valid-i? :samplepos32 valid-ar? :samplepos33 valid-ar? :samplepos34 valid-ar? :samplepos35 valid-ar? :wavekey36 valid-kr? :wavekey37 valid-kr? :wavekey38 valid-kr? :wavekey39 valid-kr? :max_grains valid-i? :opcode_id* (s/? valid-i?*) :panlaws* (s/? valid-i?*) ))
 (stest/instrument `partikkel)
 
 (defn delayr
@@ -23756,7 +18731,8 @@
 
 (s/fdef delayr
   :args (s/alt
-         :ii (s/cat :dlt valid-i? :skip* valid-i?* )
+         :kii (s/cat :dlt valid-kr? :skip valid-i? :skip* (s/? valid-i?*) )
+         :ii (s/cat :dlt valid-i? :skip* (s/? valid-i?*) )
          ))
 (stest/instrument `delayr)
 
@@ -23772,7 +18748,7 @@
     (new out-types ast)))
 
 (s/fdef delayr:a
-  :args (s/cat :dlt valid-i? :skip* valid-i?* ))
+  :args (s/cat :dlt valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `delayr:a)
 
 (defn delayr:k
@@ -23787,7 +18763,7 @@
     (new out-types ast)))
 
 (s/fdef delayr:k
-  :args (s/cat :dlt valid-kr? :skip valid-i? :skip* valid-i?* ))
+  :args (s/cat :dlt valid-kr? :skip valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `delayr:k)
 
 (defn ctrl14
@@ -23803,7 +18779,8 @@
 
 (s/fdef ctrl14
   :args (s/alt
-         :iiiiii (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* valid-i?* )
+         :iiikki (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) )
+         :iiiiii (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) )
          ))
 (stest/instrument `ctrl14)
 
@@ -23819,7 +18796,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl14:i
-  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-i? :max valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `ctrl14:i)
 
 (defn ctrl14:k
@@ -23834,7 +18811,7 @@
     (new out-types ast)))
 
 (s/fdef ctrl14:k
-  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-kr? :max valid-kr? :table* valid-i?* ))
+  :args (s/cat :chan valid-i? :ctlno2 valid-i? :ctlno3 valid-i? :min valid-kr? :max valid-kr? :table* (s/? valid-i?*) ))
 (stest/instrument `ctrl14:k)
 
 (defn pvsfreeze
@@ -23851,21 +18828,6 @@
 (s/fdef pvsfreeze
   :args (s/cat :sigin valid-f? :freeza valid-kr? :freezf valid-kr? ))
 (stest/instrument `pvsfreeze)
-
-(defn pvsfreeze:f
-  {:arglists '([fsigin kfreeza kfreezf])}
-  [sigin freeza freezf]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvsfreeze"
-                      [sigin freeza freezf]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvsfreeze:f
-  :args (s/cat :sigin valid-f? :freeza valid-kr? :freezf valid-kr? ))
-(stest/instrument `pvsfreeze:f)
 
 (defn sfilist
   {:arglists '([ifilhandle])}
@@ -23894,23 +18856,8 @@
     (new out-types ast)))
 
 (s/fdef metro
-  :args (s/cat :freq valid-kr? :nitphase* valid-i?* ))
+  :args (s/cat :freq valid-kr? :nitphase* (s/? valid-i?*) ))
 (stest/instrument `metro)
-
-(defn metro:k
-  {:arglists '([kfreq & initphase*])}
-  [freq & [ nitphase* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "metro"
-                      [freq nitphase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef metro:k
-  :args (s/cat :freq valid-kr? :nitphase* valid-i?* ))
-(stest/instrument `metro:k)
 
 (defn initc7
   {:arglists '([ichan ictlno ivalue])}
@@ -23975,23 +18922,8 @@
     (new out-types ast)))
 
 (s/fdef vdelayx
-  :args (s/cat :in valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
+  :args (s/cat :in valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* (s/? valid-i?*) ))
 (stest/instrument `vdelayx)
-
-(defn vdelayx:a
-  {:arglists '([ain adl imd iws & ist*])}
-  [in dl md ws & [ st* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vdelayx"
-                      [in dl md ws st*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vdelayx:a
-  :args (s/cat :in valid-ar? :dl valid-ar? :md valid-i? :ws valid-i? :st* valid-i?* ))
-(stest/instrument `vdelayx:a)
 
 (defn initc21
   {:arglists '([ichan ictlno2 ictlno3 ictlno4 ivalue])}
@@ -24021,6 +18953,10 @@
 
 (s/fdef sinh
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `sinh)
@@ -24112,23 +19048,8 @@
     (new out-types ast)))
 
 (s/fdef vdelay
-  :args (s/cat :sig valid-ar? :del valid-x? :maxdel valid-i? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :del valid-x? :maxdel valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `vdelay)
-
-(defn vdelay:a
-  {:arglists '([asig xdel imaxdel & iskip*])}
-  [sig del maxdel & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vdelay"
-                      [sig del maxdel skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vdelay:a
-  :args (s/cat :sig valid-ar? :del valid-x? :maxdel valid-i? :skip* valid-i?* ))
-(stest/instrument `vdelay:a)
 
 (defn fmb3
   {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate & ifn1* ifn1* ifn1* ifn1* ivfn*])}
@@ -24142,23 +19063,8 @@
     (new out-types ast)))
 
 (s/fdef fmb3
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vfn* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :fn1* (s/? valid-i?*) :vfn* (s/? valid-i?*) ))
 (stest/instrument `fmb3)
-
-(defn fmb3:a
-  {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate & ifn1* ifn1* ifn1* ifn1* ivfn*])}
-  [amp freq c3 c4 vdepth vrate & [ fn1* fn1* fn1* fn1* vfn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmb3"
-                      [amp freq c3 c4 vdepth vrate fn1* fn1* fn1* fn1* vfn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmb3:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :fn1* valid-i?* :vfn* valid-i?* ))
-(stest/instrument `fmb3:a)
 
 (defn lfo
   {:arglists '([kamp kcps & itype*] [kamp kcps & itype*])}
@@ -24173,7 +19079,7 @@
 
 (s/fdef lfo
   :args (s/alt
-         :kki (s/cat :amp valid-kr? :cps valid-kr? :type* valid-i?* )
+         :kki (s/cat :amp valid-kr? :cps valid-kr? :type* (s/? valid-i?*) )
          ))
 (stest/instrument `lfo)
 
@@ -24189,7 +19095,7 @@
     (new out-types ast)))
 
 (s/fdef lfo:a
-  :args (s/cat :amp valid-kr? :cps valid-kr? :type* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :type* (s/? valid-i?*) ))
 (stest/instrument `lfo:a)
 
 (defn lfo:k
@@ -24204,7 +19110,7 @@
     (new out-types ast)))
 
 (s/fdef lfo:k
-  :args (s/cat :amp valid-kr? :cps valid-kr? :type* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :type* (s/? valid-i?*) ))
 (stest/instrument `lfo:k)
 
 (defn pgmassign
@@ -24220,7 +19126,8 @@
 
 (s/fdef pgmassign
   :args (s/alt
-         :iSi (s/cat :pgm valid-i? :insname valid-S? :chn* valid-i?* )
+         :iii (s/cat :pgm valid-i? :insname valid-i? :chn* (s/? valid-i?*) )
+         :iSi (s/cat :pgm valid-i? :insname valid-S? :chn* (s/? valid-i?*) )
          ))
 (stest/instrument `pgmassign)
 
@@ -24239,21 +19146,6 @@
   :args (s/cat :pfieldIndex valid-i? ))
 (stest/instrument `pindex)
 
-(defn pindex:i
-  {:arglists '([ipfieldIndex])}
-  [pfieldIndex]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "pindex"
-                      [pfieldIndex]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pindex:i
-  :args (s/cat :pfieldIndex valid-i? ))
-(stest/instrument `pindex:i)
-
 (defn deltapx
   {:arglists '([adel iwsize & iwsize*])}
   [del wsize & [ wsize* ]]
@@ -24266,23 +19158,8 @@
     (new out-types ast)))
 
 (s/fdef deltapx
-  :args (s/cat :del valid-ar? :wsize valid-i? :wsize* valid-i?* ))
+  :args (s/cat :del valid-ar? :wsize valid-i? :wsize* (s/? valid-i?*) ))
 (stest/instrument `deltapx)
-
-(defn deltapx:a
-  {:arglists '([adel iwsize & iwsize*])}
-  [del wsize & [ wsize* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "deltapx"
-                      [del wsize wsize*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef deltapx:a
-  :args (s/cat :del valid-ar? :wsize valid-i? :wsize* valid-i?* ))
-(stest/instrument `deltapx:a)
 
 (defn trhighest
   {:arglists '([fin1 kscal])}
@@ -24326,23 +19203,8 @@
     (new out-types ast)))
 
 (s/fdef vco2ft
-  :args (s/cat :cps valid-kr? :wave* valid-i?* :nyx* valid-i?* ))
+  :args (s/cat :cps valid-kr? :wave* (s/? valid-i?*) :nyx* (s/? valid-i?*) ))
 (stest/instrument `vco2ft)
-
-(defn vco2ft:k
-  {:arglists '([kcps & iwave* inyx*])}
-  [cps & [ wave* nyx* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "vco2ft"
-                      [cps wave* nyx*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vco2ft:k
-  :args (s/cat :cps valid-kr? :wave* valid-i?* :nyx* valid-i?* ))
-(stest/instrument `vco2ft:k)
 
 (defn mandol
   {:arglists '([kamp kfreq kpluck kdetune kgain ksize itable & iminfreq*])}
@@ -24356,23 +19218,8 @@
     (new out-types ast)))
 
 (s/fdef mandol
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pluck valid-kr? :detune valid-kr? :gain valid-kr? :size valid-kr? :table valid-i? :minfreq* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :pluck valid-kr? :detune valid-kr? :gain valid-kr? :size valid-kr? :table valid-i? :minfreq* (s/? valid-i?*) ))
 (stest/instrument `mandol)
-
-(defn mandol:a
-  {:arglists '([kamp kfreq kpluck kdetune kgain ksize itable & iminfreq*])}
-  [amp freq pluck detune gain size table & [ minfreq* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mandol"
-                      [amp freq pluck detune gain size table minfreq*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mandol:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :pluck valid-kr? :detune valid-kr? :gain valid-kr? :size valid-kr? :table valid-i? :minfreq* valid-i?* ))
-(stest/instrument `mandol:a)
 
 (defn centroid
   {:arglists '([isigArr] [asig ktrig ifftsize] [ksigArr])}
@@ -24387,6 +19234,8 @@
 
 (s/fdef centroid
   :args (s/alt
+         :kArr (s/cat :sig valid-kArr? )
+         :aki (s/cat :sig valid-ar? :trig valid-kr? :fftsize valid-i? )
          :iArr (s/cat :sig valid-iArr? )
          ))
 (stest/instrument `centroid)
@@ -24419,6 +19268,7 @@
 
 (s/fdef centroid:k
   :args (s/alt
+         :kArr (s/cat :sig valid-kArr? )
          :aki (s/cat :sig valid-ar? :trig valid-kr? :fftsize valid-i? )
          ))
 (stest/instrument `centroid:k)
@@ -24436,6 +19286,7 @@
 
 (s/fdef rfft
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `rfft)
@@ -24482,23 +19333,8 @@
     (new out-types ast)))
 
 (s/fdef tabmorphak
-  :args (s/cat :index valid-ar? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
+  :args (s/cat :index valid-ar? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* (s/? valid-i?*) :fn2* (s/? valid-i?*) :fn3* (s/? valid-i?*) :fn4* (s/? valid-i?*) :fnN5* (s/? valid-i?*) :fnN6* (s/? valid-i?*) :fnN7* (s/? valid-i?*) :fnN8* (s/? valid-i?*) :fnN9* (s/? valid-i?*) :fnN10* (s/? valid-i?*) :fnN11* (s/? valid-i?*) :fnN12* (s/? valid-i?*) :fnN13* (s/? valid-i?*) :fnN14* (s/? valid-i?*) :fnN15* (s/? valid-i?*) :fnN16* (s/? valid-i?*) ))
 (stest/instrument `tabmorphak)
-
-(defn tabmorphak:a
-  {:arglists '([aindex kweightpoint ktabnum3 ktabnum4 & ifn1* ifn2* ifn3* ifn4* ifnN5* ifnN6* ifnN7* ifnN8* ifnN9* ifnN10* ifnN11* ifnN12* ifnN13* ifnN14* ifnN15* ifnN16*])}
-  [index weightpoint tabnum3 tabnum4 & [ fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tabmorphak"
-                      [index weightpoint tabnum3 tabnum4 fn1* fn2* fn3* fn4* fnN5* fnN6* fnN7* fnN8* fnN9* fnN10* fnN11* fnN12* fnN13* fnN14* fnN15* fnN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tabmorphak:a
-  :args (s/cat :index valid-ar? :weightpoint valid-kr? :tabnum3 valid-kr? :tabnum4 valid-kr? :fn1* valid-i?* :fn2* valid-i?* :fn3* valid-i?* :fn4* valid-i?* :fnN5* valid-i?* :fnN6* valid-i?* :fnN7* valid-i?* :fnN8* valid-i?* :fnN9* valid-i?* :fnN10* valid-i?* :fnN11* valid-i?* :fnN12* valid-i?* :fnN13* valid-i?* :fnN14* valid-i?* :fnN15* valid-i?* :fnN16* valid-i?* ))
-(stest/instrument `tabmorphak:a)
 
 (defn noteondur
   {:arglists '([ichn inum ivel idur])}
@@ -24530,21 +19366,6 @@
   :args (s/cat :buss valid-i? :channel valid-i? ))
 (stest/instrument `MixerReceive)
 
-(defn MixerReceive:a
-  {:arglists '([ibuss ichannel])}
-  [buss channel]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "MixerReceive"
-                      [buss channel]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef MixerReceive:a
-  :args (s/cat :buss valid-i? :channel valid-i? ))
-(stest/instrument `MixerReceive:a)
-
 (defn gendyx
   {:arglists '([kamp kampdist kdurdist kadpar kddpar kminfreq kmaxfreq kampscl kdurscl kcurveup kcurvedown & initcps* knum*] [kamp kampdist kdurdist kadpar kddpar kminfreq kmaxfreq kampscl kdurscl kcurveup kcurvedown & initcps* knum*])}
   [amp ampdist durdist adpar ddpar minfreq maxfreq ampscl durscl curveup curvedown & [ nitcps* num* ]]
@@ -24558,7 +19379,7 @@
 
 (s/fdef gendyx
   :args (s/alt
-         :kkkkkkkkkkkik (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :curveup valid-kr? :curvedown valid-kr? :nitcps* valid-i?* :num* valid-kr?* )
+         :kkkkkkkkkkkik (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :curveup valid-kr? :curvedown valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) )
          ))
 (stest/instrument `gendyx)
 
@@ -24574,7 +19395,7 @@
     (new out-types ast)))
 
 (s/fdef gendyx:a
-  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :curveup valid-kr? :curvedown valid-kr? :nitcps* valid-i?* :num* valid-kr?* ))
+  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :curveup valid-kr? :curvedown valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) ))
 (stest/instrument `gendyx:a)
 
 (defn gendyx:k
@@ -24589,7 +19410,7 @@
     (new out-types ast)))
 
 (s/fdef gendyx:k
-  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :curveup valid-kr? :curvedown valid-kr? :nitcps* valid-i?* :num* valid-kr?* ))
+  :args (s/cat :amp valid-kr? :ampdist valid-kr? :durdist valid-kr? :adpar valid-kr? :ddpar valid-kr? :minfreq valid-kr? :maxfreq valid-kr? :ampscl valid-kr? :durscl valid-kr? :curveup valid-kr? :curvedown valid-kr? :nitcps* (s/? valid-i?*) :num* (s/? valid-kr?*) ))
 (stest/instrument `gendyx:k)
 
 (defn weibull
@@ -24666,23 +19487,8 @@
     (new out-types ast)))
 
 (s/fdef aresonk
-  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :scale* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :scale* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `aresonk)
-
-(defn aresonk:k
-  {:arglists '([ksig kcenter-frequency kbandwidth & iscale* iskip*])}
-  [sig center-frequency bandwidth & [ scale* skip* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "aresonk"
-                      [sig center-frequency bandwidth scale* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef aresonk:k
-  :args (s/cat :sig valid-kr? :center-frequency valid-kr? :bandwidth valid-kr? :scale* valid-i?* :skip* valid-i?* ))
-(stest/instrument `aresonk:k)
 
 (defn buzz
   {:arglists '([xamp xcps knh itable & iphase*])}
@@ -24696,23 +19502,8 @@
     (new out-types ast)))
 
 (s/fdef buzz
-  :args (s/cat :amp valid-x? :cps valid-x? :nh valid-kr? :table valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :nh valid-kr? :table valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `buzz)
-
-(defn buzz:a
-  {:arglists '([xamp xcps knh itable & iphase*])}
-  [amp cps nh table & [ phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "buzz"
-                      [amp cps nh table phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef buzz:a
-  :args (s/cat :amp valid-x? :cps valid-x? :nh valid-kr? :table valid-i? :phase* valid-i?* ))
-(stest/instrument `buzz:a)
 
 (defn rtclock
   {:arglists '( )}
@@ -24774,23 +19565,8 @@
     (new out-types ast)))
 
 (s/fdef grain3
-  :args (s/cat :cps valid-kr? :phase valid-kr? :fmd valid-kr? :pmd valid-kr? :gdur valid-kr? :dens valid-kr? :maxovr valid-i? :table valid-kr? :wfn valid-i? :frpow valid-kr? :prpow valid-kr? :seed* valid-i?* :mode* valid-i?* ))
+  :args (s/cat :cps valid-kr? :phase valid-kr? :fmd valid-kr? :pmd valid-kr? :gdur valid-kr? :dens valid-kr? :maxovr valid-i? :table valid-kr? :wfn valid-i? :frpow valid-kr? :prpow valid-kr? :seed* (s/? valid-i?*) :mode* (s/? valid-i?*) ))
 (stest/instrument `grain3)
-
-(defn grain3:a
-  {:arglists '([kcps kphase kfmd kpmd kgdur kdens imaxovr ktable iwfn kfrpow kprpow & iseed* imode*])}
-  [cps phase fmd pmd gdur dens maxovr table wfn frpow prpow & [ seed* mode* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "grain3"
-                      [cps phase fmd pmd gdur dens maxovr table wfn frpow prpow seed* mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef grain3:a
-  :args (s/cat :cps valid-kr? :phase valid-kr? :fmd valid-kr? :pmd valid-kr? :gdur valid-kr? :dens valid-kr? :maxovr valid-i? :table valid-kr? :wfn valid-i? :frpow valid-kr? :prpow valid-kr? :seed* valid-i?* :mode* valid-i?* ))
-(stest/instrument `grain3:a)
 
 (defn doppler
   {:arglists '([asource ksourceposition kmicposition & isoundspeed* ifiltercutoff*])}
@@ -24804,23 +19580,8 @@
     (new out-types ast)))
 
 (s/fdef doppler
-  :args (s/cat :source valid-ar? :sourceposition valid-kr? :micposition valid-kr? :soundspeed* valid-i?* :filtercutoff* valid-i?* ))
+  :args (s/cat :source valid-ar? :sourceposition valid-kr? :micposition valid-kr? :soundspeed* (s/? valid-i?*) :filtercutoff* (s/? valid-i?*) ))
 (stest/instrument `doppler)
-
-(defn doppler:a
-  {:arglists '([asource ksourceposition kmicposition & isoundspeed* ifiltercutoff*])}
-  [source sourceposition micposition & [ soundspeed* filtercutoff* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "doppler"
-                      [source sourceposition micposition soundspeed* filtercutoff*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef doppler:a
-  :args (s/cat :source valid-ar? :sourceposition valid-kr? :micposition valid-kr? :soundspeed* valid-i?* :filtercutoff* valid-i?* ))
-(stest/instrument `doppler:a)
 
 (defn trigger
   {:arglists '([ksig kthreshold kmode])}
@@ -24837,21 +19598,6 @@
   :args (s/cat :sig valid-kr? :threshold valid-kr? :mode valid-kr? ))
 (stest/instrument `trigger)
 
-(defn trigger:k
-  {:arglists '([ksig kthreshold kmode])}
-  [sig threshold mode]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "trigger"
-                      [sig threshold mode]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trigger:k
-  :args (s/cat :sig valid-kr? :threshold valid-kr? :mode valid-kr? ))
-(stest/instrument `trigger:k)
-
 (defn bbcutm
   {:arglists '([asource ibps isubdiv ibarlength iphrasebars inumrepeats & istutterspeed* istutterchance* ienvchoice*])}
   [source bps subdiv barlength phrasebars numrepeats & [ stutterspeed* stutterchance* envchoice* ]]
@@ -24864,23 +19610,8 @@
     (new out-types ast)))
 
 (s/fdef bbcutm
-  :args (s/cat :source valid-ar? :bps valid-i? :subdiv valid-i? :barlength valid-i? :phrasebars valid-i? :numrepeats valid-i? :stutterspeed* valid-i?* :stutterchance* valid-i?* :envchoice* valid-i?* ))
+  :args (s/cat :source valid-ar? :bps valid-i? :subdiv valid-i? :barlength valid-i? :phrasebars valid-i? :numrepeats valid-i? :stutterspeed* (s/? valid-i?*) :stutterchance* (s/? valid-i?*) :envchoice* (s/? valid-i?*) ))
 (stest/instrument `bbcutm)
-
-(defn bbcutm:a
-  {:arglists '([asource ibps isubdiv ibarlength iphrasebars inumrepeats & istutterspeed* istutterchance* ienvchoice*])}
-  [source bps subdiv barlength phrasebars numrepeats & [ stutterspeed* stutterchance* envchoice* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "bbcutm"
-                      [source bps subdiv barlength phrasebars numrepeats stutterspeed* stutterchance* envchoice*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef bbcutm:a
-  :args (s/cat :source valid-ar? :bps valid-i? :subdiv valid-i? :barlength valid-i? :phrasebars valid-i? :numrepeats valid-i? :stutterspeed* valid-i?* :stutterchance* valid-i?* :envchoice* valid-i?* ))
-(stest/instrument `bbcutm:a)
 
 (defn compileorc
   {:arglists '([Sfilename])}
@@ -24897,21 +19628,6 @@
   :args (s/cat :filename valid-S? ))
 (stest/instrument `compileorc)
 
-(defn compileorc:i
-  {:arglists '([Sfilename])}
-  [filename]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "compileorc"
-                      [filename]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef compileorc:i
-  :args (s/cat :filename valid-S? ))
-(stest/instrument `compileorc:i)
-
 (defn zkmod
   {:arglists '([ksig kzkmod])}
   [sig zkmod]
@@ -24927,21 +19643,6 @@
   :args (s/cat :sig valid-kr? :zkmod valid-kr? ))
 (stest/instrument `zkmod)
 
-(defn zkmod:k
-  {:arglists '([ksig kzkmod])}
-  [sig zkmod]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "zkmod"
-                      [sig zkmod]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zkmod:k
-  :args (s/cat :sig valid-kr? :zkmod valid-kr? ))
-(stest/instrument `zkmod:k)
-
 (defn vport
   {:arglists '([itable khtime ielements & ifnInit*])}
   [table htime elements & [ fnInit* ]]
@@ -24954,7 +19655,7 @@
     (new out-types ast)))
 
 (s/fdef vport
-  :args (s/cat :table valid-i? :htime valid-kr? :elements valid-i? :fnInit* valid-i?* ))
+  :args (s/cat :table valid-i? :htime valid-kr? :elements valid-i? :fnInit* (s/? valid-i?*) ))
 (stest/instrument `vport)
 
 (defn fof
@@ -24969,23 +19670,8 @@
     (new out-types ast)))
 
 (s/fdef fof
-  :args (s/cat :amp valid-x? :fund valid-x? :form valid-x? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase* valid-i?* :fmode* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :amp valid-x? :fund valid-x? :form valid-x? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase* (s/? valid-i?*) :fmode* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `fof)
-
-(defn fof:a
-  {:arglists '([xamp xfund xform koct kband kris kdur kdec iolaps ifna ifnb itotdur & iphase* ifmode* iskip*])}
-  [amp fund form oct band ris dur dec olaps fna fnb totdur & [ phase* fmode* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fof"
-                      [amp fund form oct band ris dur dec olaps fna fnb totdur phase* fmode* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fof:a
-  :args (s/cat :amp valid-x? :fund valid-x? :form valid-x? :oct valid-kr? :band valid-kr? :ris valid-kr? :dur valid-kr? :dec valid-kr? :olaps valid-i? :fna valid-i? :fnb valid-i? :totdur valid-i? :phase* valid-i?* :fmode* valid-i?* :skip* valid-i?* ))
-(stest/instrument `fof:a)
 
 (defn vbapg
   {:arglists '([kazim & kelev* kspread* ilayout*] [kazim & kelev* kspread* ilayout*])}
@@ -25000,7 +19686,7 @@
 
 (s/fdef vbapg
   :args (s/alt
-         :kkki (s/cat :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :layout* valid-i?* )
+         :kkki (s/cat :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :layout* (s/? valid-i?*) )
          ))
 (stest/instrument `vbapg)
 
@@ -25016,7 +19702,7 @@
     (new out-types ast)))
 
 (s/fdef vbapg:kArr
-  :args (s/cat :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :layout* valid-i?* ))
+  :args (s/cat :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :layout* (s/? valid-i?*) ))
 (stest/instrument `vbapg:kArr)
 
 (defn vbapg:k
@@ -25031,7 +19717,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef vbapg:k
-  :args (s/cat :azim valid-kr? :elev* valid-kr?* :spread* valid-kr?* :layout* valid-i?* ))
+  :args (s/cat :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :layout* (s/? valid-i?*) ))
 (stest/instrument `vbapg:k)
 
 (defn round
@@ -25047,6 +19733,10 @@
 
 (s/fdef round
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `round)
@@ -25165,7 +19855,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef ephasor
-  :args (s/cat :freq valid-x? :R valid-kr? :R* valid-i?* ))
+  :args (s/cat :freq valid-x? :R valid-kr? :R* (s/? valid-i?*) ))
 (stest/instrument `ephasor)
 
 (defn sfinstr3m
@@ -25180,23 +19870,8 @@
     (new out-types ast)))
 
 (s/fdef sfinstr3m
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* valid-i?* :offset* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `sfinstr3m)
-
-(defn sfinstr3m:a
-  {:arglists '([ivel inotenum xamp xfreq instrnum ifilhandle & iflag* ioffset* ioffset*])}
-  [vel notenum amp freq nstrnum filhandle & [ flag* offset* offset* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sfinstr3m"
-                      [vel notenum amp freq nstrnum filhandle flag* offset* offset*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sfinstr3m:a
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* valid-i?* :offset* valid-i?* :offset* valid-i?* ))
-(stest/instrument `sfinstr3m:a)
 
 (defn crunch
   {:arglists '([iamp idettack & inum* idamp* imaxshake*])}
@@ -25210,37 +19885,10 @@
     (new out-types ast)))
 
 (s/fdef crunch
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
+  :args (s/cat :amp valid-i? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) ))
 (stest/instrument `crunch)
 
-(defn crunch:a
-  {:arglists '([iamp idettack & inum* idamp* imaxshake*])}
-  [amp dettack & [ num* damp* maxshake* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "crunch"
-                      [amp dettack num* damp* maxshake*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef crunch:a
-  :args (s/cat :amp valid-i? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* ))
-(stest/instrument `crunch:a)
-
 (defn pinker
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pinker"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn pinker:a
   {:arglists '()}
   []
   (let [out-types-quoted 'AudioSignal
@@ -25266,21 +19914,6 @@
 (s/fdef setrow
   :args (s/cat :in valid-kArr? :row valid-kr? ))
 (stest/instrument `setrow)
-
-(defn setrow:kArr
-  {:arglists '([kinArr krow])}
-  [in row]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "setrow"
-                      [in row]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef setrow:kArr
-  :args (s/cat :in valid-kArr? :row valid-kr? ))
-(stest/instrument `setrow:kArr)
 
 (defn outq3
   {:arglists '([asig])}
@@ -25325,6 +19958,7 @@
 
 (s/fdef maxarray
   :args (s/alt
+         :kArr (s/cat :array valid-kArr? )
          :iArr (s/cat :array valid-iArr? )
          ))
 (stest/instrument `maxarray)
@@ -25342,7 +19976,10 @@
 
 (s/fdef oscilikt
   :args (s/alt
-         :aakii (s/cat :amp valid-ar? :cps valid-ar? :table valid-kr? :phase* valid-i?* :stor* valid-i?* )
+         :kkkii (s/cat :amp valid-kr? :cps valid-kr? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
+         :kakii (s/cat :amp valid-kr? :cps valid-ar? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
+         :akkii (s/cat :amp valid-ar? :cps valid-kr? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
+         :aakii (s/cat :amp valid-ar? :cps valid-ar? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `oscilikt)
 
@@ -25359,7 +19996,10 @@
 
 (s/fdef oscilikt:a
   :args (s/alt
-         :aakii (s/cat :amp valid-ar? :cps valid-ar? :table valid-kr? :phase* valid-i?* :stor* valid-i?* )
+         :kkkii (s/cat :amp valid-kr? :cps valid-kr? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
+         :kakii (s/cat :amp valid-kr? :cps valid-ar? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
+         :akkii (s/cat :amp valid-ar? :cps valid-kr? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
+         :aakii (s/cat :amp valid-ar? :cps valid-ar? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `oscilikt:a)
 
@@ -25375,7 +20015,7 @@
     (new out-types ast)))
 
 (s/fdef oscilikt:k
-  :args (s/cat :amp valid-kr? :cps valid-kr? :table valid-kr? :phase* valid-i?* :stor* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :table valid-kr? :phase* (s/? valid-i?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `oscilikt:k)
 
 (defn midipitchbend
@@ -25390,7 +20030,7 @@
     (new out-types ast)))
 
 (s/fdef midipitchbend
-  :args (s/cat :pitchbend valid-x? :low* valid-i?* :high* valid-i?* ))
+  :args (s/cat :pitchbend valid-x? :low* (s/? valid-i?*) :high* (s/? valid-i?*) ))
 (stest/instrument `midipitchbend)
 
 (defn jspline
@@ -25453,7 +20093,8 @@
 
 (s/fdef phasor
   :args (s/alt
-         :xi (s/cat :cps valid-x? :phase* valid-i?* )
+         :ki (s/cat :cps valid-kr? :phase* (s/? valid-i?*) )
+         :xi (s/cat :cps valid-x? :phase* (s/? valid-i?*) )
          ))
 (stest/instrument `phasor)
 
@@ -25469,7 +20110,7 @@
     (new out-types ast)))
 
 (s/fdef phasor:a
-  :args (s/cat :cps valid-x? :phase* valid-i?* ))
+  :args (s/cat :cps valid-x? :phase* (s/? valid-i?*) ))
 (stest/instrument `phasor:a)
 
 (defn phasor:k
@@ -25484,7 +20125,7 @@
     (new out-types ast)))
 
 (s/fdef phasor:k
-  :args (s/cat :cps valid-kr? :phase* valid-i?* ))
+  :args (s/cat :cps valid-kr? :phase* (s/? valid-i?*) ))
 (stest/instrument `phasor:k)
 
 (defn looptseg
@@ -25499,23 +20140,8 @@
     (new out-types ast)))
 
 (s/fdef looptseg
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :value1* valid-kr?* :type2* valid-kr?* :time3* valid-kr?* :value4* valid-kr?* :type5* valid-kr?* :time6* valid-kr?* :value7* valid-kr?* :type8* valid-kr?* :time9* valid-kr?* :valueN10* valid-kr?* :typeN11* valid-kr?* :timeN12* valid-kr?* :timeN13* valid-kr?* :timeN14* valid-kr?* :timeN15* valid-kr?* :timeN16* valid-kr?* ))
+  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :value1* (s/? valid-kr?*) :type2* (s/? valid-kr?*) :time3* (s/? valid-kr?*) :value4* (s/? valid-kr?*) :type5* (s/? valid-kr?*) :time6* (s/? valid-kr?*) :value7* (s/? valid-kr?*) :type8* (s/? valid-kr?*) :time9* (s/? valid-kr?*) :valueN10* (s/? valid-kr?*) :typeN11* (s/? valid-kr?*) :timeN12* (s/? valid-kr?*) :timeN13* (s/? valid-kr?*) :timeN14* (s/? valid-kr?*) :timeN15* (s/? valid-kr?*) :timeN16* (s/? valid-kr?*) ))
 (stest/instrument `looptseg)
-
-(defn looptseg:k
-  {:arglists '([kfreq ktrig iphase & kvalue1* ktype2* ktime3* kvalue4* ktype5* ktime6* kvalue7* ktype8* ktime9* kvalueN10* ktypeN11* ktimeN12* ktimeN13* ktimeN14* ktimeN15* ktimeN16*])}
-  [freq trig phase & [ value1* type2* time3* value4* type5* time6* value7* type8* time9* valueN10* typeN11* timeN12* timeN13* timeN14* timeN15* timeN16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "looptseg"
-                      [freq trig phase value1* type2* time3* value4* type5* time6* value7* type8* time9* valueN10* typeN11* timeN12* timeN13* timeN14* timeN15* timeN16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef looptseg:k
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :value1* valid-kr?* :type2* valid-kr?* :time3* valid-kr?* :value4* valid-kr?* :type5* valid-kr?* :time6* valid-kr?* :value7* valid-kr?* :type8* valid-kr?* :time9* valid-kr?* :valueN10* valid-kr?* :typeN11* valid-kr?* :timeN12* valid-kr?* :timeN13* valid-kr?* :timeN14* valid-kr?* :timeN15* valid-kr?* :timeN16* valid-kr?* ))
-(stest/instrument `looptseg:k)
 
 (defn vmultv_i
   {:arglists '([ifn1 ifn2 ielements & idstoffset* isrcoffset*])}
@@ -25529,22 +20155,10 @@
     (new out-types ast)))
 
 (s/fdef vmultv_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vmultv_i)
 
 (defn pwd
-  {:arglists '()}
-  []
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "pwd"
-                      []
-                      *global*)]
-    (new out-types ast)))
-
-
-(defn pwd:S
   {:arglists '()}
   []
   (let [out-types-quoted 'String
@@ -25571,21 +20185,6 @@
   :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
 (stest/instrument `strrindex)
 
-(defn strrindex:i
-  {:arglists '([Sarg1 Sarg2])}
-  [arg1 arg2]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "strrindex"
-                      [arg1 arg2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strrindex:i
-  :args (s/cat :arg1 valid-S? :arg2 valid-S? ))
-(stest/instrument `strrindex:i)
-
 (defn sprintfk
   {:arglists '([Sfmt iarg2 & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*] [Sfmt karg2 & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*] [Sfmt Sarg2 & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*])}
   [fmt arg2 & [ arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16* ]]
@@ -25599,26 +20198,11 @@
 
 (s/fdef sprintfk
   :args (s/alt
-         :Sixxxxxxxxxxxxxxxx (s/cat :fmt valid-S? :arg2 valid-i? :arg1* valid-x?* :arg2* valid-x?* :arg3* valid-x?* :arg4* valid-x?* :arg5* valid-x?* :arg6* valid-x?* :arg7* valid-x?* :arg8* valid-x?* :arg9* valid-x?* :arg10* valid-x?* :arg11* valid-x?* :arg12* valid-x?* :arg13* valid-x?* :arg14* valid-x?* :arg15* valid-x?* :arg16* valid-x?* )
+         :SSxxxxxxxxxxxxxxxx (s/cat :fmt valid-S? :arg2 valid-S? :arg1* (s/? valid-x?*) :arg2* (s/? valid-x?*) :arg3* (s/? valid-x?*) :arg4* (s/? valid-x?*) :arg5* (s/? valid-x?*) :arg6* (s/? valid-x?*) :arg7* (s/? valid-x?*) :arg8* (s/? valid-x?*) :arg9* (s/? valid-x?*) :arg10* (s/? valid-x?*) :arg11* (s/? valid-x?*) :arg12* (s/? valid-x?*) :arg13* (s/? valid-x?*) :arg14* (s/? valid-x?*) :arg15* (s/? valid-x?*) :arg16* (s/? valid-x?*) )
+         :Skxxxxxxxxxxxxxxxx (s/cat :fmt valid-S? :arg2 valid-kr? :arg1* (s/? valid-x?*) :arg2* (s/? valid-x?*) :arg3* (s/? valid-x?*) :arg4* (s/? valid-x?*) :arg5* (s/? valid-x?*) :arg6* (s/? valid-x?*) :arg7* (s/? valid-x?*) :arg8* (s/? valid-x?*) :arg9* (s/? valid-x?*) :arg10* (s/? valid-x?*) :arg11* (s/? valid-x?*) :arg12* (s/? valid-x?*) :arg13* (s/? valid-x?*) :arg14* (s/? valid-x?*) :arg15* (s/? valid-x?*) :arg16* (s/? valid-x?*) )
+         :Sixxxxxxxxxxxxxxxx (s/cat :fmt valid-S? :arg2 valid-i? :arg1* (s/? valid-x?*) :arg2* (s/? valid-x?*) :arg3* (s/? valid-x?*) :arg4* (s/? valid-x?*) :arg5* (s/? valid-x?*) :arg6* (s/? valid-x?*) :arg7* (s/? valid-x?*) :arg8* (s/? valid-x?*) :arg9* (s/? valid-x?*) :arg10* (s/? valid-x?*) :arg11* (s/? valid-x?*) :arg12* (s/? valid-x?*) :arg13* (s/? valid-x?*) :arg14* (s/? valid-x?*) :arg15* (s/? valid-x?*) :arg16* (s/? valid-x?*) )
          ))
 (stest/instrument `sprintfk)
-
-(defn sprintfk:S
-  {:arglists '([Sfmt iarg2 & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*] [Sfmt karg2 & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*] [Sfmt Sarg2 & xarg1* xarg2* xarg3* xarg4* xarg5* xarg6* xarg7* xarg8* xarg9* xarg10* xarg11* xarg12* xarg13* xarg14* xarg15* xarg16*])}
-  [fmt arg2 & [ arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16* ]]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "sprintfk"
-                      [fmt arg2 arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sprintfk:S
-  :args (s/alt
-         :Sixxxxxxxxxxxxxxxx (s/cat :fmt valid-S? :arg2 valid-i? :arg1* valid-x?* :arg2* valid-x?* :arg3* valid-x?* :arg4* valid-x?* :arg5* valid-x?* :arg6* valid-x?* :arg7* valid-x?* :arg8* valid-x?* :arg9* valid-x?* :arg10* valid-x?* :arg11* valid-x?* :arg12* valid-x?* :arg13* valid-x?* :arg14* valid-x?* :arg15* valid-x?* :arg16* valid-x?* )
-         ))
-(stest/instrument `sprintfk:S)
 
 (defn slicearray
   {:arglists '([ainarrayArr istart iend & istride*] [kinarrayArr istart iend & istride*] [SinarrayArr istart iend & istride*] [iinarrayArr istart iend & istride*])}
@@ -25633,7 +20217,10 @@
 
 (s/fdef slicearray
   :args (s/alt
-         :aArriii (s/cat :inarray valid-aArr? :start valid-i? :end valid-i? :stride* valid-i?* )
+         :iArriii (s/cat :inarray valid-iArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) )
+         :SArriii (s/cat :inarray valid-SArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) )
+         :kArriii (s/cat :inarray valid-kArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) )
+         :aArriii (s/cat :inarray valid-aArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) )
          ))
 (stest/instrument `slicearray)
 
@@ -25649,7 +20236,7 @@
     (new out-types ast)))
 
 (s/fdef slicearray:aArr
-  :args (s/cat :inarray valid-aArr? :start valid-i? :end valid-i? :stride* valid-i?* ))
+  :args (s/cat :inarray valid-aArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) ))
 (stest/instrument `slicearray:aArr)
 
 (defn slicearray:kArr
@@ -25664,7 +20251,7 @@
     (new out-types ast)))
 
 (s/fdef slicearray:kArr
-  :args (s/cat :inarray valid-kArr? :start valid-i? :end valid-i? :stride* valid-i?* ))
+  :args (s/cat :inarray valid-kArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) ))
 (stest/instrument `slicearray:kArr)
 
 (defn slicearray:SArr
@@ -25679,7 +20266,7 @@
     (new out-types ast)))
 
 (s/fdef slicearray:SArr
-  :args (s/cat :inarray valid-SArr? :start valid-i? :end valid-i? :stride* valid-i?* ))
+  :args (s/cat :inarray valid-SArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) ))
 (stest/instrument `slicearray:SArr)
 
 (defn slicearray:iArr
@@ -25694,7 +20281,7 @@
     (new out-types ast)))
 
 (s/fdef slicearray:iArr
-  :args (s/cat :inarray valid-iArr? :start valid-i? :end valid-i? :stride* valid-i?* ))
+  :args (s/cat :inarray valid-iArr? :start valid-i? :end valid-i? :stride* (s/? valid-i?*) ))
 (stest/instrument `slicearray:iArr)
 
 (defn noteoff
@@ -25724,7 +20311,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef sfinstr3
-  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* valid-i?* :offset* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :vel valid-i? :notenum valid-i? :amp valid-x? :freq valid-x? :nstrnum valid-i? :filhandle valid-i? :flag* (s/? valid-i?*) :offset* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `sfinstr3)
 
 (defn outletf
@@ -25754,23 +20341,8 @@
     (new out-types ast)))
 
 (s/fdef vco2
-  :args (s/cat :amp valid-kr? :cps valid-kr? :mode* valid-i?* :pw* valid-kr?* :phase* valid-kr?* :nyx* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :mode* (s/? valid-i?*) :pw* (s/? valid-kr?*) :phase* (s/? valid-kr?*) :nyx* (s/? valid-i?*) ))
 (stest/instrument `vco2)
-
-(defn vco2:a
-  {:arglists '([kamp kcps & imode* kpw* kphase* inyx*])}
-  [amp cps & [ mode* pw* phase* nyx* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vco2"
-                      [amp cps mode* pw* phase* nyx*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vco2:a
-  :args (s/cat :amp valid-kr? :cps valid-kr? :mode* valid-i?* :pw* valid-kr?* :phase* valid-kr?* :nyx* valid-i?* ))
-(stest/instrument `vco2:a)
 
 (defn copya2ftab
   {:arglists '([iftblArr iab] [kftblArr kab])}
@@ -25785,6 +20357,7 @@
 
 (s/fdef copya2ftab
   :args (s/alt
+         :kArrk (s/cat :ftbl valid-kArr? :ab valid-kr? )
          :iArri (s/cat :ftbl valid-iArr? :ab valid-i? )
          ))
 (stest/instrument `copya2ftab)
@@ -25816,7 +20389,7 @@
     (new out-types ast)))
 
 (s/fdef trigseq
-  :args (s/cat :trig_in valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_values valid-kr? :out1* valid-kr?* :out2* valid-kr?* :out3* valid-kr?* :out4* valid-kr?* :out5* valid-kr?* :out6* valid-kr?* :out7* valid-kr?* :out8* valid-kr?* :out9* valid-kr?* :out10* valid-kr?* :out11* valid-kr?* :out12* valid-kr?* :out13* valid-kr?* :out14* valid-kr?* :out15* valid-kr?* :out16* valid-kr?* ))
+  :args (s/cat :trig_in valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_values valid-kr? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :out3* (s/? valid-kr?*) :out4* (s/? valid-kr?*) :out5* (s/? valid-kr?*) :out6* (s/? valid-kr?*) :out7* (s/? valid-kr?*) :out8* (s/? valid-kr?*) :out9* (s/? valid-kr?*) :out10* (s/? valid-kr?*) :out11* (s/? valid-kr?*) :out12* (s/? valid-kr?*) :out13* (s/? valid-kr?*) :out14* (s/? valid-kr?*) :out15* (s/? valid-kr?*) :out16* (s/? valid-kr?*) ))
 (stest/instrument `trigseq)
 
 (defn mfb
@@ -25832,6 +20405,7 @@
 
 (s/fdef mfb
   :args (s/alt
+         :kArrkki (s/cat :in valid-kArr? :low valid-kr? :high valid-kr? :bands valid-i? )
          :iArriii (s/cat :in valid-iArr? :low valid-i? :high valid-i? :bands valid-i? )
          ))
 (stest/instrument `mfb)
@@ -25879,7 +20453,7 @@
 
 (s/fdef mxadsr
   :args (s/alt
-         :iiiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* :reltim* valid-i?* )
+         :iiiiii (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) :reltim* (s/? valid-i?*) )
          ))
 (stest/instrument `mxadsr)
 
@@ -25895,7 +20469,7 @@
     (new out-types ast)))
 
 (s/fdef mxadsr:a
-  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* :reltim* valid-i?* ))
+  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) :reltim* (s/? valid-i?*) ))
 (stest/instrument `mxadsr:a)
 
 (defn mxadsr:k
@@ -25910,7 +20484,7 @@
     (new out-types ast)))
 
 (s/fdef mxadsr:k
-  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* valid-i?* :reltim* valid-i?* ))
+  :args (s/cat :att valid-i? :dec valid-i? :slev valid-i? :rel valid-i? :del* (s/? valid-i?*) :reltim* (s/? valid-i?*) ))
 (stest/instrument `mxadsr:k)
 
 (defn loopseg
@@ -25925,23 +20499,8 @@
     (new out-types ast)))
 
 (s/fdef loopseg
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :value1* valid-kr?* :time2* valid-kr?* :value3* valid-kr?* :time4* valid-kr?* :value5* valid-kr?* :time6* valid-kr?* :time7* valid-kr?* :time8* valid-kr?* :time9* valid-kr?* :time10* valid-kr?* :time11* valid-kr?* :time12* valid-kr?* :time13* valid-kr?* :time14* valid-kr?* :time15* valid-kr?* :time16* valid-kr?* ))
+  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :value1* (s/? valid-kr?*) :time2* (s/? valid-kr?*) :value3* (s/? valid-kr?*) :time4* (s/? valid-kr?*) :value5* (s/? valid-kr?*) :time6* (s/? valid-kr?*) :time7* (s/? valid-kr?*) :time8* (s/? valid-kr?*) :time9* (s/? valid-kr?*) :time10* (s/? valid-kr?*) :time11* (s/? valid-kr?*) :time12* (s/? valid-kr?*) :time13* (s/? valid-kr?*) :time14* (s/? valid-kr?*) :time15* (s/? valid-kr?*) :time16* (s/? valid-kr?*) ))
 (stest/instrument `loopseg)
-
-(defn loopseg:k
-  {:arglists '([kfreq ktrig iphase & kvalue1* ktime2* kvalue3* ktime4* kvalue5* ktime6* ktime7* ktime8* ktime9* ktime10* ktime11* ktime12* ktime13* ktime14* ktime15* ktime16*])}
-  [freq trig phase & [ value1* time2* value3* time4* value5* time6* time7* time8* time9* time10* time11* time12* time13* time14* time15* time16* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "loopseg"
-                      [freq trig phase value1* time2* value3* time4* value5* time6* time7* time8* time9* time10* time11* time12* time13* time14* time15* time16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef loopseg:k
-  :args (s/cat :freq valid-kr? :trig valid-kr? :phase valid-i? :value1* valid-kr?* :time2* valid-kr?* :value3* valid-kr?* :time4* valid-kr?* :value5* valid-kr?* :time6* valid-kr?* :time7* valid-kr?* :time8* valid-kr?* :time9* valid-kr?* :time10* valid-kr?* :time11* valid-kr?* :time12* valid-kr?* :time13* valid-kr?* :time14* valid-kr?* :time15* valid-kr?* :time16* valid-kr?* ))
-(stest/instrument `loopseg:k)
 
 (defn grain2
   {:arglists '([kcps kfmd kgdur iovrlp ktable iwfn & irpow* iseed* imode*])}
@@ -25955,23 +20514,8 @@
     (new out-types ast)))
 
 (s/fdef grain2
-  :args (s/cat :cps valid-kr? :fmd valid-kr? :gdur valid-kr? :ovrlp valid-i? :table valid-kr? :wfn valid-i? :rpow* valid-i?* :seed* valid-i?* :mode* valid-i?* ))
+  :args (s/cat :cps valid-kr? :fmd valid-kr? :gdur valid-kr? :ovrlp valid-i? :table valid-kr? :wfn valid-i? :rpow* (s/? valid-i?*) :seed* (s/? valid-i?*) :mode* (s/? valid-i?*) ))
 (stest/instrument `grain2)
-
-(defn grain2:a
-  {:arglists '([kcps kfmd kgdur iovrlp ktable iwfn & irpow* iseed* imode*])}
-  [cps fmd gdur ovrlp table wfn & [ rpow* seed* mode* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "grain2"
-                      [cps fmd gdur ovrlp table wfn rpow* seed* mode*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef grain2:a
-  :args (s/cat :cps valid-kr? :fmd valid-kr? :gdur valid-kr? :ovrlp valid-i? :table valid-kr? :wfn valid-i? :rpow* valid-i?* :seed* valid-i?* :mode* valid-i?* ))
-(stest/instrument `grain2:a)
 
 (defn vphaseseg
   {:arglists '([kphase ioutab ielems & itab1* idist2* itab3* idist4* itab5* idistN-6* itabN7* itabN8* itabN9* itabN10* itabN11* itabN12* itabN13* itabN14* itabN15* itabN16*])}
@@ -25985,7 +20529,7 @@
     (new out-types ast)))
 
 (s/fdef vphaseseg
-  :args (s/cat :phase valid-kr? :outab valid-i? :elems valid-i? :tab1* valid-i?* :dist2* valid-i?* :tab3* valid-i?* :dist4* valid-i?* :tab5* valid-i?* :distN-6* valid-i?* :tabN7* valid-i?* :tabN8* valid-i?* :tabN9* valid-i?* :tabN10* valid-i?* :tabN11* valid-i?* :tabN12* valid-i?* :tabN13* valid-i?* :tabN14* valid-i?* :tabN15* valid-i?* :tabN16* valid-i?* ))
+  :args (s/cat :phase valid-kr? :outab valid-i? :elems valid-i? :tab1* (s/? valid-i?*) :dist2* (s/? valid-i?*) :tab3* (s/? valid-i?*) :dist4* (s/? valid-i?*) :tab5* (s/? valid-i?*) :distN-6* (s/? valid-i?*) :tabN7* (s/? valid-i?*) :tabN8* (s/? valid-i?*) :tabN9* (s/? valid-i?*) :tabN10* (s/? valid-i?*) :tabN11* (s/? valid-i?*) :tabN12* (s/? valid-i?*) :tabN13* (s/? valid-i?*) :tabN14* (s/? valid-i?*) :tabN15* (s/? valid-i?*) :tabN16* (s/? valid-i?*) ))
 (stest/instrument `vphaseseg)
 
 (defn vtablewk
@@ -26000,7 +20544,7 @@
     (new out-types ast)))
 
 (s/fdef vtablewk
-  :args (s/cat :index valid-kr? :table valid-kr? :xmode valid-i? :inarg1* valid-kr?* :inarg2* valid-kr?* :inarg3* valid-kr?* :inargN4* valid-kr?* :inargN5* valid-kr?* :inargN6* valid-kr?* :inargN7* valid-kr?* :inargN8* valid-kr?* :inargN9* valid-kr?* :inargN10* valid-kr?* :inargN11* valid-kr?* :inargN12* valid-kr?* :inargN13* valid-kr?* :inargN14* valid-kr?* :inargN15* valid-kr?* :inargN16* valid-kr?* ))
+  :args (s/cat :index valid-kr? :table valid-kr? :xmode valid-i? :inarg1* (s/? valid-kr?*) :inarg2* (s/? valid-kr?*) :inarg3* (s/? valid-kr?*) :inargN4* (s/? valid-kr?*) :inargN5* (s/? valid-kr?*) :inargN6* (s/? valid-kr?*) :inargN7* (s/? valid-kr?*) :inargN8* (s/? valid-kr?*) :inargN9* (s/? valid-kr?*) :inargN10* (s/? valid-kr?*) :inargN11* (s/? valid-kr?*) :inargN12* (s/? valid-kr?*) :inargN13* (s/? valid-kr?*) :inargN14* (s/? valid-kr?*) :inargN15* (s/? valid-kr?*) :inargN16* (s/? valid-kr?*) ))
 (stest/instrument `vtablewk)
 
 (defn loscil
@@ -26015,7 +20559,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef loscil
-  :args (s/cat :amp valid-x? :cps valid-kr? :table* valid-i?* :bas* valid-i?* :mod1* valid-i?* :beg1* valid-i?* :end1* valid-i?* :mod1* valid-i?* :beg1* valid-i?* :end1* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-kr? :table* (s/? valid-i?*) :bas* (s/? valid-i?*) :mod1* (s/? valid-i?*) :beg1* (s/? valid-i?*) :end1* (s/? valid-i?*) :mod1* (s/? valid-i?*) :beg1* (s/? valid-i?*) :end1* (s/? valid-i?*) ))
 (stest/instrument `loscil)
 
 (defn monitor
@@ -26066,23 +20610,8 @@
     (new out-types ast)))
 
 (s/fdef rezzy
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :mode* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :mode* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `rezzy)
-
-(defn rezzy:a
-  {:arglists '([asig xcutoff-frequency xresonance & imode* iskip*])}
-  [sig cutoff-frequency resonance & [ mode* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "rezzy"
-                      [sig cutoff-frequency resonance mode* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef rezzy:a
-  :args (s/cat :sig valid-ar? :cutoff-frequency valid-x? :resonance valid-x? :mode* valid-i?* :skip* valid-i?* ))
-(stest/instrument `rezzy:a)
 
 (defn chani
   {:arglists '([kchan] [kchan])}
@@ -26144,6 +20673,7 @@
 
 (s/fdef inch
   :args (s/alt
+         :kkkkkkkkkkkkkkkk (s/cat :chan1* (s/? valid-kr?*) :chan2* (s/? valid-kr?*) :chan3* (s/? valid-kr?*) :chan4* (s/? valid-kr?*) :chan5* (s/? valid-kr?*) :chan6* (s/? valid-kr?*) :chan7* (s/? valid-kr?*) :chan8* (s/? valid-kr?*) :chan9* (s/? valid-kr?*) :chan10* (s/? valid-kr?*) :chan11* (s/? valid-kr?*) :chan12* (s/? valid-kr?*) :chan13* (s/? valid-kr?*) :chan14* (s/? valid-kr?*) :chan15* (s/? valid-kr?*) :chan16* (s/? valid-kr?*) )
          :k (s/cat :chan1 valid-kr? )
          ))
 (stest/instrument `inch)
@@ -26161,6 +20691,7 @@
 
 (s/fdef inch:a
   :args (s/alt
+         :kkkkkkkkkkkkkkkk (s/cat :chan1* (s/? valid-kr?*) :chan2* (s/? valid-kr?*) :chan3* (s/? valid-kr?*) :chan4* (s/? valid-kr?*) :chan5* (s/? valid-kr?*) :chan6* (s/? valid-kr?*) :chan7* (s/? valid-kr?*) :chan8* (s/? valid-kr?*) :chan9* (s/? valid-kr?*) :chan10* (s/? valid-kr?*) :chan11* (s/? valid-kr?*) :chan12* (s/? valid-kr?*) :chan13* (s/? valid-kr?*) :chan14* (s/? valid-kr?*) :chan15* (s/? valid-kr?*) :chan16* (s/? valid-kr?*) )
          :k (s/cat :chan1 valid-kr? )
          ))
 (stest/instrument `inch:a)
@@ -26178,6 +20709,7 @@
 
 (s/fdef fft
   :args (s/alt
+         :kArr (s/cat :in valid-kArr? )
          :iArr (s/cat :in valid-iArr? )
          ))
 (stest/instrument `fft)
@@ -26224,23 +20756,8 @@
     (new out-types ast)))
 
 (s/fdef rms
-  :args (s/cat :sig valid-ar? :hp* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :hp* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `rms)
-
-(defn rms:k
-  {:arglists '([asig & ihp* iskip*])}
-  [sig & [ hp* skip* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "rms"
-                      [sig hp* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef rms:k
-  :args (s/cat :sig valid-ar? :hp* valid-i?* :skip* valid-i?* ))
-(stest/instrument `rms:k)
 
 (defn strcpyk
   {:arglists '([Ssrc] [ksrc])}
@@ -26255,26 +20772,10 @@
 
 (s/fdef strcpyk
   :args (s/alt
+         :k (s/cat :src valid-kr? )
          :S (s/cat :src valid-S? )
          ))
 (stest/instrument `strcpyk)
-
-(defn strcpyk:S
-  {:arglists '([Ssrc] [ksrc])}
-  [src]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strcpyk"
-                      [src]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strcpyk:S
-  :args (s/alt
-         :S (s/cat :src valid-S? )
-         ))
-(stest/instrument `strcpyk:S)
 
 (defn pitch
   {:arglists '([asig iupdte ilo ihi idbthresh & ifrqs* iconf* istrt* iocts* iq* inptls* irolloff* iskip*])}
@@ -26288,7 +20789,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef pitch
-  :args (s/cat :sig valid-ar? :updte valid-i? :lo valid-i? :hi valid-i? :dbthresh valid-i? :frqs* valid-i?* :conf* valid-i?* :strt* valid-i?* :octs* valid-i?* :q* valid-i?* :nptls* valid-i?* :rolloff* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :updte valid-i? :lo valid-i? :hi valid-i? :dbthresh valid-i? :frqs* (s/? valid-i?*) :conf* (s/? valid-i?*) :strt* (s/? valid-i?*) :octs* (s/? valid-i?*) :q* (s/? valid-i?*) :nptls* (s/? valid-i?*) :rolloff* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `pitch)
 
 (defn midinoteoncps
@@ -26321,21 +20822,6 @@
   :args (s/cat :Port valid-i? ))
 (stest/instrument `serialRead)
 
-(defn serialRead:k
-  {:arglists '([iPort])}
-  [Port]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "serialRead"
-                      [Port]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef serialRead:k
-  :args (s/cat :Port valid-i? ))
-(stest/instrument `serialRead:k)
-
 (defn printk
   {:arglists '([itime kval & ispace*])}
   [time val & [ space* ]]
@@ -26348,7 +20834,7 @@
     (new out-types ast)))
 
 (s/fdef printk
-  :args (s/cat :time valid-i? :val valid-kr? :space* valid-i?* ))
+  :args (s/cat :time valid-i? :val valid-kr? :space* (s/? valid-i?*) ))
 (stest/instrument `printk)
 
 (defn hvs2
@@ -26363,7 +20849,7 @@
     (new out-types ast)))
 
 (s/fdef hvs2
-  :args (s/cat :x valid-kr? :y valid-kr? :numParms valid-i? :numPointsX valid-i? :numPointsY valid-i? :OutTab valid-i? :PositionsTab valid-i? :SnapTab valid-i? :ConfigTab* valid-i?* ))
+  :args (s/cat :x valid-kr? :y valid-kr? :numParms valid-i? :numPointsX valid-i? :numPointsY valid-i? :OutTab valid-i? :PositionsTab valid-i? :SnapTab valid-i? :ConfigTab* (s/? valid-i?*) ))
 (stest/instrument `hvs2)
 
 (defn fareylen
@@ -26381,21 +20867,6 @@
   :args (s/cat :table valid-kr? ))
 (stest/instrument `fareylen)
 
-(defn fareylen:k
-  {:arglists '([ktable])}
-  [table]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "fareylen"
-                      [table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fareylen:k
-  :args (s/cat :table valid-kr? ))
-(stest/instrument `fareylen:k)
-
 (defn expsegb
   {:arglists '([ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*] [ia itim2 & ib1* itim2* ic3* ic4* ic5* ic6* ic7* ic8* ic9* ic10* ic11* ic12* ic13* ic14* ic15* ic16*])}
   [a tim2 & [ b1* tim2* c3* c4* c5* c6* c7* c8* c9* c10* c11* c12* c13* c14* c15* c16* ]]
@@ -26409,7 +20880,7 @@
 
 (s/fdef expsegb
   :args (s/alt
-         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* )
+         :iiiiiiiiiiiiiiiiii (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) )
          ))
 (stest/instrument `expsegb)
 
@@ -26425,7 +20896,7 @@
     (new out-types ast)))
 
 (s/fdef expsegb:a
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `expsegb:a)
 
 (defn expsegb:k
@@ -26440,7 +20911,7 @@
     (new out-types ast)))
 
 (s/fdef expsegb:k
-  :args (s/cat :a valid-i? :tim2 valid-i? :b1* valid-i?* :tim2* valid-i?* :c3* valid-i?* :c4* valid-i?* :c5* valid-i?* :c6* valid-i?* :c7* valid-i?* :c8* valid-i?* :c9* valid-i?* :c10* valid-i?* :c11* valid-i?* :c12* valid-i?* :c13* valid-i?* :c14* valid-i?* :c15* valid-i?* :c16* valid-i?* ))
+  :args (s/cat :a valid-i? :tim2 valid-i? :b1* (s/? valid-i?*) :tim2* (s/? valid-i?*) :c3* (s/? valid-i?*) :c4* (s/? valid-i?*) :c5* (s/? valid-i?*) :c6* (s/? valid-i?*) :c7* (s/? valid-i?*) :c8* (s/? valid-i?*) :c9* (s/? valid-i?*) :c10* (s/? valid-i?*) :c11* (s/? valid-i?*) :c12* (s/? valid-i?*) :c13* (s/? valid-i?*) :c14* (s/? valid-i?*) :c15* (s/? valid-i?*) :c16* (s/? valid-i?*) ))
 (stest/instrument `expsegb:k)
 
 (defn maxabsaccum
@@ -26485,23 +20956,8 @@
     (new out-types ast)))
 
 (s/fdef resyn
-  :args (s/cat :in valid-f? :scal valid-kr? :pitch valid-kr? :maxtracks valid-kr? :table valid-i? :table* valid-i?* ))
+  :args (s/cat :in valid-f? :scal valid-kr? :pitch valid-kr? :maxtracks valid-kr? :table valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `resyn)
-
-(defn resyn:a
-  {:arglists '([fin kscal kpitch kmaxtracks itable & itable*])}
-  [in scal pitch maxtracks table & [ table* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "resyn"
-                      [in scal pitch maxtracks table table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef resyn:a
-  :args (s/cat :in valid-f? :scal valid-kr? :pitch valid-kr? :maxtracks valid-kr? :table valid-i? :table* valid-i?* ))
-(stest/instrument `resyn:a)
 
 (defn ntrpol
   {:arglists '([asig1 asig2 kpoint & imin* imax*] [isig1 isig2 ipoint & imin* imax*] [ksig1 ksig2 kpoint & imin* imax*])}
@@ -26516,7 +20972,9 @@
 
 (s/fdef ntrpol
   :args (s/alt
-         :aakii (s/cat :sig1 valid-ar? :sig2 valid-ar? :point valid-kr? :min* valid-i?* :max* valid-i?* )
+         :kkkii (s/cat :sig1 valid-kr? :sig2 valid-kr? :point valid-kr? :min* (s/? valid-i?*) :max* (s/? valid-i?*) )
+         :iiiii (s/cat :sig1 valid-i? :sig2 valid-i? :point valid-i? :min* (s/? valid-i?*) :max* (s/? valid-i?*) )
+         :aakii (s/cat :sig1 valid-ar? :sig2 valid-ar? :point valid-kr? :min* (s/? valid-i?*) :max* (s/? valid-i?*) )
          ))
 (stest/instrument `ntrpol)
 
@@ -26532,7 +20990,7 @@
     (new out-types ast)))
 
 (s/fdef ntrpol:a
-  :args (s/cat :sig1 valid-ar? :sig2 valid-ar? :point valid-kr? :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :sig1 valid-ar? :sig2 valid-ar? :point valid-kr? :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `ntrpol:a)
 
 (defn ntrpol:i
@@ -26547,7 +21005,7 @@
     (new out-types ast)))
 
 (s/fdef ntrpol:i
-  :args (s/cat :sig1 valid-i? :sig2 valid-i? :point valid-i? :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :sig1 valid-i? :sig2 valid-i? :point valid-i? :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `ntrpol:i)
 
 (defn ntrpol:k
@@ -26562,7 +21020,7 @@
     (new out-types ast)))
 
 (s/fdef ntrpol:k
-  :args (s/cat :sig1 valid-kr? :sig2 valid-kr? :point valid-kr? :min* valid-i?* :max* valid-i?* ))
+  :args (s/cat :sig1 valid-kr? :sig2 valid-kr? :point valid-kr? :min* (s/? valid-i?*) :max* (s/? valid-i?*) ))
 (stest/instrument `ntrpol:k)
 
 (defn imagecreate
@@ -26580,21 +21038,6 @@
   :args (s/cat :width valid-i? :height valid-i? ))
 (stest/instrument `imagecreate)
 
-(defn imagecreate:i
-  {:arglists '([iwidth iheight])}
-  [width height]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "imagecreate"
-                      [width height]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef imagecreate:i
-  :args (s/cat :width valid-i? :height valid-i? ))
-(stest/instrument `imagecreate:i)
-
 (defn dcblock2
   {:arglists '([ain & iorder* iskip*])}
   [in & [ order* skip* ]]
@@ -26607,23 +21050,8 @@
     (new out-types ast)))
 
 (s/fdef dcblock2
-  :args (s/cat :in valid-ar? :order* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :in valid-ar? :order* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `dcblock2)
-
-(defn dcblock2:a
-  {:arglists '([ain & iorder* iskip*])}
-  [in & [ order* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "dcblock2"
-                      [in order* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef dcblock2:a
-  :args (s/cat :in valid-ar? :order* valid-i?* :skip* valid-i?* ))
-(stest/instrument `dcblock2:a)
 
 (defn mvclpf2
   {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
@@ -26638,26 +21066,12 @@
 
 (s/fdef mvclpf2
   :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
+         :akki (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :akai (s/cat :in valid-ar? :center-frequency valid-kr? :resonance valid-ar? :stor* (s/? valid-i?*) )
+         :aaki (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-kr? :stor* (s/? valid-i?*) )
+         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* (s/? valid-i?*) )
          ))
 (stest/instrument `mvclpf2)
-
-(defn mvclpf2:a
-  {:arglists '([ain acenter-frequency aresonance & istor*] [ain acenter-frequency kresonance & istor*] [ain kcenter-frequency aresonance & istor*] [ain kcenter-frequency kresonance & istor*])}
-  [in center-frequency resonance & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "mvclpf2"
-                      [in center-frequency resonance stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef mvclpf2:a
-  :args (s/alt
-         :aaai (s/cat :in valid-ar? :center-frequency valid-ar? :resonance valid-ar? :stor* valid-i?* )
-         ))
-(stest/instrument `mvclpf2:a)
 
 (defn zkr
   {:arglists '([kindex])}
@@ -26674,21 +21088,6 @@
   :args (s/cat :index valid-kr? ))
 (stest/instrument `zkr)
 
-(defn zkr:k
-  {:arglists '([kindex])}
-  [index]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "zkr"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zkr:k
-  :args (s/cat :index valid-kr? ))
-(stest/instrument `zkr:k)
-
 (defn tanh
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
   [arg1]
@@ -26702,6 +21101,10 @@
 
 (s/fdef tanh
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `tanh)
@@ -26796,21 +21199,6 @@
   :args (s/cat :sigin valid-f? :gain valid-kr? :level valid-kr? :ftable valid-i? ))
 (stest/instrument `pvstencil)
 
-(defn pvstencil:f
-  {:arglists '([fsigin kgain klevel iftable])}
-  [sigin gain level ftable]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvstencil"
-                      [sigin gain level ftable]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvstencil:f
-  :args (s/cat :sigin valid-f? :gain valid-kr? :level valid-kr? :ftable valid-i? ))
-(stest/instrument `pvstencil:f)
-
 (defn pluck
   {:arglists '([kamp kcps icps itable imeth & iparm1* iparm1*])}
   [amp cps cps table meth & [ parm1* parm1* ]]
@@ -26823,23 +21211,8 @@
     (new out-types ast)))
 
 (s/fdef pluck
-  :args (s/cat :amp valid-kr? :cps valid-kr? :cps valid-i? :table valid-i? :meth valid-i? :parm1* valid-i?* :parm1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :cps valid-kr? :cps valid-i? :table valid-i? :meth valid-i? :parm1* (s/? valid-i?*) :parm1* (s/? valid-i?*) ))
 (stest/instrument `pluck)
-
-(defn pluck:a
-  {:arglists '([kamp kcps icps itable imeth & iparm1* iparm1*])}
-  [amp cps cps table meth & [ parm1* parm1* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pluck"
-                      [amp cps cps table meth parm1* parm1*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pluck:a
-  :args (s/cat :amp valid-kr? :cps valid-kr? :cps valid-i? :table valid-i? :meth valid-i? :parm1* valid-i?* :parm1* valid-i?* ))
-(stest/instrument `pluck:a)
 
 (defn babo
   {:arglists '([asig ksrcx ksrcy ksrcz irx iry irz & idiff* ifno*])}
@@ -26853,7 +21226,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef babo
-  :args (s/cat :sig valid-ar? :srcx valid-kr? :srcy valid-kr? :srcz valid-kr? :rx valid-i? :ry valid-i? :rz valid-i? :diff* valid-i?* :fno* valid-i?* ))
+  :args (s/cat :sig valid-ar? :srcx valid-kr? :srcy valid-kr? :srcz valid-kr? :rx valid-i? :ry valid-i? :rz valid-i? :diff* (s/? valid-i?*) :fno* (s/? valid-i?*) ))
 (stest/instrument `babo)
 
 (defn xyscale
@@ -26869,26 +21242,10 @@
 
 (s/fdef xyscale
   :args (s/alt
+         :kkkkkk (s/cat :x valid-kr? :y valid-kr? :ZeroZero valid-kr? :OneZero valid-kr? :ZeroOne valid-kr? :OneOne valid-kr? )
          :kkiiii (s/cat :x valid-kr? :y valid-kr? :ZeroZero valid-i? :OneZero valid-i? :ZeroOne valid-i? :OneOne valid-i? )
          ))
 (stest/instrument `xyscale)
-
-(defn xyscale:k
-  {:arglists '([kx ky iZeroZero iOneZero iZeroOne iOneOne] [kx ky kZeroZero kOneZero kZeroOne kOneOne])}
-  [x y ZeroZero OneZero ZeroOne OneOne]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "xyscale"
-                      [x y ZeroZero OneZero ZeroOne OneOne]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef xyscale:k
-  :args (s/alt
-         :kkiiii (s/cat :x valid-kr? :y valid-kr? :ZeroZero valid-i? :OneZero valid-i? :ZeroOne valid-i? :OneOne valid-i? )
-         ))
-(stest/instrument `xyscale:k)
 
 (defn lpreson
   {:arglists '([asig])}
@@ -26905,21 +21262,6 @@
   :args (s/cat :sig valid-ar? ))
 (stest/instrument `lpreson)
 
-(defn lpreson:a
-  {:arglists '([asig])}
-  [sig]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lpreson"
-                      [sig]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lpreson:a
-  :args (s/cat :sig valid-ar? ))
-(stest/instrument `lpreson:a)
-
 (defn gain
   {:arglists '([asig krms & ihp* iskip*])}
   [sig rms & [ hp* skip* ]]
@@ -26932,23 +21274,8 @@
     (new out-types ast)))
 
 (s/fdef gain
-  :args (s/cat :sig valid-ar? :rms valid-kr? :hp* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rms valid-kr? :hp* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `gain)
-
-(defn gain:a
-  {:arglists '([asig krms & ihp* iskip*])}
-  [sig rms & [ hp* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "gain"
-                      [sig rms hp* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef gain:a
-  :args (s/cat :sig valid-ar? :rms valid-kr? :hp* valid-i?* :skip* valid-i?* ))
-(stest/instrument `gain:a)
 
 (defn sfpassign
   {:arglists '([istartindex ifilhandle & imsgs*])}
@@ -26962,7 +21289,7 @@
     (new out-types ast)))
 
 (s/fdef sfpassign
-  :args (s/cat :startindex valid-i? :filhandle valid-i? :msgs* valid-i?* ))
+  :args (s/cat :startindex valid-i? :filhandle valid-i? :msgs* (s/? valid-i?*) ))
 (stest/instrument `sfpassign)
 
 (defn flanger
@@ -26980,21 +21307,6 @@
   :args (s/cat :sig valid-ar? :del valid-ar? :feedback valid-kr? :maxd valid-i? ))
 (stest/instrument `flanger)
 
-(defn flanger:a
-  {:arglists '([asig adel kfeedback imaxd])}
-  [sig del feedback maxd]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "flanger"
-                      [sig del feedback maxd]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef flanger:a
-  :args (s/cat :sig valid-ar? :del valid-ar? :feedback valid-kr? :maxd valid-i? ))
-(stest/instrument `flanger:a)
-
 (defn pvadd
   {:arglists '([ktimpnt kfmod Sfilcod itable ibins & ibinoffset* ibinincr* iextractmode* ifreqlim* igatefn*] [ktimpnt kfmod ifilcod itable ibins & ibinoffset* ibinincr* iextractmode* ifreqlim* igatefn*])}
   [timpnt fmod filcod table bins & [ binoffset* binincr* extractmode* freqlim* gatefn* ]]
@@ -27008,26 +21320,10 @@
 
 (s/fdef pvadd
   :args (s/alt
-         :kkSiiiiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-S? :table valid-i? :bins valid-i? :binoffset* valid-i?* :binincr* valid-i?* :extractmode* valid-i?* :freqlim* valid-i?* :gatefn* valid-i?* )
+         :kkiiiiiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-i? :table valid-i? :bins valid-i? :binoffset* (s/? valid-i?*) :binincr* (s/? valid-i?*) :extractmode* (s/? valid-i?*) :freqlim* (s/? valid-i?*) :gatefn* (s/? valid-i?*) )
+         :kkSiiiiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-S? :table valid-i? :bins valid-i? :binoffset* (s/? valid-i?*) :binincr* (s/? valid-i?*) :extractmode* (s/? valid-i?*) :freqlim* (s/? valid-i?*) :gatefn* (s/? valid-i?*) )
          ))
 (stest/instrument `pvadd)
-
-(defn pvadd:a
-  {:arglists '([ktimpnt kfmod Sfilcod itable ibins & ibinoffset* ibinincr* iextractmode* ifreqlim* igatefn*] [ktimpnt kfmod ifilcod itable ibins & ibinoffset* ibinincr* iextractmode* ifreqlim* igatefn*])}
-  [timpnt fmod filcod table bins & [ binoffset* binincr* extractmode* freqlim* gatefn* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "pvadd"
-                      [timpnt fmod filcod table bins binoffset* binincr* extractmode* freqlim* gatefn*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvadd:a
-  :args (s/alt
-         :kkSiiiiiii (s/cat :timpnt valid-kr? :fmod valid-kr? :filcod valid-S? :table valid-i? :bins valid-i? :binoffset* valid-i?* :binincr* valid-i?* :extractmode* valid-i?* :freqlim* valid-i?* :gatefn* valid-i?* )
-         ))
-(stest/instrument `pvadd:a)
 
 (defn reverbsc
   {:arglists '([ainL ainR kfblvl kcutoff-frequency & israte* ipitchm* iskip*])}
@@ -27041,7 +21337,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef reverbsc
-  :args (s/cat :inL valid-ar? :inR valid-ar? :fblvl valid-kr? :cutoff-frequency valid-kr? :srate* valid-i?* :pitchm* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :inL valid-ar? :inR valid-ar? :fblvl valid-kr? :cutoff-frequency valid-kr? :srate* (s/? valid-i?*) :pitchm* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `reverbsc)
 
 (defn binit
@@ -27059,21 +21355,6 @@
   :args (s/cat :in valid-f? :size valid-i? ))
 (stest/instrument `binit)
 
-(defn binit:f
-  {:arglists '([fin isize])}
-  [in size]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "binit"
-                      [in size]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef binit:f
-  :args (s/cat :in valid-f? :size valid-i? ))
-(stest/instrument `binit:f)
-
 (defn ATSreadnz
   {:arglists '([ktimepnt Satsfile iband] [ktimepnt iatsfile iband])}
   [timepnt atsfile band]
@@ -27087,26 +21368,10 @@
 
 (s/fdef ATSreadnz
   :args (s/alt
+         :kii (s/cat :timepnt valid-kr? :atsfile valid-i? :band valid-i? )
          :kSi (s/cat :timepnt valid-kr? :atsfile valid-S? :band valid-i? )
          ))
 (stest/instrument `ATSreadnz)
-
-(defn ATSreadnz:k
-  {:arglists '([ktimepnt Satsfile iband] [ktimepnt iatsfile iband])}
-  [timepnt atsfile band]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "ATSreadnz"
-                      [timepnt atsfile band]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef ATSreadnz:k
-  :args (s/alt
-         :kSi (s/cat :timepnt valid-kr? :atsfile valid-S? :band valid-i? )
-         ))
-(stest/instrument `ATSreadnz:k)
 
 (defn log2
   {:arglists '([aarg1] [iarg1] [iarg1Arr] [karg1] [karg1Arr])}
@@ -27121,6 +21386,10 @@
 
 (s/fdef log2
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `log2)
@@ -27212,23 +21481,8 @@
     (new out-types ast)))
 
 (s/fdef shaker
-  :args (s/cat :amp valid-kr? :freq valid-kr? :beans valid-kr? :damp valid-kr? :times valid-kr? :decay* valid-i?* ))
+  :args (s/cat :amp valid-kr? :freq valid-kr? :beans valid-kr? :damp valid-kr? :times valid-kr? :decay* (s/? valid-i?*) ))
 (stest/instrument `shaker)
-
-(defn shaker:a
-  {:arglists '([kamp kfreq kbeans kdamp ktimes & idecay*])}
-  [amp freq beans damp times & [ decay* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "shaker"
-                      [amp freq beans damp times decay*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef shaker:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :beans valid-kr? :damp valid-kr? :times valid-kr? :decay* valid-i?* ))
-(stest/instrument `shaker:a)
 
 (defn plltrack
   {:arglists '([asig kd & kloopf* kloopq* klf* khf* kthresh*])}
@@ -27242,7 +21496,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef plltrack
-  :args (s/cat :sig valid-ar? :d valid-kr? :loopf* valid-kr?* :loopq* valid-kr?* :lf* valid-kr?* :hf* valid-kr?* :thresh* valid-kr?* ))
+  :args (s/cat :sig valid-ar? :d valid-kr? :loopf* (s/? valid-kr?*) :loopq* (s/? valid-kr?*) :lf* (s/? valid-kr?*) :hf* (s/? valid-kr?*) :thresh* (s/? valid-kr?*) ))
 (stest/instrument `plltrack)
 
 (defn oscil1i
@@ -27257,23 +21511,8 @@
     (new out-types ast)))
 
 (s/fdef oscil1i
-  :args (s/cat :del valid-i? :amp valid-kr? :dur valid-i? :table* valid-i?* ))
+  :args (s/cat :del valid-i? :amp valid-kr? :dur valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `oscil1i)
-
-(defn oscil1i:k
-  {:arglists '([idel kamp idur & itable*])}
-  [del amp dur & [ table* ]]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "oscil1i"
-                      [del amp dur table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef oscil1i:k
-  :args (s/cat :del valid-i? :amp valid-kr? :dur valid-i? :table* valid-i?* ))
-(stest/instrument `oscil1i:k)
 
 (defn oscils
   {:arglists '([iamp icps iphase & iflg*])}
@@ -27287,23 +21526,8 @@
     (new out-types ast)))
 
 (s/fdef oscils
-  :args (s/cat :amp valid-i? :cps valid-i? :phase valid-i? :flg* valid-i?* ))
+  :args (s/cat :amp valid-i? :cps valid-i? :phase valid-i? :flg* (s/? valid-i?*) ))
 (stest/instrument `oscils)
-
-(defn oscils:a
-  {:arglists '([iamp icps iphase & iflg*])}
-  [amp cps phase & [ flg* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "oscils"
-                      [amp cps phase flg*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef oscils:a
-  :args (s/cat :amp valid-i? :cps valid-i? :phase valid-i? :flg* valid-i?* ))
-(stest/instrument `oscils:a)
 
 (defn mididefault
   {:arglists '([xdefault xvalue])}
@@ -27332,23 +21556,8 @@
     (new out-types ast)))
 
 (s/fdef zdf_2pole
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :mode* valid-kr?* :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :mode* (s/? valid-kr?*) :stor* (s/? valid-i?*) ))
 (stest/instrument `zdf_2pole)
-
-(defn zdf_2pole:a
-  {:arglists '([ain xcenter-frequency xQ & kmode* istor*])}
-  [in center-frequency Q & [ mode* stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "zdf_2pole"
-                      [in center-frequency Q mode* stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef zdf_2pole:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :Q valid-x? :mode* valid-kr?* :stor* valid-i?* ))
-(stest/instrument `zdf_2pole:a)
 
 (defn hrtfstat
   {:arglists '([asrc iAz iElev Sfilel Sfiler & iradius* isr*])}
@@ -27362,7 +21571,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef hrtfstat
-  :args (s/cat :src valid-ar? :Az valid-i? :Elev valid-i? :filel valid-S? :filer valid-S? :radius* valid-i?* :sr* valid-i?* ))
+  :args (s/cat :src valid-ar? :Az valid-i? :Elev valid-i? :filel valid-S? :filer valid-S? :radius* (s/? valid-i?*) :sr* (s/? valid-i?*) ))
 (stest/instrument `hrtfstat)
 
 (defn fofilter
@@ -27377,23 +21586,8 @@
     (new out-types ast)))
 
 (s/fdef fofilter
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :ris valid-x? :dec valid-x? :stor* valid-i?* ))
+  :args (s/cat :in valid-ar? :center-frequency valid-x? :ris valid-x? :dec valid-x? :stor* (s/? valid-i?*) ))
 (stest/instrument `fofilter)
-
-(defn fofilter:a
-  {:arglists '([ain xcenter-frequency xris xdec & istor*])}
-  [in center-frequency ris dec & [ stor* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fofilter"
-                      [in center-frequency ris dec stor*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fofilter:a
-  :args (s/cat :in valid-ar? :center-frequency valid-x? :ris valid-x? :dec valid-x? :stor* valid-i?* ))
-(stest/instrument `fofilter:a)
 
 (defn vosim
   {:arglists '([kamp kFund kForm kDecay kPulseCount kPulseFactor itable & iskip*])}
@@ -27407,23 +21601,8 @@
     (new out-types ast)))
 
 (s/fdef vosim
-  :args (s/cat :amp valid-kr? :Fund valid-kr? :Form valid-kr? :Decay valid-kr? :PulseCount valid-kr? :PulseFactor valid-kr? :table valid-i? :skip* valid-i?* ))
+  :args (s/cat :amp valid-kr? :Fund valid-kr? :Form valid-kr? :Decay valid-kr? :PulseCount valid-kr? :PulseFactor valid-kr? :table valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `vosim)
-
-(defn vosim:a
-  {:arglists '([kamp kFund kForm kDecay kPulseCount kPulseFactor itable & iskip*])}
-  [amp Fund Form Decay PulseCount PulseFactor table & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "vosim"
-                      [amp Fund Form Decay PulseCount PulseFactor table skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef vosim:a
-  :args (s/cat :amp valid-kr? :Fund valid-kr? :Form valid-kr? :Decay valid-kr? :PulseCount valid-kr? :PulseFactor valid-kr? :table valid-i? :skip* valid-i?* ))
-(stest/instrument `vosim:a)
 
 (defn mrtmsg
   {:arglists '([imsgtype])}
@@ -27452,23 +21631,8 @@
     (new out-types ast)))
 
 (s/fdef foscili
-  :args (s/cat :amp valid-x? :cps valid-kr? :car valid-x? :mod valid-x? :index valid-kr? :table* valid-i?* :phase* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-kr? :car valid-x? :mod valid-x? :index valid-kr? :table* (s/? valid-i?*) :phase* (s/? valid-i?*) ))
 (stest/instrument `foscili)
-
-(defn foscili:a
-  {:arglists '([xamp kcps xcar xmod kindex & itable* iphase*])}
-  [amp cps car mod index & [ table* phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "foscili"
-                      [amp cps car mod index table* phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef foscili:a
-  :args (s/cat :amp valid-x? :cps valid-kr? :car valid-x? :mod valid-x? :index valid-kr? :table* valid-i?* :phase* valid-i?* ))
-(stest/instrument `foscili:a)
 
 (defn tablexkt
   {:arglists '([xindex ktable kwarp iwsize & ixmode* ixoff* iwrap*])}
@@ -27482,23 +21646,8 @@
     (new out-types ast)))
 
 (s/fdef tablexkt
-  :args (s/cat :index valid-x? :table valid-kr? :warp valid-kr? :wsize valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-kr? :warp valid-kr? :wsize valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tablexkt)
-
-(defn tablexkt:a
-  {:arglists '([xindex ktable kwarp iwsize & ixmode* ixoff* iwrap*])}
-  [index table warp wsize & [ xmode* xoff* wrap* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tablexkt"
-                      [index table warp wsize xmode* xoff* wrap*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tablexkt:a
-  :args (s/cat :index valid-x? :table valid-kr? :warp valid-kr? :wsize valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
-(stest/instrument `tablexkt:a)
 
 (defn outkat
   {:arglists '([kchn kvalue kmin kmax])}
@@ -27527,7 +21676,7 @@
     (new out-types ast)))
 
 (s/fdef vpowv_i
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vpowv_i)
 
 (defn tradsyn
@@ -27542,23 +21691,8 @@
     (new out-types ast)))
 
 (s/fdef tradsyn
-  :args (s/cat :in valid-f? :scal valid-kr? :pitch valid-kr? :maxtracks valid-kr? :table valid-i? :table* valid-i?* ))
+  :args (s/cat :in valid-f? :scal valid-kr? :pitch valid-kr? :maxtracks valid-kr? :table valid-i? :table* (s/? valid-i?*) ))
 (stest/instrument `tradsyn)
-
-(defn tradsyn:a
-  {:arglists '([fin kscal kpitch kmaxtracks itable & itable*])}
-  [in scal pitch maxtracks table & [ table* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "tradsyn"
-                      [in scal pitch maxtracks table table*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef tradsyn:a
-  :args (s/cat :in valid-f? :scal valid-kr? :pitch valid-kr? :maxtracks valid-kr? :table valid-i? :table* valid-i?* ))
-(stest/instrument `tradsyn:a)
 
 (defn ftom
   {:arglists '([ifreq] [kfreq])}
@@ -27573,6 +21707,7 @@
 
 (s/fdef ftom
   :args (s/alt
+         :k (s/cat :freq valid-kr? )
          :i (s/cat :freq valid-i? )
          ))
 (stest/instrument `ftom)
@@ -27619,23 +21754,8 @@
     (new out-types ast)))
 
 (s/fdef polynomial
-  :args (s/cat :in valid-ar? :arg1* valid-kr?* :arg2* valid-kr?* :arg3* valid-kr?* :arg4* valid-kr?* :arg5* valid-kr?* :arg6* valid-kr?* :arg7* valid-kr?* :arg8* valid-kr?* :arg9* valid-kr?* :arg10* valid-kr?* :arg11* valid-kr?* :arg12* valid-kr?* :arg13* valid-kr?* :arg14* valid-kr?* :arg15* valid-kr?* :arg16* valid-kr?* ))
+  :args (s/cat :in valid-ar? :arg1* (s/? valid-kr?*) :arg2* (s/? valid-kr?*) :arg3* (s/? valid-kr?*) :arg4* (s/? valid-kr?*) :arg5* (s/? valid-kr?*) :arg6* (s/? valid-kr?*) :arg7* (s/? valid-kr?*) :arg8* (s/? valid-kr?*) :arg9* (s/? valid-kr?*) :arg10* (s/? valid-kr?*) :arg11* (s/? valid-kr?*) :arg12* (s/? valid-kr?*) :arg13* (s/? valid-kr?*) :arg14* (s/? valid-kr?*) :arg15* (s/? valid-kr?*) :arg16* (s/? valid-kr?*) ))
 (stest/instrument `polynomial)
-
-(defn polynomial:a
-  {:arglists '([ain & karg1* karg2* karg3* karg4* karg5* karg6* karg7* karg8* karg9* karg10* karg11* karg12* karg13* karg14* karg15* karg16*])}
-  [in & [ arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "polynomial"
-                      [in arg1* arg2* arg3* arg4* arg5* arg6* arg7* arg8* arg9* arg10* arg11* arg12* arg13* arg14* arg15* arg16*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef polynomial:a
-  :args (s/cat :in valid-ar? :arg1* valid-kr?* :arg2* valid-kr?* :arg3* valid-kr?* :arg4* valid-kr?* :arg5* valid-kr?* :arg6* valid-kr?* :arg7* valid-kr?* :arg8* valid-kr?* :arg9* valid-kr?* :arg10* valid-kr?* :arg11* valid-kr?* :arg12* valid-kr?* :arg13* valid-kr?* :arg14* valid-kr?* :arg15* valid-kr?* :arg16* valid-kr?* ))
-(stest/instrument `polynomial:a)
 
 (defn strget
   {:arglists '([iindex])}
@@ -27652,21 +21772,6 @@
   :args (s/cat :index valid-i? ))
 (stest/instrument `strget)
 
-(defn strget:S
-  {:arglists '([iindex])}
-  [index]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strget"
-                      [index]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strget:S
-  :args (s/cat :index valid-i? ))
-(stest/instrument `strget:S)
-
 (defn comb
   {:arglists '([asig krvt ilpt & iskip* insmps*])}
   [sig rvt lpt & [ skip* nsmps* ]]
@@ -27679,23 +21784,8 @@
     (new out-types ast)))
 
 (s/fdef comb
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
+  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-i? :skip* (s/? valid-i?*) :nsmps* (s/? valid-i?*) ))
 (stest/instrument `comb)
-
-(defn comb:a
-  {:arglists '([asig krvt ilpt & iskip* insmps*])}
-  [sig rvt lpt & [ skip* nsmps* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "comb"
-                      [sig rvt lpt skip* nsmps*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef comb:a
-  :args (s/cat :sig valid-ar? :rvt valid-kr? :lpt valid-i? :skip* valid-i?* :nsmps* valid-i?* ))
-(stest/instrument `comb:a)
 
 (defn button
   {:arglists '([knum])}
@@ -27711,21 +21801,6 @@
 (s/fdef button
   :args (s/cat :num valid-kr? ))
 (stest/instrument `button)
-
-(defn button:k
-  {:arglists '([knum])}
-  [num]
-  (let [out-types-quoted 'ControlSignal
-        out-types ControlSignal
-        ast (ast-node out-types-quoted
-                      "button"
-                      [num]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef button:k
-  :args (s/cat :num valid-kr? ))
-(stest/instrument `button:k)
 
 (defn zkcl
   {:arglists '([kfirst klast])}
@@ -27785,6 +21860,10 @@
 
 (s/fdef cosinv
   :args (s/alt
+         :kArr (s/cat :arg1 valid-kArr? )
+         :k (s/cat :arg1 valid-kr? )
+         :iArr (s/cat :arg1 valid-iArr? )
+         :i (s/cat :arg1 valid-i? )
          :a (s/cat :arg1 valid-ar? )
          ))
 (stest/instrument `cosinv)
@@ -27877,26 +21956,10 @@
 
 (s/fdef filevalid
   :args (s/alt
+         :i (s/cat :filcod valid-i? )
          :S (s/cat :filcod valid-S? )
          ))
 (stest/instrument `filevalid)
-
-(defn filevalid:i
-  {:arglists '([Sfilcod] [ifilcod])}
-  [filcod]
-  (let [out-types-quoted 'Variable
-        out-types Variable
-        ast (ast-node out-types-quoted
-                      "filevalid"
-                      [filcod]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef filevalid:i
-  :args (s/alt
-         :S (s/cat :filcod valid-S? )
-         ))
-(stest/instrument `filevalid:i)
 
 (defn tabplay
   {:arglists '([ktrig knumtics ktable & kout1* kout2* koutN3* koutN4* koutN5* koutN6* koutN7* koutN8* koutN9* koutN10* koutN11* koutN12* koutN13* koutN14* koutN15* koutN16*])}
@@ -27910,7 +21973,7 @@
     (new out-types ast)))
 
 (s/fdef tabplay
-  :args (s/cat :trig valid-kr? :numtics valid-kr? :table valid-kr? :out1* valid-kr?* :out2* valid-kr?* :outN3* valid-kr?* :outN4* valid-kr?* :outN5* valid-kr?* :outN6* valid-kr?* :outN7* valid-kr?* :outN8* valid-kr?* :outN9* valid-kr?* :outN10* valid-kr?* :outN11* valid-kr?* :outN12* valid-kr?* :outN13* valid-kr?* :outN14* valid-kr?* :outN15* valid-kr?* :outN16* valid-kr?* ))
+  :args (s/cat :trig valid-kr? :numtics valid-kr? :table valid-kr? :out1* (s/? valid-kr?*) :out2* (s/? valid-kr?*) :outN3* (s/? valid-kr?*) :outN4* (s/? valid-kr?*) :outN5* (s/? valid-kr?*) :outN6* (s/? valid-kr?*) :outN7* (s/? valid-kr?*) :outN8* (s/? valid-kr?*) :outN9* (s/? valid-kr?*) :outN10* (s/? valid-kr?*) :outN11* (s/? valid-kr?*) :outN12* (s/? valid-kr?*) :outN13* (s/? valid-kr?*) :outN14* (s/? valid-kr?*) :outN15* (s/? valid-kr?*) :outN16* (s/? valid-kr?*) ))
 (stest/instrument `tabplay)
 
 (defn biquad
@@ -27925,23 +21988,8 @@
     (new out-types ast)))
 
 (s/fdef biquad
-  :args (s/cat :sig valid-ar? :b2 valid-kr? :b3 valid-kr? :b4 valid-kr? :a5 valid-kr? :a6 valid-kr? :a7 valid-kr? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :b2 valid-kr? :b3 valid-kr? :b4 valid-kr? :a5 valid-kr? :a6 valid-kr? :a7 valid-kr? :skip* (s/? valid-i?*) ))
 (stest/instrument `biquad)
-
-(defn biquad:a
-  {:arglists '([asig kb2 kb3 kb4 ka5 ka6 ka7 & iskip*])}
-  [sig b2 b3 b4 a5 a6 a7 & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "biquad"
-                      [sig b2 b3 b4 a5 a6 a7 skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef biquad:a
-  :args (s/cat :sig valid-ar? :b2 valid-kr? :b3 valid-kr? :b4 valid-kr? :a5 valid-kr? :a6 valid-kr? :a7 valid-kr? :skip* valid-i?* ))
-(stest/instrument `biquad:a)
 
 (defn sleighbells
   {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
@@ -27955,23 +22003,8 @@
     (new out-types ast)))
 
 (s/fdef sleighbells
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
+  :args (s/cat :amp valid-kr? :dettack valid-i? :num* (s/? valid-i?*) :damp* (s/? valid-i?*) :maxshake* (s/? valid-i?*) :freq* (s/? valid-i?*) :freq1* (s/? valid-i?*) :freq1* (s/? valid-i?*) ))
 (stest/instrument `sleighbells)
-
-(defn sleighbells:a
-  {:arglists '([kamp idettack & inum* idamp* imaxshake* ifreq* ifreq1* ifreq1*])}
-  [amp dettack & [ num* damp* maxshake* freq* freq1* freq1* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "sleighbells"
-                      [amp dettack num* damp* maxshake* freq* freq1* freq1*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef sleighbells:a
-  :args (s/cat :amp valid-kr? :dettack valid-i? :num* valid-i?* :damp* valid-i?* :maxshake* valid-i?* :freq* valid-i?* :freq1* valid-i?* :freq1* valid-i?* ))
-(stest/instrument `sleighbells:a)
 
 (defn in
   {:arglists '( )}
@@ -28060,21 +22093,6 @@
   :args (s/cat :src valid-S? ))
 (stest/instrument `strlowerk)
 
-(defn strlowerk:S
-  {:arglists '([Ssrc])}
-  [src]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strlowerk"
-                      [src]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strlowerk:S
-  :args (s/cat :src valid-S? ))
-(stest/instrument `strlowerk:S)
-
 (defn passign
   {:arglists '([& istart*])}
   [& [ start* ]]
@@ -28087,7 +22105,7 @@
     (mapv #(new %1 %2) out-types ast)))
 
 (s/fdef passign
-  :args (s/cat :start* valid-i?* ))
+  :args (s/cat :start* (s/? valid-i?*) ))
 (stest/instrument `passign)
 
 (defn fmmetal
@@ -28105,21 +22123,6 @@
   :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn7 valid-i? :fn8 valid-i? :fn9 valid-i? :fn10 valid-i? :vfn valid-i? ))
 (stest/instrument `fmmetal)
 
-(defn fmmetal:a
-  {:arglists '([kamp kfreq kc3 kc4 kvdepth kvrate ifn7 ifn8 ifn9 ifn10 ivfn])}
-  [amp freq c3 c4 vdepth vrate fn7 fn8 fn9 fn10 vfn]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "fmmetal"
-                      [amp freq c3 c4 vdepth vrate fn7 fn8 fn9 fn10 vfn]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef fmmetal:a
-  :args (s/cat :amp valid-kr? :freq valid-kr? :c3 valid-kr? :c4 valid-kr? :vdepth valid-kr? :vrate valid-kr? :fn7 valid-i? :fn8 valid-i? :fn9 valid-i? :fn10 valid-i? :vfn valid-i? ))
-(stest/instrument `fmmetal:a)
-
 (defn cepsinv
   {:arglists '([kepsArr])}
   [eps]
@@ -28135,21 +22138,6 @@
   :args (s/cat :eps valid-kArr? ))
 (stest/instrument `cepsinv)
 
-(defn cepsinv:kArr
-  {:arglists '([kepsArr])}
-  [eps]
-  (let [out-types-quoted 'ControlArray
-        out-types ControlArray
-        ast (ast-node out-types-quoted
-                      "cepsinv"
-                      [eps]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cepsinv:kArr
-  :args (s/cat :eps valid-kArr? ))
-(stest/instrument `cepsinv:kArr)
-
 (defn foutir
   {:arglists '([ihandle iformat iflag & iout1* iout2* iout3* ioutN4* ioutN5* ioutN6* ioutN7* ioutN8* ioutN9* ioutN10* ioutN11* ioutN12* ioutN13* ioutN14* ioutN15* ioutN16*])}
   [handle format flag & [ out1* out2* out3* outN4* outN5* outN6* outN7* outN8* outN9* outN10* outN11* outN12* outN13* outN14* outN15* outN16* ]]
@@ -28162,7 +22150,7 @@
     (new out-types ast)))
 
 (s/fdef foutir
-  :args (s/cat :handle valid-i? :format valid-i? :flag valid-i? :out1* valid-i?* :out2* valid-i?* :out3* valid-i?* :outN4* valid-i?* :outN5* valid-i?* :outN6* valid-i?* :outN7* valid-i?* :outN8* valid-i?* :outN9* valid-i?* :outN10* valid-i?* :outN11* valid-i?* :outN12* valid-i?* :outN13* valid-i?* :outN14* valid-i?* :outN15* valid-i?* :outN16* valid-i?* ))
+  :args (s/cat :handle valid-i? :format valid-i? :flag valid-i? :out1* (s/? valid-i?*) :out2* (s/? valid-i?*) :out3* (s/? valid-i?*) :outN4* (s/? valid-i?*) :outN5* (s/? valid-i?*) :outN6* (s/? valid-i?*) :outN7* (s/? valid-i?*) :outN8* (s/? valid-i?*) :outN9* (s/? valid-i?*) :outN10* (s/? valid-i?*) :outN11* (s/? valid-i?*) :outN12* (s/? valid-i?*) :outN13* (s/? valid-i?*) :outN14* (s/? valid-i?*) :outN15* (s/? valid-i?*) :outN16* (s/? valid-i?*) ))
 (stest/instrument `foutir)
 
 (defn strcat
@@ -28180,21 +22168,6 @@
   :args (s/cat :src1 valid-S? :src2 valid-S? ))
 (stest/instrument `strcat)
 
-(defn strcat:S
-  {:arglists '([Ssrc1 Ssrc2])}
-  [src1 src2]
-  (let [out-types-quoted 'String
-        out-types String
-        ast (ast-node out-types-quoted
-                      "strcat"
-                      [src1 src2]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef strcat:S
-  :args (s/cat :src1 valid-S? :src2 valid-S? ))
-(stest/instrument `strcat:S)
-
 (defn pvswarp
   {:arglists '([fsigin kscal kshift & klowest* kmeth* kgain* kcoefs*])}
   [sigin scal shift & [ lowest* meth* gain* coefs* ]]
@@ -28207,23 +22180,8 @@
     (new out-types ast)))
 
 (s/fdef pvswarp
-  :args (s/cat :sigin valid-f? :scal valid-kr? :shift valid-kr? :lowest* valid-kr?* :meth* valid-kr?* :gain* valid-kr?* :coefs* valid-kr?* ))
+  :args (s/cat :sigin valid-f? :scal valid-kr? :shift valid-kr? :lowest* (s/? valid-kr?*) :meth* (s/? valid-kr?*) :gain* (s/? valid-kr?*) :coefs* (s/? valid-kr?*) ))
 (stest/instrument `pvswarp)
-
-(defn pvswarp:f
-  {:arglists '([fsigin kscal kshift & klowest* kmeth* kgain* kcoefs*])}
-  [sigin scal shift & [ lowest* meth* gain* coefs* ]]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "pvswarp"
-                      [sigin scal shift lowest* meth* gain* coefs*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef pvswarp:f
-  :args (s/cat :sigin valid-f? :scal valid-kr? :shift valid-kr? :lowest* valid-kr?* :meth* valid-kr?* :gain* valid-kr?* :coefs* valid-kr?* ))
-(stest/instrument `pvswarp:f)
 
 (defn clfilt
   {:arglists '([asig kfreq itype inpol & ikind* ipbr* isba* iskip*])}
@@ -28237,23 +22195,8 @@
     (new out-types ast)))
 
 (s/fdef clfilt
-  :args (s/cat :sig valid-ar? :freq valid-kr? :type valid-i? :npol valid-i? :kind* valid-i?* :pbr* valid-i?* :sba* valid-i?* :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :freq valid-kr? :type valid-i? :npol valid-i? :kind* (s/? valid-i?*) :pbr* (s/? valid-i?*) :sba* (s/? valid-i?*) :skip* (s/? valid-i?*) ))
 (stest/instrument `clfilt)
-
-(defn clfilt:a
-  {:arglists '([asig kfreq itype inpol & ikind* ipbr* isba* iskip*])}
-  [sig freq type npol & [ kind* pbr* sba* skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "clfilt"
-                      [sig freq type npol kind* pbr* sba* skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef clfilt:a
-  :args (s/cat :sig valid-ar? :freq valid-kr? :type valid-i? :npol valid-i? :kind* valid-i?* :pbr* valid-i?* :sba* valid-i?* :skip* valid-i?* ))
-(stest/instrument `clfilt:a)
 
 (defn endop
   {:arglists '()}
@@ -28280,26 +22223,10 @@
 
 (s/fdef cmp
   :args (s/alt
+         :aSk (s/cat :L valid-ar? :_operator valid-S? :R valid-kr? )
          :aSa (s/cat :L valid-ar? :_operator valid-S? :R valid-ar? )
          ))
 (stest/instrument `cmp)
-
-(defn cmp:a
-  {:arglists '([aL S_operator aR] [aL S_operator kR])}
-  [L _operator R]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "cmp"
-                      [L _operator R]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef cmp:a
-  :args (s/alt
-         :aSa (s/cat :L valid-ar? :_operator valid-S? :R valid-ar? )
-         ))
-(stest/instrument `cmp:a)
 
 (defn tablei
   {:arglists '([xindex itable & ixmode* ixoff* iwrap*] [iindex itable & ixmode* ixoff* iwrap*] [xindex itable & ixmode* ixoff* iwrap*])}
@@ -28314,7 +22241,8 @@
 
 (s/fdef tablei
   :args (s/alt
-         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* )
+         :iiiii (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
+         :xiiii (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) )
          ))
 (stest/instrument `tablei)
 
@@ -28330,7 +22258,7 @@
     (new out-types ast)))
 
 (s/fdef tablei:a
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tablei:a)
 
 (defn tablei:i
@@ -28345,7 +22273,7 @@
     (new out-types ast)))
 
 (s/fdef tablei:i
-  :args (s/cat :index valid-i? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-i? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tablei:i)
 
 (defn tablei:k
@@ -28360,7 +22288,7 @@
     (new out-types ast)))
 
 (s/fdef tablei:k
-  :args (s/cat :index valid-x? :table valid-i? :xmode* valid-i?* :xoff* valid-i?* :wrap* valid-i?* ))
+  :args (s/cat :index valid-x? :table valid-i? :xmode* (s/? valid-i?*) :xoff* (s/? valid-i?*) :wrap* (s/? valid-i?*) ))
 (stest/instrument `tablei:k)
 
 (defn vmap
@@ -28375,7 +22303,7 @@
     (new out-types ast)))
 
 (s/fdef vmap
-  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* valid-i?* :srcoffset* valid-i?* ))
+  :args (s/cat :fn1 valid-i? :fn2 valid-i? :elements valid-i? :dstoffset* (s/? valid-i?*) :srcoffset* (s/? valid-i?*) ))
 (stest/instrument `vmap)
 
 (defn ftmorf
@@ -28405,7 +22333,7 @@
     (new out-types ast)))
 
 (s/fdef jacktransport
-  :args (s/cat :command valid-i? :location* valid-i?* ))
+  :args (s/cat :command valid-i? :location* (s/? valid-i?*) ))
 (stest/instrument `jacktransport)
 
 (defn barmodel
@@ -28423,21 +22351,6 @@
   :args (s/cat :bcL valid-kr? :bcR valid-kr? :K valid-i? :b valid-i? :scan valid-kr? :T6 valid-i? :pos valid-i? :vel valid-i? :wid valid-i? ))
 (stest/instrument `barmodel)
 
-(defn barmodel:a
-  {:arglists '([kbcL kbcR iK ib kscan iT6 ipos ivel iwid])}
-  [bcL bcR K b scan T6 pos vel wid]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "barmodel"
-                      [bcL bcR K b scan T6 pos vel wid]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef barmodel:a
-  :args (s/cat :bcL valid-kr? :bcR valid-kr? :K valid-i? :b valid-i? :scan valid-kr? :T6 valid-i? :pos valid-i? :vel valid-i? :wid valid-i? ))
-(stest/instrument `barmodel:a)
-
 (defn randh
   {:arglists '([xamp xcps iseed & isize* ioffset*] [xamp xcps iseed & isize* ioffset*])}
   [amp cps seed & [ size* offset* ]]
@@ -28451,7 +22364,7 @@
 
 (s/fdef randh
   :args (s/alt
-         :xxiii (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* valid-i?* :offset* valid-i?* )
+         :xxiii (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* (s/? valid-i?*) :offset* (s/? valid-i?*) )
          ))
 (stest/instrument `randh)
 
@@ -28467,7 +22380,7 @@
     (new out-types ast)))
 
 (s/fdef randh:a
-  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `randh:a)
 
 (defn randh:k
@@ -28482,7 +22395,7 @@
     (new out-types ast)))
 
 (s/fdef randh:k
-  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* valid-i?* :offset* valid-i?* ))
+  :args (s/cat :amp valid-x? :cps valid-x? :seed valid-i? :size* (s/? valid-i?*) :offset* (s/? valid-i?*) ))
 (stest/instrument `randh:k)
 
 (defn pvsbuffer
@@ -28512,23 +22425,8 @@
     (new out-types ast)))
 
 (s/fdef median
-  :args (s/cat :sig valid-ar? :size valid-kr? :maxsize valid-i? :skip* valid-i?* ))
+  :args (s/cat :sig valid-ar? :size valid-kr? :maxsize valid-i? :skip* (s/? valid-i?*) ))
 (stest/instrument `median)
-
-(defn median:a
-  {:arglists '([asig ksize imaxsize & iskip*])}
-  [sig size maxsize & [ skip* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "median"
-                      [sig size maxsize skip*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef median:a
-  :args (s/cat :sig valid-ar? :size valid-kr? :maxsize valid-i? :skip* valid-i?* ))
-(stest/instrument `median:a)
 
 (defn lposcila
   {:arglists '([aamp kfreqratio kloop kend ift & iphase*])}
@@ -28542,23 +22440,8 @@
     (new out-types ast)))
 
 (s/fdef lposcila
-  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* valid-i?* ))
+  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* (s/? valid-i?*) ))
 (stest/instrument `lposcila)
-
-(defn lposcila:a
-  {:arglists '([aamp kfreqratio kloop kend ift & iphase*])}
-  [amp freqratio loop end ft & [ phase* ]]
-  (let [out-types-quoted 'AudioSignal
-        out-types AudioSignal
-        ast (ast-node out-types-quoted
-                      "lposcila"
-                      [amp freqratio loop end ft phase*]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef lposcila:a
-  :args (s/cat :amp valid-ar? :freqratio valid-kr? :loop valid-kr? :end valid-kr? :ft valid-i? :phase* valid-i?* ))
-(stest/instrument `lposcila:a)
 
 (defn trfilter
   {:arglists '([fin kamnt itable])}
@@ -28574,18 +22457,3 @@
 (s/fdef trfilter
   :args (s/cat :in valid-f? :amnt valid-kr? :table valid-i? ))
 (stest/instrument `trfilter)
-
-(defn trfilter:f
-  {:arglists '([fin kamnt itable])}
-  [in amnt table]
-  (let [out-types-quoted 'FrequencySignal
-        out-types FrequencySignal
-        ast (ast-node out-types-quoted
-                      "trfilter"
-                      [in amnt table]
-                      *global*)]
-    (new out-types ast)))
-
-(s/fdef trfilter:f
-  :args (s/cat :in valid-f? :amnt valid-kr? :table valid-i? ))
-(stest/instrument `trfilter:f)

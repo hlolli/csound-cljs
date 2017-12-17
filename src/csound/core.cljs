@@ -2,7 +2,8 @@
   (:require [cljs.spec.alpha :as s]
             [cljs.spec.test.alpha :as stest]
             [cljs.analyzer :refer [parse] :as anal]
-            [clojure.zip :as zip])
+            [clojure.zip :as zip]
+            [clojure.string :as string])
   (:require-macros
    [csound.macros :refer [definstr]]
    [cljs.analyzer.macros
@@ -147,7 +148,7 @@
      StringArray (str "S" (gensym "0") "[]")
      )))
 
-(defn- ast-node [ret-type opcode in global?]
+(defn- ast-node [ret-type opcode in global? & [operator]]
   (let [child (fn [ident parent-ast in out]
                 {:ident ident
                  :parent parent-ast
@@ -162,7 +163,8 @@
              :opcode  opcode
              :in      in
              :out     out
-             :global? global?}]
+             :global? global?
+             :operator operator}]
     (if (seqable? ret-type)
       (mapv #(child (:ident ast) ast (:in ast) %) out)
       ast)))
@@ -191,12 +193,14 @@
         (let [[ident node] node
               parent-node (if (contains? node :parent) (:parent node) node)
               out (:out parent-node)
-              out (if (coll? out) (apply str (interpose ", " out)) out)]
+              out (if (coll? out) (apply str (interpose ", " out)) out)
+              operator (if-let [operator (:operator node)] (str " " operator " ") ", ")]
           (conj acc [(:ident parent-node)
                      (apply str (interpose " "
                                            (cond->> [(:opcode parent-node)
-                                                     (->> (map #(or (:out %) %) (:in node))
-                                                          (interpose ", ")
+                                                     (->> (map #(or (:out %) %)
+                                                               (remove nil? (:in node)))
+                                                          (interpose operator)
                                                           (apply str))]
                                              out (into [out]))))])))
       (reduce [] tree)))
@@ -219,6 +223,9 @@
                       (str acc-str s "\n")) "" v))]
     (-> assembler dedupe reduce-to-string)))
 
+(defn cljs->csound-instr-name [instr-name]
+  (-> instr-name
+      (string/replace #"-" "_")))
 
 (defn score-parameter? [v]
   (= ScoreParameter (type v)))
@@ -253,7 +260,7 @@
   (= FrequencySignal (type v)))
 
 (defn valid-f?* [v]
-  (or (valid-f* v)
+  (or (valid-f? v)
       (nil? v)))
 
 (defn valid-S? [v]
@@ -271,7 +278,6 @@
 (defn valid-SArr?* [v]
   (or (valid-SArr? v)
       (nil? v)))
-
 
 (defn valid-aArr? [v]
   (= AudioArray (type v)))
@@ -308,11 +314,12 @@
   (or valid-x?
       (nil? v)))
 
+
+
 ;; (println (parse-to-string ((comp asig3 (out asig3)))))
 
 
-(load-file "src/csound/opcodes.cljs")
-
+;; (load-file "src/csound/opcodes.cljs")
 
 
 (comment
@@ -326,6 +333,11 @@
                         false)]
       (new out-types ast)))
 
+  (s/fdef poscil:a
+    :args (s/alt
+           :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* valid-i?* :phase* valid-i?* )
+           ))
+  
   (defn poscil2 [& [amp cps ifn]]
     (let [out-types-quoted '[AudioSignal AudioSignal]
           out-types [AudioSignal AudioSignal]

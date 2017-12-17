@@ -1,16 +1,19 @@
 (ns csound.macros)
 
-
 (defmacro definstr
   [instr-name parameters body]
   `(def ~(vary-meta (symbol (name instr-name))
                     assoc :arglists (list (mapv symbol parameters)))
      (fn ~(mapv (comp gensym name) parameters)
-       (~'binding [~'*global* false]
-        (str "instr " ~(name instr-name) "\n"
-             ('csound.core/parse-to-string
-              (~body))
-             "endin\n")))))
+       (~'binding [~'csound.core/*global* false]
+        (let [orc-str# (str "instr " (~'csound.core/cljs->csound-instr-name
+                                      ~(name instr-name)) "\n"
+                            (~'csound.core/parse-to-string
+                             (~body))
+                            "endin\n")]
+          (if (:connection ~'@csound.connection/connection)
+            ((:compile-orc-fn ~'@csound.connection/connection) orc-str#)
+            orc-str#))))))
 
 (comment
   

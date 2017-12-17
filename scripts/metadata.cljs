@@ -234,4 +234,6 @@
   (patch! "harmon2" ["ares"] ["asig" "koct" "kfrq1" "kfrq2" "icpsmode" "ilowest" "ipolarity"])
   (patch! "harmon3" ["ares"] ["asig" "koct" "kfrq1" "kfrq2" "kfrq3" "icpsmode" "ilowest" "ipolarity"])
   (patch! "harmon4" ["ares"] ["asig" "koct" "kfrq1" "kfrq2" "kfrq3" "kfrq4" "icpsmode" "ilowest" "ipolarity"])
+  (patch! "taninv" ["ires"] ["iradian"])
+  (patch! "taninv2" ["ires"] ["iradian"])
   nil)

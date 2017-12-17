@@ -16,12 +16,11 @@ nchnls = 2
 
 instr 1
 
-  reset:
-    print 3/2
-
-  contin:
-    print times()
-    rireturn
+  ires abs -0.5
+  ival = (1 + 2 + 3)
+  print ival
+  a1 poscil 0.2, 330
+  out a1 + ires
 
 endin
 
@@ -31,7 +30,7 @@ endin
 
 f1 0 4096 10 1
 
-i1 0 10
+i 1 0 1
 e
 
 
