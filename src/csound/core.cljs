@@ -5,12 +5,10 @@
             [clojure.zip :as zip]
             [clojure.string :as string])
   (:require-macros
-   [csound.macros :refer [definstr load-csound!*]]
+   [csound.macros :refer [definstr]]
    [cljs.analyzer.macros
     :refer [disallowing-recur allowing-redef]]))
 
-(defn load-csound! [ns]
-  (load-csound! ns))
 
 #_(defmethod parse 'if
     [op env [_ test then else :as form] name _]
