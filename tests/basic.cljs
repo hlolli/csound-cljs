@@ -12,16 +12,29 @@
   (csound.core/parse-to-string (expr)))
 
 (definstr simple-oscil []
-  (let [k1 (opc/poscil:k 100 5.5)
-        a1 (opc/poscil:a (+ k1 400) 5.5)]
-    (opc/out a1)))
+  (opc/outc (apply + (map #(opc/poscil 0.1 %) (range 10 1200 50)))))
 
-((:input-message-fn @csound.connection/connection) "i simple_oscil 1 0 1")
+(simple-oscil 0 1)
+
+((:input-message-fn @csound.connection/connection) "i \"simple_oscil\" 0 1")
 
 (keys (get-in @cljs.env/*compiler*
               [:cljs.analyzer/namespaces
-               'tests.basic
-               :excludes]))
+               ;; 'tests.basic
+               'dev.demos
+               ;; :requires
+               ;; :constants
+               ;; :require-macros
+               ;; :excludes
+               :cljs.analyzer/constants
+               ]))
+
+(keys (get-in @cljs.env/*compiler*
+              [:cljs.analyzer/namespaces
+               'csound.operators
+               :defs
+               ;; :excludes
+               ]))
 
 (println (simple-oscil))
 

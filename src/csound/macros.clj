@@ -3,17 +3,26 @@
 (defmacro definstr
   [instr-name parameters body]
   `(def ~(vary-meta (symbol (name instr-name))
-                    assoc :arglists (list (mapv symbol parameters)))
-     (fn ~(mapv (comp gensym name) parameters)
-       (~'binding [~'csound.core/*global* false]
-        (let [orc-str# (str "instr " (~'csound.core/cljs->csound-instr-name
-                                      ~(name instr-name)) "\n"
-                            (~'csound.core/parse-to-string
-                             (~body))
-                            "endin\n")]
+                    assoc :arglists (list (into ['start 'dur] (mapv symbol parameters))))
+     (~'binding [~'csound.core/*global* false]
+      (let [csnd-instr-name# (~'csound.core/cljs->csound-instr-name
+                              ~(name instr-name))
+            orc-str# (str "instr " csnd-instr-name# "\n"
+                          (~'csound.core/parse-to-string
+                           (~body))
+                          "endin\n")
+            params# ~(mapv (comp gensym name) parameters)]
+        (if (:connection ~'@csound.connection/connection)
+          ((:compile-orc-fn ~'@csound.connection/connection) orc-str#)
+          orc-str#)
+        (fn [start# dur# ~@(map (comp gensym name) parameters)]
           (if (:connection ~'@csound.connection/connection)
-            ((:compile-orc-fn ~'@csound.connection/connection) orc-str#)
-            orc-str#))))))
+            ((:input-message-fn ~'@csound.connection/connection)
+             (str "i \"" csnd-instr-name# "\" " start# " " dur# " "
+                  (apply str (interpose " " params#))))
+            (binding [*print-fn* *print-err-fn*]
+              (println "Error: no Csound connection!"))))))))
+
 
 (comment
   

@@ -9,18 +9,26 @@
   (let [dgram (js/require "dgram")
         socket-client (.createSocket dgram "udp4")
         spawn (.-spawn (js/require "child_process"))
-        compile-orc-fn (fn [orc-str] (.send socket-client orc-str 6666 "localhost"
-                                            (fn [err]
-                                              (binding [*print-fn* *print-err-fn*]
-                                                (println "Error in csound socket: " err)))))
-        input-message-fn (fn [score-str] (.send socket-client (str "$" score-str) 6666 "localhost"
-                                                (fn [err]
-                                                  (binding [*print-fn* *print-err-fn*]
-                                                    (println "Error in csound socket: " err)))))]
+        compile-orc-fn (fn [orc-str]
+                         (.send socket-client orc-str 6006 "localhost"
+                                (fn [err]
+                                  (when err
+                                    (binding [*print-fn* *print-err-fn*]
+                                      (println "Error in csound socket: " err))))))
+        input-message-fn (fn [score-str]
+                           (.send socket-client (str "$" score-str) 6006 "localhost"
+                                  (fn [err]
+                                    (when err
+                                      (binding [*print-fn* *print-err-fn*]
+                                        (println "Error in csound socket: " err))))))]
     (when (nil? @connection)
-      (let [csound-udp-connection (spawn "csound" #js ["-odac" "--port=6666" "--0dbfs=1"])]
+      (let [csound-udp-connection (spawn "csound" #js ["-odac" "--port=6006" "--0dbfs=1"])]
         (.on csound-udp-connection "close"
              #(println "Csound UDP connection ended"))
+        (.on (.-stdout csound-udp-connection) "data"
+             #(println (.toString %)))
+        (.on (.-stderr csound-udp-connection) "data"
+             #(println (.toString %)))
         (reset! connection {:connection csound-udp-connection
                             :compile-orc-fn compile-orc-fn
                             :input-message-fn input-message-fn})

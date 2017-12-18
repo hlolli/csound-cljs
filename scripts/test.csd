@@ -14,7 +14,7 @@ nchnls = 2
 0dbfs  = 1 
 
 
-instr 1
+instr a
 
   ires abs -0.5
   ival = (1 + 2 + 3)
@@ -30,7 +30,7 @@ endin
 
 f1 0 4096 10 1
 
-i 1 0 1
+i "a" 0 1
 e
 
 

@@ -5,11 +5,12 @@
             [clojure.zip :as zip]
             [clojure.string :as string])
   (:require-macros
-   [csound.macros :refer [definstr]]
+   [csound.macros :refer [definstr load-csound!*]]
    [cljs.analyzer.macros
     :refer [disallowing-recur allowing-redef]]))
 
-
+(defn load-csound! [ns]
+  (load-csound! ns))
 
 #_(defmethod parse 'if
     [op env [_ test then else :as form] name _]
@@ -126,6 +127,13 @@
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
   (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
+(deftype Instrument []
+  ILookup
+  (-lookup [coll k] (-lookup coll k nil))
+  (-lookup [coll k not-found] (get (.-ast coll) k not-found))
+  IFn
+  (-invoke [coll] (tree-to-assembler (.-ast coll)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
 
 (defn isa-csound-type? [obj]
   (#{AudioSignal ControlSignal FrequencySignal
