@@ -65,9 +65,10 @@
          ["init" "S[]" "m"]
          ["init" "i" "i"]
          ["init" "S" "S"]
+         ["init" "S" "i"]
          ["init" "f" "f"]
-         ["init" "a" "a"]
-         ["init" "k" "k"]
+         ["init" "a" "i"]
+         ["init" "k" "i"]
          ["slicearray" "a[]" "a[]iip"]
          ["slicearray" "k[]" "k[]iip"]
          ["slicearray" "S[]" "S[]iip"]
@@ -532,13 +533,12 @@
                out-str)))))
 
 (comment
-
   
   (io/spit "src/csound/opcodes.cljs" (generate-cljs))
   
-  (find-specs "sum")
+  (find-specs "init")
   (find-specs "taninv")
-  (get @m/metadata-db "taninv")
+  (get @m/metadata-db "pluck")
   (get @m/metadata-db "poscil")
 
 

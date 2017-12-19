@@ -3,7 +3,8 @@
             [cljs.spec.test.alpha :as stest]
             [cljs.analyzer :refer [parse] :as anal]
             [clojure.zip :as zip]
-            [clojure.string :as string])
+            [clojure.string :as string]
+            [csound.connection :as conn])
   (:require-macros
    [csound.macros :refer [definstr]]
    [cljs.analyzer.macros
@@ -30,11 +31,12 @@
 (def ^:dynamic *sr* 44100)
 (def ^:dynamic *ksmps* 16)
 (def ^:dynamic *A4* 440)
-(def ^:dynamic *global* true)
+(def ^:dynamic *global* nil)
 
 
 
-(declare tree-to-assembler)
+(declare tree-to-assembler
+         global-tree-to-out)
 
 
 (deftype AudioSignal [ast]
@@ -43,7 +45,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new AudioSignal (dissoc (.-ast coll) :patch))))
 
 (deftype ControlSignal [ast]
   ILookup
@@ -51,7 +55,9 @@
   (-lookup [coll k] (get (.-ast coll) k))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new ControlSignal (dissoc (.-ast coll) :patch))))
 
 (deftype FrequencySignal [ast]
   ILookup
@@ -59,7 +65,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new FrequencySignal (dissoc (.-ast coll) :patch))))
 
 (deftype Variable [ast]
   ILookup
@@ -67,7 +75,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new Variable (dissoc (.-ast coll) :patch))))
 
 (deftype String [ast]
   ILookup
@@ -75,7 +85,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new String (dissoc (.-ast coll) :patch))))
 
 (deftype AudioArray [ast]
   ILookup
@@ -83,7 +95,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new AudioArray (dissoc (.-ast coll) :patch))))
 
 (deftype ControlArray [ast]
   ILookup
@@ -91,7 +105,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new ControlArray (dissoc (.-ast coll) :patch))))
 
 (deftype VariableArray [ast]
   ILookup
@@ -99,7 +115,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new VariableArray (dissoc (.-ast coll) :patch))))
 
 (deftype StringArray [ast]
   ILookup
@@ -107,7 +125,9 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new StringArray (dissoc (.-ast coll) :patch))))
 
 (deftype IO [ast]
   ILookup
@@ -115,15 +135,16 @@
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   IFn
   (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler))
+  IEmptyableCollection
+  (-empty [coll] (new IO (dissoc (.-ast coll) :patch))))
 
-(deftype ScoreParameter [ast]
+(deftype ScoreParameter [p-num]
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
-  (-lookup [coll k not-found] (get (.-ast coll) k not-found))
+  (-lookup [coll k not-found] (str "p" (.-p-num coll)))
   IFn
-  (-invoke [coll] (tree-to-assembler (.-ast coll)))
-  (-invoke [coll assembler] (into (tree-to-assembler (.-ast coll)) assembler)))
+  (-invoke [coll] (str "p" (.-p-num coll))))
 
 (deftype Instrument []
   ILookup
@@ -138,24 +159,38 @@
      Variable String AudioArray ControlArray
      VariableArray StringArray IO
      ScoreParameter} (type obj)))
+(def
+  ^{:jsdoc ["@type {*}"]}
+  csnd_gensym_counter nil)
+
+(defn- csnd-gensym
+  ([] (csnd-gensym "G__"))
+  ([prefix-string]
+   (when (nil? csnd_gensym_counter)
+     (set! csnd_gensym_counter (atom 0)))
+   (str prefix-string (swap! csnd_gensym_counter inc))))
 
 (defn- gen-symbol [ret-type global?]
   (str
    (when global? "g")
    (case ret-type
-     AudioSignal (-> "a" gensym str)
-     ControlSignal (-> "k" gensym str)
-     FrequencySignal (-> "f" gensym str)
-     Variable (-> "i" gensym str)
-     String (-> "S" gensym str)
-     AudioArray (str "a" (gensym "0") "[]")
-     ControlArray (str "k" (gensym "0") "[]")
-     VariableArray (str "i" (gensym "0") "[]")
-     StringArray (str "S" (gensym "0") "[]")
+     AudioSignal (-> "a" csnd-gensym)
+     ControlSignal (-> "k" csnd-gensym)
+     FrequencySignal (-> "f" csnd-gensym)
+     Variable (-> "i" csnd-gensym)
+     String (-> "S" csnd-gensym)
+     AudioArray (str "a" (csnd-gensym "0") "[]")
+     ControlArray (str "k" (csnd-gensym "0") "[]")
+     VariableArray (str "i" (csnd-gensym "0") "[]")
+     StringArray (str "S" (csnd-gensym "0") "[]")
      )))
 
-(defn- ast-node [ret-type opcode in global? & [operator]]
-  (let [child (fn [ident parent-ast in out]
+;; TODO: throw error on global? = nil
+(defn- ast-node [ret-type opcode in global? & [operator patch]]
+  (let [resolve-p (fn [i] (reduce #(if (= ScoreParameter (type %2))
+                                     (conj %1 (%2))
+                                     (conj %1 %2)) [] i))
+        child (fn [ident parent-ast in out]
                 {:ident ident
                  :parent parent-ast
                  :out out
@@ -165,12 +200,13 @@
               (if (seqable? ret-type)
                 (mapv #(gen-symbol %1 global?) ret-type)
                 (gen-symbol ret-type global?)))
-        ast {:ident (str (gensym))
+        ast {:ident (csnd-gensym)
              :opcode  opcode
-             :in      in
+             :in      (resolve-p in)
              :out     out
              :global? global?
-             :operator operator}]
+             :operator operator
+             :patch patch}]
     (if (seqable? ret-type)
       (mapv #(child (:ident ast) ast (:in ast) %) out)
       ast)))
@@ -184,15 +220,69 @@
                 acc)) [] v)))
 
 (defn flatten-tree [root-node]
-  (loop [v [[(:ident root-node) root-node]]
-         q (filter isa-csound-type? (:in root-node))]
-    (if (empty? q)
-      (reverse v)
-      (let [children (mapv #(vector (:ident %) %) q)
-            v (dedupe-nodes v children)
-            v (into v children)
-            q (flatten (map #(filter isa-csound-type? (:in (second %))) children))]
-        (recur v q)))))
+  (letfn [(node-filter [n]
+            (if *global*
+              (filter isa-csound-type? n)
+              (filter #(and (isa-csound-type? %)
+                            (not (:global? %))) n)))]
+    (loop [v [[(:ident root-node) root-node]]
+           q (node-filter (:in root-node))]
+      (if (empty? q)
+        (reverse v)
+        (let [children (mapv #(vector (:ident %) %) q)
+              v (dedupe-nodes v children)
+              v (into v children)
+              q (flatten (map #(node-filter (:in (second %))) children))]
+          (recur v q))))))
+
+(defn inject-delayrw [tree whole-tree]
+  (let [patch-ident (-> tree first second :patch :ident)
+        [idelaytime audio-signal-to-write] (-> tree first second :patch :in)
+        parsed-audio-signal-to-write (if (some #(= (:ident audio-signal-to-write) (first %)) whole-tree)
+                                       [] (flatten-tree audio-signal-to-write))
+        ;; Deduplicate here the parsed-audio-signal-to-write?
+        delayr-ident (csnd-gensym)
+        delayw-ident (csnd-gensym)
+        new-tree (into [[delayr-ident (new AudioSignal (ast-node 'AudioSignal "delayr" [idelaytime] *global*))]]
+                       parsed-audio-signal-to-write)]
+    (loop [tree tree
+           new-tree new-tree
+           cur-index (inc (count new-tree))
+           last-tap (inc (count new-tree))]
+      (if (empty? tree)
+        (into
+         (into (subvec new-tree 0 last-tap)
+               [[delayw-ident (new IO (ast-node 'IO "delayw" [audio-signal-to-write] *global*))]])
+         (subvec new-tree last-tap))
+        (let [cur-node (first tree)
+              matching-tap? (= patch-ident (-> cur-node second :patch :ident))
+              new-node (if-not matching-tap? cur-node
+                               [(first cur-node) (empty (second cur-node))])]
+          (recur (rest tree)
+                 (conj new-tree new-node)
+                 (inc cur-index)
+                 (if matching-tap?
+                   cur-index
+                   last-tap)))))))
+
+(defn inject-patches [whole-tree]
+  (loop [tree whole-tree
+         patched-tree []]
+    (if (empty? tree)
+      patched-tree
+      (let [node (first tree)
+            [_ ast] node
+            ;; _ (prn "opc: " (:opcode ast) (:ident ast))
+            patch (:patch (:patch ast))
+            tree (case patch
+                   nil tree
+                   :delayrw (inject-delayrw tree whole-tree))]
+        (if (nil? patch)
+          (recur
+           (rest tree)
+           (conj patched-tree node))
+          (recur tree
+                 patched-tree))))))
 
 (defn parse-tree [tree]
   (-> (fn [acc node]
@@ -211,12 +301,6 @@
                                              out (into [out]))))])))
       (reduce [] tree)))
 
-
-(defn tree-to-assembler [tree]
-  (-> tree
-      flatten-tree
-      parse-tree))
-
 (defn parse-to-string [assembler]
   ;; Transducer here?
   (letfn [(dedupe [v]
@@ -228,6 +312,22 @@
             (reduce (fn [acc-str [_ s]]
                       (str acc-str s "\n")) "" v))]
     (-> assembler dedupe reduce-to-string)))
+
+(defn tree-to-assembler [tree]
+  (-> tree
+      flatten-tree
+      inject-patches
+      parse-tree))
+
+(defn global-tree-to-out [tree]
+  (let [out-str (-> tree
+                    flatten-tree
+                    inject-patches
+                    parse-tree
+                    parse-to-string)]
+    (when (:connection @conn/connection)
+      ((:compile-orc-fn @conn/connection) out-str))
+    tree))
 
 (defn cljs->csound-instr-name [instr-name]
   (-> instr-name
@@ -322,7 +422,10 @@
 
 
 
-;; (println (parse-to-string ((comp asig3 (out asig3)))))
+#_(:num (last (reduce (fn [i p]
+                        (conj i p (new ScoreParameter (+ 4 (/ (count i) 2))))) [] '[a b c])))
+
+#_(println (parse-to-string  (asig1)))
 
 
 ;; (load-file "src/csound/opcodes.cljs")
@@ -330,8 +433,7 @@
 
 (comment
   (defn poscil [amp cps & [ifn]]
-    (let [_ (prn "GLOBAL: " *global*)
-          out-types-quoted 'AudioSignal
+    (let [out-types-quoted 'AudioSignal
           out-types AudioSignal
           ast (ast-node out-types-quoted
                         "poscil"
@@ -339,6 +441,8 @@
                         false)]
       (new out-types ast)))
 
+  (def asig1 (poscil 1 (ScoreParameter. 4)))
+  
   (s/fdef poscil:a
     :args (s/alt
            :aaii (s/cat :amp valid-ar? :cps valid-ar? :table* valid-i?* :phase* valid-i?* )

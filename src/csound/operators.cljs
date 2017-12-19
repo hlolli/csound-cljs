@@ -36,4 +36,31 @@
       (new out-type ast))
     (apply cljs.core/+ vals)))
 
+(defn / [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (let [[out-type-quoted out-type]
+          (resolve-fastest-rate vals)
+          ast (csound.core/ast-node
+               out-type-quoted
+               "="
+               (vec vals)
+               csound.core/*global*
+               "/")]
+      (new out-type ast))
+    (apply cljs.core// vals)))
+
+(defn * [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (let [[out-type-quoted out-type]
+          (resolve-fastest-rate vals)
+          ast (csound.core/ast-node
+               out-type-quoted
+               "="
+               (vec vals)
+               csound.core/*global*
+               "/")]
+      (new out-type ast))
+    (apply cljs.core/* vals)))
+
+(def p3 (csound.core/ScoreParameter. 3))
 

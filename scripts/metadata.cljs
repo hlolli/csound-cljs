@@ -73,16 +73,16 @@
                  "koutpc.xml" "kpcauchy.xml" "kpoisson.xml"
                  "kpow.xml" "kread.xml" "kread2.xml" "kread3.xml"
                  "kread4.xml" "ktrirand.xml" "kunirand.xml"
-                 "kweibull.xml" "peakk.xml" "pchoct.xml"
+                 "kweibull.xml" "peakk.xml"
                  "qnan.xml" "min.xml" "opnot.xml" "notequal.xml"
                  "ceil.xml" "max.xml" "until.xml" "tb.xml"
                  "cngoto.xml" "while.xml" "opand.xml" "dbamp.xml"
-                 "cpsmidinn.xml" "ampdbfs.xml" "taninv2.xml" "urd.xml"
-                 "ftlen.xml" "cpsoct.xml" "nsamp.xml" "pchmidinn.xml"
-                 "ops.xml" "cpspch.xml" "ftcps.xml" "ftlptim.xml"
+                 "ampdbfs.xml" "taninv2.xml" "urd.xml"
+                 "ftlen.xml" "nsamp.xml"
+                 "ops.xml" "ftcps.xml" "ftlptim.xml"
                  "ftsr.xml" "opa.xml" "opk.xml" "logbtwo.xml" "divz.xml" "octave.xml"
                  "qinf.xml" "ftchnls.xml" "rnd.xml" "db.xml" "powoftwo.xml"
-                 "cent.xml" "semitone.xml" "octmidinn.xml" "octcps.xml" "octpch.xml"
+                 "cent.xml" "semitone.xml" 
                  "dbfsamp.xml" "birnd.xml" "ampdb.xml" "signum.xml"
                  "reinit.xml" "pow.xml" "loop_gt.xml" "loop_le.xml"
                  "loop_ge.xml" "rigoto.xml" "loop_lt.xml"})
@@ -112,7 +112,9 @@
                     "ifdef.xml" "include.xml"})
 
 (def edge-cases #{"subinstr.xml" "subinstrinit.xml" "template.xml"
-                  "xin.xml" "xout.xml"})
+                  "xin.xml" "xout.xml" "delayr.xml" "delayw.xml"
+                  "deltap.xml" "deltapi.xml" "deltapxw.xml"
+                  "deltapx.xml" "deltapn.xml" "deltap3.xml"})
 
 
 (def manual-opcode-files
@@ -236,4 +238,13 @@
   (patch! "harmon4" ["ares"] ["asig" "koct" "kfrq1" "kfrq2" "kfrq3" "kfrq4" "icpsmode" "ilowest" "ipolarity"])
   (patch! "taninv" ["ires"] ["iradian"])
   (patch! "taninv2" ["ires"] ["iradian"])
+  (patch! "cpspch" ["ires"] ["ipch"])
+  (patch! "cpsoct" ["ires"] ["ioct"])
+  (patch! "pchoct" ["ires"] ["ioct"])
+  (patch! "octmidinn" ["ires"] ["iMidiNoteNumber"])
+  (patch! "cpsmidinn" ["ires"] ["iMidiNoteNumber"])
+  (patch! "pchmidinn" ["ires"] ["iMidiNoteNumber"])
+  (patch! "octcps" ["ires"] ["icps"])
+  (patch! "octpch" ["ires"] ["ipch"])
+  (patch! "pluck" ["ares"] ["kamp" "kresampling-cps" "iintended-cps" "ifn" "imeth" "iparm1" "iparm2"])
   nil)
