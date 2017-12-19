@@ -51,7 +51,7 @@
                   "array.xml"})
 
 ;; note opnot.xml is logial not(!)
-(def operators #{"abs.xml" "modulus.xml"
+(def operators #{"modulus.xml"
                  "greaterthan.xml" "greaterequal.xml"
                  "lessthan.xml" "lessequal.xml"
                  "multiplies.xml" "adds.xml"
@@ -247,4 +247,5 @@
   (patch! "octcps" ["ires"] ["icps"])
   (patch! "octpch" ["ires"] ["ipch"])
   (patch! "pluck" ["ares"] ["kamp" "kresampling-cps" "iintended-cps" "ifn" "imeth" "iparm1" "iparm2"])
+  (patch! "abs" ["xres"] ["xval"])
   nil)

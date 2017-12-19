@@ -58,7 +58,7 @@
                "="
                (vec vals)
                csound.core/*global*
-               "/")]
+               "*")]
       (new out-type ast))
     (apply cljs.core/* vals)))
 

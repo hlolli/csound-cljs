@@ -15780,6 +15780,102 @@
   :args (s/cat :dft valid-i? :sft valid-i? ))
 (stest/instrument `tableicopy)
 
+(defn abs
+  {:arglists '([aval] [ival] [ivalArr] [kval] [kvalArr])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "abs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef abs
+  :args (s/alt
+         :kArr (s/cat :val valid-kArr? )
+         :k (s/cat :val valid-kr? )
+         :iArr (s/cat :val valid-iArr? )
+         :i (s/cat :val valid-i? )
+         :a (s/cat :val valid-ar? )
+         ))
+(stest/instrument `abs)
+
+(defn abs:a
+  {:arglists '([aval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "abs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef abs:a
+  :args (s/cat :val valid-ar? ))
+(stest/instrument `abs:a)
+
+(defn abs:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "abs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef abs:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `abs:i)
+
+(defn abs:iArr
+  {:arglists '([ivalArr])}
+  [val]
+  (let [out-types-quoted 'VariableArray
+        out-types VariableArray
+        ast (ast-node out-types-quoted
+                      "abs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef abs:iArr
+  :args (s/cat :val valid-iArr? ))
+(stest/instrument `abs:iArr)
+
+(defn abs:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "abs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef abs:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `abs:k)
+
+(defn abs:kArr
+  {:arglists '([kvalArr])}
+  [val]
+  (let [out-types-quoted 'ControlArray
+        out-types ControlArray
+        ast (ast-node out-types-quoted
+                      "abs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef abs:kArr
+  :args (s/cat :val valid-kArr? ))
+(stest/instrument `abs:kArr)
+
 (defn wguide2
   {:arglists '([asig xfreq2 xfreq3 kcutoff4 kcutoff5 kfeedback6 kfeedback7])}
   [sig freq2 freq3 cutoff4 cutoff5 feedback6 feedback7]
