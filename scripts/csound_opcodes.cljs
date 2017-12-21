@@ -538,7 +538,7 @@
   
   (find-specs "init")
   (find-specs "taninv")
-  (get @m/metadata-db "pluck")
+  (get @m/metadata-db "abs")
   (get @m/metadata-db "poscil")
 
 

@@ -13,48 +13,54 @@ ksmps = 32
 nchnls = 2
 0dbfs  = 1 
 
-gasig  init 0   
-gidel  = 1		;delay time in seconds
+
+instr 2
+  k1 = 1
+  i1 = 1
+  if (p3==p3) then
+    prints "JES\n"
+  endif
+endin
 
 instr 1
-  
-  ain  pluck .7, 440, 1000, 0, 1
-  outs ain, ain
+  ; Get the value of the 4th p-field from the score.
+  kparam = p4
+  printk 0.1, kparam
+  print i(kparam)
+  ; If iparam is 1 then play the high note.
+  ; If not then play the low note.
+      if (kparam == 1) igoto highnot__e
+      igoto lownote
 
-  vincr gasig, ain	;send to global delay
+    highnot__e:
+	ifreq = 880
+	goto playit
+
+      lownote:
+	ifreq = 440
+	goto playit
+
+      playit:
+	; Print the values of iparam and ifreq.
+	;; print iparam
+ 	;; print ifreq
+
+	a1 oscil 0.1, ifreq, 1
+	out a1
 endin
 
-instr 2	
-  ival init 0
-  print ival
-  ifeedback = p4	
 
-  a_ delayr	gidel
-  adelL 	deltap	.4		;first tap (on left channel)
-  adelM 	deltap	1		;second tap (on middle channel)
-  delayw	gasig + (adelL * ifeedback)
-
-  a_	delayr	gidel
-  kdel	line    1, p3, .01	;vary delay time
-  adelR 	deltap  .65 * kdel	;one pitch changing tap (on the right chn.)
-  delayw	gasig + (adelR * ifeedback)
-  ;make a mix of all deayed signals	
-  outs	adelL + adelM, adelR + adelM
-
-  clear	gasig
-endin
 
 </CsInstruments>
 <CsScore>
-i 1 0 1
-i 2 0 8 .8
+; Table #1: a simple sine wave.
+f 1 0 32768 10 1
 
-
-;; i 1 0 1
-;; i 1 3 1
-;; i 2 0 3  0	;no feedback
-;; i 2 3 8 .8	;lots of feedback
-e
+; p4: 1 = high note, anything else = low note
+; Play Instrument #1 for one second, a low note.
+i 1 0 1 0
+; Play a Instrument #1 for one second, a high note.
+i 1 1 1 1
 
 </CsScore>
 </CsoundSynthesizer>

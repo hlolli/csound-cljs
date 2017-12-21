@@ -7,3 +7,5 @@ releases
 .cpcache
 path`
 dev
+examples/booleans.cljs
+
