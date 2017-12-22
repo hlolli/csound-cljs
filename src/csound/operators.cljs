@@ -85,7 +85,6 @@
         (new csound.core/CsoundComparator ast)))
     (apply cljs.core/= vals)))
 
-
 (defn if:i [& [comparator then else :as form]]
   (when (< (count form) 3)
     (throw (js/Error. "Too few arguments to if:i")))
@@ -95,30 +94,71 @@
           "Error, test case for if:i is not a Boolean (Csound Comparator)")
   (when (and then else)
     (if (seqable? then)
-      (assert (= (map type then) (map type else))
-              "Type mismatch in if:i statement, then and else clauses must return same rate")
-      (assert (= (type then) (type else))
-              "Type mismatch in if:i statement, then and else clauses must return same rate")))
-  (let [ast (csound.core/ast-node
+      (do (assert (= (map type then) (map type else))
+                  "Type mismatch in if:i statement, then and else clauses must return same rates")
+          (assert (not (some #(or (= csound.core/AudioSignal (type %))
+                                  (= csound.core/ControlSignal (type %))) then))
+                  "if:i does not work for Audio rates and Control rates, use if:k instead"))
+      (do (assert (= (type then) (type else))
+                  "Type mismatch in if:i statement, then and else clauses must return same rate")
+          (assert (not (or (= csound.core/AudioSignal (type then))
+                           (= csound.core/ControlSignal (type then))))
+                  "if:i does not work for Audio rates and Control rates, use if:k instead"))))
+  (let [new-out (if (seqable? then)
+                  (mapv #(csound.core/regenerate-out-symbols %) then)
+                  (csound.core/regenerate-out-symbols then))
+        attach-new-out (fn [obj]
+                         (if (seqable? then)
+                           (mapv #(csound.core/-attachNewOut %1 %2) obj new-out)
+                           (csound.core/-attachNewOut obj new-out)))
+        ast (csound.core/ast-node
              'CsoundBoolean
              "igoto"
-             [comparator then else]
+             [comparator
+              (attach-new-out then)
+              (attach-new-out else)]
              csound.core/*global*)
         then (if (seqable? then)
-               (mapv #(csound.core/-attachBoolean % ast 0) then)
-               (csound.core/-attachBoolean then ast 0))
-        ;; else (if (seqable? then)
-        ;;        (mapv #(csound.core/-attachBoolean % ast 1) else)
-        ;;        (csound.core/-attachBoolean else ast 1))
-        ]
+               (mapv #(csound.core/-attachBoolean % ast new-out) then)
+               (csound.core/-attachBoolean then ast new-out))]
     
     ;; Attention, just return the `then` case, given all
     ;; cases are of same rate, they will return the same ident
     ;; parseing logic takes place elsewhere
     then))
 
-(comment 
-  (if:i (= (csound.opcodes/init:i 1) (csound.opcodes/init:i 1))
-        (csound.core/Variable. {})
-        (csound.core/Variable. {}))
-  )
+(defn if:k [& [comparator then else :as form]]
+  (when (< (count form) 2)
+    (throw (js/Error. "Too few arguments to if:k")))
+  (when (> (count form) 4)
+    (throw (js/Error. "Too many arguments to if:k")))
+  (assert (= (type comparator) csound.core/CsoundComparator)
+          "Error, test case for if:k is not a Boolean (Csound Comparator)")
+  (when (and then else)
+    (if (seqable? then)
+      (assert (= (map type then) (map type else))
+              "Type mismatch in if:k statement, then and else clauses must return same rates")
+      (assert (= (type then) (type else))
+              "Type mismatch in if:k statement, then and else clauses must return same rate")))
+  (let [new-out (if (seqable? then)
+                  (mapv #(csound.core/regenerate-out-symbols %) then)
+                  (csound.core/regenerate-out-symbols then))
+        attach-new-out (fn [obj]
+                         (if (seqable? then)
+                           (mapv #(csound.core/-attachNewOut %1 %2) obj new-out)
+                           (csound.core/-attachNewOut obj new-out)))
+        ast (csound.core/ast-node
+             'CsoundBoolean
+             "kgoto"
+             [comparator
+              (attach-new-out then)
+              (attach-new-out else)]
+             csound.core/*global*)
+        then (if (seqable? then)
+               (mapv #(csound.core/-attachBoolean % ast new-out) then)
+               (csound.core/-attachBoolean then ast new-out))]
+    ;; Attention, just return the `then` case, given all
+    ;; cases are of same rate, they will return the same ident
+    ;; parseing logic takes place elsewhere
+    then))
+

@@ -42,6 +42,12 @@
      VariableArray (str "i" (csnd-gensym "0") "[]")
      StringArray (str "S" (csnd-gensym "0") "[]"))))
 
+(defn regenerate-out-symbols [this]
+  (let [ret (:ret-type-quoted this)]
+    (if (seqable? ret)
+      (mapv #(gen-symbol % (:global? this)) ret)
+      (gen-symbol ret (:global? this)))))
+
 (declare tree-to-assembler
          global-tree-to-out)
 
@@ -52,13 +58,8 @@
 (defprotocol ICsoundBool
   (-getBoolean     [this])
   (-getBooleanCase [this])
-  (-attachBoolean  [this bool-object bool-case]))
-
-(defn regenerate-out-symbols [this]
-  (let [ret (:ret-type-quoted this)]
-    (if (seqable? ret)
-      (mapv #(gen-symbol % (:global? this)) ret)
-      (gen-symbol ret (:global? this)))))
+  (-attachBoolean  [this bool-object new-out])
+  (-attachNewOut [this new-out]))
 
 (deftype AudioSignal [ast]
   ICsoundBool
@@ -66,9 +67,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -84,9 +86,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   (-lookup [coll k] (get (.-ast coll) k))
@@ -102,9 +105,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -120,9 +124,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -138,9 +143,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -156,9 +162,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -174,9 +181,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -192,9 +200,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -210,9 +219,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -228,9 +238,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -246,9 +257,10 @@
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
-  (-attachBoolean [this bool-object bool-case]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :boolean-case bool-case
-                            :ident (csnd-gensym) :out (regenerate-out-symbols this))))
+  (-attachBoolean [this bool-object new-out]
+    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+  (-attachNewOut [this new-out]
+    (new AudioSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (str "p" (.-p-num coll)))
@@ -306,12 +318,17 @@
       ast)))
 
 
-(defn dedupe-nodes [v children]
+(defn dedupe-children [v children]
   (let [cidents (map first children)]
     (reduce (fn [acc node]
               (if-not (some #(= (first node) %) cidents)
                 (conj acc node)
                 acc)) [] v)))
+
+(defn dedupe-tree [tree]
+  (reduce (fn [acc [ident obj :as node]]
+            (if (some #(= (first %) ident) acc)
+              acc (conj acc node))) [] tree))
 
 (defn flatten-tree [root-node]
   (letfn [(node-filter [n]
@@ -323,9 +340,9 @@
            q (node-filter (:in root-node))]
       ;; (prn (map #(.-ast (second %)) v))
       (if (empty? q)
-        (reverse v)
+        (-> v reverse dedupe-tree)
         (let [children (mapv #(vector (:ident %) %) q)
-              v (dedupe-nodes v children)
+              v (dedupe-children v children)
               v (into v children)
               q (flatten (map #(node-filter (:in (second %))) children))]
           (recur v q))))))
@@ -383,6 +400,14 @@
                                 vec
                                 (mapv flatten-tree)
                                 (apply into)))
+        ;; Also resolve possible "hidden" objects in cases
+        patched-tree (into patched-tree
+                           (->> cases
+                                (map flatten-tree)
+                                (apply into)
+                                (cljs.core/remove (fn [[ident _]] (some #(= (:ident %) ident) cases)))
+                                vec
+                                ))
         if-node [(:ident bool-object)
                  (str "if " (parse-comparator comparator-object) " "
                       (:opcode bool-object) " " (:ident bool-object) "_case_0"
@@ -401,8 +426,6 @@
                                                         (:ident bool-object) "_endif"))])
                                         cases (range))))
         patched-tree (conj patched-tree endif-node)]
-    ;; (prn bool-object)
-    ;; (throw (js/Error. "nomean"))
     patched-tree))
 
 
@@ -416,7 +439,6 @@
       patched-tree
       (let [node (first tree)
             [ident object] node
-            ;; _ (prn "node" node)
             patch (:patch (:patch object))
             tree (case patch
                    nil tree
@@ -582,7 +604,7 @@
 
 
 #_(:num (last (reduce (fn [i p]
-                        (conj i p (new ScoreParameter (+ 4 (/ (count i) 2))))) [] '[a b c])))
+                        (conj i p (new ScoreParameter (+ 5 (/ (count i) 2))))) [] '[a b c])))
 
 #_(println (parse-to-string  (asig1)))
 
