@@ -374,17 +374,36 @@
                    "" (:in object)) ")"))
 
 
-(defn parse-booleans [tree object resolved-bools]
+(defn parse-booleans [patched-tree object]
   (let [bool-object (:boolean object)
         [comparator-object & cases] (:in bool-object)
-        if-node [(:ident comparator-object)
+        ;; Reolve possible "hidden" objects in comparator object
+        patched-tree (into patched-tree
+                           (->> (filter isa-csound-type? (:in comparator-object))
+                                vec
+                                (mapv flatten-tree)
+                                (apply into)))
+        if-node [(:ident bool-object)
                  (str "if " (parse-comparator comparator-object) " "
-                      (:opcode bool-object) " " (:ident bool-object) "_case0"
-                      (str "\n" (:opcode bool-object) " " (:ident bool-object) "_case1"))]
-        tree (conj tree if-node)]
-    ;; (prn tree)
+                      (:opcode bool-object) " " (:ident bool-object) "_case_0"
+                      (str "\n" (:opcode bool-object) " " (:ident bool-object) "_case_1"))]
+        endif-node [(str (:ident bool-object) "_endif")
+                    (str (:ident bool-object) "_endif:")]
+        patched-tree (conj patched-tree if-node)
+        patched-tree (into patched-tree
+                           (apply into
+                                  (mapv (fn [obj case-index]
+                                          [(vector (str (:ident bool-object) "_case_" case-index)
+                                                   (str (:ident bool-object) "_case_" case-index ":"))
+                                           (vector (:ident obj) obj)
+                                           (vector (str (:ident bool-object) "_endif_" case-index)
+                                                   (str (:opcode bool-object) " "
+                                                        (:ident bool-object) "_endif"))])
+                                        cases (range))))
+        patched-tree (conj patched-tree endif-node)]
+    ;; (prn bool-object)
     ;; (throw (js/Error. "nomean"))
-    [tree (conj resolved-bools (:ident object))]))
+    patched-tree))
 
 
 (defn post-process-tree
@@ -402,18 +421,25 @@
             tree (case patch
                    nil tree
                    :delayrw (inject-delayrw tree whole-tree))
-            [patched-tree resolved-bools] (if (and (contains? object :boolean)
-                                                   (not (resolved-bools ident)))
-                                            (parse-booleans tree object resolved-bools)
-                                            [patched-tree resolved-bools])]
-        (if (nil? patch)
+            unexpanded-bool? (and (contains? object :boolean)
+                                  (not (resolved-bools ident)))
+            patched-tree (if unexpanded-bool?
+                           (parse-booleans patched-tree object)
+                           patched-tree)]
+        (cond
+          patch
+          (recur tree
+                 patched-tree
+                 resolved-bools)
+          unexpanded-bool?
+          (recur (rest tree)
+                 patched-tree
+                 (conj resolved-bools ident))
+          :else
           (recur
            (rest tree)
            (conj patched-tree node)
-           resolved-bools)
-          (recur tree
-                 patched-tree
-                 resolved-bools))))))
+           resolved-bools))))))
 
 (defn parse-tree [tree]
   (-> (fn [acc node]

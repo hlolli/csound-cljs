@@ -25,10 +25,10 @@
       (let [csound-udp-connection (spawn "csound" #js ["-odac" "--port=6006" "--0dbfs=1"])]
         (.on csound-udp-connection "close"
              #(println "Csound UDP connection ended"))
-        #_(.on (.-stdout csound-udp-connection) "data"
-               #(println (.toString %)))
-        #_(.on (.-stderr csound-udp-connection) "data"
-               #(println (.toString %)))
+        (.on (.-stdout csound-udp-connection) "data"
+             #(println (.toString %)))
+        (.on (.-stderr csound-udp-connection) "data"
+             #(println (.toString %)))
         (reset! connection {:connection csound-udp-connection
                             :compile-orc-fn compile-orc-fn
                             :input-message-fn input-message-fn})
