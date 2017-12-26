@@ -48,6 +48,8 @@
                   "sndload.xml" "bformenc.xml" "hdf5write.xml"
                   "hdf5read.xml" "bformdec.xml" "hrtfer.xml"
                   "nchnls_i.xml" "p5gdata.xml" "p5gconnect.xml"
+                  "kfilter2.xml" "kgauss.xml" "klinrand.xml"
+                  "kpow.xml" "kread.xml" "kread2.xml" "kread3.xml"
                   "array.xml"})
 
 ;; note opnot.xml is logial not(!)
@@ -67,23 +69,18 @@
                  "endif.xml" "goto.xml" "igoto.xml"
                  "kgoto.xml" "tigoto.xml" "cigoto.xml"
                  "ckgoto.xml" "cggoto.xml" "timout.xml"
-                 "kfilter2.xml" "kgauss.xml" "klinrand.xml"
                  "kon.xml" "koutat.xml" "koutc.xml"
                  "koutc14.xml" "koutpat.xml" "koutpb.xml"
                  "koutpc.xml" "kpcauchy.xml" "kpoisson.xml"
-                 "kpow.xml" "kread.xml" "kread2.xml" "kread3.xml"
                  "kread4.xml" "ktrirand.xml" "kunirand.xml"
                  "kweibull.xml" "peakk.xml"
-                 "qnan.xml" "min.xml" "opnot.xml" "notequal.xml"
-                 "ceil.xml" "max.xml" "until.xml" "tb.xml"
+                 "qnan.xml" "opnot.xml" "notequal.xml"
+                 "until.xml" "tb.xml"
                  "cngoto.xml" "while.xml" "opand.xml" "dbamp.xml"
-                 "ampdbfs.xml" "taninv2.xml" "urd.xml"
-                 "ftlen.xml" "nsamp.xml"
-                 "ops.xml" "ftcps.xml" "ftlptim.xml"
-                 "ftsr.xml" "opa.xml" "opk.xml" "logbtwo.xml" "divz.xml" "octave.xml"
-                 "qinf.xml" "ftchnls.xml" "rnd.xml" "db.xml" "powoftwo.xml"
-                 "cent.xml" "semitone.xml" 
-                 "dbfsamp.xml" "birnd.xml" "ampdb.xml" "signum.xml"
+                 "taninv2.xml" "urd.xml" "ops.xml" 
+                 "opa.xml" "opk.xml" "logbtwo.xml"  "octave.xml"
+                 "qinf.xml" "rnd.xml" "db.xml" "powoftwo.xml"
+                 "birnd.xml" "signum.xml"
                  "reinit.xml" "pow.xml" "loop_gt.xml" "loop_le.xml"
                  "loop_ge.xml" "rigoto.xml" "loop_lt.xml"})
 
@@ -247,5 +244,20 @@
   (patch! "octcps" ["ires"] ["icps"])
   (patch! "octpch" ["ires"] ["ipch"])
   (patch! "pluck" ["ares"] ["kamp" "kresampling-cps" "iintended-cps" "ifn" "imeth" "iparm1" "iparm2"])
+  (patch! "divz" ["xres"] ["xa" "xb" "xsubst"])
   (patch! "abs" ["xres"] ["xval"])
+  (patch! "ceil" ["xres"] ["xval"])
+  (patch! "max" ["xres"] ["xval"])
+  (patch! "min" ["xres"] ["xval"])
+  (patch! "cent" ["kres"] ["kval"])
+  (patch! "semitone" ["kres"] ["kval"])
+  (patch! "ftlen" ["ires"] ["ival"])
+  (patch! "ftsr" ["ires"] ["ival"])
+  (patch! "nsamp" ["ires"] ["ival"])
+  (patch! "ftcps" ["ires"] ["ival"])
+  (patch! "ftlptim" ["ires"] ["ival"])
+  (patch! "ftchnls" ["ires"] ["ival"])
+  (patch! "ampdbfs" ["xres"] ["xval"])
+  (patch! "dbfsamp" ["xres"] ["xval"])
+  (patch! "ampdb" ["xres"] ["xval"])
   nil)

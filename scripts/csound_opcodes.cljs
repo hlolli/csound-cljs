@@ -86,12 +86,6 @@
   (filter #(= (first %) oname)
           csound-opcode-list))
 
-#_(defn poscil
-    {:arglists '([p1 p2 p3 p4] [i1 i2 i3 i4])}
-    [& [p1 p2 p3 p4 & rest :as env]]
-    [rest env])
-
-;; (poscil 1 2 3 2 3)
 
 (defn remove-spec-duplicate
   [spec-list]
@@ -385,6 +379,9 @@
                      this-W-arg? W-arg?)
                    (inc arg-num))))))))
 
+(def symbol-conflicted-csound-functions
+  ["min" "max"])
+
 (defn resolve-out-symbols [opcode spec]
   (let [out-spec (second (first spec))
         default {(ffirst spec) spec}
@@ -414,8 +411,7 @@
                            dedupe
                            (map split-specs)
                            (map first)
-                           (map #(get outtype-to-rate %))
-                           )]
+                           (map #(get outtype-to-rate %)))]
         ;; (prn out-rates)
         (if (< 1 (count out-rates))
           (reduce (fn [m r]
@@ -436,7 +432,8 @@
                                                      (= "a" (first (split-specs (second s)))))
                                              nil)
                                            (= r (second s))))) spec))))
-                  default out-rates)
+                  (apply dissoc default symbol-conflicted-csound-functions)
+                  out-rates)
           default)))))
 
 (defn parse-entry [out-str all-out specs opcode]
@@ -476,7 +473,7 @@
                       fdef-str)))))))
 
 (defn generate-cljs []
-  (loop [opcodes ;; ["taninv"]
+  (loop [opcodes ;; ["min"]
          (keys @m/metadata-db)
          out-str ""]
     ;; (prn (first opcodes))

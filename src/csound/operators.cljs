@@ -19,6 +19,9 @@
     :else
     ['Variable csound.core/Variable]))
 
+(defn mutate! [object expression]
+  (csound.core/-mutateOutput expression object))
+
 (defn + [& vals]
   (if (some csound.core/isa-csound-type? vals)
     (let [[out-type-quoted out-type]
@@ -71,6 +74,32 @@
       (new out-type ast))
     (apply cljs.core/* vals)))
 
+(defn min [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (let [[out-type-quoted out-type]
+          (resolve-fastest-rate vals)
+          ast (csound.core/ast-node
+               out-type-quoted
+               "="
+               (vec vals)
+               csound.core/*global*
+               "*")]
+      (new out-type ast))
+    (apply cljs.core/* vals)))
+
+(defn % [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (let [[out-type-quoted out-type]
+          (resolve-fastest-rate vals)
+          ast (csound.core/ast-node
+               out-type-quoted
+               "="
+               (vec vals)
+               csound.core/*global*
+               "%")]
+      (new out-type ast))
+    (throw (js/Error. "% is not a Clojure function, use `mod` or `rem` instead"))))
+
 (defn = [& vals]
   (if (some csound.core/isa-csound-type? vals)
     (do
@@ -84,6 +113,77 @@
                  "==")]
         (new csound.core/CsoundComparator ast)))
     (apply cljs.core/= vals)))
+
+(defn < [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (do
+      (assert (cljs.core/= 2 (count vals)) "Csound compareators must have exacly two arguments")
+      (let [[out-type-quoted out-type] (resolve-fastest-rate vals)
+            ast (csound.core/ast-node
+                 'CsoundComparator
+                 nil
+                 (vec vals)
+                 csound.core/*global*
+                 "<")]
+        (new csound.core/CsoundComparator ast)))
+    (apply cljs.core/< vals)))
+
+(defn > [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (do
+      (assert (cljs.core/= 2 (count vals)) "Csound compareators must have exacly two arguments")
+      (let [[out-type-quoted out-type] (resolve-fastest-rate vals)
+            ast (csound.core/ast-node
+                 'CsoundComparator
+                 nil
+                 (vec vals)
+                 csound.core/*global*
+                 ">")]
+        (new csound.core/CsoundComparator ast)))
+    (apply cljs.core/> vals)))
+
+(defn <= [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (do
+      (assert (cljs.core/= 2 (count vals)) "Csound compareators must have exacly two arguments")
+      (let [[out-type-quoted out-type] (resolve-fastest-rate vals)
+            ast (csound.core/ast-node
+                 'CsoundComparator
+                 nil
+                 (vec vals)
+                 csound.core/*global*
+                 "<=")]
+        (new csound.core/CsoundComparator ast)))
+    (apply cljs.core/<= vals)))
+
+(defn >= [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (do
+      (assert (cljs.core/= 2 (count vals)) "Csound compareators must have exacly two arguments")
+      (let [[out-type-quoted out-type] (resolve-fastest-rate vals)
+            ast (csound.core/ast-node
+                 'CsoundComparator
+                 nil
+                 (vec vals)
+                 csound.core/*global*
+                 ">=")]
+        (new csound.core/CsoundComparator ast)))
+    (apply cljs.core/>= vals)))
+
+
+(defn != [& vals]
+  (if (some csound.core/isa-csound-type? vals)
+    (do
+      (assert (cljs.core/= 2 (count vals)) "Csound compareators must have exacly two arguments")
+      (let [[out-type-quoted out-type] (resolve-fastest-rate vals)
+            ast (csound.core/ast-node
+                 'CsoundComparator
+                 nil
+                 (vec vals)
+                 csound.core/*global*
+                 "!=")]
+        (new csound.core/CsoundComparator ast)))
+    (throw (js/Error. "!= is not a Clojure function"))))
 
 (defn if:i [& [comparator then else :as form]]
   (when (< (count form) 3)

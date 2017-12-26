@@ -1,7 +1,7 @@
 (ns examples.xanadu
-  (:require [csound.load :refer [load!]]))
+  (:require [csound.load :refer [load-csound!]]))
 
-(load! *ns*)
+(load-csound! *ns*)
 
 (defglobal sine-table (ftgen 0 0 8192 10 1))
 

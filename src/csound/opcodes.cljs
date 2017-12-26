@@ -529,6 +529,102 @@
   :args (s/cat :stretch valid-i? :windowsize valid-i? :ft valid-i? ))
 (stest/instrument `paulstretch)
 
+(defn ceil
+  {:arglists '([aval] [ival] [ivalArr] [kval] [kvalArr])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "ceil"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ceil
+  :args (s/alt
+         :kArr (s/cat :val valid-kArr? )
+         :k (s/cat :val valid-kr? )
+         :iArr (s/cat :val valid-iArr? )
+         :i (s/cat :val valid-i? )
+         :a (s/cat :val valid-ar? )
+         ))
+(stest/instrument `ceil)
+
+(defn ceil:a
+  {:arglists '([aval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "ceil"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ceil:a
+  :args (s/cat :val valid-ar? ))
+(stest/instrument `ceil:a)
+
+(defn ceil:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ceil"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ceil:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ceil:i)
+
+(defn ceil:iArr
+  {:arglists '([ivalArr])}
+  [val]
+  (let [out-types-quoted 'VariableArray
+        out-types VariableArray
+        ast (ast-node out-types-quoted
+                      "ceil"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ceil:iArr
+  :args (s/cat :val valid-iArr? ))
+(stest/instrument `ceil:iArr)
+
+(defn ceil:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "ceil"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ceil:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `ceil:k)
+
+(defn ceil:kArr
+  {:arglists '([kvalArr])}
+  [val]
+  (let [out-types-quoted 'ControlArray
+        out-types ControlArray
+        ast (ast-node out-types-quoted
+                      "ceil"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ceil:kArr
+  :args (s/cat :val valid-kArr? ))
+(stest/instrument `ceil:kArr)
+
 (defn dam
   {:arglists '([asig kthreshold icomp3 icomp4 irtime iftime])}
   [sig threshold comp3 comp4 rtime ftime]
@@ -1784,6 +1880,51 @@
          :iArri (s/cat :ab valid-iArr? :ftbl valid-i? )
          ))
 (stest/instrument `copyf2array)
+
+(defn min:a
+  {:arglists '([aval & aval1* aval2* aval3* aval4* aval5* aval6* aval7* aval8* aval9* aval10* aval11* aval12* aval13* aval14* aval15* aval16* aval17* aval18* aval19* aval20* aval21* aval22* aval23* aval24* aval25* aval26* aval27* aval28* aval29* aval30* aval31* aval32*])}
+  [val & [ val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* val17* val18* val19* val20* val21* val22* val23* val24* val25* val26* val27* val28* val29* val30* val31* val32* ]]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "min"
+                      [val val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* val17* val18* val19* val20* val21* val22* val23* val24* val25* val26* val27* val28* val29* val30* val31* val32*]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef min:a
+  :args (s/cat :val valid-ar? :val1* (s/? valid-ar?*) :val2* (s/? valid-ar?*) :val3* (s/? valid-ar?*) :val4* (s/? valid-ar?*) :val5* (s/? valid-ar?*) :val6* (s/? valid-ar?*) :val7* (s/? valid-ar?*) :val8* (s/? valid-ar?*) :val9* (s/? valid-ar?*) :val10* (s/? valid-ar?*) :val11* (s/? valid-ar?*) :val12* (s/? valid-ar?*) :val13* (s/? valid-ar?*) :val14* (s/? valid-ar?*) :val15* (s/? valid-ar?*) :val16* (s/? valid-ar?*) :val17* (s/? valid-ar?*) :val18* (s/? valid-ar?*) :val19* (s/? valid-ar?*) :val20* (s/? valid-ar?*) :val21* (s/? valid-ar?*) :val22* (s/? valid-ar?*) :val23* (s/? valid-ar?*) :val24* (s/? valid-ar?*) :val25* (s/? valid-ar?*) :val26* (s/? valid-ar?*) :val27* (s/? valid-ar?*) :val28* (s/? valid-ar?*) :val29* (s/? valid-ar?*) :val30* (s/? valid-ar?*) :val31* (s/? valid-ar?*) :val32* (s/? valid-ar?*) ))
+(stest/instrument `min:a)
+
+(defn min:i
+  {:arglists '([ival & ival1* ival2* ival3* ival4* ival5* ival6* ival7* ival8* ival9* ival10* ival11* ival12* ival13* ival14* ival15* ival16*])}
+  [val & [ val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* ]]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "min"
+                      [val val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16*]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef min:i
+  :args (s/cat :val valid-i? :val1* (s/? valid-i?*) :val2* (s/? valid-i?*) :val3* (s/? valid-i?*) :val4* (s/? valid-i?*) :val5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) ))
+(stest/instrument `min:i)
+
+(defn min:k
+  {:arglists '([kval & kval1* kval2* kval3* kval4* kval5* kval6* kval7* kval8* kval9* kval10* kval11* kval12* kval13* kval14* kval15* kval16*])}
+  [val & [ val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* ]]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "min"
+                      [val val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16*]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef min:k
+  :args (s/cat :val valid-kr? :val1* (s/? valid-kr?*) :val2* (s/? valid-kr?*) :val3* (s/? valid-kr?*) :val4* (s/? valid-kr?*) :val5* (s/? valid-kr?*) :val6* (s/? valid-kr?*) :val7* (s/? valid-kr?*) :val8* (s/? valid-kr?*) :val9* (s/? valid-kr?*) :val10* (s/? valid-kr?*) :val11* (s/? valid-kr?*) :val12* (s/? valid-kr?*) :val13* (s/? valid-kr?*) :val14* (s/? valid-kr?*) :val15* (s/? valid-kr?*) :val16* (s/? valid-kr?*) ))
+(stest/instrument `min:k)
 
 (defn lpinterp
   {:arglists '([islot1 islot2 kmix])}
@@ -3744,6 +3885,70 @@
 (s/fdef vbapz
   :args (s/cat :numchnls valid-i? :startndx valid-i? :sig valid-ar? :azim valid-kr? :elev* (s/? valid-kr?*) :spread* (s/? valid-kr?*) :spread* (s/? valid-i?*) ))
 (stest/instrument `vbapz)
+
+(defn ampdbfs
+  {:arglists '([aval] [ival] [kval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "ampdbfs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdbfs
+  :args (s/alt
+         :k (s/cat :val valid-kr? )
+         :i (s/cat :val valid-i? )
+         :a (s/cat :val valid-ar? )
+         ))
+(stest/instrument `ampdbfs)
+
+(defn ampdbfs:a
+  {:arglists '([aval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "ampdbfs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdbfs:a
+  :args (s/cat :val valid-ar? ))
+(stest/instrument `ampdbfs:a)
+
+(defn ampdbfs:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ampdbfs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdbfs:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ampdbfs:i)
+
+(defn ampdbfs:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "ampdbfs"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdbfs:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `ampdbfs:k)
 
 (defn lowres
   {:arglists '([asig acutoff aresonance & iskip*] [asig acutoff kresonance & iskip*] [asig kcutoff aresonance & iskip*] [asig kcutoff kresonance & iskip*])}
@@ -6276,6 +6481,51 @@
   :args (s/cat :outtable valid-kr? :intatble valid-kr? :mode valid-kr? :param valid-kr? ))
 (stest/instrument `tablefilter)
 
+(defn max:a
+  {:arglists '([aval & aval1* aval2* aval3* aval4* aval5* aval6* aval7* aval8* aval9* aval10* aval11* aval12* aval13* aval14* aval15* aval16* aval17* aval18* aval19* aval20* aval21* aval22* aval23* aval24* aval25* aval26* aval27* aval28* aval29* aval30* aval31* aval32*])}
+  [val & [ val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* val17* val18* val19* val20* val21* val22* val23* val24* val25* val26* val27* val28* val29* val30* val31* val32* ]]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "max"
+                      [val val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* val17* val18* val19* val20* val21* val22* val23* val24* val25* val26* val27* val28* val29* val30* val31* val32*]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef max:a
+  :args (s/cat :val valid-ar? :val1* (s/? valid-ar?*) :val2* (s/? valid-ar?*) :val3* (s/? valid-ar?*) :val4* (s/? valid-ar?*) :val5* (s/? valid-ar?*) :val6* (s/? valid-ar?*) :val7* (s/? valid-ar?*) :val8* (s/? valid-ar?*) :val9* (s/? valid-ar?*) :val10* (s/? valid-ar?*) :val11* (s/? valid-ar?*) :val12* (s/? valid-ar?*) :val13* (s/? valid-ar?*) :val14* (s/? valid-ar?*) :val15* (s/? valid-ar?*) :val16* (s/? valid-ar?*) :val17* (s/? valid-ar?*) :val18* (s/? valid-ar?*) :val19* (s/? valid-ar?*) :val20* (s/? valid-ar?*) :val21* (s/? valid-ar?*) :val22* (s/? valid-ar?*) :val23* (s/? valid-ar?*) :val24* (s/? valid-ar?*) :val25* (s/? valid-ar?*) :val26* (s/? valid-ar?*) :val27* (s/? valid-ar?*) :val28* (s/? valid-ar?*) :val29* (s/? valid-ar?*) :val30* (s/? valid-ar?*) :val31* (s/? valid-ar?*) :val32* (s/? valid-ar?*) ))
+(stest/instrument `max:a)
+
+(defn max:i
+  {:arglists '([ival & ival1* ival2* ival3* ival4* ival5* ival6* ival7* ival8* ival9* ival10* ival11* ival12* ival13* ival14* ival15* ival16*])}
+  [val & [ val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* ]]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "max"
+                      [val val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16*]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef max:i
+  :args (s/cat :val valid-i? :val1* (s/? valid-i?*) :val2* (s/? valid-i?*) :val3* (s/? valid-i?*) :val4* (s/? valid-i?*) :val5* (s/? valid-i?*) :val6* (s/? valid-i?*) :val7* (s/? valid-i?*) :val8* (s/? valid-i?*) :val9* (s/? valid-i?*) :val10* (s/? valid-i?*) :val11* (s/? valid-i?*) :val12* (s/? valid-i?*) :val13* (s/? valid-i?*) :val14* (s/? valid-i?*) :val15* (s/? valid-i?*) :val16* (s/? valid-i?*) ))
+(stest/instrument `max:i)
+
+(defn max:k
+  {:arglists '([kval & kval1* kval2* kval3* kval4* kval5* kval6* kval7* kval8* kval9* kval10* kval11* kval12* kval13* kval14* kval15* kval16*])}
+  [val & [ val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16* ]]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "max"
+                      [val val1* val2* val3* val4* val5* val6* val7* val8* val9* val10* val11* val12* val13* val14* val15* val16*]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef max:k
+  :args (s/cat :val valid-kr? :val1* (s/? valid-kr?*) :val2* (s/? valid-kr?*) :val3* (s/? valid-kr?*) :val4* (s/? valid-kr?*) :val5* (s/? valid-kr?*) :val6* (s/? valid-kr?*) :val7* (s/? valid-kr?*) :val8* (s/? valid-kr?*) :val9* (s/? valid-kr?*) :val10* (s/? valid-kr?*) :val11* (s/? valid-kr?*) :val12* (s/? valid-kr?*) :val13* (s/? valid-kr?*) :val14* (s/? valid-kr?*) :val15* (s/? valid-kr?*) :val16* (s/? valid-kr?*) ))
+(stest/instrument `max:k)
+
 (defn grain
   {:arglists '([xamp xpitch xdens kampoff kpitchoff kgdur igfn iwfn imgdur & igrnd*])}
   [amp pitch dens ampoff pitchoff gdur gfn wfn mgdur & [ grnd* ]]
@@ -6563,6 +6813,21 @@
          :fffi (s/cat :sigin valid-f? :sigfil valid-f? :depth valid-f? :gain* (s/? valid-i?*) )
          ))
 (stest/instrument `pvsfilter)
+
+(defn ftlen
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ftlen"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ftlen
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ftlen)
 
 (defn chnparams
   {:arglists '([Sname])}
@@ -7182,6 +7447,21 @@
 (s/fdef pvsbufread
   :args (s/cat :time valid-kr? :handle valid-kr? :lo* (s/? valid-kr?*) :hi* (s/? valid-kr?*) :clear* (s/? valid-i?*) ))
 (stest/instrument `pvsbufread)
+
+(defn nsamp
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "nsamp"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef nsamp
+  :args (s/cat :val valid-i? ))
+(stest/instrument `nsamp)
 
 (defn imagesave
   {:arglists '([iimagenum Silename])}
@@ -10245,6 +10525,21 @@
   :args (s/cat :send valid-i? :buss valid-i? ))
 (stest/instrument `MixerGetLevel)
 
+(defn ftcps
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ftcps"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ftcps
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ftcps)
+
 (defn limit
   {:arglists '([asig klow khigh] [isig ilow ihigh] [isigArr ilow ihigh] [ksig klow khigh] [ksigArr klow khigh])}
   [sig low high]
@@ -12091,6 +12386,21 @@
   :args (s/cat :in valid-ar? :a valid-kr? :b valid-kr? :d valid-kr? :C valid-kr? :L valid-kr? ))
 (stest/instrument `nlfilt)
 
+(defn ftlptim
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ftlptim"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ftlptim
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ftlptim)
+
 (defn vmultv
   {:arglists '([ifn1 ifn2 kelements & kdstoffset* ksrcoffset* kverbose*])}
   [fn1 fn2 elements & [ dstoffset* srcoffset* verbose* ]]
@@ -12417,6 +12727,21 @@
 (s/fdef seqtime
   :args (s/cat :time_unit valid-kr? :start valid-kr? :loop valid-kr? :initndx valid-kr? :fn_times valid-kr? ))
 (stest/instrument `seqtime)
+
+(defn ftsr
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ftsr"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ftsr
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ftsr)
 
 (defn syncloop
   {:arglists '([kamp kfreq kpitch kgrsize kprate klstart klend ifun8 ifun9 iolaps & istart* iskip*])}
@@ -14002,6 +14327,76 @@
   :args (s/cat :handle valid-i? :in1* (s/? valid-x?*) :in2* (s/? valid-x?*) :in3* (s/? valid-x?*) :in4* (s/? valid-x?*) :in5* (s/? valid-x?*) :in6* (s/? valid-x?*) :in7* (s/? valid-x?*) :in8* (s/? valid-x?*) :in9* (s/? valid-x?*) :in10* (s/? valid-x?*) :in11* (s/? valid-x?*) :in12* (s/? valid-x?*) :in13* (s/? valid-x?*) :in14* (s/? valid-x?*) :in15* (s/? valid-x?*) :in16* (s/? valid-x?*) ))
 (stest/instrument `dssiaudio)
 
+(defn divz
+  {:arglists '([aa ab ksubst] [aa kb ksubst] [ka ab ksubst] [ia ib isubst] [ka kb ksubst])}
+  [a b subst]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "divz"
+                      [a b subst]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef divz
+  :args (s/alt
+         :kkk (s/cat :a valid-kr? :b valid-kr? :subst valid-kr? )
+         :iii (s/cat :a valid-i? :b valid-i? :subst valid-i? )
+         :kak (s/cat :a valid-kr? :b valid-ar? :subst valid-kr? )
+         :akk (s/cat :a valid-ar? :b valid-kr? :subst valid-kr? )
+         :aak (s/cat :a valid-ar? :b valid-ar? :subst valid-kr? )
+         ))
+(stest/instrument `divz)
+
+(defn divz:a
+  {:arglists '([aa ab ksubst] [aa kb ksubst] [ka ab ksubst])}
+  [a b subst]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "divz"
+                      [a b subst]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef divz:a
+  :args (s/alt
+         :kak (s/cat :a valid-kr? :b valid-ar? :subst valid-kr? )
+         :akk (s/cat :a valid-ar? :b valid-kr? :subst valid-kr? )
+         :aak (s/cat :a valid-ar? :b valid-ar? :subst valid-kr? )
+         ))
+(stest/instrument `divz:a)
+
+(defn divz:i
+  {:arglists '([ia ib isubst])}
+  [a b subst]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "divz"
+                      [a b subst]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef divz:i
+  :args (s/cat :a valid-i? :b valid-i? :subst valid-i? ))
+(stest/instrument `divz:i)
+
+(defn divz:k
+  {:arglists '([ka kb ksubst])}
+  [a b subst]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "divz"
+                      [a b subst]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef divz:k
+  :args (s/cat :a valid-kr? :b valid-kr? :subst valid-kr? ))
+(stest/instrument `divz:k)
+
 (defn vtable1k
   {:arglists '([ktable & kout1* kout2* kout3* koutN4* koutN5* koutN6* koutN7* koutN8* koutN9* koutN10* koutN11* koutN12* koutN13* koutN14* koutN15* koutN16*])}
   [table & [ out1* out2* out3* outN4* outN5* outN6* outN7* outN8* outN9* outN10* outN11* outN12* outN13* outN14* outN15* outN16* ]]
@@ -15258,6 +15653,21 @@
 (s/fdef chnmix
   :args (s/cat :val valid-ar? :name valid-S? ))
 (stest/instrument `chnmix)
+
+(defn ftchnls
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ftchnls"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ftchnls
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ftchnls)
 
 (defn delay
   {:arglists '([asig idlt & iskip*])}
@@ -17465,6 +17875,70 @@
          ))
 (stest/instrument `oscili:k)
 
+(defn cent
+  {:arglists '([aval] [ival] [kval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "cent"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef cent
+  :args (s/alt
+         :k (s/cat :val valid-kr? )
+         :i (s/cat :val valid-i? )
+         :a (s/cat :val valid-ar? )
+         ))
+(stest/instrument `cent)
+
+(defn cent:a
+  {:arglists '([aval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "cent"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef cent:a
+  :args (s/cat :val valid-ar? ))
+(stest/instrument `cent:a)
+
+(defn cent:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "cent"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef cent:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `cent:i)
+
+(defn cent:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "cent"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef cent:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `cent:k)
+
 (defn strset
   {:arglists '([iarg Sstring])}
   [arg string]
@@ -17749,6 +18223,70 @@
 (s/fdef outs1
   :args (s/cat :sig valid-ar? ))
 (stest/instrument `outs1)
+
+(defn semitone
+  {:arglists '([aval] [ival] [kval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "semitone"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef semitone
+  :args (s/alt
+         :k (s/cat :val valid-kr? )
+         :i (s/cat :val valid-i? )
+         :a (s/cat :val valid-ar? )
+         ))
+(stest/instrument `semitone)
+
+(defn semitone:a
+  {:arglists '([aval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "semitone"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef semitone:a
+  :args (s/cat :val valid-ar? ))
+(stest/instrument `semitone:a)
+
+(defn semitone:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "semitone"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef semitone:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `semitone:i)
+
+(defn semitone:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "semitone"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef semitone:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `semitone:k)
 
 (defn tabsum
   {:arglists '([itable & kmin* kmax*])}
@@ -20002,6 +20540,54 @@
   :args (s/cat :table valid-i? :htime valid-kr? :elements valid-i? :fnInit* (s/? valid-i?*) ))
 (stest/instrument `vport)
 
+(defn dbfsamp
+  {:arglists '([ival] [kval])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "dbfsamp"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef dbfsamp
+  :args (s/alt
+         :k (s/cat :val valid-kr? )
+         :i (s/cat :val valid-i? )
+         ))
+(stest/instrument `dbfsamp)
+
+(defn dbfsamp:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "dbfsamp"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef dbfsamp:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `dbfsamp:i)
+
+(defn dbfsamp:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "dbfsamp"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef dbfsamp:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `dbfsamp:k)
+
 (defn fof
   {:arglists '([xamp xfund xform koct kband kris kdur kdec iolaps ifna ifnb itotdur & iphase* ifmode* iskip*])}
   [amp fund form oct band ris dur dec olaps fna fnb totdur & [ phase* fmode* skip* ]]
@@ -20705,6 +21291,70 @@
          :iArri (s/cat :ftbl valid-iArr? :ab valid-i? )
          ))
 (stest/instrument `copya2ftab)
+
+(defn ampdb
+  {:arglists '([aval] [ival] [kval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "ampdb"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdb
+  :args (s/alt
+         :k (s/cat :val valid-kr? )
+         :i (s/cat :val valid-i? )
+         :a (s/cat :val valid-ar? )
+         ))
+(stest/instrument `ampdb)
+
+(defn ampdb:a
+  {:arglists '([aval])}
+  [val]
+  (let [out-types-quoted 'AudioSignal
+        out-types AudioSignal
+        ast (ast-node out-types-quoted
+                      "ampdb"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdb:a
+  :args (s/cat :val valid-ar? ))
+(stest/instrument `ampdb:a)
+
+(defn ampdb:i
+  {:arglists '([ival])}
+  [val]
+  (let [out-types-quoted 'Variable
+        out-types Variable
+        ast (ast-node out-types-quoted
+                      "ampdb"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdb:i
+  :args (s/cat :val valid-i? ))
+(stest/instrument `ampdb:i)
+
+(defn ampdb:k
+  {:arglists '([kval])}
+  [val]
+  (let [out-types-quoted 'ControlSignal
+        out-types ControlSignal
+        ast (ast-node out-types-quoted
+                      "ampdb"
+                      [val]
+                      *global*)]
+    (new out-types ast)))
+
+(s/fdef ampdb:k
+  :args (s/cat :val valid-kr? ))
+(stest/instrument `ampdb:k)
 
 (defn mdelay
   {:arglists '([kstatus kchan kd3 kd4 kdelay])}

@@ -4,7 +4,10 @@
             [clojure.zip :as zip]
             [clojure.walk :as walk]
             [clojure.string :as string]
-            [csound.connection :as conn])
+            [csound.connection :as conn]
+            [fs] [clojure.string :as string]
+            [goog.string :as gstring]
+            goog.string.format)
   (:require-macros
    [csound.macros :refer [definstr]]))
 
@@ -15,7 +18,33 @@
 (def ^:dynamic *ksmps* 16)
 (def ^:dynamic *A4* 440)
 (def ^:dynamic *global* nil)
+(def ^:dynamic *instr-name* nil)
 
+(def transpiled-csound-data (atom {}))
+
+
+#_(defn write-csd! [input output]
+    (swap! csd-writer assoc :active? true)
+    (load-file input)
+    (let [{:keys [orc sco]} @csd-writer
+          _ (prn "ORC: " orc)
+          writer-fn (fn [data-vec]
+                      (->> data-vec
+                           (interpose "\n")
+                           (apply str)
+                           (fs/appendFileSync output)))
+          top "<CsoundSynthesizer>\n<CsOptions>\n</CsOptions>\n<CsInstruments>"
+          header (gstring/format "sr=%s\nksmps=%s\nnchnls=%s\n0dbfs=%s\n"
+                                 *sr* *ksmps* *nchnls* *0dbfs*)
+          middle "</CsInstruments>\n<CsScore>"
+          bottom "</CsScore>\n</CsoundSynthesizer>"]
+      (fs/appendFileSync output top)
+      (fs/appendFileSync output header)
+      (writer-fn orc)
+      (fs/appendFileSync output middle)
+      (writer-fn sco)
+      (fs/appendFileSync output bottom)
+      (reset! csd-writer empty-csd-writer)))
 
 (def
   ^{:jsdoc ["@type {*}"]}
@@ -61,7 +90,13 @@
   (-attachBoolean  [this bool-object new-out])
   (-attachNewOut [this new-out]))
 
+(defprotocol ICsoundMuteable
+  (-mutateOutput [this from]))
+
 (deftype AudioSignal [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new AudioSignal (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
@@ -81,15 +116,18 @@
   (-empty [coll] (new AudioSignal (dissoc (.-ast coll) :patch))))
 
 (deftype ControlSignal [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new ControlSignal (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new ControlSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new ControlSignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
   (-lookup [coll k] (get (.-ast coll) k))
@@ -100,15 +138,18 @@
   (-empty [coll] (new ControlSignal (dissoc (.-ast coll) :patch))))
 
 (deftype FrequencySignal [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new FrequencySignal (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new FrequencySignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new FrequencySignal (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -119,15 +160,18 @@
   (-empty [coll] (new FrequencySignal (dissoc (.-ast coll) :patch))))
 
 (deftype Variable [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new Variable (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new Variable (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new Variable (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -138,15 +182,18 @@
   (-empty [coll] (new Variable (dissoc (.-ast coll) :patch))))
 
 (deftype String [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new String (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new String (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new String (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -157,15 +204,18 @@
   (-empty [coll] (new String (dissoc (.-ast coll) :patch))))
 
 (deftype AudioArray [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new AudioArray (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new AudioArray (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new AudioArray (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -176,15 +226,18 @@
   (-empty [coll] (new AudioArray (dissoc (.-ast coll) :patch))))
 
 (deftype ControlArray [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new ControlArray (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new ControlArray (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new ControlArray (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -195,15 +248,18 @@
   (-empty [coll] (new ControlArray (dissoc (.-ast coll) :patch))))
 
 (deftype VariableArray [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new VariableArray (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new VariableArray (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new VariableArray (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -214,15 +270,18 @@
   (-empty [coll] (new VariableArray (dissoc (.-ast coll) :patch))))
 
 (deftype StringArray [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new StringArray (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new StringArray (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new StringArray (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -233,15 +292,18 @@
   (-empty [coll] (new StringArray (dissoc (.-ast coll) :patch))))
 
 (deftype IO [ast]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new IO (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new IO (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new IO (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (get (.-ast coll) k not-found))
@@ -252,15 +314,18 @@
   (-empty [coll] (new IO (dissoc (.-ast coll) :patch))))
 
 (deftype ScoreParameter [p-num]
+  ICsoundMuteable
+  (-mutateOutput [this from]
+    (new ScoreParameter (assoc (.-ast this) :out (:out from))))
   ICsoundBool
   (-getBoolean [this]
     (:boolean this))
   (-getBooleanCase [this]
     (:boolean-case this))
   (-attachBoolean [this bool-object new-out]
-    (new AudioSignal (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
+    (new ScoreParameter (assoc (.-ast this) :boolean bool-object :ident (csnd-gensym) :out new-out)))
   (-attachNewOut [this new-out]
-    (new AudioSignal (assoc (.-ast this) :out new-out)))
+    (new ScoreParameter (assoc (.-ast this) :out new-out)))
   ILookup
   (-lookup [coll k] (-lookup coll k nil))
   (-lookup [coll k not-found] (str "p" (.-p-num coll)))
@@ -334,8 +399,15 @@
   (letfn [(node-filter [n]
             (if *global*
               (filter isa-csound-type? n)
-              (filter #(and (isa-csound-type? %)
-                            (not (:global? %))) n)))]
+              (filter #(do (when (and (:global? %) *instr-name*)
+                             (swap! transpiled-csound-data update-in
+                                    [*instr-name* :global-requires]
+                                    (fn [old new]
+                                      (if old
+                                        (conj old new)
+                                        (conj #{} new))) (:global? %)))
+                           (and (isa-csound-type? %)
+                                (not (:global? %)))) n)))]
     (loop [v [[(:ident root-node) root-node]]
            q (node-filter (:in root-node))]
       ;; (prn (map #(.-ast (second %)) v))

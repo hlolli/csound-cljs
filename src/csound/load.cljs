@@ -6,7 +6,7 @@
   (:require-macros csound.macros))
 
 
-(defn load! [ns]
+(defn load-csound! [ns]
   (let [ns-name (.-name ns)
         hack-swap! (fn [k v]
                      (let [previous-data (get-in @cljs.env/*compiler*
@@ -39,7 +39,8 @@
         all-patched-opcodes (keys (get-in @cljs.env/*compiler*
                                           [:cljs.analyzer/namespaces
                                            'csound.patched-opcodes :defs]))
-        all-patched-opcodes (reduce #(assoc %1 %2 'csound.patched-opcodes) {} all-patched-opcodes)]
+        all-patched-opcodes (reduce #(assoc %1 %2 'csound.patched-opcodes) {} all-patched-opcodes)
+        public-core-function '{write-csd! csound.core}]
     (hack-swap! :excludes excludes)
     (hack-swap! :requires requires)
     (hack-swap! :uses (merge all-opcodes all-operators all-patched-opcodes))
