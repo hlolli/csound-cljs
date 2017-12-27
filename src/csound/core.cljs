@@ -382,7 +382,6 @@
       (mapv #(child (:ident ast) ast (:in ast) %) out)
       ast)))
 
-
 (defn dedupe-children [v children]
   (let [cidents (map first children)]
     (reduce (fn [acc node]
@@ -466,37 +465,52 @@
 (defn parse-booleans [patched-tree object]
   (let [bool-object (:boolean object)
         [comparator-object & cases] (:in bool-object)
+        is-tie? (= "tigoto" (:operator comparator-object))
         ;; Reolve possible "hidden" objects in comparator object
-        patched-tree (into patched-tree
-                           (->> (filter isa-csound-type? (:in comparator-object))
-                                vec
-                                (mapv flatten-tree)
-                                (apply into)))
+        patched-tree (if is-tie?
+                       patched-tree
+                       (into patched-tree
+                             (->> (filter isa-csound-type? (:in comparator-object))
+                                  vec
+                                  (mapv flatten-tree)
+                                  (apply into))))
         ;; Also resolve possible "hidden" objects in cases
         patched-tree (into patched-tree
                            (->> cases
                                 (map flatten-tree)
                                 (apply into)
                                 (cljs.core/remove (fn [[ident _]] (some #(= (:ident %) ident) cases)))
-                                vec
-                                ))
+                                vec))
         if-node [(:ident bool-object)
-                 (str "if " (parse-comparator comparator-object) " "
-                      (:opcode bool-object) " " (:ident bool-object) "_case_0"
-                      (str "\n" (:opcode bool-object) " " (:ident bool-object) "_case_1"))]
+                 (if is-tie?
+                   (str "tigoto " (:ident bool-object))
+                   (str "if " (parse-comparator comparator-object) " "
+                        (:opcode bool-object) " " (:ident bool-object) "_case_0"
+                        (str "\n" (:opcode bool-object) " " (:ident bool-object) "_case_1")))]
         endif-node [(str (:ident bool-object) "_endif")
                     (str (:ident bool-object) "_endif:")]
         patched-tree (conj patched-tree if-node)
-        patched-tree (into patched-tree
-                           (apply into
-                                  (mapv (fn [obj case-index]
-                                          [(vector (str (:ident bool-object) "_case_" case-index)
-                                                   (str (:ident bool-object) "_case_" case-index ":"))
-                                           (vector (:ident obj) obj)
-                                           (vector (str (:ident bool-object) "_endif_" case-index)
-                                                   (str (:opcode bool-object) " "
-                                                        (:ident bool-object) "_endif"))])
-                                        cases (range))))
+        patched-tree (if is-tie?
+                       (conj (vec (remove #(= (:ident (second cases)) (first %)) patched-tree))
+                             [(str (:ident bool-object) "_not_tie") (second cases)]
+                             ;; Make sure that the statements end up after tigoto
+                             (first (filter #(= (:ident (second cases)) (first %)) patched-tree))
+                             [(str (:ident bool-object) "_if_tie")
+                              (str (:ident bool-object) ":" "\n"
+                                   "if tival()==0 " (:opcode bool-object)
+                                   " " (:ident bool-object) "_endif")]
+                             [(str (:ident bool-object) "_tie") (first cases)])
+                       (into patched-tree
+                             (apply into
+                                    (mapv (fn [obj case-index]
+                                            [(vector (str (:ident bool-object) "_case_" case-index)
+                                                     (str (:ident bool-object) "_case_" case-index ":"))
+                                             (vector (:ident obj) obj)
+                                             (vector (str (:ident bool-object) "_endif_" case-index)
+                                                     (str (:opcode bool-object) " "
+                                                          (:ident bool-object) "_endif"))])
+                                          cases (range)))))
+        ;; _ (prn "patched-tree: " patched-tree)
         patched-tree (conj patched-tree endif-node)]
     patched-tree))
 

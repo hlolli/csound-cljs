@@ -22,6 +22,15 @@
 (defn mutate! [object expression]
   (csound.core/-mutateOutput expression object))
 
+(defn += [object expression]
+  (let [sum-ast (csound.core/ast-node
+                 (:ret-type-quoted object)
+                 "+="
+                 [expression]
+                 csound.core/*global*)
+        obj-type (type object)]
+    (csound.core/-mutateOutput (new obj-type sum-ast) object)))
+
 (defn + [& vals]
   (if (some csound.core/isa-csound-type? vals)
     (let [[out-type-quoted out-type]
@@ -185,6 +194,35 @@
         (new csound.core/CsoundComparator ast)))
     (throw (js/Error. "!= is not a Clojure function"))))
 
+(def tied?
+  (let [ast (csound.core/ast-node
+             'CsoundComparator
+             nil
+             nil
+             csound.core/*global*
+             "tigoto")]
+    (new csound.core/CsoundComparator ast)))
+
+(defn- number-to-variable [val]
+  (if (seqable? val)
+    (reduce (fn [i v]
+              (conj i (if (number? v)
+                        (new csound.core/Variable
+                             (csound.core/ast-node
+                              'Variable
+                              "="
+                              [v]
+                              csound.core/*global*))
+                        v))) [] val)
+    (if (number? val)
+      (new csound.core/Variable
+           (csound.core/ast-node
+            'Variable
+            "="
+            [val]
+            csound.core/*global*))
+      val)))
+
 (defn if:i [& [comparator then else :as form]]
   (when (< (count form) 3)
     (throw (js/Error. "Too few arguments to if:i")))
@@ -194,17 +232,19 @@
           "Error, test case for if:i is not a Boolean (Csound Comparator)")
   (when (and then else)
     (if (seqable? then)
-      (do (assert (= (map type then) (map type else))
-                  "Type mismatch in if:i statement, then and else clauses must return same rates")
+      (do #_(assert (= (map type then) (map type else))
+                    "Type mismatch in if:i statement, then and else clauses must return same rates")
           (assert (not (some #(or (= csound.core/AudioSignal (type %))
                                   (= csound.core/ControlSignal (type %))) then))
                   "if:i does not work for Audio rates and Control rates, use if:k instead"))
-      (do (assert (= (type then) (type else))
-                  "Type mismatch in if:i statement, then and else clauses must return same rate")
+      (do #_(assert (= (type then) (type else))
+                    "Type mismatch in if:i statement, then and else clauses must return same rate")
           (assert (not (or (= csound.core/AudioSignal (type then))
                            (= csound.core/ControlSignal (type then))))
                   "if:i does not work for Audio rates and Control rates, use if:k instead"))))
-  (let [new-out (if (seqable? then)
+  (let [[then else] [(number-to-variable then)
+                     (number-to-variable else)]
+        new-out (if (seqable? then)
                   (mapv #(csound.core/regenerate-out-symbols %) then)
                   (csound.core/regenerate-out-symbols then))
         attach-new-out (fn [obj]
@@ -220,8 +260,7 @@
              csound.core/*global*)
         then (if (seqable? then)
                (mapv #(csound.core/-attachBoolean % ast new-out) then)
-               (csound.core/-attachBoolean then ast new-out))]
-    
+               (csound.core/-attachBoolean then ast new-out))]    
     ;; Attention, just return the `then` case, given all
     ;; cases are of same rate, they will return the same ident
     ;; parseing logic takes place elsewhere
@@ -234,13 +273,15 @@
     (throw (js/Error. "Too many arguments to if:k")))
   (assert (= (type comparator) csound.core/CsoundComparator)
           "Error, test case for if:k is not a Boolean (Csound Comparator)")
-  (when (and then else)
-    (if (seqable? then)
-      (assert (= (map type then) (map type else))
-              "Type mismatch in if:k statement, then and else clauses must return same rates")
-      (assert (= (type then) (type else))
-              "Type mismatch in if:k statement, then and else clauses must return same rate")))
-  (let [new-out (if (seqable? then)
+  #_(when (and then else)
+      (if (seqable? then)
+        (assert (= (map type then) (map type else))
+                "Type mismatch in if:k statement, then and else clauses must return same rates")
+        (assert (= (type then) (type else))
+                "Type mismatch in if:k statement, then and else clauses must return same rate")))
+  (let [[then else] [(number-to-variable then)
+                     (number-to-variable else)]
+        new-out (if (seqable? then)
                   (mapv #(csound.core/regenerate-out-symbols %) then)
                   (csound.core/regenerate-out-symbols then))
         attach-new-out (fn [obj]
@@ -261,4 +302,6 @@
     ;; cases are of same rate, they will return the same ident
     ;; parseing logic takes place elsewhere
     then))
+
+
 
